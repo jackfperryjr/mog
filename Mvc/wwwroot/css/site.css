@@ -278,7 +278,16 @@ body {
     padding-bottom: 20px;
     font-family: "Raleway";
 }
-
+#logo {
+  width: 30px;
+  padding-right: 10px;
+  transition: all .3s ease-in-out;
+}
+#logo:hover,
+#logo:focus {
+  transform: rotate(-12deg);
+  transition: all .3s ease-in-out;
+}
 footer a,
 footer a:visited {
     color: rgb(130,130,130);
@@ -287,7 +296,7 @@ footer a:visited {
 }
 
 #logout:hover {
-  color: rgb(30,130,220);
+  color: #fff;
   font-weight: bolder;
   text-decoration: none;
   transition: all .3s ease-in-out;

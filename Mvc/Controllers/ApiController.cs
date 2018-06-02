@@ -13,7 +13,7 @@ using Mvc.Models;
 
 namespace Mvc.Controllers
 {
-    [Route("/FinalFantasy/[controller]")]
+    [Route("/Api")]
     public class ApiController : ControllerBase
     {
         private readonly CharacterContext _context;
