@@ -1,0 +1,81 @@
+@model PaginatedList<Mvc.Models.Characters>
+
+@using Microsoft.AspNetCore.Identity
+@using Mvc.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Characters";
+
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+<h2 class="lightSpeedIn">character list</h2>
+<hr />
+<form asp-action="Index" method="get">
+    <div>
+        <p class="text-center">
+            <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "Lightning" or "13"' value="@ViewData["CurrentFilter"]" />
+            <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-default back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add character</a>
+            }
+        </p>
+    </div>
+</form>
+<div class="index-list">
+
+<table id="character-list" class="table">
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="character-list-item">
+                <a asp-action="Details" asp-route-id="@item.Id" >
+                    <img class="character-list-thumb" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                </a>
+            </td>
+            <td class="character-list-item">
+                <a asp-action="Details" asp-route-id="@item.Id" >@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td class="character-list-item">
+                @Html.DisplayFor(modelItem => item.Origin)
+            </td>
+            @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a class="btn btn-default index-button" asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-pencil"></span> edit</a>
+                        <a class="btn btn-danger index-button" asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-remove"></span> del&nbsp;</a>
+                    </td>
+                }
+        </tr>
+}
+    </tbody>
+</table>
+<div id="list-btns" style="text-align: center;">
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+   <span class="glyphicon glyphicon-arrow-left"></span>
+     previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    next 
+    <span class="glyphicon glyphicon-arrow-right"></span>
+</a>
+</div>
+</div>
