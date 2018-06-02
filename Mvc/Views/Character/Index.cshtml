@@ -7,7 +7,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewData["Title"] = "Characters";
+    ViewData["Title"] = "| Characters";
 
 }
 @section Styles {
@@ -16,8 +16,8 @@
 <h2 class="lightSpeedIn">character list</h2>
 <hr />
 <form asp-action="Index" method="get">
-    <div>
-        <p class="text-center">
+    <div id="input-container">
+        <p class="text-left">
             <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "Lightning" or "13"' value="@ViewData["CurrentFilter"]" />
             <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
@@ -56,7 +56,7 @@
 }
     </tbody>
 </table>
-<div id="list-btns" style="text-align: center;">
+<div id="list-btns">
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";

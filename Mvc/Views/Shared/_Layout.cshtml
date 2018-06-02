@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="~/images/ff-moogle.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <title>Moogle | @ViewData["Title"]</title>
+    <title>Moogle @ViewData["Title"]</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -33,9 +32,6 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><span><img id="logo" src="~/images/ff-moogle.png"></span>Moogle</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Character" asp-action="Index">Characters</a></li>
-                </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>

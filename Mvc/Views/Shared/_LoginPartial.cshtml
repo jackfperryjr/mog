@@ -8,12 +8,9 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
-            </li>
-            <li>
-                <button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link">Sign out</button>
-            </li>
+            <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a></li>
+            <li><a asp-area="" asp-controller="Character" asp-action="Index">Manage</a></li>
+            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link">Sign out</button></li>
         </ul>
     </form>
 }

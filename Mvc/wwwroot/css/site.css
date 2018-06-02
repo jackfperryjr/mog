@@ -1,4 +1,7 @@
-﻿@-webkit-keyframes hvr-hang {
+﻿@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+@-webkit-keyframes hvr-hang {
   0% {
     -webkit-transform: translateY(8px);
     transform: translateY(8px);
@@ -278,6 +281,71 @@ body {
     padding-bottom: 20px;
     font-family: "Raleway";
 }
+.site-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10em;
+  margin-left: -35px;
+}
+code {
+  padding: 0 45px;
+  color: #000;
+  font-size: 12px;
+}
+/* Spacer classes */
+.top-buffer {
+  margin-top: 40px;
+}
+.bottom-buffer {
+  margin-bottom: 40px;
+}
+.mix-buffer {
+  margin: 40px 0;
+}
+.no-space {
+  letter-spacing: -45px;
+}
+.blue {
+  color: #4285F4;
+}
+.yellow {
+  color: #ffbb33;
+}
+.red {
+  color: #CC0000;
+}
+.green {
+  color: #007E33;
+}
+/* Search card */
+.search-card {
+  margin: 0 auto;
+  width: 50%;
+}
+#search {
+  width: 100%;
+  transition: all .3s ease-in-out;
+}
+#search:hover,
+#search:focus {
+  box-shadow: 1px 1px 2px rgb(200,200,200);
+  transition: all .3s ease-in-out;
+}
+#result {
+  outline: none;
+  width: 100%;
+  max-height: 600px;
+  overflow: scroll;
+}
+.padded-left {
+  padding-left: 50px;
+}
+h1 {
+  cursor: default;
+}
+h7 {
+  font-weight: lighter;
+  letter-spacing: 0;
+}
 #logo {
   width: 30px;
   padding-right: 10px;
@@ -308,6 +376,14 @@ footer a:active {
   color: rgb(30,130,220);
   text-decoration: none;
   transition: all .3s ease-in-out;
+}
+i {
+  color: #37474F;
+}
+i:hover,
+i:focus {
+  color: rgb(30,130,220);
+  transform: rotate(7deg);
 }
 
 /* Wrapping element */
@@ -374,7 +450,7 @@ footer a:active {
 .login-bar {
   margin: 30px 20px 30px 0;
   padding: 5px;
-  width: 320px;
+  width: 350px;
   border-top: none;
   border-right: none;
   border-bottom: 2px solid rgb(0,0,0);
@@ -402,7 +478,7 @@ footer a:active {
 .fixed-heading {
   text-align: center; 
   width: 100%; 
-  margin: 30px auto;
+  margin: 30px auto 0 auto;
 }
 .fixed-heading-col {
   padding: 30px;
@@ -419,10 +495,8 @@ footer a:active {
 #hvr-moogle {
   margin: 0;
   padding: 0;
-  width: 95%;
+  width: 65px;
   height: auto;
-  float: right;
-  margin-right: 60px;
 }
 #social-icons {
   float: right; 
@@ -467,8 +541,7 @@ footer a:active {
   float: right;
 }
 .index-list {
-  width: 50%; 
-  margin: 0 auto;
+  width: 650px; 
   text-align: center;
 }
 .add-edit-list {
@@ -541,6 +614,9 @@ footer a:active {
     #contact-img {
       max-width: 45%; 
       float: none; 
+    }
+    #input-container {
+      width: 350px;
     }
     .input-bar {
       width: 250px;
