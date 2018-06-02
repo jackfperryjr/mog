@@ -8,7 +8,7 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/ff-moogle.png" style="width: 20px;" alt="Tiny moogle face." title="Click to go back to search page."></a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index"><img id="tiny-logo" src="~/images/ff-moogle.png" alt="Tiny moogle face." title="Click to go back to search page."></a></li>
             <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Click to manage account.">@UserManager.GetUserName(User)</a></li>
             <li><a asp-area="" asp-controller="Character" asp-action="Index" title="Click to manage characters.">Manage</a></li>
             <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out.">Sign out</button></li>

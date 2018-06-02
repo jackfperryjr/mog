@@ -18,7 +18,7 @@
 <form asp-action="Index" method="get">
     <div id="input-container">
         <p class="text-left">
-            <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "Lightning" or "13"' value="@ViewData["CurrentFilter"]" />
+            <input class="input-bar" type="text" name="SearchString" placeholder='Search...' value="@ViewData["CurrentFilter"]" />
             <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
             @if (SignInManager.IsSignedIn(User))

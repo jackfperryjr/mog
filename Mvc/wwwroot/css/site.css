@@ -351,6 +351,15 @@ h7 {
   margin-right: -45px;
   transform: rotate(-12deg);
 }
+#tiny-logo {
+  width: 20px;
+  transition: all .3s ease-in-out;
+}
+#tiny-logo:hover,
+#tiny-logo:focus {
+  transform: rotate(-15deg);
+  transition: all .3s ease-in-out;
+}
 footer a,
 footer a:visited {
   color: rgb(130,130,130);
@@ -567,9 +576,25 @@ i:focus {
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
+    .site-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 6em;
+      margin-left: -25px;
+    }
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    .no-space {
+      letter-spacing: -30px;
+    }
+    #logo {
+      width: 50px;
+      margin-right: -30px;
+    }
+    .search-card {
+      margin: 0 auto;
+      width: 90%;
     }
     #character-list {
       max-width: 100%;

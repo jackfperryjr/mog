@@ -28,15 +28,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!--
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><span><img id="logo" src="~/images/ff-moogle.png"></span>Moogle</a> -->
                 </div>
                 <div class="navbar-collapse collapse">
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="container">
             @RenderBody()
             <hr />
             <footer>
