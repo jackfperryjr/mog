@@ -277,9 +277,9 @@
   }
 
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    font-family: "Raleway";
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-family: "Raleway";
 }
 .site-title {
   font-family: 'Josefin Sans', sans-serif;
@@ -347,24 +347,19 @@ h7 {
   letter-spacing: 0;
 }
 #logo {
-  width: 30px;
-  padding-right: 10px;
-  transition: all .3s ease-in-out;
-}
-#logo:hover,
-#logo:focus {
+  width: 80px;
+  margin-right: -45px;
   transform: rotate(-12deg);
-  transition: all .3s ease-in-out;
 }
 footer a,
 footer a:visited {
-    color: rgb(130,130,130);
-    text-decoration: none;
-    transition: all .3s ease-in-out;
+  color: rgb(130,130,130);
+  text-decoration: none;
+  transition: all .3s ease-in-out;
 }
 
 #logout:hover {
-  color: #fff;
+  color: #37474F;
   font-weight: bolder;
   text-decoration: none;
   transition: all .3s ease-in-out;
@@ -385,25 +380,6 @@ i:focus {
   color: rgb(30,130,220);
   transform: rotate(7deg);
 }
-
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
 /* QR code generator */
 #qrCode {
     margin: 15px;
