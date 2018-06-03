@@ -315,6 +315,9 @@ i:focus {
 .no-space {
   letter-spacing: -45px;
 }
+.black {
+  color: #000;
+}
 .blue {
   color: #4285F4;
 }
