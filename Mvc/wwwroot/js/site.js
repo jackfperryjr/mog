@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 // Using Api to get characters
-const uri = '/finalfantasy/api';
+const uri = 'http://localhost:5000/finalfantasy/api';
 let characters = null;
 
 // Making list of characters

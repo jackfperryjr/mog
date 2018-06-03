@@ -36,8 +36,18 @@ namespace Mvc
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
             services.AddDbContext<CharacterContext>(options =>options.UseSqlite("Data Source=Character.db"));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .Build()
+                );
+            });
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,10 +63,9 @@ namespace Mvc
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
-
             app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
