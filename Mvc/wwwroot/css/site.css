@@ -302,10 +302,10 @@ i:focus {
   margin-left: -35px;
 }
 .navbar-title {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bolder;
-  letter-spacing: -2px;
-  cursor: default;
+  letter-spacing: -1.5px;
+  cursor: pointer;
 }
 #logo {
   width: 80px;

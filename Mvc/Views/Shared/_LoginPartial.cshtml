@@ -6,16 +6,6 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <ul class="nav navbar-nav navbar-left">
-        <li class="navbar-title"><a asp-area="" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
-            <span class="blue">M</span>
-            <span class="red">o</span>
-            <span class="yellow">o</span>
-            <span class="blue">g</span>
-            <span class="green">l</span>
-            <span class="red">e</span></a>
-        </li>
-    </ul>
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Click to manage account.">@UserManager.GetUserName(User)</a></li>
