@@ -1,6 +1,7 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+﻿/* Importing Google fonts */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-
+/* Defining some animations */
 @-webkit-keyframes hvr-hang {
   0% {
     -webkit-transform: translateY(8px);
@@ -57,7 +58,6 @@
   -webkit-animation-direction: normal;
   animation-direction: normal;
 }
-
 @-webkit-keyframes bounceInDown {
     from,
     60%,
@@ -95,7 +95,6 @@
       transform: translate3d(0, 0, 0);
     }
   }
-  
   @keyframes bounceInDown {
     from,
     60%,
@@ -105,35 +104,29 @@
       -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
       animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
-  
     0% {
       opacity: 0;
       -webkit-transform: translate3d(0, -3000px, 0);
       transform: translate3d(0, -3000px, 0);
     }
-  
     60% {
       opacity: 1;
       -webkit-transform: translate3d(0, 25px, 0);
       transform: translate3d(0, 25px, 0);
     }
-  
     75% {
       -webkit-transform: translate3d(0, -10px, 0);
       transform: translate3d(0, -10px, 0);
     }
-  
     90% {
       -webkit-transform: translate3d(0, 5px, 0);
       transform: translate3d(0, 5px, 0);
     }
-  
     to {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
   }
-  
   .bounceInDown {
     -webkit-animation-name: bounceInDown;
     animation-name: bounceInDown;
@@ -150,33 +143,28 @@
     -webkit-animation-direction: normal;
     animation-direction: normal;
   }
-
   @keyframes lightSpeedIn {
     from {
       -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
       transform: translate3d(100%, 0, 0) skewX(-30deg);
       opacity: 0;
     }
-  
     60% {
       -webkit-transform: skewX(20deg);
       transform: skewX(20deg);
       opacity: 1;
     }
-  
     80% {
       -webkit-transform: skewX(-5deg);
       transform: skewX(-5deg);
       opacity: 1;
     }
-  
     to {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       opacity: 1;
     }
   }
-  
   .lightSpeedIn {
     -webkit-animation-name: lightSpeedIn;
     animation-name: lightSpeedIn;
@@ -198,13 +186,11 @@
       -webkit-transform: scale3d(1, 1, 1);
       transform: scale3d(1, 1, 1);
     }
-  
     10%,
     20% {
       -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
       transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
     }
-  
     30%,
     50%,
     70%,
@@ -212,32 +198,27 @@
       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
     }
-  
     40%,
     60%,
     80% {
       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
     }
-  
     to {
       -webkit-transform: scale3d(1, 1, 1);
       transform: scale3d(1, 1, 1);
     }
   }
-  
   @keyframes tada {
     from {
       -webkit-transform: scale3d(1, 1, 1);
       transform: scale3d(1, 1, 1);
     }
-  
     10%,
     20% {
       -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
       transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
     }
-  
     30%,
     50%,
     70%,
@@ -245,20 +226,17 @@
       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
     }
-  
     40%,
     60%,
     80% {
       -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
       transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
     }
-  
     to {
       -webkit-transform: scale3d(1, 1, 1);
       transform: scale3d(1, 1, 1);
     }
   }
-  
   .tada {
     -webkit-animation-name: tada;
     animation-name: tada;
@@ -275,12 +253,49 @@
     -webkit-animation-direction: normal;
     animation-direction: normal;
   }
-
+/* Modifying HTML elements */
 body {
   padding-top: 50px;
   padding-bottom: 20px;
   font-family: "Raleway";
 }
+code {
+  color: #000;
+  background-color: transparent;
+  font-size: 12px;
+}
+h1 {
+  cursor: default;
+}
+h7 {
+  font-weight: lighter;
+  letter-spacing: 0;
+}
+footer a,
+footer a:visited {
+  color: #37474F;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+footer a:hover,
+footer a:focus,
+footer a:active {
+  color: rgb(30,130,220);
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+i {
+  color: #37474F;
+  padding-left: 10px;
+  font-size: 20px;
+  float: right;
+}
+i:hover,
+i:focus {
+  color: rgb(30,130,220);
+  transform: rotate(7deg);
+}
+/* Styling Moogle title */
 .site-title {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 10em;
@@ -292,20 +307,10 @@ body {
   letter-spacing: -2px;
   cursor: default;
 }
-code {
-  color: #000;
-  background-color: transparent;
-  font-size: 12px;
-}
-/* Spacer classes */
-.top-buffer {
-  margin-top: 40px;
-}
-.bottom-buffer {
-  margin-bottom: 40px;
-}
-.mix-buffer {
-  margin: 40px 0;
+#logo {
+  width: 80px;
+  margin-right: -45px;
+  transform: rotate(-12deg);
 }
 .no-space {
   letter-spacing: -45px;
@@ -322,6 +327,19 @@ code {
 .green {
   color: #007E33;
 }
+/* Spacer classes */
+.top-buffer {
+  margin-top: 40px;
+}
+.bottom-buffer {
+  margin-bottom: 40px;
+}
+.mix-buffer {
+  margin: 40px 0;
+}
+.padded-left {
+  padding-left: 50px;
+}
 /* Search card */
 .search-card {
   margin: 0 auto;
@@ -336,82 +354,41 @@ code {
   box-shadow: 1px 1px 2px rgb(200,200,200);
   transition: all .3s ease-in-out;
 }
+.search-result,
+.search-result > a,
+.search-result > a:hover,
+.search-result > a:visited,
+.search-result > a:focus {
+  color: #2e7d32;
+}
 #result {
   outline: none;
   width: 100%;
   max-height: 600px;
   overflow: scroll;
 }
-.padded-left {
-  padding-left: 50px;
-}
-h1 {
-  cursor: default;
-}
-h7 {
-  font-weight: lighter;
-  letter-spacing: 0;
-}
-#logo {
-  width: 80px;
-  margin-right: -45px;
-  transform: rotate(-12deg);
-}
-#tiny-logo {
-  width: 20px;
-  transition: all .3s ease-in-out;
-}
-#tiny-logo:hover,
-#tiny-logo:focus {
-  transform: rotate(-15deg);
-  transition: all .3s ease-in-out;
-}
-footer a,
-footer a:visited {
-  color: rgb(130,130,130);
-  text-decoration: none;
-  transition: all .3s ease-in-out;
-}
-
+/* Logout link */
 #logout:hover {
   color: #37474F;
   font-weight: bolder;
   text-decoration: none;
   transition: all .3s ease-in-out;
 }
-
-footer a:hover,
-footer a:focus,
-footer a:active {
-  color: rgb(30,130,220);
-  text-decoration: none;
-  transition: all .3s ease-in-out;
-}
-i {
-  color: #37474F;
-}
-i:hover,
-i:focus {
-  color: rgb(30,130,220);
-  transform: rotate(7deg);
-}
 /* QR code generator */
 #qrCode {
     margin: 15px;
 }
-
+/* Admin character management stuff */
 #character-list {
   max-width: 100%;
   margin: 50px auto;
 }
-
 .character-list-item {
   font-size: 16px;
   letter-spacing: 3px;
   font-weight: bolder;
   width: 33%;
 }
-
 .character-list-thumb {
   object-fit: fill; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
@@ -422,7 +399,6 @@ i:focus {
   box-shadow: none;
   opacity: 1;
   transition: all .3s ease-in-out;
-  
 }
 .character-list-thumb:hover,
 .character-list-thumb:focus,
@@ -432,7 +408,34 @@ i:focus {
   opacity: .9;
   transition: all .3s ease-in-out;
 }
-
+.index-list {
+  width: 650px; 
+  text-align: center;
+}
+.add-edit-list {
+  width: 75%; 
+  margin: 0 auto;
+  text-align: center;
+}
+#character-profile-img {
+  margin-top: 10px; 
+  width: 100%; 
+  height: auto;
+  border: none;
+  border-radius: 5px; 
+  box-shadow: 2px 2px 6px rgb(150,150,150);
+  opacity: .9;
+  transition: all .3s ease-in-out;
+  
+}
+#character-profile-img:hover,
+#character-profile-img:focus,
+#character-profile-img:active  {
+  box-shadow: none;
+  opacity: 1;
+  transform: translate(0, 1px);
+  transition: all .3s ease-in-out;
+} 
 .index-button {
   float: right;
   margin: 2.5px;
@@ -458,6 +461,8 @@ i:focus {
 }
 #delete-warning {
   max-width: 50%;
+  color: rgb(255,0,0);
+  font-weight: bolder;
 }
 #detail-view {
   max-width: 100%;
@@ -466,6 +471,7 @@ i:focus {
   border-radius: 5px;
   margin: 0 auto 20px auto;
 }
+/* Some modified Bootstrap stuff (Or I made them up to fix something) */
 .fixed-heading {
   text-align: center; 
   width: 100%; 
@@ -478,47 +484,11 @@ i:focus {
   font-size: 16px;
   text-align: left;
 }
-#site-logo {
-  max-width: 80%; 
-  margin: 0 auto;
-}
-
-#hvr-moogle {
-  margin: 0;
-  padding: 0;
-  width: 65px;
-  height: auto;
-}
-#social-icons {
-  float: right; 
-  font-size: 20px;
-}
-#social-icons a {
-  padding-left: 10px;
-}
-
-#contact-card {
-  max-width: 100%; 
-}
-#contact-card h2 {
-  font-weight: bolder;
-}
-#contact-img {
-  padding: 5px 20px;
-  margin: 10px; 
-  border-radius: 5px; 
-  width: 85%; 
-  background-color: rgb(255,255,255);
-}
-
+/* Make a shadow */
 .shadow {
   box-shadow: 2px 2px 4px rgb(100,100,100);
 }
-
-#delete-warning {
-  color: rgb(255,0,0);
-  font-weight: bolder;
-}
+/* Description box */
 #desc {
   line-height: 25px;
 }
@@ -531,55 +501,6 @@ i:focus {
 #desc-position {
   float: right;
 }
-.index-list {
-  width: 650px; 
-  text-align: center;
-}
-.add-edit-list {
-  width: 75%; 
-  margin: 0 auto;
-  text-align: center;
-}
-#welcome {
-  text-align: center; 
-  width: 70%; 
-  margin: 0 auto;
-}
-#welcome-content {
-  text-align: center; 
-  width: 100%; 
-  margin: 0 auto;
-}
-#character-profile-img {
-  margin-top: 10px; 
-  width: 100%; 
-  height: auto;
-  border: none;
-  border-radius: 5px; 
-  box-shadow: 2px 2px 6px rgb(150,150,150);
-  opacity: .9;
-  transition: all .3s ease-in-out;
-  
-}
-#character-profile-img:hover,
-#character-profile-img:focus,
-#character-profile-img:active  {
-  box-shadow: none;
-  opacity: 1;
-  transform: translate(0, 1px);
-  transition: all .3s ease-in-out;
-} 
-.fancy-icon i{
-  transition: all .5s ease-in-out;
-}
-.fancy-icon i:hover {
-  color: rgb(0,0,0);
-  transform: translate(0, -10px)rotate(10deg);
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px rgb(150,150,150);
-  transition: all .5s ease-in-out;  
-}
-
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     .site-title {
@@ -615,13 +536,6 @@ i:focus {
     #detail-view {
       max-width: 100%;
     }
-    #contact-card {
-      max-width: 100%; 
-    }
-    #contact-img {
-      max-width: 45%; 
-      float: none; 
-    }
     #input-container {
       width: 350px;
     }
@@ -639,21 +553,8 @@ i:focus {
     #desc-position {
       float: none;
     }
-    #site-logo {
-      max-width: 100%; 
-      margin: 0 auto;
-    }
-    
-    #hvr-moogle {
-      display: none;
-    }
     .index-list {
       width: 100%;
     }
-
-    #welcome {
-      width: 100%; 
-    }
-
 }
 

@@ -54,18 +54,21 @@ $('#search').keyup(function() {
         // Display character format
         $.each(characters, function(key, val) {
             if ((val.name.search(regex) != -1)) {
-                output += '<div class="well col-md-12">';
-                output += '<code><br/>';
-                output += '"Name":' + JSON.stringify(val.name) + ',' + '<br/>';
-                output += '"Age":' + JSON.stringify(val.age) + ',' + '<br/>';
-                output += '"Race":' + JSON.stringify(val.race) + ',' + '<br/>';
-                output += '"Job":' + JSON.stringify(val.job) + ',' + '<br/>';
-                output += '"Height":' + JSON.stringify(val.height) + ',' + '<br/>';
-                output += '"Weight:' + JSON.stringify(val.weight) + ',' + '<br/>';
-                output += '"Origin":' + JSON.stringify(val.origin) + ',' + '<br/>';
-                output += '"Description":' + JSON.stringify(val.description) + '<br/>';
-                output += '</code><br/>';
-                output += '</div>';
+                output += '<div class="row" style="margin-right: 0;margin-left:0;"><div class="col-md-8">';
+                output += '<h4 style="color: #2962ff;margin-bottom: -3px;">'+ val.name + '</h4>';
+                output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + val.name.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + val.name.toLowerCase() + '</a></h7><br/>';
+                output += '<p style="color: #37474f">' + val.description + '</p>';
+                output += '<table style="color: #37474f; width:50%;"><tr>';
+                output += '<td><strong>Age:</strong> ' + val.age + '</td>';
+                output += '<td><strong>Race:</strong> ' + val.race + '</td></tr><tr>';
+                output += '<td><strong>Job:</strong> ' + val.job + '</td>';
+                output += '<td><strong>Height:</strong> ' + val.height + 'm</td></tr><tr>';
+                output += '<td><strong>Weight:</strong> ' + val.weight + 'kg</td>';
+                output += '<td><strong>Origin:</strong> ' + val.origin + '</td></tr>';
+                output += '</table><br/>';
+                output += '</div><div class="col-md-4">';
+                output += '<img style="width: 200px; padding: 7px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + val.picture + ' alt="Picture of ' + val.name  + '." title="Picture of ' + val.name  + '.">';
+                output += '<br/></div>';
                 if(count%2 == 0) { 
                     output += '</div>'
                 }
