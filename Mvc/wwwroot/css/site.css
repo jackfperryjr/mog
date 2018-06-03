@@ -286,9 +286,16 @@ body {
   font-size: 10em;
   margin-left: -35px;
 }
+.navbar-title {
+  font-size: 20px;
+  font-weight: bolder;
+  letter-spacing: -2px;
+  cursor: default;
+}
 code {
   padding: 0 45px;
   color: #000;
+  background-color: transparent;
   font-size: 12px;
 }
 /* Spacer classes */
