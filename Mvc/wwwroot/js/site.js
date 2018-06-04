@@ -1,5 +1,5 @@
 // Setting a random character name as the input placeholder
-let randomCharacterList = [
+let randomPlaceholderList = [
     'Search ex. "Lightning"',
     'Search ex. "Cloud"',
     'Search ex. "Yuna"',
@@ -9,12 +9,12 @@ let randomCharacterList = [
     'Search ex. "Rosa"',
     'Search ex. "Tidus"',
     'Search ex. "Rikku"',
-    'Search ex. "Noctis"'
+    'Search ex. "Cid"'
 ];
 
-let randomCharacterName = randomCharacterList[Math.floor(Math.random()*randomCharacterList.length)];
+let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPlaceholderList.length)];
 
-$("#search").attr("placeholder", randomCharacterName);
+$("#search").attr("placeholder", randomPlaceholder);
 
 // Loading characters once page is ready
 $(document).ready(function () {

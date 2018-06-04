@@ -46,6 +46,7 @@ namespace Mvc.Controllers
             {
                 characters = characters.Where(c => c.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1)) || c.Origin.Contains(searchString));
             }
+
             int pageSize = 10;
             return View(await PaginatedList<Characters>.CreateAsync(characters.AsNoTracking(), page ?? 1, pageSize));
             //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
