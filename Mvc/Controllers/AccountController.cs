@@ -205,7 +205,7 @@ namespace Mvc.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles="Admin")] // Because only I want to register new users
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -213,7 +213,7 @@ namespace Mvc.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles="Admin")] // Same as above
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
