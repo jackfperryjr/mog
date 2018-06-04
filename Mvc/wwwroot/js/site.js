@@ -33,7 +33,7 @@ $('#search').keyup(function() {
         $.each(characters, function(key, character) {
             if ((character.name.search(regex) != -1)) {
                 output += '<div class="row" style="margin-right: 0;margin-left:0;"><div class="col-md-8">';
-                output += '<h4 style="color: #2962ff;margin-bottom: -3px;"><strong>'+ character.name + '</strong></h4>';
+                output += '<h4 style="color: #2962ff;margin-bottom: -.5px;"><strong>'+ character.name + '</strong></h4>';
                 output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + character.name.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + character.name.toLowerCase() + '</a></h7><br/>';
                 output += '<p style="color: #37474f">' + character.description + '</p>';
                 output += '<table style="color: #37474f; width:50%;"><tr>';
