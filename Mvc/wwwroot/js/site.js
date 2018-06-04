@@ -1,3 +1,21 @@
+// Setting a random character name as the input placeholder
+let randomCharacterList = [
+    'Search ex. "Lightning"',
+    'Search ex. "Cloud"',
+    'Search ex. "Yuna"',
+    'Search ex. "Firion"',
+    'Search ex. "Aerith"',
+    'Search ex. "Cecil"',
+    'Search ex. "Rosa"',
+    'Search ex. "Tidus"',
+    'Search ex. "Rikku"',
+    'Search ex. "Noctis"'
+];
+
+let randomCharacterName = randomCharacterList[Math.floor(Math.random()*randomCharacterList.length)];
+
+$("#search").attr("placeholder", randomCharacterName);
+
 // Loading characters once page is ready
 $(document).ready(function () {
     getData();
