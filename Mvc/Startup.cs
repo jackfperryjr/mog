@@ -82,11 +82,11 @@ namespace Mvc
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-                    
-            CreateRoles(serviceProvider);
+
+            CreateRoles(serviceProvider, Configuration);
         }
 
-        private static void CreateRoles(IServiceProvider serviceProvider)
+        private static void CreateRoles(IServiceProvider serviceProvider, IConfiguration Configuration)
         {
             const string adminRoleName = "Admin";
             string[] roleNames = { adminRoleName, "Manager", "Member" };
@@ -96,9 +96,11 @@ namespace Mvc
                 CreateRole(serviceProvider, roleName);
             }
 
-            // Get these value from "appsettings.json" file.
+            // Setting up super admin user - me!
+            string adminUser = Configuration["AdminUser"];
+            string adminPassword = Configuration["AdminPassword"];
             
-            AddUserToRole(serviceProvider, adminUserEmail, adminPwd, adminRoleName);
+            AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
         }
 
         private static void CreateRole(IServiceProvider serviceProvider, string roleName)
@@ -114,7 +116,7 @@ namespace Mvc
                 roleResult.Wait();
             }
         }
-
+        
         private static void AddUserToRole(IServiceProvider serviceProvider, string userEmail, 
             string userPwd, string roleName)
         {
