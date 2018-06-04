@@ -387,16 +387,16 @@ i:focus {
   margin: 50px auto;
 }
 .character-list-item {
-  font-size: 16px;
+  font-size: 12px;
   letter-spacing: 3px;
   font-weight: bolder;
-  width: 33%;
+  width: 25%;
 }
 .character-list-thumb {
   object-fit: fill; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
   border-radius: 5px; 
   border: 1px solid rgb(248,248,248);
   box-shadow: none;
@@ -412,7 +412,7 @@ i:focus {
   transition: all .3s ease-in-out;
 }
 .index-list {
-  width: 650px; 
+  width: 80%; 
   text-align: center;
 }
 .add-edit-list {
@@ -450,17 +450,18 @@ i:focus {
   width: 350px;
   border-top: none;
   border-right: none;
-  border-bottom: 2px solid rgb(0,0,0);
+  border-bottom: 1px solid rgb(0,0,0);
   border-left: none;
   outline: none;
   border-radius: 0;
-  color: rgb(255,0,0);
-  font-weight: bolder;
-  font-size: 18px;
+  font-size: 16px;
 }
 .login-bar {
   font-size: 16px;
   margin: 10px 0;
+}
+.login-picture {
+  width: 100%;
 }
 #delete-warning {
   max-width: 50%;
@@ -496,10 +497,10 @@ i:focus {
   line-height: 25px;
 }
 #desc-input {
-  border: 2px solid rgb(0,0,0);
+  border: 1px solid rgb(0,0,0);
   resize: none;
   width: 100%;
-  height: 300px;
+  height: 415px;
 }
 #desc-position {
   float: right;
@@ -540,7 +541,7 @@ i:focus {
       max-width: 100%;
     }
     #input-container {
-      width: 350px;
+      width: 100%;
     }
     .input-bar {
       width: 250px;
