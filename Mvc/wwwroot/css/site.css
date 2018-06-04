@@ -382,6 +382,16 @@ i:focus {
     margin: 15px;
 }
 /* Admin character management stuff */
+.navbar-icon {
+  width: 22px;
+  border-radius: 50%;
+  transition: all .3s ease-in-out
+}
+.navbar-icon:hover,
+.navbar-icon:focus {
+  transform: rotate(25deg);
+  transition: all .3s ease-in-out;
+}
 #character-list {
   max-width: 100%;
   margin: 50px auto;

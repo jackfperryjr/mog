@@ -10,15 +10,15 @@
         <ul class="nav navbar-nav navbar-right">
             @if (User.Identity.Name=="admin@moogle.com")
             {
-                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img id="navbar-jack" style="width:20px;border-radius:50%;" src="~/images/profile-me.jpg"></a></li>
-                <li><a asp-controller="Account" asp-action="Register" title="Click to register new user."><img style="width:20px;border-radius:50%;" src="~/images/icon-add-users.png"></a></li>
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/profile-me.jpg"></a></li>
+                <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add user</a></li>
             }
             else
             {
-                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img style="width:20px;border-radius:50%;" src="~/images/icon-default-profile.jpg"></a></li>
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/icon-default-profile.jpg"></a></li>
             }
-            <li><a asp-controller="Character" asp-action="Index" title="Click to manage characters."><img style="width:20px;border-radius:50%;" src="~/images/icon-manage.png"></a></li>
-            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out."><img style="width:20px;border-radius:50%;" src="~/images/icon-sign-out.png"></button></li>
+            <li><a asp-controller="Character" asp-action="Index" title="Click to manage characters.">Manage characters</a></li>
+            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out.">Sign out</button></li>
         </ul>
     </form>
 }
