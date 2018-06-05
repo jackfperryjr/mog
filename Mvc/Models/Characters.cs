@@ -6,7 +6,7 @@ namespace Mvc.Models
 {  
     public class Characters  
     {  
-        public int Id { get; set; }  
+        public int Id { get; set; }  // Change to CharacterId?
         [Required]  
         public string Name { get; set; }  
         [Required]  
@@ -23,5 +23,8 @@ namespace Mvc.Models
         public string Origin { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
+
+        // public int GameId { get; set; }
+        // public Game Game { get; set; } // Commented out to keep from interfering with existing application/data
     }  
 }

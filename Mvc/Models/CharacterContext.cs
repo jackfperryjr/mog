@@ -8,6 +8,9 @@ namespace Mvc.Models
             : base(options)  
         {  
         }  
-        public DbSet<Mvc.Models.Characters> Character { get; set; }  
+        public DbSet<Mvc.Models.Characters> Character { get; set; } // I did this one backwards
+        // public DbSet<Mvc.Models.Monster> Monsters { get; set; }  
+        // public DbSet<Mvc.Models.Game> Games { get; set; }  
+
     }  
 }
