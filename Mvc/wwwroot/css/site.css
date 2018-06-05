@@ -302,8 +302,8 @@ i:focus {
   margin-left: -35px;
 }
 .navbar-title {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 14px;
-  font-weight: bolder;
   letter-spacing: -1.5px;
   cursor: pointer;
 }
@@ -363,6 +363,10 @@ i:focus {
 .search-result > a:visited,
 .search-result > a:focus {
   color: #2e7d32;
+}
+#counter {
+  float: right;
+  font-size: 12px;
 }
 #result {
   outline: none;

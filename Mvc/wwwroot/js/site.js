@@ -31,9 +31,24 @@ function getData() {
         type: 'GET',
         url: uri,
         success: function (data) {
+            getCount(data.length);
             characters = data;
         }
     });
+}
+
+// Counting the characters
+function getCount(data) {
+    const el = $('#counter');
+    let name = ' character.';
+    if (data) {
+        if (data > 1) {
+            name = ' characters and counting!';
+        }
+        el.text(data +  name);
+    } else {
+        el.html('No ' + name);
+    }
 }
 
 // Finding characters upon search
