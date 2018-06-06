@@ -70,7 +70,7 @@ function getCountC(characterData) {
     let name = ' character.';
     if (characterData) {
         if (characterData > 1) {
-            name = ' characters and counting!';
+            name = ' characters.';
         }
         el.text(characterData + name);
     } else {
@@ -82,7 +82,7 @@ function getCountM(monsterData) {
     let name = ' monster.';
     if (monsterData) {
         if (monsterData > 1) {
-            name = ' monsters and counting!';
+            name = ' monsters.';
         }
         el.text(monsterData + name);
     } else {
