@@ -13,37 +13,37 @@ using Mvc.Models;
 
 namespace Mvc.Controllers
 {
-    [Route("/FinalFantasy/[controller]")]
-    public class ApiController : ControllerBase
+    [Route("/Api/[controller]")]
+    public class GamesController : ControllerBase
     {
         private readonly CharacterContext _context;
 
-        public ApiController(CharacterContext context)
+        public GamesController(CharacterContext context)
         {
             _context = context;
         }
 
-        //GET all api/characters
+        //GET all FinalFantasy/Games
         [AllowAnonymous]
         [HttpGet]
-        public List<Characters> GetAll()
+        public List<Game> GetAll()
         {
-            var characters = from c in _context.Character select c;
-            characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
-            return characters.ToList();
+            var games = from g in _context.Games select g;
+            games = games.OrderBy(g => g.Title);
+            return games.ToList();
         }
 
-        //GET api/characters/id
+        //GET FinalFantasy/Games/id
         [AllowAnonymous]
-        [HttpGet("{id}", Name = "GetCharacter")]
+        [HttpGet("{id}", Name = "GetGame")]
         public IActionResult Get(int? id)
         {
-            var character = _context.Character.Find(id);
-            if (character == null)
+            var game = _context.Games.Find(id);
+            if (game == null)
             {
                 return NotFound();
             }
-            return Ok(character);
+            return Ok(game);
         }   
     }
 }

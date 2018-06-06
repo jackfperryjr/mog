@@ -1,0 +1,41 @@
+@model Mvc.Models.Monster
+
+@using Microsoft.AspNetCore.Identity
+@using Mvc.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "| Monster Details";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 class="lightSpeedIn" style="text-transform: lowercase;">@Html.DisplayFor(model => model.Name)</h2>
+<hr />
+<div id="detail-view">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="https://www.google.com/search?q=Final+Fantasy+@Html.DisplayFor(model => model.Name)" target="_blank">
+                <img id="character-profile-img" src="@Url.Content(Model.Picture)" alt="@Html.DisplayFor(model => model.Name)" title="Search for @Html.DisplayFor(model => model.Name) on Google!"/>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <h4><strong>@Html.DisplayNameFor(model => model.Strength)</strong>: @Html.DisplayFor(model => model.Strength)</h4>
+            <h4><strong>@Html.DisplayNameFor(model => model.Weakness)</strong>: @Html.DisplayFor(model => model.Weakness)</h4>
+        </div>
+        <div class="col-md-5">
+            <h4 id="desc"><!-- <strong>@Html.DisplayNameFor(model => model.Description)</strong>: -->@Html.DisplayFor(model => model.Description)</h4>
+        </div>
+    </div>
+</div>
+<div>
+    <a class="btn btn-default" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> back to list</a>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a class="btn btn-default index-button" asp-action="Edit" asp-route-id="@Model.MonsterId"><span class="glyphicon glyphicon-pencil"></span> edit</a>
+        <a class="btn btn-danger index-button" asp-action="Delete" asp-route-id="@Model.MonsterId"><span class="glyphicon glyphicon-remove"></span> del&nbsp;</a>
+    }
+</div>

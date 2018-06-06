@@ -12,21 +12,21 @@ using Mvc.Models;
 
 namespace Mvc.Controllers
 {
-    [Authorize]
-    public class CharacterController : Controller
+    
+    public class GameController : Controller
     {
         private readonly CharacterContext _context;
 
-        public CharacterController(CharacterContext context)
+        public GameController(CharacterContext context)
         {
             _context = context;
         }
 
-        // GET: Character
+        // GET: Game
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
-            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
-            ViewData["OriginSort"] = String.IsNullOrEmpty(sortOrder) ? "Origin" : "";
+            ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "Title" : "";
             ViewData["CurrentFilter"] = searchString;
 
             if (searchString != null)
@@ -38,20 +38,21 @@ namespace Mvc.Controllers
                 searchString = currentFilter;
             }
 
-            var characters = from c in _context.Character select c;
-            characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
+            var games = from g in _context.Games select g;
+            games = games.OrderBy(g => g.Title);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                characters = characters.Where(c => c.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1)) || c.Origin.Contains(searchString));
+                games = games.Where(g => g.Title.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1))); // Search by game title
             }
 
-            int pageSize = 10;
-            return View(await PaginatedList<Characters>.CreateAsync(characters.AsNoTracking(), page ?? 1, pageSize));
-            //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
+            //int pageSize = 10;
+            //return View(await PaginatedList<Game>.CreateAsync(games.AsNoTracking(), page ?? 1, pageSize));
+            return View(await games.AsNoTracking().ToListAsync());
         }
 
-        // GET: Character/Details/5
+        // GET: Game/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -59,39 +60,39 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var games = await _context.Games
+                .SingleOrDefaultAsync(g => g.GameId == id);
+            if (games == null)
             {
                 return NotFound();
             }
 
-            return View(characters);
+            return View(games);
         }
 
-        // GET: Character/Create
+        // GET: Game/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Character/Create
+        // POST: Game/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Characters")] Game game)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(characters);
+                _context.Add(game);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(characters);
+            return View(game);
         }
 
-        // GET: Character/Edit/5
+        // GET: Game/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,36 +100,37 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var games = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
+            if (games == null)
             {
                 return NotFound();
             }
-            return View(characters);
+            return View(games);
         }
 
-        // POST: Character/Edit/5
+        // POST: Game/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Edit(int id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Characters")] Game games)
         {
-            if (id != characters.Id)
+            if (id != games.GameId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(characters);
+                //try
+                //{
+                    _context.Update(games);
                     await _context.SaveChangesAsync();
-                }
+                //}
+                /*
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CharactersExists(characters.Id))
+                    if (!GameExists(games.GameId))
                     {
                         return NotFound();
                     }
@@ -137,12 +139,13 @@ namespace Mvc.Controllers
                         throw;
                     }
                 }
+                */
                 return RedirectToAction(nameof(Index));
             }
-            return View(characters);
+            return View(games);
         }
 
-        // GET: Character/Delete/5
+        // GET: Game/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,30 +153,30 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var games = await _context.Games
+                .SingleOrDefaultAsync(g => g.GameId == id);
+            if (games == null)
             {
                 return NotFound();
             }
 
-            return View(characters);
+            return View(games);
         }
 
-        // POST: Character/Delete/5
+        // POST: Game/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Character.Remove(characters);
+            var games = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
+            _context.Games.Remove(games);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CharactersExists(int id)
+        private bool GameExists(int id)
         {
-            return _context.Character.Any(e => e.Id == id);
+            return _context.Games.Any(e => e.GameId == id);
         }
     }
 }

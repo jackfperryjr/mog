@@ -18,34 +18,85 @@ $("#search").attr("placeholder", randomPlaceholder);
 
 // Loading characters once page is ready
 $(document).ready(function () {
-    getData();
+    timer();
+    getCharacters();
+    getMonsters();
+    getGames();
 });
 
 // Using Api to get characters
-const uri = 'http://localhost:5000/finalfantasy/api';
+const uriCharacters = 'http://localhost:5000/api/characters';
+const uriMonsters = 'http://localhost:5000/api/monsters';
+const uriGames = 'http://localhost:5000/api/games';
 let characters = null;
+let monsters = null;
+let games = null;
 
 // Making list of characters
-function getData() {
+function getCharacters() {
     $.ajax({
         type: 'GET',
-        url: uri,
-        success: function (data) {
-            getCount(data.length);
-            characters = data;
+        url: uriCharacters,
+        success: function (characterData) {
+            getCountC(characterData.length);
+            characters = characterData;
+        }
+    });
+}
+function getMonsters() {
+    $.ajax({
+        type: 'GET',
+        url: uriMonsters,
+        success: function (monsterData) {
+            getCountM(monsterData.length);
+            monsters = monsterData;
+        }
+    });
+}
+function getGames() {
+    $.ajax({
+        type: 'GET',
+        url: uriGames,
+        success: function (gameData) {
+            getCountG(gameData.length);
+            games = gameData;
         }
     });
 }
 
 // Counting the characters
-function getCount(data) {
-    const el = $('#counter');
+function getCountC(characterData) {
+    const el = $('#counterC');
     let name = ' character.';
-    if (data) {
-        if (data > 1) {
+    if (characterData) {
+        if (characterData > 1) {
             name = ' characters and counting!';
         }
-        el.text(data +  name);
+        el.text(characterData + name);
+    } else {
+        el.html('No ' + name);
+    }
+}
+function getCountM(monsterData) {
+    const el = $('#counterM');
+    let name = ' monster.';
+    if (monsterData) {
+        if (monsterData > 1) {
+            name = ' monsters and counting!';
+        }
+        el.text(monsterData + name);
+    } else {
+        el.html('No ' + name);
+    }
+}
+function getCountG(gameData) {
+    const el = $('#counterG');
+    let name = ' game.';
+    if (gameData) {
+        if (gameData > 1) {
+            name = ' games.';
+        }
+        el.text(gameData + name);
     } else {
         el.html('No ' + name);
     }
@@ -86,5 +137,43 @@ $('#search').keyup(function() {
                 count++;
             }
         });
+        $.each(monsters, function(key, monster) {
+            if ((monster.name.search(regex) != -1)) {
+                output += '<div class="row" style="margin-right: 0;margin-left:0;"><div class="col-md-8">';
+                output += '<h4 style="color: #2962ff;margin-bottom: -.5px;"><strong>'+ monster.name + '</strong></h4>';
+                output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + monster.name.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + monster.name.toLowerCase() + '</a></h7><br/>';
+                output += '</div><div class="col-md-4">';
+                output += '<img style="width: 200px; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '.">';
+                output += '<br/></div></div>';
+                if(count%2 == 0) { 
+                    output += '</div>'
+                }
+                count++;
+            }
+        });
+        $.each(games, function(key, game) {
+            if ((game.title.search(regex) != -1)) {
+                output += '<div class="row" style="margin-right: 0;margin-left:0;"><div class="col-md-8">';
+                output += '<h4 style="color: #2962ff;margin-bottom: -.5px;"><strong>'+ game.title + '</strong></h4>';
+                output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + game.title.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + game.title.toLowerCase() + '</a></h7><br/>';
+                output += '</div><div class="col-md-4">';
+                output += '<img style="width: 200px; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + game.picture + ' alt="Logo for ' + game.title + '." title="Picture of ' + game.title + '.">';
+                output += '<br/></div></div>';
+                if(count%2 == 0) { 
+                    output += '</div>'
+                }
+                count++;
+            }
+        });
     $('#result').html(output);
 });
+
+// Loading bar while counting
+function timer() {
+    let timed;
+    timed = setTimeout(showTotals, 3000);
+}
+function showTotals() {
+    $('#loader').fadeOut();
+    $('#totals').delay(700).fadeIn();
+}

@@ -1,0 +1,32 @@
+@model Mvc.Models.Game
+
+@{
+    ViewData["Title"] = "| Delete";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 class="lightSpeedIn">delete game</h2>
+<h3 id="delete-warning" class="tada">are you sure?</h3>
+<hr />
+<div id="detail-view">
+    <div class="row">
+        <div class="col-md-6">
+            <img id="character-profile-img" src="@Url.Content(Model.Picture)" alt="@Html.DisplayFor(model => model.Title)" title="Search for @Html.DisplayFor(model => model.Title) on Google!"/>
+        </div>
+        <div class="col-md-6">
+            <h4><strong>@Html.DisplayNameFor(model => model.ReleaseDate)</strong>: @Html.DisplayFor(model => model.ReleaseDate)</h4>
+            <h4><strong>@Html.DisplayNameFor(model => model.Platform)</strong>: @Html.DisplayFor(model => model.Platform)</h4>
+            <h4><strong>@Html.DisplayNameFor(model => model.Characters)</strong>: @Html.DisplayFor(model => model.Characters)</h4>
+        </div>
+    </div>
+</div>
+<div>
+<a class="btn btn-default" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> go back</a>
+
+<form asp-action="Delete" style="float: right;">
+    <input type="hidden" asp-for="GameId" />
+    <button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span> delete</button>
+</form>
+ 

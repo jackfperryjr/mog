@@ -16,7 +16,14 @@
         <form class="form-inline">
             <input id="search" class="form-control" type="input">
         </form>
-        <span id="counter"></span>
+        <div id="loader" class="load-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div id="totals">
+            <span id="counterC"></span><span id="counterM"></span> <span id="counterG"></span>
+        </div>
     </div>
     <div id="result" class="mix-buffer"></div>
 </div>
@@ -24,13 +31,13 @@
     <div class="col-md-4 text-center">
         <h4><strong>Easy to use!</strong></h4>
         <hr/>
-        <h5 class="text-left">Use your favorite front-end framework to send a request to <strong>https://moogle.com/finalfantasy/api</strong>. Then display and organize the data on your website or application however you want!<br/>
+        <h5 class="text-left">Use your favorite front-end framework to send a request to <strong>https://moogle.com/api/&#123; characters | monsters | games &#125;</strong>. Then display and organize the data on your website or application however you want!<br/>
         <strong>(That's just a made up domain for now...)</strong></h5>
     </div>
     <div class="col-md-4 text-center">
         <h4><strong>Try it out!</strong></h4>
         <hr/>
-        <h5 class="text-left">Start typing a character's name in the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
+        <h5 class="text-left">Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
     </div>
     <div class="col-md-4 text-center">
         <h4><strong>Connect with me!</strong></h4>

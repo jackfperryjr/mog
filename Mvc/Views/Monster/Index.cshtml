@@ -1,0 +1,83 @@
+@model PaginatedList<Mvc.Models.Monster>
+
+@using Microsoft.AspNetCore.Identity
+@using Mvc.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "| Monsters";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+<h2 class="lightSpeedIn">monster list</h2>
+<hr />
+<form asp-action="Index" method="get">
+    <div id="input-container">
+        <p class="text-left">
+            <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "chocobo"' value="@ViewData["CurrentFilter"]" />
+            <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-default back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add monster</a>
+            }
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+            asp-route-page="@(Model.PageIndex - 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-default back-btn @prevDisabled">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            </a>
+            <a asp-action="Index"
+            asp-route-sortOrder="@ViewData["CurrentSort"]"
+            asp-route-page="@(Model.PageIndex + 1)"
+            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-default back-btn @nextDisabled">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            </a>
+        </p>
+    </div>
+</form>
+<div class="index-list">
+    <table id="character-list" class="table">
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td class="character-list-item">
+                    <a asp-action="Details" asp-route-id="@item.MonsterId" >
+                        <img class="character-list-thumb" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="Picture of @Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                    </a>
+                </td>
+                <td class="character-list-item">
+                    <a asp-action="Details" asp-route-id="@item.MonsterId" >@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                @if (SignInManager.IsSignedIn(User))
+                    {
+                        <td class="character-list-item">
+                            <a asp-action="Edit" asp-route-id="@item.MonsterId"><span class="glyphicon glyphicon-pencil"></span>edit</a> | 
+                            <a asp-action="Delete" asp-route-id="@item.MonsterId"><span class="glyphicon glyphicon-remove"></span>delete</a>
+                        </td>
+                    }
+            </tr>
+    }
+        </tbody>
+    </table>
+    <div id="list-btns">
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+        asp-route-page="@(Model.PageIndex - 1)"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+        class="btn btn-default @prevDisabled">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+        asp-route-page="@(Model.PageIndex + 1)"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+        class="btn btn-default @nextDisabled">
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+    </div>
+</div>

@@ -24,7 +24,7 @@ namespace Mvc.Models
         public string Description { get; set; }
         public string Picture { get; set; }
 
-        // public int GameId { get; set; }
-        // public Game Game { get; set; } // Commented out to keep from interfering with existing application/data
+        public int GameId { get; set; }
+        public Game Game { get; set; } 
     }  
 }

@@ -12,21 +12,21 @@ using Mvc.Models;
 
 namespace Mvc.Controllers
 {
-    [Authorize]
-    public class CharacterController : Controller
+    
+    public class MonsterController : Controller
     {
         private readonly CharacterContext _context;
 
-        public CharacterController(CharacterContext context)
+        public MonsterController(CharacterContext context)
         {
             _context = context;
         }
 
-        // GET: Character
+        // GET: Monster
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
-            ViewData["OriginSort"] = String.IsNullOrEmpty(sortOrder) ? "Origin" : "";
             ViewData["CurrentFilter"] = searchString;
 
             if (searchString != null)
@@ -38,20 +38,21 @@ namespace Mvc.Controllers
                 searchString = currentFilter;
             }
 
-            var characters = from c in _context.Character select c;
-            characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
+            var monsters = from m in _context.Monsters select m;
+            monsters = monsters.OrderBy(m => m.Name);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                characters = characters.Where(c => c.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1)) || c.Origin.Contains(searchString));
+                monsters = monsters.Where(m => m.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1))); // Search by name of monster
             }
 
             int pageSize = 10;
-            return View(await PaginatedList<Characters>.CreateAsync(characters.AsNoTracking(), page ?? 1, pageSize));
+            return View(await PaginatedList<Monster>.CreateAsync(monsters.AsNoTracking(), page ?? 1, pageSize));
             //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
         }
 
-        // GET: Character/Details/5
+        // GET: Monster/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -59,39 +60,39 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var monsters = await _context.Monsters
+                .SingleOrDefaultAsync(m => m.MonsterId == id);
+            if (monsters == null)
             {
                 return NotFound();
             }
 
-            return View(characters);
+            return View(monsters);
         }
 
-        // GET: Character/Create
+        // GET: Monster/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Character/Create
+        // POST: Monster/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture,Games")] Monster monster)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(characters);
+                _context.Add(monster);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(characters);
+            return View(monster);
         }
 
-        // GET: Character/Edit/5
+        // GET: Monster/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,22 +100,22 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var monsters = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
+            if (monsters == null)
             {
                 return NotFound();
             }
-            return View(characters);
+            return View(monsters);
         }
 
-        // POST: Character/Edit/5
+        // POST: Monster/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Edit(int id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture,Games")] Monster monsters)
         {
-            if (id != characters.Id)
+            if (id != monsters.MonsterId)
             {
                 return NotFound();
             }
@@ -123,12 +124,12 @@ namespace Mvc.Controllers
             {
                 try
                 {
-                    _context.Update(characters);
+                    _context.Update(monsters);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CharactersExists(characters.Id))
+                    if (!MonsterExists(monsters.MonsterId))
                     {
                         return NotFound();
                     }
@@ -139,10 +140,10 @@ namespace Mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(characters);
+            return View(monsters);
         }
 
-        // GET: Character/Delete/5
+        // GET: Monster/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,30 +151,30 @@ namespace Mvc.Controllers
                 return NotFound();
             }
 
-            var characters = await _context.Character
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (characters == null)
+            var monsters = await _context.Monsters
+                .SingleOrDefaultAsync(m => m.MonsterId == id);
+            if (monsters == null)
             {
                 return NotFound();
             }
 
-            return View(characters);
+            return View(monsters);
         }
 
-        // POST: Character/Delete/5
+        // POST: Monster/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Character.Remove(characters);
+            var monsters = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
+            _context.Monsters.Remove(monsters);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CharactersExists(int id)
+        private bool MonsterExists(int id)
         {
-            return _context.Character.Any(e => e.Id == id);
+            return _context.Monsters.Any(e => e.MonsterId == id);
         }
     }
 }
