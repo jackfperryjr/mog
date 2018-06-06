@@ -23,7 +23,7 @@ namespace Mvc.Controllers
             _context = context;
         }
 
-        //GET all FinalFantasy/Monsters
+        //GET all api/monsters
         [AllowAnonymous]
         [HttpGet]
         public List<Monster> GetAll()
@@ -33,7 +33,7 @@ namespace Mvc.Controllers
             return monsters.ToList();
         }
 
-        //GET FinalFantasy/Monsters/id
+        //GET api/monsters/id
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetMonster")]
         public IActionResult Get(int? id)

@@ -23,7 +23,7 @@ namespace Mvc.Controllers
             _context = context;
         }
 
-        //GET all FinalFantasy/Games
+        //GET all api/games
         [AllowAnonymous]
         [HttpGet]
         public List<Game> GetAll()
@@ -33,7 +33,7 @@ namespace Mvc.Controllers
             return games.ToList();
         }
 
-        //GET FinalFantasy/Games/id
+        //GET api/games/id
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetGame")]
         public IActionResult Get(int? id)
