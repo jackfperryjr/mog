@@ -127,10 +127,19 @@ $('#search').keyup(function() {
                 output += '<td><strong>Height:</strong> ' + character.height + 'm</td></tr><tr>';
                 output += '<td><strong>Weight:</strong> ' + character.weight + 'kg</td>';
                 output += '<td><strong>Origin:</strong> ' + character.origin + '</td></tr>';
-                output += '</table><br/>';
-                output += '</div><div class="col-md-4">';
-                output += '<img style="width: 200px; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Picture of ' + character.name  + '.">';
-                output += '<br/></div>';
+                output += '</table><br/></div>';
+                output += '<button type="button" style="background:transparent; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" data-toggle="modal" data-target="#imageModal">';
+                output += '<img style="width: 200px;" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Picture of ' + character.name  + '."></button>';
+                output += '<div id="imageModal" class="modal fade" role="dialog">';
+                output += '<div class="modal-dialog">';
+                output += '<div class="modal-content">';
+                output += '<div class="modal-header">';
+                output += '<button type="button" class="close" data-dismiss="modal">X</button>';
+                output += '</div>';
+                output += '<div class="modal-body">';
+                output += '<img style="width: 100%;" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Picture of ' + character.name  + '."></div>';
+                output += '</div></div></div>';
+                output += '<br/></div></div>';
                 if(count%2 == 0) { 
                     output += '</div>'
                 }
@@ -147,7 +156,17 @@ $('#search').keyup(function() {
                 output += '<td><strong>Strength:</strong> ' + monster.strength + '</td>';
                 output += '<td><strong>Weakness:</strong> ' + monster.weakness + '</td></tr></table>';
                 output += '</div><div class="col-md-4">';
-                output += '<img style="width: 200px; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '.">';
+                output += '<button type="button" style="background:transparent; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" data-toggle="modal" data-target="#imageModal">';
+                output += '<img style="width: 200px;" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '."></button>';
+                output += '<div id="imageModal" class="modal fade" role="dialog">';
+                output += '<div class="modal-dialog">';
+                output += '<div class="modal-content">';
+                output += '<div class="modal-header">';
+                output += '<button type="button" class="close" data-dismiss="modal">X</button>';
+                output += '</div>';
+                output += '<div class="modal-body">';
+                output += '<img style="width: 100%;" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '."></div>';
+                output += '</div></div></div>';
                 output += '<br/></div></div>';
                 if(count%2 == 0) { 
                     output += '</div>'
