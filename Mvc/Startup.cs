@@ -26,11 +26,11 @@ namespace Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adding database for Users.
+            // Adding database for users.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
 
-            // Adding database for Final Fantasy.
+            // Adding database for characters.
             services.AddDbContext<CharacterContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("CharacterConnection")));
 

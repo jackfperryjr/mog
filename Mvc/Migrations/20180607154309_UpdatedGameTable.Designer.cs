@@ -10,9 +10,10 @@ using System;
 namespace Mvc.Migrations
 {
     [DbContext(typeof(CharacterContext))]
-    partial class CharacterContextModelSnapshot : ModelSnapshot
+    [Migration("20180607154309_UpdatedGameTable")]
+    partial class UpdatedGameTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,8 +63,6 @@ namespace Mvc.Migrations
                 {
                     b.Property<int>("GameId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
 
                     b.Property<string>("Picture");
 

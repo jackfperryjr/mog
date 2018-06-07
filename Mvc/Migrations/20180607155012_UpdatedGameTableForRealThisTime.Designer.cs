@@ -10,9 +10,10 @@ using System;
 namespace Mvc.Migrations
 {
     [DbContext(typeof(CharacterContext))]
-    partial class CharacterContextModelSnapshot : ModelSnapshot
+    [Migration("20180607155012_UpdatedGameTableForRealThisTime")]
+    partial class UpdatedGameTableForRealThisTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

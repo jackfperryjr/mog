@@ -81,7 +81,7 @@ namespace Mvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Characters")] Game game)
+        public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Description,Characters")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace Mvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Characters")] Game games)
+        public async Task<IActionResult> Edit(int id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description,Characters")] Game games)
         {
             if (id != games.GameId)
             {
