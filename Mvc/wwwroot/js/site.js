@@ -142,6 +142,10 @@ $('#search').keyup(function() {
                 output += '<div class="row" style="margin-right: 0;margin-left:0;"><div class="col-md-8">';
                 output += '<h4 style="color: #2962ff;margin-bottom: -.5px;"><strong>'+ monster.name + '</strong></h4>';
                 output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + monster.name.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + monster.name.toLowerCase() + '</a></h7><br/>';
+                output += '<p style="color: #37474f">' + monster.description + '</p>';
+                output += '<table style="color: #37474f; width:50%;"><tr>';
+                output += '<td><strong>Strength:</strong> ' + monster.strength + '</td>';
+                output += '<td><strong>Weakness:</strong> ' + monster.weakness + '</td></tr></table>';
                 output += '</div><div class="col-md-4">';
                 output += '<img style="width: 200px; padding: 10px; border: 1px solid #e0e0e0; margin: 20px 0; float: right;" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '.">';
                 output += '<br/></div></div>';

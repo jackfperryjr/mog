@@ -10,12 +10,12 @@
         <ul class="nav navbar-nav navbar-right">
             @if (User.Identity.Name=="admin@moogle.com")
             {
-                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/profile-me.jpg"></a></li>
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/icons/icon-me.jpg"></a></li>
                 <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add user</a></li>
             }
             else
             {
-                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/icon-default-profile.jpg"></a></li>
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="~/images/icons/icon-default-profile.jpg"></a></li>
             }
             <li><a asp-controller="Character" asp-action="Index" title="Click to manage characters.">Characters</a></li>
             <li><a asp-controller="Game" asp-action="Index" title="Click to manage games.">Games</a></li>
