@@ -519,8 +519,7 @@ i:focus {
   border-radius: 5px; 
   box-shadow: 2px 2px 6px rgb(150,150,150);
   opacity: .9;
-  transition: all .3s ease-in-out;
-  
+  transition: all .3s ease-in-out;  
 }
 #character-profile-img:hover,
 #character-profile-img:focus,
