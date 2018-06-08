@@ -1,22 +1,23 @@
-// Setting a random character name as the input placeholder
+// List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
-    'Search ex. "Lightning"',
-    'Search ex. "Cloud"',
-    'Search ex. "Yuna"',
-    'Search ex. "Firion"',
-    'Search ex. "Aerith"',
-    'Search ex. "Cecil"',
-    'Search ex. "Rosa"',
-    'Search ex. "Tidus"',
-    'Search ex. "Rikku"',
-    'Search ex. "Cid"'
+    "Search ex. ''Lightning'' or ''13''",
+    "Search ex. ''Cloud'' or ''07''",
+    "Search ex. ''Yuna'' or ''10''",
+    "Search ex. ''Firion'' or ''02''",
+    "Search ex. ''Aerith'' or ''07''",
+    "Search ex. ''Cecil'' or ''04''",
+    "Search ex. ''Rosa'' or ''04''",
+    "Search ex. ''Tidus'' or ''10''",
+    "Search ex. ''Paine'' or ''10-2''",
+    "Search ex. ''Cid'' or, actually, there's a Cid in most games"
 ];
 
+// Randomly choosing from the list
 let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPlaceholderList.length)];
 
 $("#search").attr("placeholder", randomPlaceholder);
 
-// Loading characters once page is ready
+// Loading data once page is ready
 $(document).ready(function () {
     timer();
     getCharacters();
@@ -24,7 +25,7 @@ $(document).ready(function () {
     getGames();
 });
 
-// Using Api to get characters
+// Using APIs to get data
 const uriCharacters = 'http://localhost:5000/api/characters';
 const uriMonsters = 'http://localhost:5000/api/monsters';
 const uriGames = 'http://localhost:5000/api/games';
@@ -43,6 +44,8 @@ function getCharacters() {
         }
     });
 }
+
+// Making list of monsters
 function getMonsters() {
     $.ajax({
         type: 'GET',
@@ -53,6 +56,8 @@ function getMonsters() {
         }
     });
 }
+
+// Making list of games
 function getGames() {
     $.ajax({
         type: 'GET',
@@ -77,6 +82,8 @@ function getCountC(characterData) {
         el.html('No ' + name);
     }
 }
+
+// Counting the monsters
 function getCountM(monsterData) {
     const el = $('#counterM');
     let name = ' monster.';
@@ -89,6 +96,8 @@ function getCountM(monsterData) {
         el.html('No ' + name);
     }
 }
+
+// Counting the games
 function getCountG(gameData) {
     const el = $('#counterG');
     let name = ' game.';
@@ -102,7 +111,7 @@ function getCountG(gameData) {
     }
 }
 
-// Finding characters upon search
+// Finding data upon search
 $('#search').keyup(function() {
     let searchField = $(this).val();
     if(searchField === '') {
@@ -113,7 +122,7 @@ $('#search').keyup(function() {
     let output = '';
     let count = 1;
 
-        // Display character format
+        // Format for character display
         $.each(characters, function(key, character) {
             if ((character.name.search(regex) != -1)) {
                 output += '<div class="row moogle-row"><div class="col-md-8">';
@@ -147,6 +156,8 @@ $('#search').keyup(function() {
                 count++;
             }
         });
+
+        // Format for monster display
         $.each(monsters, function(key, monster) {
             if ((monster.name.search(regex) != -1)) {
                 output += '<div class="row moogle-row"><div class="col-md-8">';
@@ -175,12 +186,14 @@ $('#search').keyup(function() {
                 count++;
             }
         });
+
+        // Format for game display
         $.each(games, function(key, game) {
             if ((game.title.search(regex) != -1)) {
                 output += '<div class="row moogle-row"><div class="col-md-8">';
                 output += '<h4 class="moogle-h4"><strong>'+ game.title + '</strong></h4>';
                 output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + game.title.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + game.title.toLowerCase() + '</a></h7><br/>';
-                //output += '<p class="dark-bluish-gray">' + game.description + '</p>';
+                output += '<p class="dark-bluish-gray">' + game.description + '</p>';
                 output += '</div><br/><div class="col-md-4">';
                 output += '<img class="moogle-img" src=' + game.picture + ' alt="Logo for ' + game.title + '." title="Picture of ' + game.title + '.">';
                 output += '<br/></div><br/></div>';
@@ -193,11 +206,13 @@ $('#search').keyup(function() {
     $('#result').html(output);
 });
 
-// Loading bar while counting
+// Loading bar while fetching data
 function timer() {
     let timed;
     timed = setTimeout(showTotals, 3000);
 }
+
+// Displaying totals
 function showTotals() {
     $('#loader').fadeOut();
     $('#totals').delay(700).fadeIn();

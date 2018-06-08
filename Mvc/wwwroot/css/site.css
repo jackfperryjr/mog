@@ -656,11 +656,8 @@ i:focus {
     }
     .moogle-modal-button {
       float: none;
-      margin: 0 auto;
-      text-align: center;
+      margin-bottom: 20px;
     }
-    .moogle-img {
-      width: 100%;
-    }
+
 }
 
