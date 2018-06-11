@@ -26,9 +26,9 @@ $(document).ready(function () {
 });
 
 // Using APIs to get data
-const uriCharacters = 'http://localhost:5000/api/characters';
-const uriMonsters = 'http://localhost:5000/api/monsters';
-const uriGames = 'http://localhost:5000/api/games';
+const uriCharacters = 'api/characters';
+const uriMonsters = 'api/monsters';
+const uriGames = 'api/games';
 let characters = null;
 let monsters = null;
 let games = null;
