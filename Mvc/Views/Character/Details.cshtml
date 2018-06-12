@@ -8,7 +8,7 @@
 
 @{
     ViewData["Title"] = "| Character Details";
-    string path = Model.Picture;
+    string imagePath = Model.Picture;
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-4">
             <a href="https://www.google.com/search?q=Final+Fantasy+@Html.DisplayFor(model => model.Name)" target="_blank">
-                <img id="character-profile-img" src="~/@path" alt="@Html.DisplayFor(model => model.Name)" title="Search for @Html.DisplayFor(model => model.Name) on Google!"/>
+                <img id="character-profile-img" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="Search for @Html.DisplayFor(model => model.Name) on Google!"/>
             </a>
         </div>
         <div class="col-md-3">
