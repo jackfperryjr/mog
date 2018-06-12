@@ -473,7 +473,7 @@ i:focus {
   position: relative;
   margin-top: 5px;
   width: 100%;
-  height: 6px;
+  height: 3px;
   background: linear-gradient(to right, #fff, #fdba2c, #fff);
   opacity: .7;
 }
