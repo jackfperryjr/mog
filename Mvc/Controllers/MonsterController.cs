@@ -13,6 +13,7 @@ using Mvc.Models;
 namespace Mvc.Controllers
 {
     
+    [Authorize]
     public class MonsterController : Controller
     {
         private readonly CharacterContext _context;

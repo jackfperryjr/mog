@@ -12,7 +12,8 @@ using Mvc.Models;
 
 namespace Mvc.Controllers
 {
-    
+
+    [Authorize]    
     public class GameController : Controller
     {
         private readonly CharacterContext _context;

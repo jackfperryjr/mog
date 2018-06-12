@@ -4,9 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Mvc.Data;
+using Mvc.Models;
 
 namespace Mvc
 {
@@ -20,5 +24,68 @@ namespace Mvc
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+
+        public static void CreateRoles(IServiceProvider serviceProvider, IConfiguration Configuration)
+        {
+            const string adminRoleName = "Admin";
+            string[] roleNames = { adminRoleName, "Manager", "Member" };
+
+            foreach (string roleName in roleNames)
+            {
+                CreateRole(serviceProvider, roleName);
+            }
+
+            // Setting up super admin user - me!
+            string adminUser = Configuration["AdminUser"];
+            string adminPassword = Configuration["AdminPassword"];
+            
+            AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
+            AddUserToRole(serviceProvider, "test@moolge.com", "FinalFantasy1!", "Manager");
+        }
+
+        private static void CreateRole(IServiceProvider serviceProvider, string roleName)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task<bool> roleExists = roleManager.RoleExistsAsync(roleName);
+            roleExists.Wait();
+
+            if (!roleExists.Result)
+            {
+                Task<IdentityResult> roleResult = roleManager.CreateAsync(new IdentityRole(roleName));
+                roleResult.Wait();
+            }
+        }
+        
+        private static void AddUserToRole(IServiceProvider serviceProvider, string userEmail, 
+            string userPwd, string roleName)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            Task<ApplicationUser> checkAppUser = userManager.FindByEmailAsync(userEmail);
+            checkAppUser.Wait();
+
+            ApplicationUser appUser = checkAppUser.Result;
+
+            if (checkAppUser.Result == null)
+            {
+                ApplicationUser newAppUser = new ApplicationUser
+                {
+                    Email = userEmail,
+                    UserName = userEmail
+                };
+
+                Task<IdentityResult> taskCreateAppUser = userManager.CreateAsync(newAppUser, userPwd);
+                taskCreateAppUser.Wait();
+
+                if (taskCreateAppUser.Result.Succeeded)
+                {
+                    appUser = newAppUser;
+                }
+            }
+
+            Task<IdentityResult> newUserRole = userManager.AddToRoleAsync(appUser, roleName);
+            newUserRole.Wait();
+        }
     }
 }
