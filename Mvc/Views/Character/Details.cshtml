@@ -19,9 +19,7 @@
 <div id="detail-view">
     <div class="row">
         <div class="col-md-4">
-            <a href="https://www.google.com/search?q=Final+Fantasy+@Html.DisplayFor(model => model.Name)" target="_blank">
-                <img id="character-profile-img" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="Search for @Html.DisplayFor(model => model.Name) on Google!"/>
-            </a>
+            <img id="character-profile-img" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="Picture of @Html.DisplayFor(model => model.Name)"/>
         </div>
         <div class="col-md-3">
             <h4><strong>@Html.DisplayNameFor(model => model.Origin)</strong>: @Html.DisplayFor(model => model.Origin)</h4>
