@@ -39,8 +39,12 @@ namespace Mvc
             string adminUser = Configuration["AdminUser"];
             string adminPassword = Configuration["AdminPassword"];
             
-            //AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
-            AddUserToRole(serviceProvider, "test@moogle.com", "FinalFantasy1!", "Manager");
+            // Setting up test user for mentors
+            string testUser = Configuration["TestUser"];
+            string testPassword = Configuration["TestPassword"];
+            
+            AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
+            AddUserToRole(serviceProvider, testUser, testPassword, "Manager");
         }
 
         private static void CreateRole(IServiceProvider serviceProvider, string roleName)
