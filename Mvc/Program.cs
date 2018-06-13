@@ -35,7 +35,7 @@ namespace Mvc
                 CreateRole(serviceProvider, roleName);
             }
 
-            // Setting up super admin user - me!
+            // Setting up admin user
             string adminUser = Configuration["AdminUser"];
             string adminPassword = Configuration["AdminPassword"];
             
