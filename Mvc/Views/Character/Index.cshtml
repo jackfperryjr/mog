@@ -42,26 +42,33 @@
         </p>
     </div>
 </form>
-<div class="index-list">
+<div class="row">
+    <!-- 
     <table id="character-list" class="table">
-        <tbody>
+        <tbody> -->
     @foreach (var item in Model) 
     {
+        <!-- 
             <tr>
-                <td class="character-list-item">
+                <td class="character-list-item"> -->
+                <div class="well col-md-4 text-center" style="width:220px;height:220px;margin:10px;background-color:transparent;border:none;">
+                <span class="text-center">@Html.DisplayFor(modelItem => item.Name)</span>
+                <br/>
                     <a asp-action="Details" asp-route-id="@item.Id" >
                         <img class="character-list-thumb" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
                     </a>
-                </td>
+                    <br/>
+                <!-- </td>
                 <td class="character-list-item">
                     <a asp-action="Details" asp-route-id="@item.Id" >@Html.DisplayFor(modelItem => item.Name)</a>
                 </td>
                 <td class="character-list-item">
                     @Html.DisplayFor(modelItem => item.Origin)
-                </td>
+                </td> -->
                 @if (SignInManager.IsSignedIn(User))
                     {
-                        <td class="character-list-item">
+                        <!-- <td class="character-list-item"> -->
+                        <span>
                             <a asp-action="Edit" asp-route-id="@item.Id">edit</a> | 
                             <a data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
                                 <div class="modal fade" id="@("deleteModal" + item.Id)" tabindex="-1" role="dialog">
@@ -87,13 +94,16 @@
                                         </div>
                                     </div>
                                 </div>
-                        </td>
+                                </span>
+                        <!-- </td> -->
                     }
-            </tr>
+            <!-- </tr> -->
+            </div>
     }
-        </tbody>
-    </table>
-    <div id="list-btns">
+        <!-- </tbody>
+    </table> -->
+    </div>
+    <div id="list-btns" class="text-center">
         <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-page="@(Model.PageIndex - 1)"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -107,4 +117,3 @@
         <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
     </div>
-</div>

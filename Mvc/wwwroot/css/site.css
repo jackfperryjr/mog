@@ -441,8 +441,8 @@ i:focus {
 .game-list-thumb {
   object-fit: fill; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
-  height: 50px;
-  width: 50px;
+  height: 150px;
+  width: 150px;
   border-radius: 5px; 
   border: 1px solid rgb(248,248,248);
   box-shadow: none;
@@ -450,7 +450,10 @@ i:focus {
   transition: all .3s ease-in-out;
 }
 .game-list-thumb {
-  width: 100px;
+  width: 180px;
+  height: 160px;
+  max-width: 180px;
+  max-height: 160px;
 }
 .character-list-thumb:hover,
 .character-list-thumb:focus,
@@ -532,7 +535,7 @@ i:focus {
   transition: all .3s ease-in-out;
 } 
 .character-delete-img {
-  width: 150px;
+  width: 200px;
 }
 .character-delete-img-game {
   width: 400px;

@@ -27,27 +27,35 @@
         </p>
     </div>
 </form>
-<div class="index-list">
+<div class="row">
+    <!-- 
     <table id="character-list" class="table">
-        <tbody>
-    @foreach (var item in Model) {
+        <tbody> -->
+    @foreach (var item in Model) 
+    {
+        <!-- 
             <tr>
-                <td class="character-list-item">
+                <td class="character-list-item"> -->
+                <div class="well col-md-4 text-center" style="width:220px;height:200px;margin:10px;background-color:transparent;border:none;">
                     <a asp-action="Details" asp-route-id="@item.GameId" >
                         <img class="game-list-thumb" asp-route-id="@item.GameId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Title)" title="@Html.DisplayFor(modelItem => item.Title)"/>
                     </a>
+                    <br/>
+                <!-- 
                 </td>
-                <td class="character-list-item">
-                    <a asp-action="Details" asp-route-id="@item.GameId" >@Html.DisplayFor(modelItem => item.Title)</a>
-                </td>
+                <td class="character-list-item"> 
+                -->
+                    <!-- <a asp-action="Details" asp-route-id="@item.GameId" >@Html.DisplayFor(modelItem => item.Title)</a> -->
+                <!-- </td> -->
                 @if (SignInManager.IsSignedIn(User))
                     {
-                        <td class="character-list-item">
+                        <!-- <td class="character-list-item"> -->
+                        <span>
                             <a asp-action="Edit" asp-route-id="@item.GameId">edit</a> | 
                             <a data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
                                 <div class="modal fade" id="@("deleteModal" + item.GameId)" tabindex="-1" role="dialog">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content text-center">
                                             @using (Html.BeginForm("Delete", "Game"))
                                             {
                                                 <input type="hidden" value="@item.GameId" name="GameId" />
@@ -67,11 +75,15 @@
                                             }
                                         </div>
                                     </div>
-                                </div>                        
-                        </td>
+                                </div>  
+                            </span>                      
+                        <!-- </td> -->
                     }
-            </tr>
+            <!-- </tr> -->
+            </div>
     }
+        <!-- 
         </tbody>
     </table>
+    -->
 </div>

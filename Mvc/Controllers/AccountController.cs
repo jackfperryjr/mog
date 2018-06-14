@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 using Mvc.Models;
+using Mvc.Data;
 using Mvc.Models.AccountViewModels;
 using Mvc.Services;
 
@@ -24,17 +26,19 @@ namespace Mvc.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = context;
         }
 
         [TempData]
@@ -196,6 +200,18 @@ namespace Mvc.Controllers
                 return View();
             }
         }
+
+        /* 
+        //Working on this
+        public async Task<IActionResult> Index()
+        {
+
+            var users = from u in _context.Users select u;
+            users = users.OrderBy(u => u.UserName);
+
+            return View(await users.AsNoTracking().ToListAsync());
+        } 
+        */
 
         [HttpGet]
         [AllowAnonymous]
