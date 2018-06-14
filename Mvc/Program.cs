@@ -44,7 +44,7 @@ namespace Mvc
             string testPassword = Configuration["TestPassword"];
             
             AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
-            AddUserToRole(serviceProvider, testUser, testPassword, "Manager");
+            AddUserToRole(serviceProvider, testUser, testPassword, "Member");
         }
 
         private static void CreateRole(IServiceProvider serviceProvider, string roleName)

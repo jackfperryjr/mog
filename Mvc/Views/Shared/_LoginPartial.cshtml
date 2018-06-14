@@ -11,7 +11,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="@Url.Content("/images/icons/icon-me.jpg")"></a></li>
-                <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add user</a></li>
+                <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Users</a></li>
             }
             else
             {

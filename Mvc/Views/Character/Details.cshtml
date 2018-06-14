@@ -19,7 +19,7 @@
 <div id="detail-view">
     <div class="row">
         <div class="col-md-4">
-            <img id="character-profile-img" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="Picture of @Html.DisplayFor(model => model.Name)"/>
+            <img class="character-profile-img" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="Picture of @Html.DisplayFor(model => model.Name)"/>
         </div>
         <div class="col-md-3">
             <h4><strong>@Html.DisplayNameFor(model => model.Origin)</strong>: @Html.DisplayFor(model => model.Origin)</h4>
@@ -40,6 +40,29 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <a class="btn btn-default index-button" asp-action="Edit" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-pencil"></span> edit</a>
-        <a class="btn btn-danger index-button" asp-action="Delete" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-remove"></span> del&nbsp;</a>
+        <a class="btn btn-danger index-button" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content text-center">
+                    @using (Html.BeginForm("Delete", "Character"))
+                    {
+                        <input type="hidden" value="@Model.Id" name="Id" />
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">X</button>
+                            <h4 class="modal-title">Delete @Model.Name</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img class="character-delete-img" asp-route-id="@Model.Id" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="@Html.DisplayFor(model => model.Name)"/>
+                            <br/><br/>
+                            <p>Are you sure you want to delete @Model.Name?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>    
     }
 </div>

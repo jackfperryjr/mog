@@ -511,7 +511,8 @@ i:focus {
   margin: 0 auto;
   text-align: center;
 }
-#character-profile-img {
+
+.character-profile-img {
   margin-top: 10px; 
   width: 100%; 
   height: auto;
@@ -521,6 +522,7 @@ i:focus {
   opacity: .9;
   transition: all .3s ease-in-out;  
 }
+
 #character-profile-img:hover,
 #character-profile-img:focus,
 #character-profile-img:active  {
@@ -529,6 +531,12 @@ i:focus {
   transform: translate(0, 1px);
   transition: all .3s ease-in-out;
 } 
+.character-delete-img {
+  width: 150px;
+}
+.character-delete-img-game {
+  width: 400px;
+}
 .index-button {
   float: right;
   margin: 2.5px;

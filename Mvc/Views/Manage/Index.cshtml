@@ -36,6 +36,19 @@
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> save</button>
         </form>
     </div>
+    <div class="col-md-4">
+        <div>
+            @if (User.IsInRole("Admin"))
+            {
+                <img style="margin:23px 0;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;float:right;" src="@Url.Content("/images/icons/icon-me.jpg")" title="Picture of the user.">
+            }
+            else
+            {
+                <img style="margin:25px 20px;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;" src="@Url.Content("/images/icons/icon-default-profile.jpg")" title="Picture of the user.">
+            }
+        </div>
+        <button type="submit" class="btn btn-default pull-right">change picture</button>
+    </div>
 </div>
 
 @section Scripts {

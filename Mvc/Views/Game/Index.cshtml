@@ -43,8 +43,31 @@
                 @if (SignInManager.IsSignedIn(User))
                     {
                         <td class="character-list-item">
-                            <a asp-action="Edit" asp-route-id="@item.GameId"><span class="glyphicon glyphicon-pencil"></span>edit</a> | 
-                            <a asp-action="Delete" asp-route-id="@item.GameId"><span class="glyphicon glyphicon-remove"></span>delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.GameId">edit</a> | 
+                            <a data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
+                                <div class="modal fade" id="@("deleteModal" + item.GameId)" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            @using (Html.BeginForm("Delete", "Game"))
+                                            {
+                                                <input type="hidden" value="@item.GameId" name="GameId" />
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">X</button>
+                                                    <h4 class="modal-title">Delete @item.Title</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Title)" title="@Html.DisplayFor(modelItem => item.Title)"/>
+                                                    <br/><br/>
+                                                    <p>Are you sure you want to delete @item.Title?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>                        
                         </td>
                     }
             </tr>
