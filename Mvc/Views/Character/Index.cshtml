@@ -26,94 +26,103 @@
             {
                 <a class="btn btn-default back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add character</a>
             }
-            <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
-            asp-route-page="@(Model.PageIndex - 1)"
-            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-            class="btn btn-default back-btn @prevDisabled">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-            </a>
-            <a asp-action="Index"
-            asp-route-sortOrder="@ViewData["CurrentSort"]"
-            asp-route-page="@(Model.PageIndex + 1)"
-            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-            class="btn btn-default back-btn @nextDisabled">
-            <span class="glyphicon glyphicon-arrow-right"></span>
-            </a>
         </p>
     </div>
 </form>
 <div class="row">
-    <!-- 
-    <table id="character-list" class="table">
-        <tbody> -->
     @foreach (var item in Model) 
     {
-        <!-- 
-            <tr>
-                <td class="character-list-item"> -->
-                <div class="well col-md-4 text-center" style="width:220px;height:220px;margin:10px;background-color:transparent;border:none;">
-                <span class="text-center">@Html.DisplayFor(modelItem => item.Name)</span>
-                <br/>
-                    <a asp-action="Details" asp-route-id="@item.Id" >
-                        <img class="character-list-thumb" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
-                    </a>
-                    <br/>
-                <!-- </td>
-                <td class="character-list-item">
-                    <a asp-action="Details" asp-route-id="@item.Id" >@Html.DisplayFor(modelItem => item.Name)</a>
-                </td>
-                <td class="character-list-item">
-                    @Html.DisplayFor(modelItem => item.Origin)
-                </td> -->
-                @if (SignInManager.IsSignedIn(User))
-                    {
-                        <!-- <td class="character-list-item"> -->
-                        <span>
-                            <a asp-action="Edit" asp-route-id="@item.Id">edit</a> | 
-                            <a data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
-                                <div class="modal fade" id="@("deleteModal" + item.Id)" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            @using (Html.BeginForm("Delete", "Character"))
-                                            {
-                                                <input type="hidden" value="@item.Id" name="Id" />
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">X</button>
-                                                    <h4 class="modal-title">Delete @item.Name</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
-                                                    <br/><br/>
-                                                    <p>Are you sure you want to delete @item.Name?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger">Yes</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
+        <div class="well col-md-4 character-card text-center">
+        <span class="text-center">@Html.DisplayFor(modelItem => item.Name)</span>
+        <br/>
+        <a data-toggle="modal" href="@("#viewModal" + item.Id)"><img class="character-list-thumb" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/></a>
+            <div class="modal fade" id="@("viewModal" + item.Id)" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        @using (Html.BeginForm("Details", "Character"))
+                        {
+                            <input type="hidden" value="@item.Id" name="Id" />
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                <h4 class="modal-title">@item.Name</h4>
+                            </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
                                 </div>
-                                </span>
-                        <!-- </td> -->
-                    }
-            <!-- </tr> -->
+                                <div class="col-md-6 text-left">
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Origin)</strong>: @Html.DisplayFor(modelItem => item.Origin)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Race)</strong>: @Html.DisplayFor(modelItem => item.Race)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Gender)</strong>: @Html.DisplayFor(modelItem => item.Gender)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Age)</strong>: @Html.DisplayFor(modelItem => item.Age)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Height)</strong>: @Html.DisplayFor(modelItem => item.Height) (m)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Weight)</strong>: @Html.DisplayFor(modelItem => item.Weight) (kg)</h4>
+                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Job)</strong>: @Html.DisplayFor(modelItem => item.Job)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left">
+                                    <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
+                                </div>
+                            </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
+                                <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.Id">edit</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
+            <br/>
+        @if (SignInManager.IsSignedIn(User))
+            {
+                <span>
+                    <a asp-action="Edit" asp-route-id="@item.Id">edit</a> | 
+                    <a data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
+                        <div class="modal fade" id="@("deleteModal" + item.Id)" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    @using (Html.BeginForm("Delete", "Character"))
+                                    {
+                                        <input type="hidden" value="@item.Id" name="Id" />
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">X</button>
+                                            <h4 class="modal-title">Delete @item.Name</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                            <br/><br/>
+                                            <p>Are you sure you want to delete @item.Name?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Yes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                </span>
+            }
+        </div>
     }
-        <!-- </tbody>
-    </table> -->
-    </div>
-    <div id="list-btns" class="text-center">
-        <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
-        asp-route-page="@(Model.PageIndex - 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @prevDisabled">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-        <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
-        asp-route-page="@(Model.PageIndex + 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @nextDisabled">
-        <span class="glyphicon glyphicon-arrow-right"></span>
-        </a>
-    </div>
+
+</div>
+<div id="list-btns" class="text-center">
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-page="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @prevDisabled">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-page="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @nextDisabled">
+    <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>

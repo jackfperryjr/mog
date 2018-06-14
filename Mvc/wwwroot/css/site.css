@@ -525,7 +525,13 @@ i:focus {
   opacity: .9;
   transition: all .3s ease-in-out;  
 }
-
+.character-card {
+  width: 200px;
+  height: 200px;
+  margin: 10px 20px;
+  background-color: transparent;
+  border: none; 
+}
 #character-profile-img:hover,
 #character-profile-img:focus,
 #character-profile-img:active  {
