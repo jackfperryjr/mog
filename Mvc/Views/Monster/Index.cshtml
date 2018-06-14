@@ -43,7 +43,13 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <img class="character-delete-img-game" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                    <div class="col-md-6">
+                                        <img class="character-delete-img" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Weakness)</strong>: @Html.DisplayFor(modelItem => item.Weakness)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Strength)</strong>: @Html.DisplayFor(modelItem => item.Strength)</h4>
+                                    </div>
                                 </div>
                                 <div class="row text-left">
                                     <div class="col-md-12">
