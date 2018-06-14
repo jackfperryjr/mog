@@ -47,38 +47,44 @@
                                 <h4 class="modal-title">@item.Name</h4>
                             </div>
                             <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Origin)</strong>: @Html.DisplayFor(modelItem => item.Origin)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Race)</strong>: @Html.DisplayFor(modelItem => item.Race)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Gender)</strong>: @Html.DisplayFor(modelItem => item.Gender)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Age)</strong>: @Html.DisplayFor(modelItem => item.Age)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Height)</strong>: @Html.DisplayFor(modelItem => item.Height) (m)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Weight)</strong>: @Html.DisplayFor(modelItem => item.Weight) (kg)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Job)</strong>: @Html.DisplayFor(modelItem => item.Job)</h4>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 text-left">
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Origin)</strong>: @Html.DisplayFor(modelItem => item.Origin)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Race)</strong>: @Html.DisplayFor(modelItem => item.Race)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Gender)</strong>: @Html.DisplayFor(modelItem => item.Gender)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Age)</strong>: @Html.DisplayFor(modelItem => item.Age)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Height)</strong>: @Html.DisplayFor(modelItem => item.Height) (m)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Weight)</strong>: @Html.DisplayFor(modelItem => item.Weight) (kg)</h4>
-                                    <h4><strong>@Html.DisplayNameFor(modelItem => item.Job)</strong>: @Html.DisplayFor(modelItem => item.Job)</h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-left">
-                                    <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
-                                </div>
-                            </div>
-                                
+                                <div class="row">
+                                    <div class="col-md-12 text-left">
+                                        <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
+                                    </div>
+                                </div>    
                             </div>
                             <div class="modal-footer">
+                            @if (User.IsInRole("Admin")) 
+                            {
                                 <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
                                 <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.Id">edit</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            }
+                            else 
+                            {
+                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            }
                             </div>
                         }
                     </div>
                 </div>
             </div>
             <br/>
-        @if (SignInManager.IsSignedIn(User))
+        @if (User.IsInRole("Admin"))
             {
                 <span>
                     <a asp-action="Edit" asp-route-id="@item.Id">edit</a> | 
