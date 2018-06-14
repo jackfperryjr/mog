@@ -24,7 +24,6 @@ namespace Mvc.Controllers
         }
 
         // GET: Game
-        [AllowAnonymous]
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
             ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "Title" : "";
@@ -53,7 +52,6 @@ namespace Mvc.Controllers
         }
 
         // GET: Game/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

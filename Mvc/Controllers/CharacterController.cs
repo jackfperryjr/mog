@@ -70,6 +70,8 @@ namespace Mvc.Controllers
         }
 
         // GET: Character/Create
+
+        [Authorize(Roles="Admin")]
         public IActionResult Create()
         {
             return View();
@@ -80,6 +82,7 @@ namespace Mvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
         {
             if (ModelState.IsValid)
@@ -92,6 +95,7 @@ namespace Mvc.Controllers
         }
 
         // GET: Character/Edit/5
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -112,6 +116,7 @@ namespace Mvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
         {
             if (id != characters.Id)
@@ -143,6 +148,7 @@ namespace Mvc.Controllers
         }
 
         // GET: Character/Delete/5
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -163,6 +169,7 @@ namespace Mvc.Controllers
         // POST: Character/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);

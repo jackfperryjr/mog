@@ -24,7 +24,6 @@ namespace Mvc.Controllers
         }
 
         // GET: Monster
-        [AllowAnonymous]
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
@@ -53,7 +52,6 @@ namespace Mvc.Controllers
         }
 
         // GET: Monster/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
