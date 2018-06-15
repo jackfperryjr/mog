@@ -201,18 +201,6 @@ namespace Mvc.Controllers
             }
         }
 
-        /* 
-        //Working on this
-        public async Task<IActionResult> Index()
-        {
-
-            var users = from u in _context.Users select u;
-            users = users.OrderBy(u => u.UserName);
-
-            return View(await users.AsNoTracking().ToListAsync());
-        } 
-        */
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Lockout()

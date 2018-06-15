@@ -30,6 +30,7 @@
     @foreach (var item in Model) 
     {
         <div class="well col-md-4 text-center character-card">
+            <p>@Html.DisplayFor(modelItem => item.Name)</p>
             <a data-toggle="modal" href="@("#viewModal" + item.MonsterId)"><img class="character-list-thumb" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="Picture of @Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/></a>
             <div class="modal fade" id="@("viewModal" + item.MonsterId)" tabindex="-1" role="dialog">
                 <div class="modal-dialog">

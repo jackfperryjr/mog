@@ -343,6 +343,9 @@ i:focus {
 .padded-left {
   padding-left: 50px;
 }
+.close-modified {
+  margin: 10px;
+}
 /* Search card */
 .search-card {
   margin: 0 auto;

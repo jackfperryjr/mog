@@ -144,7 +144,7 @@ $('#search').keyup(function() {
                 output += '<div class="modal-dialog">';
                 output += '<div class="modal-content">';
                 output += '<div class="modal-header">';
-                output += '<button type="button" class="close" data-dismiss="modal">X</button>';
+                output += '<h3 class="text-center"><strong>' + character.name + '</strong><span class="close" data-dismiss="modal">X</span></h3>';
                 output += '</div>';
                 output += '<div class="modal-body">';
                 output += '<img class="moogle-modal-img" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Picture of ' +       character.name + '."></div>';
