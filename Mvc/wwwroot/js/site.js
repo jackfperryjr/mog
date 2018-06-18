@@ -195,8 +195,9 @@ $('#search').keyup(function() {
                 output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + game.title.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + game.title.toLowerCase() + '</a></h7><br/>';
                 output += '<p class="dark-bluish-gray">' + game.description + '</p>';
                 output += '</div><br/><div class="col-md-4">';
+                output += '<div class="moogle-modal-button">';
                 output += '<img class="moogle-img" src=' + game.picture + ' alt="Logo for ' + game.title + '." title="Picture of ' + game.title + '.">';
-                output += '<br/></div><br/></div>';
+                output += '</div><br/></div><br/></div>';
                 if(count%2 == 0) { 
                     output += '</div>'
                 }
