@@ -31,7 +31,7 @@ namespace Mvc
             {
                 services.AddDbContext<CharacterContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("MoogleConnection")));
-                services.AddDbContext<CharacterContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
             }
             else
