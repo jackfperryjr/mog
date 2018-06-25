@@ -17,6 +17,39 @@ let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPla
 
 $("#search").attr("placeholder", randomPlaceholder);
 
+// Started implementing VueJs
+/*
+new Vue({
+    el: '#vue-app',
+    data: {
+        characters: null,
+        games: null,
+        monsters: null,
+        search: '',
+        
+    },
+    mounted() {
+        this.getCharacters()
+        this.getGames()
+        this.getMonsters()
+    },
+    methods: {
+        getCharacters() {
+            axios.get('api/characters')
+            .then(response => {this.characters = response.data})
+        },        
+        getGames() {
+            axios.get('api/games')
+            .then(response => {this.games = response.data})
+        },
+        getMonsters() {
+            axios.get('api/monsters')
+            .then(response => {this.monsters = response.data})
+        },
+    }
+  })
+*/
+
 // Loading data once page is ready
 $(document).ready(function () {
     timer();

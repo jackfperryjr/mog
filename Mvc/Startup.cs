@@ -55,7 +55,7 @@ namespace Mvc
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-            });
+            });          
 
             services.AddMvc();
         }
