@@ -26,13 +26,26 @@ namespace Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adding database for users.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
+            // Use SQL Database if in Azure, otherwise, use SQLite
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            {
+                services.AddDbContext<CharacterContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("MoogleConnection")));
+                services.AddDbContext<CharacterContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
+            }
+            else
+            {
+                // Adding database for characters.
+                services.AddDbContext<CharacterContext>(options =>
+                        options.UseSqlite(Configuration.GetConnectionString("CharacterConnection")));
+                // Adding database for users.
+                services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
+            }
 
-            // Adding database for characters.
-            services.AddDbContext<CharacterContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("CharacterConnection")));
+            // Automatically perform database migration
+            services.BuildServiceProvider().GetService<CharacterContext>().Database.Migrate();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
