@@ -46,6 +46,8 @@ namespace Mvc
 
             // Automatically perform database migration
             services.BuildServiceProvider().GetService<CharacterContext>().Database.Migrate();
+            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
