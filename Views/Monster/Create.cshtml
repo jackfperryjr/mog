@@ -1,0 +1,52 @@
+@model Moogle.Models.Monster
+
+@{
+    ViewData["Title"] = "| Add";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 class="lightSpeedIn">add monster</h2>
+<hr />
+<form asp-action="Create">
+    <div class="add-edit-list">
+        <div class="row">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="Name" class="login-bar login-picture" placeholder="Enter monster name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Strength" class="login-bar login-picture" placeholder="What's this monster's strength?"/>
+                    <span asp-validation-for="Strength" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Weakness" class="login-bar login-picture" placeholder="What's this monster's weakness?"/>
+                    <span asp-validation-for="Weakness" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;monster&gt;-sample.jpg" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter monster description in this space"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> add</button>
+    </div>
+</form>
+<div>
+    <a class="btn btn-default" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> back to list</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

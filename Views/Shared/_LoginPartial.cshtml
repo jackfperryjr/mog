@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Identity
+@using Moogle.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            @if (User.IsInRole("Admin"))
+            {
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="@Url.Content("/images/icons/icon-me.jpg")"></a></li>
+                <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Users</a></li>
+            }
+            else
+            {
+                <li><a asp-controller="Manage" asp-action="Index" title="Click to manage account."><img class="navbar-icon" src="@Url.Content("/images/icons/icon-default-profile.jpg")"></a></li>
+            }
+            <li><a asp-controller="Character" asp-action="Index" title="Click to manage characters.">Characters</a></li>
+            <li><a asp-controller="Game" asp-action="Index" title="Click to manage games.">Games</a></li>
+            <li><a asp-controller="Monster" asp-action="Index" title="Click to manage monsters.">Monsters</a></li>
+            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out.">Sign out</button></li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Login" title="">&emsp; <!-- Sign in --></a></li>
+    </ul>
+}

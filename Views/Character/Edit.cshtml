@@ -1,0 +1,123 @@
+@model Moogle.Models.Characters
+
+@{
+    ViewData["Title"] = "| Edit";
+    string imagePath = Model.Picture;
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 class="lightSpeedIn">edit character</h2>
+
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="add-edit-list">
+        <div class="row">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <select asp-for="Origin" class="login-bar">
+                        <option value="Final Fantasy 01">Final Fantasy 01</option>
+                        <option value="Final Fantasy 02">Final Fantasy 02</option>
+                        <option value="Final Fantasy 03">Final Fantasy 03</option>  
+                        <option value="Final Fantasy 04">Final Fantasy 04</option>
+                        <option value="Final Fantasy 05">Final Fantasy 05</option>
+                        <option value="Final Fantasy 06">Final Fantasy 06</option>
+                        <option value="Final Fantasy 07">Final Fantasy 07</option>
+                        <option value="Final Fantasy 08">Final Fantasy 08</option>
+                        <option value="Final Fantasy 09">Final Fantasy 09</option>
+                        <option value="Final Fantasy 10">Final Fantasy 10</option>
+                        <option value="Final Fantasy 10-2">Final Fantasy 10-2</option>
+                        <option value="Final Fantasy 11">Final Fantasy 11</option>
+                        <option value="Final Fantasy 12">Final Fantasy 12</option>
+                        <option value="Final Fantasy 13">Final Fantasy 13</option>
+                        <option value="Final Fantasy 13-2">Final Fantasy 13-2</option>
+                        <option value="Final Fantasy 14">Final Fantasy 14</option>
+                        <option value="Final Fantasy 15">Final Fantasy 15</option>
+                    </select>
+                    <span asp-validation-for="Origin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Name" class="login-bar" placeholder="Enter character name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Race" class="login-bar" placeholder="Enter character race"/>
+                    <span asp-validation-for="Race" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <select asp-for="Gender" class="login-bar">
+                        <option>Enter character gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="??">??</option>                    
+                    </select>                
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Age" class="login-bar" placeholder="Enter character age"/>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Job" class="login-bar" placeholder="Enter character class or job"/>
+                    <span asp-validation-for="Job" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Height" class="login-bar" placeholder="Enter height in meters"/>
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Weight" class="login-bar" placeholder="Enter weight in kilograms"/>
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="desc-position" class="col-md-6">
+                <div class="form-group">
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> save</button>
+    </div>
+</form>
+<div style="margin-bottom:15px;">
+    <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+    <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                @using (Html.BeginForm("Delete", "Character"))
+                {
+                    <input type="hidden" value="@Model.Id" name="Id" />
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 class="modal-title">Delete @Model.Name</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img class="character-delete-img" asp-route-id="@Model.Id" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="@Html.DisplayFor(model => model.Name)"/>
+                        <br/><br/>
+                        <p>Are you sure you want to delete @Model.Name?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a class="btn btn-default" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

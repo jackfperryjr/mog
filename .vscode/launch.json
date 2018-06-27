@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Mvc/bin/Debug/netcoreapp2.0/Mvc.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.0/Moogle.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Mvc",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

@@ -1,0 +1,84 @@
+@model Moogle.Models.Monster
+
+@{
+    ViewData["Title"] = "| Edit";
+    string imagePath = Model.Picture;
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2 class="lightSpeedIn">edit monster</h2>
+<hr />
+<form asp-action="Edit">
+    <div class="add-edit-list">
+        <div class="row">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="MonsterId" />
+                    <input asp-for="Name" class="login-bar login-picture" placeholder="Enter monster name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="MonsterId" />
+                    <input asp-for="Strength" class="login-bar login-picture" placeholder="What's this monster's strength?"/>
+                    <span asp-validation-for="Strength" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="MonsterId" />
+                    <input asp-for="Weakness" class="login-bar login-picture" placeholder="What's this monster's weakness?"/>
+                    <span asp-validation-for="Weakness" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="MonsterId" />
+                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;monster&gt;-sample.jpg" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="hidden" asp-for="MonsterId" />
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter monster description in this space"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> save</button>
+    </div>
+</form>
+<div style="margin-bottom:15px;">
+    <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+    <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                @using (Html.BeginForm("Delete", "Monster"))
+                {
+                    <input type="hidden" value="@Model.MonsterId" name="MonsterId" />
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 class="modal-title">Delete @Model.Name</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img class="character-delete-img" asp-route-id="@Model.MonsterId" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="@Html.DisplayFor(model => model.Name)"/>
+                        <br/><br/>
+                        <p>Are you sure you want to delete @Model.Name?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div> 
+</div>       
+<div>
+    <a class="btn btn-default" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

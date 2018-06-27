@@ -1,0 +1,115 @@
+@model PaginatedList<Moogle.Models.Monster>
+
+@using Microsoft.AspNetCore.Identity
+@using Moogle.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "| Monsters";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+<h2 class="lightSpeedIn">monster list</h2>
+<hr />
+<form asp-action="Index" method="get">
+    <div id="input-container">
+        <p class="text-left">
+            <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "chocobo"' value="@ViewData["CurrentFilter"]" />
+            <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+            <a class="btn btn-default back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add monster</a>
+        </p>
+    </div>
+</form>
+<div class="row">
+    @foreach (var item in Model) 
+    {
+        <div class="well col-md-4 text-center character-card">
+            <p>@Html.DisplayFor(modelItem => item.Name)</p>
+            <a data-toggle="modal" href="@("#viewModal" + item.MonsterId)"><img class="character-list-thumb" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="Picture of @Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/></a>
+            <div class="modal fade" id="@("viewModal" + item.MonsterId)" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        @using (Html.BeginForm("Details", "Monster"))
+                        {
+                            <input type="hidden" value="@item.MonsterId" name="MonsterId" />
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                <h4 class="modal-title">@item.Name</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img class="character-delete-img" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Weakness)</strong>: @Html.DisplayFor(modelItem => item.Weakness)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Strength)</strong>: @Html.DisplayFor(modelItem => item.Strength)</h4>
+                                    </div>
+                                </div>
+                                <div class="row text-left">
+                                    <div class="col-md-12">
+                                        <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + item.MonsterId)">delete</a>
+                                <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.MonsterId">edit</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>            
+            <br/>
+            <span>
+            <a asp-action="Edit" asp-route-id="@item.MonsterId">edit</a> | 
+            <a data-toggle="modal" href="@("#deleteModal" + item.MonsterId)">delete</a>
+                <div class="modal fade" id="@("deleteModal" + item.MonsterId)" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            @using (Html.BeginForm("Delete", "Monster"))
+                            {
+                                <input type="hidden" value="@item.MonsterId" name="MonsterId" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Delete @item.Name</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="character-delete-img" asp-route-id="@item.MonsterId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                    <br/><br/>
+                                    <p>Are you sure you want to delete @item.Name?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">yes</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>  
+            </span> 
+    </div>                     
+    }
+</div>
+
+<div id="list-btns" class="text-center">
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-page="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @prevDisabled">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-page="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @nextDisabled">
+    <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
