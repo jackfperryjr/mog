@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Moogle.Data;
 using Moogle.Models;
 
@@ -16,9 +17,19 @@ namespace Moogle
 {
     public class Program
     {
-        public static void Main(string[] args)
+       public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var provider = scope.ServiceProvider;
+				
+				provider.GetService<CharacterContext>().Database.Migrate();
+				provider.GetService<ApplicationDbContext>().Database.Migrate();
+            }
+
+            host.Run();
         }
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

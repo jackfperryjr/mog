@@ -44,11 +44,6 @@ namespace Moogle
                         options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
             }
 
-            // Automatically perform database migration
-            services.BuildServiceProvider().GetService<CharacterContext>().Database.Migrate();
-            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
-
-
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
