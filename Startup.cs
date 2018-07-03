@@ -16,22 +16,18 @@ namespace Moogle
 {
     public class Startup
     {
-        
-        public static IHostingEnvironment Environment { get; set; }
-        public static IConfiguration Configuration { get; set; }
-        
-        public Startup(IHostingEnvironment env, IConfiguration config)
+        public Startup(IConfiguration configuration)
         {
-            Environment = env;
-            Configuration = config;
+            Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Use SQL Database if in Azure, otherwise, use SQLite
-            if (Environment.IsProduction())
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<CharacterContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("MoogleConnection")));
@@ -47,6 +43,7 @@ namespace Moogle
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
             }
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
