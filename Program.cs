@@ -47,15 +47,15 @@ namespace Moogle
             }
 
             // Setting up admin user
-            string adminUser = Configuration["AdminUser"];
-            string adminPassword = Configuration["AdminPassword"];
+            //string adminUser = Configuration["AdminUser"];
+            //string adminPassword = Configuration["AdminPassword"];
             
             // Setting up test user for mentors
-            string testUser = Configuration["TestUser"];
-            string testPassword = Configuration["TestPassword"];
+            //string testUser = Configuration["TestUser"];
+            //string testPassword = Configuration["TestPassword"];
             
-            AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
-            AddUserToRole(serviceProvider, testUser, testPassword, "Member");
+            //AddUserToRole(serviceProvider, adminUser, adminPassword, adminRoleName);
+            //AddUserToRole(serviceProvider, testUser, testPassword, "Member");
         }
 
         private static void CreateRole(IServiceProvider serviceProvider, string roleName)
