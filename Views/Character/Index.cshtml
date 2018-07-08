@@ -19,12 +19,12 @@
 <form asp-action="Index" method="get">
     <div id="input-container">
         <p class="text-left">
+            <span class="glyphicon glyphicon-search"></span>
             <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "Lightning" or "13"' value="@ViewData["CurrentFilter"]" />
-            <button id="search-btn" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            <a class="btn btn-default back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+            <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
             @if (SignInManager.IsSignedIn(User))
             {
-                <a class="btn btn-default back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add character</a>
+                <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add character</a>
             }
         </p>
     </div>
@@ -70,13 +70,13 @@
                             <div class="modal-footer">
                             @if (User.IsInRole("Admin")) 
                             {
-                                <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
-                                <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.Id">edit</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
+                                <a class="btn btn-info shadow" asp-action="Edit" asp-route-id="@item.Id">edit</a>
+                                <button type="button" class="btn btn-info shadow" data-dismiss="modal">close</button>
                             }
                             else 
                             {
-                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                <button type="button" class="btn btn-info shadow" data-dismiss="modal">close</button>
                             }
                             </div>
                         }
@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-danger">yes</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                                            <button type="button" class="btn btn-success shadow" data-dismiss="modal">no</button>
                                         </div>
                                     }
                                 </div>
@@ -122,13 +122,13 @@
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex - 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-default @prevDisabled">
+    class="btn btn-primary shadow @prevDisabled">
     <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex + 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-default @nextDisabled">
+    class="btn btn-primary shadow @nextDisabled">
     <span class="glyphicon glyphicon-arrow-right"></span>
     </a>
 </div>

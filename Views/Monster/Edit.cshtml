@@ -45,12 +45,13 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> save</button>
+    <div class="form-group" style="margin-left:150px;">
+        <button type="submit" class="btn btn-success shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
+        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        <a class="btn btn-primary shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
     </div>
 </form>
 <div style="margin-bottom:15px;">
-    <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
     <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content text-center">
@@ -75,9 +76,6 @@
         </div>
     </div> 
 </div>       
-<div>
-    <a class="btn btn-default" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

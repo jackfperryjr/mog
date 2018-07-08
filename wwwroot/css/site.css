@@ -421,14 +421,9 @@ i:focus {
 }
 /* Admin character management stuff */
 .navbar-icon {
-  width: 22px;
+  width: 30px;
   border-radius: 50%;
   transition: all .3s ease-in-out
-}
-.navbar-icon:hover,
-.navbar-icon:focus {
-  transform: rotate(25deg);
-  transition: all .3s ease-in-out;
 }
 #character-list {
   max-width: 100%;
@@ -600,7 +595,10 @@ i:focus {
 }
 /* Make a shadow */
 .shadow {
-  box-shadow: 2px 2px 4px rgb(100,100,100);
+  box-shadow: 2px 2px 4px rgb(150,150,150);
+}
+.shadow:hover {
+  box-shadow: none;
 }
 /* Description box */
 #desc {
@@ -614,6 +612,9 @@ i:focus {
 }
 #desc-position {
   float: right;
+}
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  background:#fff;
 }
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -632,6 +633,9 @@ i:focus {
     #logo {
       width: 50px;
       margin-right: -30px;
+    }
+    .login-bar {
+      width: 250px;
     }
     .search-card {
       margin: 0 auto;

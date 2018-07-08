@@ -172,7 +172,7 @@ $('#search').keyup(function() {
                 output += '</table><br/></div>';
                 output += '<div class="col-md-4">';
                 output += '<button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">';
-                output += '<img class="moogle-img" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Click to view a bigger picture of ' + character.name  + '."><br/></button>';
+                output += '<img class="moogle-img" src=' + character.picture + ' alt="Image of ' + character.name  + '." title="Click to view a bigger picture of ' + character.name  + '."><br/></button>';
                 output += '<div id="imageModal" class="modal fade" role="dialog">';
                 output += '<div class="modal-dialog">';
                 output += '<div class="modal-content">';
@@ -180,7 +180,7 @@ $('#search').keyup(function() {
                 output += '<h3 class="text-center"><strong>' + character.name + '</strong><span class="close" data-dismiss="modal">X</span></h3>';
                 output += '</div>';
                 output += '<div class="modal-body">';
-                output += '<img class="moogle-modal-img" src=' + character.picture + ' alt="Picture of ' + character.name  + '." title="Picture of ' +       character.name + '."></div>';
+                output += '<img class="moogle-modal-img" src=' + character.picture + ' alt="Image of ' + character.name  + '." title="Image of ' +       character.name + '."></div>';
                 output += '</div></div></div>';
                 output += '<br/></div></div>';
                 if(count%2 == 0) { 
@@ -202,7 +202,7 @@ $('#search').keyup(function() {
                 output += '<td><strong>Weakness:</strong> ' + monster.weakness + '</td></tr></table><br/>';
                 output += '</div><div class="col-md-4">';
                 output += '<button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">';
-                output += '<img class="moogle-img" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '."></button>';
+                output += '<img class="moogle-img" src=' + monster.picture + ' alt="Image of ' + monster.name  + '." title="Image of ' + monster.name  + '."></button>';
                 output += '<div id="imageModal" class="modal fade" role="dialog">';
                 output += '<div class="modal-dialog">';
                 output += '<div class="modal-content">';
@@ -210,7 +210,7 @@ $('#search').keyup(function() {
                 output += '<button type="button" class="close" data-dismiss="modal">X</button>';
                 output += '</div>';
                 output += '<div class="modal-body">';
-                output += '<img class="moogle-modal-img" src=' + monster.picture + ' alt="Picture of ' + monster.name  + '." title="Picture of ' + monster.name  + '."></div>';
+                output += '<img class="moogle-modal-img" src=' + monster.picture + ' alt="Image of ' + monster.name  + '." title="Image of ' + monster.name  + '."></div>';
                 output += '</div></div></div>';
                 output += '<br/></div></div>';
                 if(count%2 == 0) { 
@@ -229,7 +229,7 @@ $('#search').keyup(function() {
                 output += '<p class="dark-bluish-gray">' + game.description + '</p>';
                 output += '</div><br/><div class="col-md-4">';
                 output += '<div class="moogle-modal-button">';
-                output += '<img class="moogle-img" src=' + game.picture + ' alt="Logo for ' + game.title + '." title="Picture of ' + game.title + '.">';
+                output += '<img class="moogle-img" src=' + game.picture + ' alt="Logo for ' + game.title + '." title="Logo for ' + game.title + '.">';
                 output += '</div><br/></div><br/></div>';
                 if(count%2 == 0) { 
                     output += '</div>'

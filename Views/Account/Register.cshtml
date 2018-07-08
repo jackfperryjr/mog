@@ -3,30 +3,26 @@
     ViewData["Title"] = "| Register";
 }
 
-<h2 class="lightSpeedIn">@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="margin:0 auto;width:400px;">
+    <div class="col-md-12">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h4>create a new account</h4>
+            <h2 class="lightSpeedIn">Register a new user</h2>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="login-bar" placeholder="Enter email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="login-bar" placeholder="Enter password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
+                <input asp-for="ConfirmPassword" class="login-bar" placeholder="Confirm password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">register</button>
+            <button type="submit" class="btn btn-primary">register</button>
         </form>
     </div>
 </div>

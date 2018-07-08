@@ -6,18 +6,18 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "| Sign in";
+    ViewData["Title"] = "| Login";
 }
 
-<h2 class="lightSpeedIn">@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="margin:0 auto;width:400px;">
+    <div class="col-md-12">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h2 class="lightSpeedIn">Please log in</h2>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <input asp-for="Email" class="login-bar" placeholder="Enter email or username" />
+                    <input asp-for="Email" class="login-bar" placeholder="Enter email" />
                     <br/><span asp-validation-for="Email" class="text-danger"></span>
                     <input asp-for="Password" class="login-bar" placeholder="Enter password" />
                     <br/><span asp-validation-for="Password" class="text-danger"></span>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> sign in</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> login</button>
                 </div>
                 <div class="form-group">
                     <p>

@@ -17,7 +17,7 @@
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <select asp-for="Origin" class="login-bar">
+                    <select asp-for="Origin" class="login-bar" title="Select character origin">
                         <option value="Final Fantasy 01">Final Fantasy 01</option>
                         <option value="Final Fantasy 02">Final Fantasy 02</option>
                         <option value="Final Fantasy 03">Final Fantasy 03</option>  
@@ -39,15 +39,15 @@
                     <span asp-validation-for="Origin" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Name" class="login-bar" placeholder="Enter character name"/>
+                    <input asp-for="Name" class="login-bar" placeholder="Enter character name" title="Enter character name" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Race" class="login-bar" placeholder="Enter character race"/>
+                    <input asp-for="Race" class="login-bar" placeholder="Enter character race"  title="Enter character race" />
                     <span asp-validation-for="Race" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <select asp-for="Gender" class="login-bar">
+                    <select asp-for="Gender" class="login-bar" title="Select character gender" >
                         <option>Enter character gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -56,40 +56,41 @@
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Age" class="login-bar" placeholder="Enter character age"/>
+                    <input asp-for="Age" class="login-bar" placeholder="Enter character age" title="Enter character age" />
                     <span asp-validation-for="Age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Job" class="login-bar" placeholder="Enter character class or job"/>
+                    <input asp-for="Job" class="login-bar" placeholder="Enter character class or job/class" title="Enter character job/class" />
                     <span asp-validation-for="Job" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Height" class="login-bar" placeholder="Enter height in meters"/>
+                    <input asp-for="Height" class="login-bar" placeholder="Enter height in meters" title="Enter height in meters" />
                     <span asp-validation-for="Height" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Weight" class="login-bar" placeholder="Enter weight in kilograms"/>
+                    <input asp-for="Weight" class="login-bar" placeholder="Enter weight in kilograms" title="Enter weight in kilograms" />
                     <span asp-validation-for="Weight" class="text-danger"></span>
                 </div>
             </div>
             <div id="desc-position" class="col-md-6">
                 <div class="form-group">
-                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space"></textarea>
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg" />
+                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> save</button>
+    <div class="form-group" style="margin-left:150px;">
+        <button type="submit" class="btn btn-success shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
+        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        <a class="btn btn-primary shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
     </div>
 </form>
 <div style="margin-bottom:15px;">
-    <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
     <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content text-center">
@@ -107,15 +108,12 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">yes</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
+                        <button type="button" class="btn btn-success shadow" data-dismiss="modal">no</button>
                     </div>
                 }
             </div>
         </div>
     </div>
-</div>
-<div>
-    <a class="btn btn-default" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> nevermind</a>
 </div>
 
 @section Scripts {
