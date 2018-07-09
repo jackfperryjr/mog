@@ -1,8 +1,10 @@
-@using Microsoft.AspNetCore.Identity
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
 @using Moogle.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -34,8 +36,12 @@
 }
 else
 {
+    
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Account" asp-action="Login" title="">&emsp; <!-- Sign in --></a></li>
+        <li><a asp-controller="Account" asp-action="Login">&emsp;</a></li>
     </ul>
+    
+    
+
 }
 

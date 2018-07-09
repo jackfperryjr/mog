@@ -9,11 +9,11 @@
     ViewData["Title"] = "| Login";
 }
 
-<div class="row" style="margin:0 auto;width:400px;">
-    <div class="col-md-12">
+<div class="row" style="margin:150px auto;width:400px;">
+    <div class="col-md-12" style="background-color:#eceff1;">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h2 class="lightSpeedIn">Please log in</h2>
+                <h2>Please log in</h2>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">

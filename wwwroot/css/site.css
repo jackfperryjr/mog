@@ -181,6 +181,45 @@
     -webkit-animation-direction: normal;
     animation-direction: normal;
   }
+  @-webkit-keyframes lightSpeedOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+      transform: translate3d(100%, 0, 0) skewX(30deg);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes lightSpeedOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+      transform: translate3d(100%, 0, 0) skewX(30deg);
+      opacity: 0;
+    }
+  }
+  .lightSpeedOut {
+    -webkit-animation-name: lightSpeedOut;
+    animation-name: lightSpeedOut;
+    -webkit-animation-duration: 1s, 2s;
+    animation-duration: 1s, 2s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal;
+    animation-direction: normal;
+  }
   @-webkit-keyframes tada {
     from {
       -webkit-transform: scale3d(1, 1, 1);
