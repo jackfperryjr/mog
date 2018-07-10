@@ -19,15 +19,23 @@
             {
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-icon" src="@Url.Content("/images/icons/icon-default-profile.jpg")"></a>
             }
-                <ul class="dropdown-menu">                    
-                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Manage" asp-action="Index" title="Click to manage profile.">Manage profile &nbsp;<span class="glyphicon glyphicon-cog"></span></a></li>
+                <ul class="dropdown-menu" style="width:200px;">
+                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0;"><a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
+                    <span class="blue" style="font-size:18px;">M</span>
+                    <span class="red" style="font-size:18px;">o</span>
+                    <span class="yellow" style="font-size:18px;">o</span>
+                    <span class="blue" style="font-size:18px;">g</span>
+                    <span class="green" style="font-size:18px;">l</span>
+                    <span class="red" style="font-size:18px;">e</span>
+                    <span><img src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face." style="width:20px;margin-left:5px;"></span></a></li>
+                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Manage" asp-action="Index" title="Click to manage profile.">Profile &nbsp;<span class="glyphicon glyphicon-cog"></span></a></li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0;"><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Register new user &nbsp;<span class="glyphicon glyphicon-user"></span></a></li>
-                        <li class="pull-right"style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Character" asp-action="Index" title="Click to manage characters.">Manage characters &nbsp;<span class="glyphicon glyphicon-user"></span></a></li>
+                        <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0;"><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add new user &nbsp;<span class="glyphicon glyphicon-user"></span></a></li> 
                     }
-                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Game" asp-action="Index" title="Click to manage games.">Manage games &nbsp;<span class="glyphicon glyphicon-cd"></span></a></li>
-                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Monster" asp-action="Index" title="Click to manage monsters.">Manage monsters &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span></a></li>
+                    <li class="pull-right"style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters.">Characters &nbsp;<span class="glyphicon glyphicon-user"></span></a></li>
+                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Game" asp-action="Index" title="Click to view or manage games.">Games &nbsp;<span class="glyphicon glyphicon-cd"></span></a></li>
+                    <li class="pull-right" style="padding:5px 0;border-bottom:1px solid #e0e0e0"><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters.">Monsters &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span></a></li>
                     <li class="pull-right" style="padding:5px 0"><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link pull-right" title="Click to sign out.">Logout &nbsp;<span class="glyphicon glyphicon-log-out"></span></button></li>
                 </ul>
             </li>

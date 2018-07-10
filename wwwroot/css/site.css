@@ -478,8 +478,8 @@ i:focus {
 .game-list-thumb {
   object-fit: fill; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   border-radius: 5px; 
   border: 1px solid rgb(248,248,248);
   box-shadow: none;
@@ -563,9 +563,9 @@ i:focus {
   transition: all .3s ease-in-out;  
 }
 .character-card {
-  width: 200px;
-  height: 200px;
-  margin: 10px 20px;
+  width: 150px;
+  height: 150px;
+  margin: 10px 0 20px 0;
   background-color: transparent;
   border: none; 
 }
@@ -668,6 +668,16 @@ i:focus {
     }
     .no-space {
       letter-spacing: -30px;
+    }
+    .character-list-thumb,
+    .game-list-thumb {
+      height: 200px;
+      width: 200px;
+    }
+    .character-card {
+      width: 250px;
+      height: 250px;
+      margin: 10px auto 20px auto;
     }
     #logo {
       width: 50px;

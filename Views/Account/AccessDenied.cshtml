@@ -2,7 +2,14 @@
     ViewData["Title"] = "| Access denied";
 }
 
-<header>
-    <h2 class="text-danger">@ViewData["Title"]</h2>
-    <p class="text-danger">you do not have access to this resource</p>
-</header>
+<div class="row" style="margin:150px auto;width:400px;">
+    <div class="col-md-12" style="background-color:#fafafa;height:300px;border-radius:5px;">
+        <header>
+            <h2 class="text-danger text-center">Nope</h2>
+            <hr style="border-bottom:solid 2px #cc0000;" />
+            <p class="text-danger">You've gotta be signed in as the Admin to access this area, kupo!</p>
+            <p>But you can view the <a asp-controller="Character" asp-action="Index" title="Click to view characters.">characters</a>. Or, since you're obviously logged in and using this application you can probably manage the <a asp-controller="Game" asp-action="Index" title="Click to manage games.">games</a> or <a asp-controller="Monster" asp-action="Index" title="Click to manage monsters.">monsters</a>.
+            </p>
+        </header>
+    </div>
+</div>
