@@ -14,5 +14,11 @@ namespace Moogle.Services
             return emailSender.SendEmailAsync(email, "Confirm your email",
                 $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
         }
+
+        public static Task SendUpdateEmailAsync(this IEmailSender emailSender, string email)
+        {
+            return emailSender.SendEmailAsync(email, "Update",
+                $"Something was updated.");
+        }
     }
 }
