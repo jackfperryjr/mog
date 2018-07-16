@@ -172,7 +172,7 @@ $('#search').keyup(function() {
                 output += '</table><br/></div>';
                 output += '<div class="col-md-4">';
                 output += '<button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">';
-                output += '<img class="moogle-img" src=' + character.picture + ' alt="Image of ' + character.name  + '." title="Click to view a bigger picture of ' + character.name  + '."><br/></button>';
+                output += '<img class="moogle-img" src=' + character.picture + ' alt="Image of ' + character.name  + '." title="Click to view a larger picture of ' + character.name  + '."><br/></button>';
                 output += '<div id="imageModal" class="modal fade" role="dialog">';
                 output += '<div class="modal-dialog">';
                 output += '<div class="modal-content">';
