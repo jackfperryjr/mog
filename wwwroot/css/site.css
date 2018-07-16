@@ -509,6 +509,7 @@ i:focus {
 #loader {
   display: block;
 }
+/*
 .load-bar {
   position: relative;
   margin-top: 5px;
@@ -521,10 +522,11 @@ i:focus {
   content: "";
   display: inline;
   position: absolute;
-  height: 100%; /* Editor complains, but this is needed */
+  height: 100%; /* Editor complains, but this is needed */ /*
   left: 50%;
   text-align: center;
 }
+*/
 .bar:nth-child(1) {
   background: linear-gradient(to right, #fff, #da4733, #fff);
   animation: loading 3s linear infinite;
@@ -655,6 +657,14 @@ i:focus {
 .nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
   background:#fff;
 }
+.dropdown-menu {
+  display: none;
+  width: 200px;
+}
+.dropdown-menu > li {
+  padding: 5px 0;
+  float: right;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     .site-title {
@@ -668,6 +678,20 @@ i:focus {
     }
     .no-space {
       letter-spacing: -30px;
+    }
+    .navbar-icon {
+      display: none;
+    }
+    .dropdown {
+      display: block;
+    }
+    .dropdown-menu {
+      display: block;
+      width: 100%;
+    }
+    .dropdown-menu > li {
+      display: block;
+      float: none;
     }
     .character-list-thumb,
     .game-list-thumb {

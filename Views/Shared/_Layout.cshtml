@@ -82,30 +82,32 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
        
-        // Click function for navigation menu
+            // Grabbing broswer viewport width
+            //let screenWidth = $(window).width();
+
+            // Click function for navigation menu
+            $(".dropdown").click(function () {
+                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "down" }, 400);
+                $(this).toggleClass('open'); 
+            },
+            function() {
+                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
+                $(this).toggleClass("open");       
+            });
+            
         
-        $(".dropdown").click(function () {
-            $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "down" }, 400);
-            $(this).toggleClass('open'); 
-        },
-        function() {
-            $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-            $(this).toggleClass("open");       
-        });
-        
-       
-        // Or if you prefer, 
-        // Hover function for navigation menu
-        /*
-        $(".dropdown").hover(function () {
-            $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-            $(this).toggleClass('open'); 
-        },
-        function() {
-            $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-            $(this).toggleClass("open");       
-        });
-        */
+            // Or if you prefer, 
+            // Hover function for navigation menu
+            /*
+            $(".dropdown").hover(function () {
+                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
+                $(this).toggleClass('open'); 
+            },
+            function() {
+                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
+                $(this).toggleClass("open");       
+            });
+            */
         
         </script>
     </body>
