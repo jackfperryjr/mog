@@ -3,22 +3,20 @@
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
 @using Moogle.Models
-
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            <li style="margin-top: 20px;">@user.FirstName</li>
             <li class="dropdown">
-            @if (User.IsInRole("Admin"))
-            {
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-icon" src="@Url.Content("/images/icons/icon-me.jpg")"></a>
-            }
-            else 
-            {
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-icon" src="@Url.Content("/images/icons/icon-default-profile.jpg")"></a>
-            }
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-icon" src="@user.Picture"></a>
                 <ul class="dropdown-menu">
                     <li><a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
                     <span class="blue" style="font-size:18px;">M</span>

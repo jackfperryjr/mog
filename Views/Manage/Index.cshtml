@@ -4,6 +4,13 @@
     ViewData.AddActivePage(ManageNavPages.Index);
 }
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ 
+    var user = await UserManager.GetUserAsync(User); 
+}
+
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
@@ -11,14 +18,18 @@
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <input asp-for="Username" class="login-bar" placeholder="Enter username" />
+                <input asp-for="FirstName" class="login-bar" value="@user.FirstName" placeholder="Enter first name" title="Enter first name (currently disabled)" disabled />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Username" class="login-bar" placeholder="Enter username" title="Enter username (disabled)" disabled />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @if (Model.IsEmailConfirmed)
                 {
                     <div class="input-group">
-                        <input asp-for="Email" class="login-bar" placeholder="Enter email" />
+                        <input asp-for="Email" class="login-bar" placeholder="Enter email" title="Enter email" />
                         <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
                     </div>
                 }
@@ -47,7 +58,7 @@
                 <img style="margin:25px 20px;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;" src="@Url.Content("/images/icons/icon-default-profile.jpg")" title="Picture of the user.">
             }
         </div>
-        <button type="submit" class="btn btn-default pull-right">change picture</button>
+        <button type="submit" class="btn btn-default pull-right" title="Click to change picture (not implemented)" >change picture</button>
     </div>
 </div>
 
