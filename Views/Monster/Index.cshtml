@@ -60,8 +60,8 @@
                             </div>
                             <div class="modal-footer">
                                 <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.MonsterId)">delete</a>
-                                <a class="btn btn-info shadow" asp-action="Edit" asp-route-id="@item.MonsterId">edit</a>
-                                <button type="button" class="btn btn-info shadow" data-dismiss="modal">close</button>
+                                <a class="btn btn-default shadow" asp-action="Edit" asp-route-id="@item.MonsterId">edit</a>
+                                <button type="button" class="btn btn-default shadow" data-dismiss="modal">close</button>
                             </div>
                         }
                     </div>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-danger">yes</button>
-                                    <button type="button" class="btn btn-success shadow" data-dismiss="modal">no</button>
+                                    <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
                                 </div>
                             }
                         </div>
@@ -103,13 +103,13 @@
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex - 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-primary shadow @prevDisabled">
+    class="btn btn-default shadow @prevDisabled">
     <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex + 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-primary shadow @nextDisabled">
+    class="btn btn-default shadow @nextDisabled">
     <span class="glyphicon glyphicon-arrow-right"></span>
     </a>
 </div>

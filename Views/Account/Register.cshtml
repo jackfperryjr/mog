@@ -7,7 +7,7 @@
 <div class="row" style="margin:150px auto;width:400px;">
     <div class="col-md-12" style="background-color:#fafafa;min-height:300px;border-radius:5px;padding:10px;">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h2 class="lightSpeedIn">Register a new user</h2>
+            <h2>Register a new user</h2>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -22,7 +22,7 @@
                 <input asp-for="ConfirmPassword" class="login-bar" placeholder="Confirm password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">register</button>
+            <button type="submit" class="btn btn-default">register</button>
         </form>
     </div>
 </div>

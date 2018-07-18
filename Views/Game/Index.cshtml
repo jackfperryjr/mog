@@ -51,8 +51,8 @@
                             </div>
                             <div class="modal-footer">
                                 <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
-                                <a class="btn btn-info shadow" asp-action="Edit" asp-route-id="@item.GameId">edit</a>
-                                <button type="button" class="btn btn-info shadow" data-dismiss="modal">close</button>
+                                <a class="btn btn-default shadow" asp-action="Edit" asp-route-id="@item.GameId">edit</a>
+                                <button type="button" class="btn btn-default shadow" data-dismiss="modal">close</button>
                             </div>
                         }
                     </div>
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">yes</button>
-                                        <button type="button" class="btn btn-success shadow" data-dismiss="modal">no</button>
+                                        <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
                                     </div>
                                 }
                             </div>
