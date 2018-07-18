@@ -1,4 +1,3 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/3fe3972d-9a56-4f4c-bfab-4e43f1f65c01/resourceGroups/appsvc_rg_windows_eastus/providers/Microsoft.Web/sites/moogleapi",
     "appService.deploySubpath": ""
 }
