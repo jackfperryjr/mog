@@ -5,6 +5,7 @@ Moogle is a search engine and database for all things Final Fantasy.
 This app was built with VSCode, .NET Core 2.0, and SQLite. 
 
 If you need to install .NET Core on your machine:
+`dotnet add package Microsoft.AspNetCore --version 2.0.4`
 `dotnet add package Microsoft.NETCore.App --version 2.0.6`
 
 I have SendGrid setup but I'm not currently using it in the app, but if you need to install it:
