@@ -24,7 +24,7 @@ namespace Moogle
             using (var scope = host.Services.CreateScope())
             {
                 var provider = scope.ServiceProvider;
-				
+				CreateRoles(provider, Startup.Configuration);
 				provider.GetService<CharacterContext>().Database.Migrate();
 				provider.GetService<ApplicationDbContext>().Database.Migrate();
             }

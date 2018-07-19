@@ -22,7 +22,7 @@ namespace Moogle
             Environment = env;
         }
 
-        public IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; private set; }
         private IHostingEnvironment Environment { get; }
 
 
@@ -96,9 +96,6 @@ namespace Moogle
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            Program.CreateRoles(serviceProvider, Configuration);
-            SeedData.SeedDB(context);
         }
     }
 }
