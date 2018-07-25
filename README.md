@@ -15,6 +15,8 @@ I've provided a login and password in the `appsettings.json` file. This user wil
 
 The home page is an single page app connecting to the database via API controllers. So, even without logging in you'll still be able to use the search bar to search for characters/monsters/games.
 
+## It's now live at <a href="https://moogleapi.azurewebsites.net">https://moogleapi.azurewebsites.net</a>
+
 More documentation to come!
 
 
