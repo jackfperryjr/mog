@@ -1,4 +1,4 @@
-# <img src="wwwroot/images/ff-moogle.png" width="20"> Moogle
+# <img src="wwwroot/images/ff-moogle.png" width="30"> Moogle
 
 Moogle is a search engine and database for all things Final Fantasy.
 
