@@ -1,14 +1,14 @@
-# ![Moogle logo](wwwroot/images/ff-moogle.png) Moogle
+# ![Moogle logo](wwwroot/images/ff-moogle.png | width=20) Moogle
 
 Moogle is a search engine and database for all things Final Fantasy.
 
 ### **Instructions** for mentor/tester
 
-I encourage using the live version [here](https://moogleapi.azurewebsites.net).
-The home page of the application is a single page application utilizing the API.
-There's an empty space at the very top directly above the social media icons that functions as the login to the MVC. When prompted the username is `test@moogle.com` and the password is `FinalFantasy1!`.<br>
-Once logged in you'll be taken to the character index page - on this page you can only browse and view the character data.<br>
-Where the empty space was before now lies your name and icon to let you know you're logged in. Your icon is a clickable menu and if you navigate to monsters or games you'll be able to create, read, update, and delete entries.<br>
+* I encourage using the live version [here](https://moogleapi.azurewebsites.net).
+* The home page of the application is a single page application utilizing the API.
+* There's an empty space at the very top directly above the social media icons that functions as the login to the MVC. When prompted the username is `test@moogle.com` and the password is `FinalFantasy1!`.
+* Once logged in you'll be taken to the character index page - on this page you can only browse and view the character data.
+* Where the empty space was before now lies your name and icon to let you know you're logged in. Your icon is a clickable menu and if you navigate to monsters or games you'll be able to create, read, update, and delete entries.
 
 ## Application details
 
