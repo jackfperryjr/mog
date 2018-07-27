@@ -16,11 +16,11 @@ This app was built in development with VSCode, .NET Core 2.0, and Sqlite.<br>
 This app is built in production with VSCode, .NET Core 2.0, Azure, and SqlServer.
 
 If you need to **install** .NET Core on your machine:<br>
-* `dotnet add package Microsoft.AspNetCore --version 2.0.4`
-* `dotnet add package Microsoft.NETCore.App --version 2.0.6`
+* `**dotnet add package Microsoft.AspNetCore --version 2.0.4**`
+* `**dotnet add package Microsoft.NETCore.App --version 2.0.6**`
 
 I have SendGrid setup but I'm not currently using it in the application (coming soon!), but if you need to **install** it:<br>
-* `dotnet add package Sendgrid --version 9.9.0`
+* `**dotnet add package Sendgrid --version 9.9.0**`
 
 More documentation to come!
 
