@@ -12,7 +12,7 @@ Moogle is a search engine and database for all things Final Fantasy.
 
 ## Application details
 
-This app was built in development with VSCode, .NET Core 2.0, and SQLite. 
+This app was built in development with VSCode, .NET Core 2.0, and SQLite.<br>
 This app is built in production with VSCode, .NET Core 2.0, Azure, and SqlServer.
 
 If you need to **install** .NET Core on your machine:<br>
