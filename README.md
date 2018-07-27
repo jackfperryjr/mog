@@ -10,7 +10,7 @@ Moogle is a search engine and database for all things Final Fantasy.
 * Once logged in you'll be taken to the character index page - on this page you can only browse and view the character data.
 * Where the empty space was before now lies your name and icon to let you know you're logged in. Your icon is a clickable menu and if you navigate to monsters or games you'll be able to create, read, update, and delete entries.
 
-## Application details
+### Application details
 
 This app was built in development with VSCode, .NET Core 2.0, and Sqlite.<br>
 This app is built in production with VSCode, .NET Core 2.0, Azure, and SqlServer.
