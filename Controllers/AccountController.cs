@@ -19,7 +19,6 @@ using Moogle.Services;
 namespace Moogle.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -439,7 +438,6 @@ namespace Moogle.Controllers
             return View();
         }
 
-        #region Helpers
 
         private void AddErrors(IdentityResult result)
         {
@@ -461,7 +459,5 @@ namespace Moogle.Controllers
                 return RedirectToAction(nameof(CharacterController.Index), "Character");
             }
         }
-
-        #endregion
     }
 }

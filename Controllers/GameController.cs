@@ -13,7 +13,7 @@ using Moogle.Models;
 namespace Moogle.Controllers
 {
 
-    [Authorize]    
+    [Authorize]
     public class GameController : Controller
     {
         private readonly CharacterContext _context;
@@ -52,7 +52,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -80,7 +80,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Description,Characters")] Game game)
+        public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Description")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description,Characters")] Game games)
+        public async Task<IActionResult> Edit(Guid id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description")] Game games)
         {
             if (id != games.GameId)
             {
@@ -145,7 +145,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -165,7 +165,7 @@ namespace Moogle.Controllers
         // POST: Game/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var games = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
             _context.Games.Remove(games);
@@ -173,7 +173,7 @@ namespace Moogle.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GameExists(int id)
+        private bool GameExists(Guid id)
         {
             return _context.Games.Any(e => e.GameId == id);
         }

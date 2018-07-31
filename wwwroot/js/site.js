@@ -1,15 +1,15 @@
 // List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
-    "Search ex. ''Lightning'' or ''13''",
-    "Search ex. ''Cloud'' or ''07''",
-    "Search ex. ''Yuna'' or ''10''",
-    "Search ex. ''Firion'' or ''02''",
-    "Search ex. ''Aerith'' or ''07''",
-    "Search ex. ''Cecil'' or ''04''",
-    "Search ex. ''Rosa'' or ''04''",
-    "Search ex. ''Tidus'' or ''10''",
-    "Search ex. ''Paine'' or ''10-2''",
-    "Search ex. ''Cid'' or, actually, there's a Cid in most games"
+    "Search ex. ''Lightning''",
+    "Search ex. ''Cloud''",
+    "Search ex. ''Yuna''",
+    "Search ex. ''Firion''",
+    "Search ex. ''Aerith''",
+    "Search ex. ''Cecil''",
+    "Search ex. ''Rosa''",
+    "Search ex. ''Tidus''",
+    "Search ex. ''Paine''",
+    "Search ex. ''Kefka''"
 ];
 
 // Randomly choosing from the list
@@ -105,42 +105,42 @@ function getGames() {
 // Counting the characters
 function getCountC(characterData) {
     const el = $('#counterC');
-    let name = ' character.';
+    let name = '';
     if (characterData) {
         if (characterData > 1) {
-            name = ' characters.';
+            name = '';
         }
         el.text(characterData + name);
     } else {
-        el.html('No ' + name);
+        el.html(name);
     }
 }
 
 // Counting the monsters
 function getCountM(monsterData) {
     const el = $('#counterM');
-    let name = ' monster.';
+    let name = '';
     if (monsterData) {
         if (monsterData > 1) {
-            name = ' monsters.';
+            name = '';
         }
         el.text(monsterData + name);
     } else {
-        el.html('No ' + name);
+        el.html(name);
     }
 }
 
 // Counting the games
 function getCountG(gameData) {
     const el = $('#counterG');
-    let name = ' game.';
+    let name = '';
     if (gameData) {
         if (gameData > 1) {
-            name = ' games.';
+            name = '';
         }
         el.text(gameData + name);
     } else {
-        el.html('No ' + name);
+        el.html(name);
     }
 }
 
@@ -151,13 +151,16 @@ $('#search').keyup(function() {
         $('#result').html('');
         return;
     }
+
     let regex = new RegExp(searchField, "i");
     let output = '';
     let count = 1;
 
         // Format for character display
         $.each(characters, function(key, character) {
+
             if ((character.name.search(regex) != -1)) {
+
                 output += '<div class="row moogle-row"><div class="col-md-8">';
                 output += '<h4 class="moogle-h4"><strong>'+ character.name + '</strong></h4>';
                 output += '<h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+' + character.name.toLowerCase() + '" target="_blank">https://www.google.com/search?q=' + character.name.toLowerCase() + '</a></h7><br/>';

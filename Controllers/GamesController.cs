@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,7 +12,7 @@ using Moogle.Models;
 
 namespace Moogle.Controllers
 {
-    [Route("/Api/[controller]")]
+    [Route("/api/games")]
     public class GamesController : ControllerBase
     {
         private readonly CharacterContext _context;
@@ -34,7 +35,7 @@ namespace Moogle.Controllers
         //GET api/games/id
         [AllowAnonymous]
         [HttpGet("{id}", Name = "GetGame")]
-        public IActionResult Get(int? id)
+        public IActionResult Get(Guid? id)
         {
             var game = _context.Games.Find(id);
             if (game == null)

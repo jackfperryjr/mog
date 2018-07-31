@@ -12,28 +12,35 @@
 <form asp-action="Create">
     <div class="add-edit-list">
         <div class="row">
-            <div class="col-md-4">
+            <img style="margin:5px;" alt="No picture." />
+        </div>
+        <div class="row" style="margin:50px 0;">
+            <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <input asp-for="Title" class="login-bar login-picture" placeholder="Enter game title"/>
+                    <input asp-for="Title" class="login-bar" placeholder="Enter game title" title="Enter game title."/>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="ReleaseDate" class="login-bar login-picture" placeholder='Enter release date ex. "March 3, 1982"'/>
-                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Platform" class="login-bar login-picture" placeholder='Enter platform ex. "Playstation 1"'/>
-                    <span asp-validation-for="Platform" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;game-title&gt;.jpg" />
+                    <input asp-for="Picture" class="login-bar" placeholder="images/logos/ff-&lt;game-title&gt;.jpg" title="Enter url for picture."/>
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
             </div>
-            <div id="desc-position" class="col-md-8">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter game description in this space"></textarea>
+                    <input asp-for="ReleaseDate" class="login-bar" placeholder='Enter release date ex. "March 3, 1982"' title="Enter game's release date."/>
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Platform" class="login-bar" placeholder='Enter platform ex. "Playstation 1"' title="Enter the platform game was released on."/>
+                    <span asp-validation-for="Platform" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="desc-position" style="width:100%;">
+                <div class="form-group">
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter game description in this space" title="Enter game description here."></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>

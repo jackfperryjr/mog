@@ -29,19 +29,10 @@
 </div>
 <div id="vue-app" class="container">
     <div class="search-card">
-        <form class="form-inline">
+        <form class="form-inline has-feedback">
             <input id="search" v-model="search" class="form-control" type="input">
+            <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback"></i>
         </form>
-<!--
-        <div id="loader" class="load-bar">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <div id="totals">
-            <span id="counterC"></span><span id="counterM"></span> <span id="counterG"></span>
-        </div>
--->
     </div>
     <div id="result" class="mix-buffer"></div>
 </div>
@@ -49,13 +40,17 @@
     <div class="col-md-4 text-center">
         <h4><strong>Easy to use!</strong></h4>
         <hr/>
-        <h5 class="text-left">Use your favorite front-end framework to send a request to <strong>https://moogle.com/api/&#123; characters | monsters | games &#125;</strong>. Then display and organize the data on your website or application however you want!<br/>
-        <strong>(That's just a made up domain for now...)</strong></h5>
+        <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
+        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/characters</h5>
+        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/monsters</h5>
+        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/games</h5>
+        <h5 class="text-left">Then display and organize the data on your website or application however you want!</h5>
     </div>
     <div class="col-md-4 text-center">
         <h4><strong>Try it out!</strong></h4>
         <hr/>
         <h5 class="text-left">A Final Fantasy search engine! Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
+        <h5 class="text-left">There's currently <span id="counterC"></span> characters and counting!</h5>
     </div>
     <div class="col-md-4 text-center">
         <h4><strong>Connect with me!</strong></h4>

@@ -29,22 +29,23 @@ namespace Moogle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Use SQL Database if in Azure, otherwise, use SQLite
-            if (Environment.IsProduction())
-            {
-                services.AddDbContext<CharacterContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("MoogleConnection")));
-                services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
-            }
-            else
+
+            // Use Sqlite Database in Development, otherwise, use SqlServer
+            if (Environment.IsDevelopment())
             {
                 // Adding database for characters.
                 services.AddDbContext<CharacterContext>(options =>
-                        options.UseSqlite(Configuration.GetConnectionString("CharacterConnection")));
+                        options.UseSqlite(Configuration.GetConnectionString("LocalCharacterDB")));
                 // Adding database for users.
                 services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlite(Configuration.GetConnectionString("UserConnection")));
+                        options.UseSqlite(Configuration.GetConnectionString("LocalUserDB"))); 
+            }
+            else
+            {
+                services.AddDbContext<CharacterContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("AzureCharacterDB")));
+                services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
             }
 
 
@@ -75,7 +76,7 @@ namespace Moogle
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider, CharacterContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {

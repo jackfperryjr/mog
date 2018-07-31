@@ -52,7 +52,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Monster/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -80,7 +80,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture,Games")] Monster monster)
+        public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Monster/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture,Games")] Monster monsters)
+        public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monsters)
         {
             if (id != monsters.MonsterId)
             {
@@ -143,7 +143,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Monster/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -163,7 +163,7 @@ namespace Moogle.Controllers
         // POST: Monster/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var monsters = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
             _context.Monsters.Remove(monsters);
@@ -171,7 +171,7 @@ namespace Moogle.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MonsterExists(int id)
+        private bool MonsterExists(Guid id)
         {
             return _context.Monsters.Any(e => e.MonsterId == id);
         }

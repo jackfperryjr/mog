@@ -18,12 +18,12 @@
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <input asp-for="FirstName" class="login-bar" value="@user.FirstName" placeholder="Enter first name" title="Enter first name (currently disabled)" disabled />
+                <input asp-for="FirstName" class="login-bar" value="@user.FirstName" placeholder="Enter first name" title="Enter first name"  />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Username" class="login-bar" placeholder="Enter username" title="Enter username (disabled)" disabled />
-                <span asp-validation-for="Username" class="text-danger"></span>
+                <input asp-for="LastName" class="login-bar" value="@user.LastName" placeholder="Enter last name" title="Enter last name" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @if (Model.IsEmailConfirmed)
@@ -44,21 +44,17 @@
                 <input asp-for="PhoneNumber" class="login-bar" placeholder="Enter phone number" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <input asp-for="Picture" class="login-bar" placeholder="Enter picture url" title="Enter picture url" />
+                <span asp-validation-for="Picture" class="text-danger"></span>
+            </div>
             <button type="submit" class="btn btn-default" style="margin-top:30px;"><span class="glyphicon glyphicon-ok"></span> save</button>
         </form>
     </div>
     <div class="col-md-4">
         <div>
-            @if (User.IsInRole("Admin"))
-            {
-                <img style="margin:23px 0;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;float:right;" src="@Url.Content("/images/icons/icon-me.jpg")" title="Picture of the user.">
-            }
-            else
-            {
-                <img style="margin:25px 20px;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;" src="@Url.Content("/images/icons/icon-default-profile.jpg")" title="Picture of the user.">
-            }
+            <img style="margin:23px 0;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;float:right;" src="@user.Picture" title="Picture of the user.">
         </div>
-        <button type="submit" class="btn btn-default pull-right" title="Click to change picture (not implemented)" >change picture</button>
     </div>
 </div>
 

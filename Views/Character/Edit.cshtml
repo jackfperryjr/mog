@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "| Edit";
-    string imagePath = Model.Picture;
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
@@ -74,13 +73,18 @@
             </div>
             <div id="desc-position" class="col-md-6">
                 <div class="form-group">
-                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
+                <div style="width:400px;height:400px;">
+                    <img style="width:250px;height:auto;margin:5px;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -102,7 +106,7 @@
                         <h4 class="modal-title">Delete @Model.Name</h4>
                     </div>
                     <div class="modal-body">
-                        <img class="character-delete-img" asp-route-id="@Model.Id" src="~/@imagePath" alt="@Html.DisplayFor(model => model.Name)" title="@Html.DisplayFor(model => model.Name)"/>
+                        <img class="character-delete-img" asp-route-id="@Model.Id" src=@Model.Picture alt="@Model.Name" title="@Model.Name"/>
                         <br/><br/>
                         <p>Are you sure you want to delete @Model.Name?</p>
                     </div>

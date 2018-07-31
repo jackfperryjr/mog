@@ -17,7 +17,6 @@ using Moogle.Services;
 namespace Moogle.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -61,7 +60,10 @@ namespace Moogle.Controllers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
+                StatusMessage = StatusMessage,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Picture = user.Picture
             };
 
             return View(model);
@@ -92,6 +94,22 @@ namespace Moogle.Controllers
                 }
             }
 
+            if (model.FirstName != user.FirstName)
+            {
+               user.FirstName = model.FirstName;
+            }
+
+            if (model.LastName != user.LastName)
+            {
+               user.LastName = model.LastName;
+            }
+
+            if (model.Picture != user.Picture)
+            {
+               user.Picture = model.Picture;
+            }
+
+
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
             {
@@ -102,6 +120,7 @@ namespace Moogle.Controllers
                 }
             }
 
+            await _userManager.UpdateAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
         }
@@ -491,8 +510,6 @@ namespace Moogle.Controllers
             return View(nameof(ShowRecoveryCodes), model);
         }
 
-        #region Helpers
-
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -539,8 +556,5 @@ namespace Moogle.Controllers
             model.SharedKey = FormatKey(unformattedKey);
             model.AuthenticatorUri = GenerateQrCodeUri(user.Email, unformattedKey);
         }
-
-        #endregion
-
     }
 }

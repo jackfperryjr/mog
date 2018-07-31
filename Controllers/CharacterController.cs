@@ -52,7 +52,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Character/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -83,7 +83,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,GameId")] Characters characters)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Moogle.Controllers
 
         // GET: Character/Edit/5
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -117,7 +117,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
         {
             if (id != characters.Id)
             {
@@ -149,7 +149,7 @@ namespace Moogle.Controllers
 
         // GET: Character/Delete/5
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -170,7 +170,7 @@ namespace Moogle.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var characters = await _context.Character.SingleOrDefaultAsync(m => m.Id == id);
             _context.Character.Remove(characters);
@@ -178,7 +178,7 @@ namespace Moogle.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CharactersExists(int id)
+        private bool CharactersExists(Guid id)
         {
             return _context.Character.Any(e => e.Id == id);
         }

@@ -9,6 +9,7 @@ namespace Moogle.Models.ManageViewModels
     public class IndexViewModel
     {
         public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -20,6 +21,7 @@ namespace Moogle.Models.ManageViewModels
         [Phone]
         [Display(Name = "phone number")]
         public string PhoneNumber { get; set; }
+        public string Picture { get; set; }
 
         public string StatusMessage { get; set; }
     }

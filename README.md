@@ -1,26 +1,51 @@
 # M<img src="wwwroot/images/ff-moogle.png" width="20">ogle
 
-Moogle is a search engine and database for all things Final Fantasy.
+Moogle is a search engine and database for all things Final Fantasy. Currently live at www.moogleapi.com!
 
-### **Instructions** for mentor/tester
+### Easy to use!
 
-* I encourage using the live version [here](https://moogleapi.azurewebsites.net).
-* The home page of the application is a single page application utilizing the API.
-* There's an empty space at the very top directly above the social media icons that functions as the login to the MVC. When prompted the username is _**test@moogle.com**_ and the password is _**FinalFantasy1!**_.
-* Once logged in you'll be taken to the character index page - on this page you can only browse and view the character data.
-* Where the empty space was before now lies your name and icon to let you know you're logged in. Your icon is a clickable menu and if you navigate to monsters or games you'll be able to create, read, update, and delete entries.
+Use your favorite front-end framework to send a request:
 
-### Application details
+* https://www.moogleapi.com/api/characters
+* https://www.moogleapi.com/api/monsters
+* https://www.moogleapi.com/api/games
 
-This app was built in development with VSCode, .NET Core 2.0, and Sqlite.<br>
-This app is built in production with VSCode, .NET Core 2.0, Azure, and SqlServer.
+Then use that data in your website, webpage, or application!
 
-If you need to **install** .NET Core on your machine:<br>
-* `dotnet add package Microsoft.AspNetCore --version 2.0.4`
-* `dotnet add package Microsoft.NETCore.App --version 2.0.6`
+### Character propeteries
 
-I have SendGrid setup but I'm not currently using it in the application (coming soon!), but if you need to **install** it:<br>
-* `dotnet add package Sendgrid --version 9.9.0`
+* Name (First and last, if they have one)
+* Origin (The game they originated in)
+* Race
+* Gender
+* Age
+* Job
+* Height
+* Weight
+* Picture
+* Description (Sometimes short, sometimes lengthy)
+
+If I wasn't able to find the data for the character a set of question marks (??) is substituted.<br>
+This is a very simple data set only consisting of the games in the main series (1-15). Although, I'll look into supporting spin-offs as time permits. The data typically refers to the origin of the character, however, more info related to the character's other appearances is usually mentioned in the description.
+
+### Monster properties
+
+* Name
+* Strength
+* Weakness
+* Picture
+* Description
+
+Currently there are very few monsters and very simplistic data. If you're interested in helping, let's talk!
+
+### Game properties
+
+* Title
+* Release Date
+* Picture
+* Description
+
+Titles are simple, just 01-15 as of now. Release date refers to the Japanese release, I believe. 
 
 More documentation to come!
 

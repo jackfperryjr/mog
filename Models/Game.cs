@@ -10,7 +10,7 @@ namespace Moogle.Models
 {  
     public class Game
     {  
-        public int GameId { get; set; }  
+        public Guid GameId { get; set; }  
         [Required]  
         public string Title { get; set; } 
         public string Picture { get; set; } 
@@ -18,7 +18,5 @@ namespace Moogle.Models
         [DisplayName("Release Date")]
         public string ReleaseDate { get; set; } 
         public string Description { get; set; }
-        public ICollection<Characters> Characters { get; set; } = new List<Characters>();
-        public ICollection<Monster> Monsters { get; set; } = new List<Monster>();
     }  
 }

@@ -6,7 +6,7 @@ namespace Moogle.Models
 {  
     public class Characters  
     {  
-        public int Id { get; set; }  // Change to CharacterId?
+        public Guid Id { get; set; }
         [Required]  
         public string Name { get; set; }  
         [Required]  
@@ -23,8 +23,5 @@ namespace Moogle.Models
         public string Origin { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
-
-        public int GameId { get; set; }
-        public Game Game { get; set; } 
     }  
 }

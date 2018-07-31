@@ -297,11 +297,7 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
   font-family: "Raleway";
-}
-code {
-  color: #000;
-  background-color: transparent;
-  font-size: 12px;
+  font-size: 16px;
 }
 h1 {
   cursor: default;
@@ -337,22 +333,22 @@ i:focus {
 /* Styling Moogle title */
 .site-title {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 10em;
+  font-size: 6em;
   margin-left: -35px;
 }
 .navbar-title {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: -1.5px;
   cursor: pointer;
 }
 #logo {
-  width: 80px;
+  width: 60px;
   margin-right: -45px;
   transform: rotate(-12deg);
 }
 .no-space {
-  letter-spacing: -45px;
+  letter-spacing: -40px;
 }
 .black {
   color: #000;
@@ -391,6 +387,14 @@ i:focus {
   width: 50%;
   height: 80px;
 }
+input[type="text"],
+input[type="text"]:focus {
+  font-size: inherit;
+}
+#search-icon {
+  font-size: 16px;
+  margin-right: 5px;
+}
 #search {
   width: 100%;
   transition: all .3s ease-in-out;
@@ -410,9 +414,8 @@ i:focus {
 #counterC,
 #counterG,
 #counterM {
-  float: right;
-  margin-left: 5px;
-  font-size: 12px;
+  font-weight: bolder;
+  font-size: 16px;
 }
 #result {
   outline: none;
@@ -649,7 +652,8 @@ i:focus {
   border: 1px solid rgb(0,0,0);
   resize: none;
   width: 100%;
-  height: 415px;
+  height: 215px;
+  overflow: scroll;
 }
 #desc-position {
   float: right;
@@ -669,7 +673,7 @@ i:focus {
 @media screen and (max-width: 767px) {
     .site-title {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 6em;
+      font-size: 4em;
       margin-left: -25px;
     }
     .container {
@@ -677,7 +681,10 @@ i:focus {
       padding-left: 15px;
     }
     .no-space {
-      letter-spacing: -30px;
+      letter-spacing: -25px;
+    }
+    .navbar {
+      display: none;
     }
     .navbar-icon {
       display: none;

@@ -28,7 +28,7 @@
     @foreach (var item in Model) 
     {
         <div class="well col-md-4 text-center character-card">
-            <a data-toggle="modal" href="@("#viewModal" + item.GameId)"><img class="character-list-thumb" asp-route-id="@item.GameId" src="@Url.Content(item.Picture)" alt="Picture of @Html.DisplayFor(modelItem => item.Title)" title="@Html.DisplayFor(modelItem => item.Title)"/></a>
+            <a data-toggle="modal" href="@("#viewModal" + item.GameId)"><img class="character-list-thumb" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/></a>
             <div class="modal fade" id="@("viewModal" + item.GameId)" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content text-center">
@@ -41,11 +41,11 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Title)" title="@Html.DisplayFor(modelItem => item.Title)"/>
+                                    <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
                                 </div>
                                 <div class="row text-left">
                                     <div class="col-md-12">
-                                        <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
+                                        <h4 id="desc">@item.Description</h4>
                                     </div>
                                 </div>
                             </div>
@@ -67,15 +67,15 @@
                             <div class="modal-content text-center">
                                 @using (Html.BeginForm("Delete", "Game"))
                                 {
-                                    <input type="hidden" value="@item.GameId" name="GameId" />
+                                    <input type="hidden" value="@item.GameId" name="Id" />
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">X</button>
-                                        <h4 class="modal-title" style="color:#cc0000">Delete @item.Title</h4>
+                                        <h4 class="modal-title">Delete @item.Title</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Title)" title="@Html.DisplayFor(modelItem => item.Title)"/>
+                                        <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
                                         <br/><br/>
-                                        <p style="color:#cc0000">Are you sure you want to delete @item.Title?</p>
+                                        <p>Are you sure you want to delete @item.Title?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">yes</button>

@@ -21,16 +21,17 @@ namespace Moogle.Data
                 new Characters
                 {
                     Name = "Cecil Harvey",
-                    Age = "??",
-                    Gender = "??",
-                    Race = "??",
-                    Job = "??",
-                    Height = "??",
-                    Weight = "??",
+                    Age = "20",
+                    Gender = "Male",
+                    Race = "Half-Lunarian",
+                    Job = "Dark Knight/Paladin",
+                    Height = "1.78",
+                    Weight = "58",
                     Description = "??",
                     Picture = "??",
                     Origin = "Final Fantasy 4"
-                },
+                });
+                /*
                 new Characters
                 {
                     Name = "Rosa Joanna Farrell",
@@ -98,6 +99,7 @@ namespace Moogle.Data
                     Name = "Chocobo"
                 }
             );
+            */
 
             context.SaveChanges();
         }

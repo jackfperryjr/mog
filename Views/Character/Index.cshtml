@@ -33,9 +33,9 @@
     @foreach (var item in Model) 
     {
         <div class="well col-md-4 character-card text-center">
-        <span class="text-center">@Html.DisplayFor(modelItem => item.Name)</span>
+        <span class="text-center">@item.Name</span>
         <br/>
-        <a data-toggle="modal" href="@("#viewModal" + item.Id)"><img class="character-list-thumb" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/></a>
+        <a data-toggle="modal" href="@("#viewModal" + item.Id)"><img class="character-list-thumb" asp-route-id="@item.Id" src="@item.Picture" alt="@item.Name" title="@item.Name"/></a>
             <div class="modal fade" id="@("viewModal" + item.Id)" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -49,21 +49,21 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                        <img class="character-delete-img" asp-route-id="@item.Id" src="@item.Picture" alt="@item.Name" title="@item.Name"/>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Origin)</strong>: @Html.DisplayFor(modelItem => item.Origin)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Race)</strong>: @Html.DisplayFor(modelItem => item.Race)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Gender)</strong>: @Html.DisplayFor(modelItem => item.Gender)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Age)</strong>: @Html.DisplayFor(modelItem => item.Age)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Height)</strong>: @Html.DisplayFor(modelItem => item.Height) (m)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Weight)</strong>: @Html.DisplayFor(modelItem => item.Weight) (kg)</h4>
-                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Job)</strong>: @Html.DisplayFor(modelItem => item.Job)</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Origin)</strong>: @item.Origin</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Race)</strong>: @item.Race</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Gender)</strong>: @item.Gender</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Age)</strong>: @item.Age</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Height)</strong>: @item.Height m</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Weight)</strong>: @item.Weight kg</h4>
+                                        <h4><strong>@Html.DisplayNameFor(modelItem => item.Job)</strong>: @item.Job</h4>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-left">
-                                        <h4 id="desc">@Html.DisplayFor(modelItem => item.Description)</h4>
+                                        <h4 id="desc">@item.Description</h4>
                                     </div>
                                 </div>    
                             </div>
@@ -100,7 +100,7 @@
                                             <h4 class="modal-title">Delete @item.Name</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <img class="character-delete-img" asp-route-id="@item.Id" src="@Url.Content(item.Picture)" alt="@Html.DisplayFor(modelItem => item.Name)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+                                            <img class="character-delete-img" asp-route-id="@item.Id" src="@item.Picture" alt="@item.Name" title="@item.Name"/>
                                             <br/><br/>
                                             <p>Are you sure you want to delete @item.Name?</p>
                                         </div>
