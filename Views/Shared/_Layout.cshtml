@@ -40,22 +40,23 @@
         </nav>
         <div class="container">
             @RenderBody()
-            <hr />
             <footer>
-                    <a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
-                    <span class="blue">M</span>
-                    <span class="red">o</span>
-                    <span class="yellow">o</span>
-                    <span class="blue">g</span>
-                    <span class="green">l</span>
-                    <span class="red">e</span></a> 
-                    <span><span id="copyright">&copy; </span>@DateTime.Now.Year </span>
-                    <span id="social-icons">
-                    <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
-                    <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
-                    </span>
+                <hr />
+                <span id="copyright">&copy; </span>
+                <a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
+                <span class="blue">M</span>
+                <span class="red">o</span>
+                <span class="yellow">o</span>
+                <span class="blue">g</span>
+                <span class="green">l</span>
+                <span class="red">e</span></a> 
+                <span>@DateTime.Now.Year </span>
+                <span id="social-icons">
+                <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
+                <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
+                </span>
             </footer>
         </div>
         <environment include="Production">

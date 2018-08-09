@@ -1,6 +1,6 @@
 ﻿@section MetaTags
 {
-    <meta property="og:url" content="www.moogle.com">
+    <meta property="og:url" content="www.moogleapi.com">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Moogle">
     <meta property="og:description" content="Moogle is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
@@ -27,34 +27,31 @@
         </h1>
     </div>
 </div>
-<div id="vue-app" class="container">
+<div class="container">
     <div class="search-card">
         <form class="form-inline has-feedback">
-            <input id="search" v-model="search" class="form-control" type="input">
+            <input id="search" class="form-control" type="input">
             <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue"></i>
         </form>
     </div>
     <div id="result" class="mix-buffer"></div>
 </div>
+<div class="container container-mod">
 <div class="row">
-    <div class="col-md-4 text-center">
+    <div class="col-md-6 text-center">
+        <h4><strong>Try it out!</strong></h4>
+        <hr/>
+        <h5 class="text-left">A Final Fantasy search engine! Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
+        <h5 class="text-left">There's currently <span id="counterC"></span> characters and counting!</h5>
+    </div>
+    <div class="col-md-6 text-center">
         <h4><strong>Easy to use!</strong></h4>
         <hr/>
         <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
         <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/characters</h5>
         <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/monsters</h5>
         <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/games</h5>
-        <h5 class="text-left">Then display and organize the data on your website or application however you want!</h5>
+        <h5 class="text-left">Then display and organize the data on your website or application!</h5>
     </div>
-    <div class="col-md-4 text-center">
-        <h4><strong>Try it out!</strong></h4>
-        <hr/>
-        <h5 class="text-left">A Final Fantasy search engine! Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
-        <h5 class="text-left">There's currently <span id="counterC"></span> characters and counting!</h5>
-    </div>
-    <div class="col-md-4 text-center">
-        <h4><strong>Connect with me!</strong></h4>
-        <hr/>
-        <h5 class="text-left">If you want to get in touch, have suggestions, want to work with me, or just check out what I'm up to follow the social media links below. Or just <a href="mailto:jack.franklin.perryjr@gmail.com">email</a> me. But don't forget to say hi!</h5>
-    </div>
+</div>
 </div>
