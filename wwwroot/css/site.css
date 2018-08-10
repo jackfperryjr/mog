@@ -398,6 +398,9 @@ input[type="text"]:focus {
       padding-right: 15px;
       padding-left: 15px;
     }
+    .container-mod {
+      width: 100%;
+    }
     .no-space {
       letter-spacing: -25px;
     }
@@ -476,9 +479,7 @@ input[type="text"]:focus {
       width: 100%;
     }
     .moogle-modal-button {
-      float: none;
-      margin-bottom: 20px;
+      margin: 0 auto 20px auto;
     }
-
 }
 
