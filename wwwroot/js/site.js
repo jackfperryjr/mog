@@ -17,8 +17,7 @@ let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPla
 
 $("#search").attr("placeholder", randomPlaceholder);
 
-// Started implementing VueJs
-/* */
+// Implementing VueJs
 new Vue({
     el: "#vue-app",
     mounted() {
@@ -39,9 +38,8 @@ new Vue({
               return empty;
           }
           if (this.search) {
-            filtered = this.character.filter(
-              c => c.name.toLowerCase().indexOf(this.search) > -1
-            );
+            filtered = this.character
+            .filter(c => c.name.toLowerCase().indexOf(this.search) > -1 || c.origin.toLowerCase().indexOf(this.search) > -1);
           }
           return filtered;
         },
