@@ -10,7 +10,7 @@
 
 @section Scripts
 {
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="~/js/site.js"></script>
 }
@@ -27,31 +27,67 @@
         </h1>
     </div>
 </div>
-<div class="container">
+<div id="vue-app" class="container">
     <div class="search-card">
         <form class="form-inline has-feedback">
-            <input id="search" class="form-control" type="input">
+            <input id="search" v-model="search" class="form-control" type="input">
             <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue"></i>
         </form>
     </div>
-    <div id="result" class="mix-buffer"></div>
-</div>
-<div class="container container-mod">
-<div class="row">
-    <div class="col-md-6 text-center">
-        <h4><strong>Try it out!</strong></h4>
-        <hr/>
-        <h5 class="text-left">A Final Fantasy search engine! Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
-        <h5 class="text-left">There's currently <span id="counterC"></span> characters and counting!</h5>
+    <div v-for="character in filtered" :key="character.id" class="row moogle-row mix-buffer">
+        <div class="col-md-8">
+            <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
+            <h7 class="search-result">To learn more visit <a href="https://www.google.com/search?q=final+fantasy+{{character.name}" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
+            <p class="dark-bluish-gray">{{character.description}}</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Origin:</strong> {{character.origin}}<br/>
+                    <strong>Job:</strong> {{character.job}}<br/>
+                    <strong>Age:</strong> {{character.age}}</p></div>
+                    <div class="col-md-6"><p><strong>Race:</strong> {{character.race}}<br/>
+                    <strong>Height:</strong> {{character.height}}m<br/>
+                    <strong>Weight:</strong> {{character.weight}}kg</p>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">
+                <img class="moogle-img" :src="character.picture" alt="Image of character.name" title="Click to view a larger picture"><br/>
+            </button>
+            <div id="imageModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 slot="header" class="text-center"><strong>{{character.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                        </div>
+                        <div class="modal-body">
+                            <img slot="body" class="moogle-modal-img" :src="character.picture" alt="Image of character.name" title="Image of character.name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
     </div>
-    <div class="col-md-6 text-center">
-        <h4><strong>Easy to use!</strong></h4>
-        <hr/>
-        <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
-        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/characters</h5>
-        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/monsters</h5>
-        <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/games</h5>
-        <h5 class="text-left">Then display and organize the data on your website or application!</h5>
+    <div class="container container-mod">
+        <div class="row">
+            <div class="col-md-6 text-center" >
+                <h4><strong>Try it out!</strong></h4>
+                <hr/>
+                <h5 class="text-left">A Final Fantasy search engine! Start typing a character, monster, or game into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
+                <h5 class="text-left">There's currently <strong>{{character.length}}</strong> characters and counting!</h5>
+            </div>
+            <div class="col-md-6 text-center">
+                <h4><strong>Easy to use!</strong></h4>
+                <hr/>
+                <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
+                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/characters</h5>
+                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/monsters</h5>
+                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/games</h5>
+                <h5 class="text-left">Then display and organize the data on your website or application!</h5>
+            </div>
+        </div>
     </div>
 </div>
-</div>
+
