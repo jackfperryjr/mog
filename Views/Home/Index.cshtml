@@ -2,9 +2,9 @@
 {
     <meta property="og:url" content="www.moogleapi.com">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Moogle">
-    <meta property="og:description" content="Moogle is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
-    <meta name="description" content="Moogle is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
+    <meta property="og:title" content="MoogleApi">
+    <meta property="og:description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
+    <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
     <meta name="author" content="Jack F. Perry, Jr.">
 }
 
@@ -24,6 +24,7 @@
             <span class="blue no-space">g</span>
             <span class="green no-space">l</span>
             <span class="red no-space">e</span>
+            <span class="black" style="font-size:16px;font-weight:bolder;">API</span>
         </h1>
     </div>
 </div>
@@ -55,7 +56,9 @@
             <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">
                 <img class="moogle-img" :src="character.picture" :alt="character.name" title="Click to view a larger picture"><br/>
             </button>
+
             <div id="imageModal" class="modal fade" role="dialog">
+
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -66,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <br/>
         </div>
@@ -82,9 +86,10 @@
                 <h4><strong>Easy to use!</strong></h4>
                 <hr/>
                 <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
-                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/characters</h5>
-                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/monsters</h5>
-                <h5 class="text-left" style="margin-left:10px;font-weight:bolder;">https://www.moogleapi.com/api/games</h5>
+                <h5 class="text-left">https://www.moogleapi.com</h5>
+                <h5 class="text-left">/api/characters</h5>
+                <h5 class="text-left">/api/monsters</h5>
+                <h5 class="text-left">/api/games</h5>                
                 <h5 class="text-left">Then display and organize the data on your website or application!</h5>
             </div>
         </div>
