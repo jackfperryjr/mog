@@ -3,13 +3,13 @@ let randomPlaceholderList = [
     "Search ex. ''Lightning'' or ''13''",
     "Search ex. ''Ashe'' or ''12''",
     "Search ex. ''Yuna'' or ''10''",
-    "Search ex. ''Firion'' or ''2''",
-    "Search ex. ''Aerith'' or ''7''",
-    "Search ex. ''Cecil'' or ''4''",
-    "Search ex. ''Bartz'' or ''5''",
+    "Search ex. ''Firion'' or ''02''",
+    "Search ex. ''Aerith'' or ''07''",
+    "Search ex. ''Cecil'' or ''04''",
+    "Search ex. ''Bartz'' or ''05''",
     "Search ex. ''Tidus'' or ''10''",
-    "Search ex. ''Refia'' or ''3''",
-    "Search ex. ''Kefka'' or ''6''"
+    "Search ex. ''Refia'' or ''03''",
+    "Search ex. ''Kefka'' or ''06''"
 ];
 
 // Randomly choosing from the list
@@ -18,10 +18,9 @@ let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPla
 $("#search").attr("placeholder", randomPlaceholder);
 
 // Implementing VueJs
-
 new Vue({
     el: "#vue-app",
-    mounted() {
+    mounted: function() {
         this.getCharacters()
     },
     methods: {
@@ -31,7 +30,10 @@ new Vue({
         },
         setModal(character) {
             this.modal = character
-        }
+        },
+        scrollTop() {
+            $("html, body").animate({scrollTop:"0"}, 500)
+        },
     },
     computed: {
         filtered: function() {
@@ -51,9 +53,11 @@ new Vue({
                     || character.origin.toLowerCase().indexOf(self.search) > -1; 
                 });    
                 
-                //.filter(c => c.name.toLowerCase().indexOf(this.search) > -1 || c.origin.toLowerCase().indexOf(this.search) > -1);
+                //filtered = this.character
+                //.filter(c => c.name.toLowerCase().indexOf(self.search) > -1 || c.origin.toLowerCase().indexOf(self.search) > -1);
                 // The above is an alternate arrow function.
                 // However, it doesn't work in some mobile browsers.
+                // Maybe it works now, I'm too lazy to find out.
             }
             return filtered;
         },

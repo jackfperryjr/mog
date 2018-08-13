@@ -4,6 +4,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="MoogleApi">
     <meta property="og:description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
+    <meta property="og:owner" content="Jack F. Perry, Jr.">
     <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
     <meta name="author" content="Jack F. Perry, Jr.">
 }
@@ -17,6 +18,12 @@
 
 <div class="row fixed-heading">
     <div class="col-md-12 fixed-heading-col">
+        <!-- Toying with different image site-titles -->
+        <!-- ======================================= -->
+        <!-- <img style="width:450px;" src="@Url.Content("/images/moogleapi-logo.png")"> -->
+        <!-- <img style="width:450px;" src="@Url.Content("/images/moogleapi-bw.png")"> -->
+        <!-- <img style="width:450px;border-radius:100px;" src="@Url.Content("/images/moogleapi-halloween.png")"> -->
+        
         <h1 class="site-title">
             <span class="blue no-space">M</span>
             <span class="red no-space"><img id="logo" src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face for one of the Os."></span>
@@ -24,8 +31,9 @@
             <span class="blue no-space">g</span>
             <span class="green no-space">l</span>
             <span class="red no-space">e</span>
-            <span class="black" style="font-size:16px;font-weight:bolder;">API</span>
+            <span style="font-size:16px;font-weight:bolder;">API</span>
         </h1>
+        
     </div>
 </div>
 <div id="vue-app" class="container">
@@ -76,7 +84,7 @@
         </div>
         <div class="row moogle-row">
             <div class="col-md-4 pull-right">
-                <a class="h5 blue pull-right" href="#">Back to top</a>
+                <button class="h5 blue pull-right btn-link top-button" v-on:click="scrollTop()">Back to top</button>
             </div>
         </div>
     </div>
