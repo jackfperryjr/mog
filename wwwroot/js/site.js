@@ -38,9 +38,18 @@ new Vue({
             if (!this.search) {
                 return empty;
             }
+
             if (this.search) {
+                let self = this;
                 filtered = this.character
-                .filter(c => c.name.toLowerCase().indexOf(this.search) > -1 || c.origin.toLowerCase().indexOf(this.search) > -1);
+                .filter(function(character) {
+                    return character.name.toLowerCase().indexOf(self.search) > -1
+                    || character.origin.toLowerCase().indexOf(self.search) > -1; 
+                });    
+                
+                //.filter(c => c.name.toLowerCase().indexOf(this.search) > -1 || c.origin.toLowerCase().indexOf(this.search) > -1);
+                // The above is an alternate arrow function.
+                // However, it doesn't work in some mobile browsers.
             }
             return filtered;
         },
