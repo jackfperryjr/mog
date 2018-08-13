@@ -29,6 +29,9 @@ new Vue({
             axios.get("https://www.moogleapi.com/api/characters")
             .then(response => {this.character = response.data})
         },
+        setModal(character) {
+            this.modal = character
+        }
     },
     computed: {
         filtered: function() {
@@ -44,6 +47,7 @@ new Vue({
                 filtered = this.character
                 .filter(function(character) {
                     return character.name.toLowerCase().indexOf(self.search) > -1
+                    || character.name.indexOf(self.search) > -1
                     || character.origin.toLowerCase().indexOf(self.search) > -1; 
                 });    
                 
@@ -57,5 +61,6 @@ new Vue({
     data: {
         character: "",
         search: "",
+        modal: {},
     }
   })
