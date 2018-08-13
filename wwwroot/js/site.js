@@ -1,15 +1,15 @@
 // List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
-    "Search ex. ''Lightning'''",
-    "Search ex. ''Cloud''",
-    "Search ex. ''Yuna''",
-    "Search ex. ''Firion''",
-    "Search ex. ''Aerith''",
-    "Search ex. ''Cecil''",
-    "Search ex. ''Rosa''",
-    "Search ex. ''Tidus''",
-    "Search ex. ''Paine''",
-    "Search ex. ''Kefka''"
+    "Search ex. ''Lightning'' or ''13''",
+    "Search ex. ''Ashe'' or ''12''",
+    "Search ex. ''Yuna'' or ''10''",
+    "Search ex. ''Firion'' or ''2''",
+    "Search ex. ''Aerith'' or ''7''",
+    "Search ex. ''Cecil'' or ''4''",
+    "Search ex. ''Bartz'' or ''5''",
+    "Search ex. ''Tidus'' or ''10''",
+    "Search ex. ''Refia'' or ''3''",
+    "Search ex. ''Kefka'' or ''6''"
 ];
 
 // Randomly choosing from the list
