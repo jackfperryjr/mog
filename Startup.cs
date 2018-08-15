@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 using Moogle.Data;
 using Moogle.Models;
 using Moogle.Services;
@@ -78,6 +79,23 @@ namespace Moogle
             });          
 
             services.AddMvc();
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info 
+                { 
+                    Title = "MoogleApi", 
+                    Version = "v1",
+                    Description = "A simple web API for Final Fantasy characters, monsters, and games!",
+                    Contact = new Contact
+                    {
+                        Name = "Jack F. Perry, Jr.",
+                        Email = "jack.franklin.perryjr@gmail.com",
+                        Url = "https://jackfperryjr.com"
+                    } 
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +114,17 @@ namespace Moogle
             app.UseCors("CorsPolicy");
             app.UseStaticFiles();
             app.UseAuthentication();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoogleApi v1");
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
