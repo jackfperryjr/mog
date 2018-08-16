@@ -1,6 +1,6 @@
-# M<img src="wwwroot/images/ff-moogle.png" width="20">ogle
+# M<img src="wwwroot/images/ff-moogle.png" width="20">ogle#####API
 
-Moogle is a search engine and database for all things Final Fantasy. Currently live at www.moogleapi.com!
+MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! The homepage is a single page application/search engine using VueJs! Check it out.
 
 ### Easy to use!
 
