@@ -43,7 +43,7 @@ new Vue({
 #### HTML (Super simple example)
 
 ```html
-<div id=vue-app>
+<div id="vue-app">
     <div>
         <button v-on:click="getRandom()">Click to get random character</button>
         <div>
