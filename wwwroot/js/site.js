@@ -71,8 +71,8 @@ new Vue({
         },
     },
     data: {
-        random: "",
-        character: "",
+        random: {},
+        character: [],
         search: "",
         modal: {},
     }

@@ -14,6 +14,54 @@ Use your favorite front-end framework to send a request:
 
 Then use that data in your website, webpage, or application!
 
+### Examples
+
+#### JavaScript (using VueJs)
+
+```javascript
+new Vue({
+    el: "#vue-app",
+    mounted: function() {
+        this.getCharacters()
+    },
+    methods: {
+        getCharacters() {
+            axios.get("https://www.moogleapi.com/api/characters")
+            .then(response => {this.characters = response.data})
+        },
+        getRandom() {
+            axios.get("https://www.moogleapi.com/api/characters/random")
+            .then(response => {this.random = response.data})
+        }
+    data: {
+        random: {},
+        characters: [],
+    }
+})
+```
+
+#### HTML (Super simple example)
+
+```html
+<div id=vue-app>
+    <div>
+        <button v-on:click="getRandom()">Click to get random character</button>
+        <div>
+            <h1 style="color:#cc0000">Name: {{random.name}}</h1>
+            <h3 style="color:#cc0000">Origin: {{random.origin}}</h3>
+            <h3 style="color:#cc0000">Job/Class: {{random.job}}</h3>
+        </div>
+        <!-- The above is styled in red to signify it's random -->
+    </div>
+    <div v-for="character in characters">
+        <h1>{{character.name}}</h1>
+        <h3>{{character.origin}}</h3>
+        <h3>{{character.gender}}</h3>
+        <!-- ***NOTE*** The above would just produce a list of *ALL* the characters -->
+    </div>
+</div>
+```
+    
 ### Character propeteries
 
 * Name (First and last, if they have one)
