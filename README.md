@@ -10,6 +10,8 @@ Use your favorite front-end framework to send a request:
 * https://www.moogleapi.com/api/monsters
 * https://www.moogleapi.com/api/games
 
+* New! Now you can send a request to https://www.moogleapi.com/api/characters/random to get a random character!
+
 Then use that data in your website, webpage, or application!
 
 ### Character propeteries
