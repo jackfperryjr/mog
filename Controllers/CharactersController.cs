@@ -46,5 +46,19 @@ namespace Moogle.Controllers
             }
             return Ok(character);
         }   
+
+        //GET api/characters/random
+        [AllowAnonymous]
+        [HttpGet("random", Name = "GetRandomCharacter")]
+        public IActionResult GetRandom()
+        {
+            IQueryable<Characters> characters = from c in _context.Character select c;
+            IList<Characters> characterList = characters.ToList();
+
+            Random rand = new Random();
+            var character = characterList[rand.Next(characterList.Count)];
+
+            return Ok(character);
+        }  
     }
 }

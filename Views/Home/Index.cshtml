@@ -43,7 +43,9 @@
             <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue"></i>
         </form>
     </div>
-    <div v-for="(character) in filtered" :key="character.id" class="row moogle-row mix-buffer" >
+    <!-- ============== -->
+    <!-- Search results -->
+    <div id="search-results" v-for="character in filtered" :key="character.id" class="row moogle-row mix-buffer" >
         <div class="col-md-8">
             <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
             <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
@@ -64,9 +66,7 @@
             <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
                 <img class="moogle-img" :src="character.picture" :alt="character.name" title="Click to view a larger picture"><br/>
             </button>
-            
             <div id="imageModal" class="modal fade" role="dialog">
-
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -77,15 +77,51 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <br/>
-            
         </div>
         <div class="row moogle-row">
             <div class="col-md-4 pull-right">
                 <button class="h5 blue pull-right btn-link" v-on:click="scrollTop()">Back to top</button>
             </div>
+        </div>
+    </div>
+    <!-- ================ -->
+    <!-- Random character -->
+    <div id="random-character" class="row moogle-row mix-buffer">
+        <div class="col-md-8">
+            <h4 class="moogle-h4"><strong>{{random.name}}</strong></h4>
+            <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random.name}}</a></h7><br/>
+            <p class="dark-bluish-gray">{{random.description}}</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Origin:</strong> {{random.origin}}<br/>
+                    <strong>Job:</strong> {{random.job}}<br/>
+                    <strong>Age:</strong> {{random.age}}</p></div>
+                    <div class="col-md-6"><p><strong>Race:</strong> {{random.race}}<br/>
+                    <strong>Height:</strong> {{random.height}}m<br/>
+                    <strong>Weight:</strong> {{random.weight}}kg</p>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">
+                <img class="moogle-img" :src="random.picture" :alt="random.name" title="Click to view a larger picture"><br/>
+            </button>
+            <div id="imageModal" class="modal fade" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="text-center"><strong>{{random.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                        </div>
+                        <div class="modal-body">
+                            <img class="moogle-modal-img" :src="random.picture" :alt="random.name" :title="random.name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
         </div>
     </div>
     <div class="container container-mod">
@@ -94,6 +130,7 @@
                 <h4><strong>Try it out!</strong></h4>
                 <hr/>
                 <h5 class="text-left">A Final Fantasy search engine! Start typing a character into the search box above and the results will populate below it. In this case, organized and styled the way I wanted it to appear, which should look very familiar.</h5>
+                <h5 class="text-left">Or, get a <button class="btn btn-link blue" style="padding:0 2px;" v-on:click="getRandom()">random</button> character.</h5>
                 <h5 class="text-left">There's currently <strong>{{character.length}}</strong> characters and counting!</h5>
             </div>
             <div class="col-md-6 text-center">
@@ -101,6 +138,7 @@
                 <hr/>
                 <h5 class="text-left">Use your favorite front-end framework to send a request:</h5>
                 <h5 class="text-left">https://www.moogleapi.com</h5>
+                <h5 class="text-left">/api/characters/random</h5>
                 <h5 class="text-left">/api/characters</h5>
                 <h5 class="text-left">/api/monsters</h5>
                 <h5 class="text-left">/api/games</h5>                

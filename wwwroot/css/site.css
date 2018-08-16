@@ -60,6 +60,9 @@ i:focus {
   letter-spacing: -2.5px;
   cursor: pointer;
 }
+#random-character {
+  display: none;
+}
 #logo {
   width: 50px;
   margin-right: -35px;

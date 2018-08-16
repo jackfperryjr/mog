@@ -34,6 +34,12 @@ new Vue({
         scrollTop() {
             $("html, body").animate({scrollTop:"0"}, 500)
         },
+        getRandom() {
+            $("#search-results").hide();
+            axios.get("https://www.moogleapi.com/api/characters/random")
+            .then(response => {this.random = response.data})
+            $("#random-character").show()
+        }
     },
     computed: {
         filtered: function() {
@@ -59,10 +65,13 @@ new Vue({
                 // However, it doesn't work in some mobile browsers.
                 // Maybe it works now, I'm too lazy to find out.
             }
+            $("#random-character").hide()
+            $("#search-results").show()
             return filtered;
         },
     },
     data: {
+        random: "",
         character: "",
         search: "",
         modal: {},
