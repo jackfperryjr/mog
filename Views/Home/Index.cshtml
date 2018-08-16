@@ -45,7 +45,7 @@
     </div>
     <!-- ============== -->
     <!-- Search results -->
-    <div id="search-results" v-for="character in filtered" :key="character.id" class="row moogle-row mix-buffer" >
+    <div v-for="character in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
         <div class="col-md-8">
             <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
             <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
@@ -106,10 +106,10 @@
             </div>
         </div>
         <div class="col-md-4">
-            <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal">
+            <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
                 <img class="moogle-img" :src="random.picture" :alt="random.name" title="Click to view a larger picture"><br/>
             </button>
-            <div id="imageModal" class="modal fade" role="dialog">
+            <div id="randomModal" class="modal fade" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

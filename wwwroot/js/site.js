@@ -35,7 +35,7 @@ new Vue({
             $("html, body").animate({scrollTop:"0"}, 500)
         },
         getRandom() {
-            $("#search-results").hide();
+            $(".search-results").hide();
             axios.get("https://www.moogleapi.com/api/characters/random")
             .then(response => {this.random = response.data})
             $("#random-character").show()
@@ -56,7 +56,7 @@ new Vue({
                 .filter(function(character) {
                     return character.name.toLowerCase().indexOf(self.search) > -1
                     || character.name.indexOf(self.search) > -1
-                    || character.origin.toLowerCase().indexOf(self.search) > -1; 
+                    || character.origin.indexOf(self.search) > -1; 
                 });    
                 
                 //filtered = this.character
@@ -66,7 +66,7 @@ new Vue({
                 // Maybe it works now, I'm too lazy to find out.
             }
             $("#random-character").hide()
-            $("#search-results").show()
+            $(".search-results").show()
             return filtered;
         },
     },
