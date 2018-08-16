@@ -16,7 +16,7 @@ Then use that data in your website, webpage, or application!
 
 ### Examples
 
-#### JavaScript (super simple example using VueJs)
+#### JavaScript (super simple example using VueJs and Axios)
 
 ```javascript
 new Vue({
@@ -60,6 +60,12 @@ new Vue({
         <!-- ***NOTE*** The above would just produce a list of *ALL* the characters -->
     </div>
 </div>
+```
+
+##### CDNs I used for VueJs and Axios
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 ```
     
 ### Character propeteries
