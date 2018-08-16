@@ -16,7 +16,7 @@ Then use that data in your website, webpage, or application!
 
 ### Examples
 
-#### JavaScript (using VueJs)
+#### JavaScript (super simple example using VueJs)
 
 ```javascript
 new Vue({
@@ -40,7 +40,7 @@ new Vue({
 })
 ```
 
-#### HTML (Super simple example)
+#### HTML (super simple example)
 
 ```html
 <div id="vue-app">
