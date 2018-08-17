@@ -1,4 +1,7 @@
-﻿@section MetaTags
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+
+@section MetaTags
 {
     <meta property="og:url" content="www.moogleapi.com">
     <meta property="og:type" content="website">
@@ -145,8 +148,25 @@
                 <h5 class="text-left">Then display and organize the data on your website or application!</h5>
                 <h5 class="text-left">Checkout <a href="https://www.moogleapi.com/swagger/index.html">Swagger</a> for testing.</h5>
                 <h5 class="text-left">Checkout the <a href="https://github.com/jackfperryjr/moogle#readme">README</a> on GitHub.</h5>
+                <h5 class="text-left">If you like what I'm doing you can make a donation! It's not necessary, though. I still like you. But if you really want to, click the Pay with Card button.</h5>
             </div>
         </div>
     </div>
 </div>
+<div class="container container-mod">
+    <div class="row moogle-row" style="float:right;">
+        <form asp-action="Charge" method="post">
+            <script src="https://checkout.stripe.com/checkout.js"
+                    class="stripe-button"
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-locale="auto"
+                    data-name="MoogleApi"
+                    data-image="@Url.Content("/images/ff-moogle.png")"
+                    data-amount="500"
+                    data-zip-code="true">
+            </script>
+        </form>
+    </div>
+</div>
+
 

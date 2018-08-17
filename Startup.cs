@@ -6,15 +6,22 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Stripe;
 using Moogle.Data;
 using Moogle.Models;
 using Moogle.Services;
 
 namespace Moogle
 {
+    public class StripeSettings
+    {
+        public string SecretKey { get; set; }
+        public string PublishableKey { get; set; }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration, IHostingEnvironment env)
@@ -78,6 +85,8 @@ namespace Moogle
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
             });          
 
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+
             services.AddMvc();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -101,6 +110,8 @@ namespace Moogle
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+        StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

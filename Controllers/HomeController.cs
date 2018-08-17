@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Stripe;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
@@ -27,6 +30,26 @@ namespace Moogle.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new StripeCustomerService();
+            var charges = new StripeChargeService();
+
+            var customer = customers.Create(new StripeCustomerCreateOptions {
+            Email = stripeEmail,
+            SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new StripeChargeCreateOptions {
+            Amount = 500,
+            Description = "Donation",
+            Currency = "usd",
+            CustomerId = customer.Id,
+            });
+
+            return View();
         }
     }
 }
