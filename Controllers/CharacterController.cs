@@ -83,7 +83,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,GameId")] Characters characters)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Hp")] Characters characters)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture")] Characters characters)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Hp")] Characters characters)
         {
             if (id != characters.Id)
             {

@@ -39,6 +39,7 @@ namespace Moogle
         {
 
             // Use Sqlite Database in Development, otherwise, use SqlServer
+            /*
             if (Environment.IsDevelopment())
             {
                 // Adding database for characters.
@@ -55,6 +56,11 @@ namespace Moogle
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
             }
+            */
+            services.AddDbContext<CharacterContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AzureCharacterDB")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
 
 
             services.AddIdentity<ApplicationUser, IdentityRole>(Configuration =>

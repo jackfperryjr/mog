@@ -23,5 +23,6 @@ namespace Moogle.Models
         public string Origin { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
+        public string Hp { get; set; }
     }  
 }

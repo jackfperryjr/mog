@@ -36,7 +36,7 @@ namespace Moogle.Controllers
 
         //GET api/characters/id
         [AllowAnonymous]
-        [HttpGet("{id}", Name = "GetCharacter")]
+        [HttpGet("{name}", Name = "GetCharacter")]
         public IActionResult Get(Guid? id)
         {
             var character = _context.Character.Find(id);

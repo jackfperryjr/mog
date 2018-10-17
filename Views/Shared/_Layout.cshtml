@@ -10,12 +10,12 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
         <link rel="icon" href="~/images/ff-moogle.png" />
         <title>MoogleApi @ViewData["Title"]</title>
-        <environment include="Production">
+        <environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
             @RenderSection("Styles", false)
         </environment>
-        <environment exclude="Production">
+        <environment exclude="Development">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
                 asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                 asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
@@ -23,9 +23,26 @@
         </environment>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="background:transparent;border:transparent;">
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="background:#fff;border:transparent;box-shadow:2px 2px 2px #fff;">
             <div class="container">
                 <div class="navbar-header">
+                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
+                        <!-- Toying with different image site-titles -->
+                        <!-- ======================================= -->
+                        <!-- <img style="width:250px;" src="@Url.Content("/images/moogleapi-logo.png")"> -->
+                        <!-- <img style="width:250px;" src="@Url.Content("/images/moogleapi-bw.png")"> -->
+                        <!-- <img style="width:250px;border-radius:100px;" src="@Url.Content("/images/moogleapi-halloween.png")"> -->
+                        <!-- These need to be adjusted -->
+                        <h1 style="font-size:40px;letter-spacing:10px;cursor:pointer;font-family:'Josefin Sans',sans-serif;">
+                            <span class="blue no-space">M</span>
+                            <span style="margin:0 10px;"><img id="logo" style="width:27px;" src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face for one of the Os."></span>
+                            <span class="yellow no-space">o</span>
+                            <span class="blue no-space">g</span>
+                            <span class="green no-space">l</span>
+                            <span class="letter-e red no-space">e</span>
+                            <span style="color:#000;font-size:12px;font-weight:bolder;letter-spacing:0;">API</span>
+                        </h1>
+                    </a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -40,34 +57,31 @@
         </nav>
         <div class="container">
             @RenderBody()
-            <footer>
-                <hr />
-                <span id="copyright">&copy; </span>
-                <a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
-                    
-                    <span class="blue">M</span>
-                    <span class="red">o</span>
-                    <span class="yellow">o</span>
-                    <span class="blue">g</span>
-                    <span class="green">l</span>
-                    <span class="red">e</span>
-                    <span class="black" style="font-size:6px;font-weight:bolder;letter-spacing:0;">API</span>
-                    
-                </a> 
-                <span> @DateTime.Now.Year </span>
-                <span id="social-icons">
-                <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
-                <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
-                <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
-                </span>
-            </footer>
         </div>
-        <environment include="Production">
+        <footer>
+            <hr />
+            <span id="copyright">&copy;  @DateTime.Now.Year </span>
+            <a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
+                <span class="blue">M</span>
+                <span class="red">o</span>
+                <span class="yellow">o</span>
+                <span class="blue">g</span>
+                <span class="green">l</span>
+                <span class="red">e</span>
+                <span class="black" style="font-size:6px;font-weight:bolder;letter-spacing:0;">API</span>
+            </a> 
+            <span id="social-icons">
+            <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
+            <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
+            </span>
+        </footer>
+        <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         </environment>
-        <environment exclude="Production">
+        <environment exclude="Development">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                     asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                     asp-fallback-test="window.jQuery"

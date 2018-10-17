@@ -23,9 +23,12 @@ new Vue({
     mounted: function() {
         this.getCharacters()
     },
+    created: function() {
+        this.getLoad()
+    },
     methods: {
         getCharacters() {
-            axios.get("https://www.moogleapi.com/api/characters")
+            axios.get("api/characters")
             .then(response => {this.character = response.data})
         },
         setModal(character) {
@@ -35,19 +38,25 @@ new Vue({
             $("html, body").animate({scrollTop:"0"}, 500)
         },
         getRandom() {
-            $(".search-results").hide();
+            $(".search-results").hide()
+            $("#random-character").show()
             axios.get("https://www.moogleapi.com/api/characters/random")
             .then(response => {this.random = response.data})
+        },
+        getLoad() {
+            $(".search-results").hide()
             $("#random-character").show()
+
+            axios.get("https://www.moogleapi.com/api/characters/93ded01c-8d50-4ecb-e180-08d5f285a2b8")
+            .then(response => {this.random = response.data})
         }
     },
     computed: {
         filtered: function() {
             let filtered = this.character;
-            let empty = "";
 
             if (!this.search) {
-                return empty;
+                return this.getLoad();          
             }
 
             if (this.search) {
