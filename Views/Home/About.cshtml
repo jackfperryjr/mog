@@ -61,7 +61,7 @@
     <div class="row">
         <h3>Can I help?</h3>
         <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#e0e0e0;border-radius:50px;">
-            <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! Or if you like what I'm doing and you're using it for your own projects or for teaching purposes and want to thank me with money, I've set up <a href="https://www.stripe.com" target="_blank">Stripe</a> for that. No pressure, though; this thing is totally free to the public!</h4>
+            <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! Or if you like what I'm doing and you're using it for your own projects or for teaching purposes and want to thank me with money, I've set up <a href="https://www.stripe.com" target="_blank">STRIPE</a> for that. No pressure, though; this thing is totally free to the public!</h4>
             <form asp-action="Charge" method="post" class="text-center mix-buffer">
                 <script src="https://checkout.stripe.com/checkout.js"
                         class="stripe-button"
@@ -70,7 +70,9 @@
                         data-name="MoogleApi"
                         data-image="@Url.Content("/images/ff-moogle.png")"
                         data-amount="500"
-                        data-zip-code="true">
+                        data-zip-code="true"
+                        data-label="Click to Donate"
+                        data-panel-label="Donate">
                 </script>
             </form>
         </div>

@@ -25,17 +25,30 @@
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top" style="background:#fff;border:transparent;box-shadow:2px 2px 2px #fff;">
             <div class="container">
-                <div class="navbar-header">
-                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
+                <div class="navbar-header text-center">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <!-- <img style="width:40px;"src="@Url.Content("/images/chocobo.png")"> -->
+                        <h1 class="site-logo">
+                            <span class="blue no-space">M</span>
+                            <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face for one of the Os."></span>
+                            <span class="yellow no-space">o</span>
+                            <span class="blue no-space">g</span>
+                            <span class="green no-space">l</span>
+                            <span class="letter-e red no-space">e</span>
+                            <span style="color:#000;font-size:12px;font-weight:bolder;letter-spacing:0;">API</span>
+                        </h1>
+                    </button>
+                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement">
                         <!-- Toying with different image site-titles -->
                         <!-- ======================================= -->
                         <!-- <img style="width:250px;" src="@Url.Content("/images/moogleapi-logo.png")"> -->
                         <!-- <img style="width:250px;" src="@Url.Content("/images/moogleapi-bw.png")"> -->
                         <!-- <img style="width:250px;border-radius:100px;" src="@Url.Content("/images/moogleapi-halloween.png")"> -->
                         <!-- These need to be adjusted -->
-                        <h1 style="font-size:40px;letter-spacing:10px;cursor:pointer;font-family:'Josefin Sans',sans-serif;">
+                        <h1 class="site-logo swap">
                             <span class="blue no-space">M</span>
-                            <span style="margin:0 10px;"><img id="logo" style="width:27px;" src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face for one of the Os."></span>
+                            <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/ff-moogle.png")" alt="Moogle face for one of the Os."></span>
                             <span class="yellow no-space">o</span>
                             <span class="blue no-space">g</span>
                             <span class="green no-space">l</span>
@@ -43,12 +56,6 @@
                             <span style="color:#000;font-size:12px;font-weight:bolder;letter-spacing:0;">API</span>
                         </h1>
                     </a>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                 </div>
                 <div class="navbar-collapse collapse">
                     @await Html.PartialAsync("_LoginPartial")
