@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
@@ -15,9 +16,9 @@ namespace Moogle.Controllers
     [Authorize]
     public class CharacterController : Controller
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CharacterController(CharacterContext context)
+        public CharacterController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -83,7 +84,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Hp")] Characters characters)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +118,7 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Hp")] Characters characters)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
             if (id != characters.Id)
             {

@@ -57,8 +57,6 @@ namespace Moogle
                         options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
             }
             */
-            services.AddDbContext<CharacterContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("AzureCharacterDB")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
 
@@ -106,8 +104,8 @@ namespace Moogle
                     Contact = new Contact
                     {
                         Name = "Jack F. Perry, Jr.",
-                        Email = "jack.franklin.perryjr@gmail.com",
-                        Url = "https://jackfperryjr.com"
+                        Email = "jackfperryjr@gmail.com",
+                        Url = "https://www.moogleapi.com"
                     } 
                 });
             });

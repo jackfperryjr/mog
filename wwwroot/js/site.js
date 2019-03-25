@@ -28,7 +28,7 @@ new Vue({
     },
     methods: {
         getCharacters() {
-            axios.get("api/characters")
+            axios.get("api/v1/characters")
             .then(response => {this.character = response.data})
         },
         setModal(character) {
@@ -40,14 +40,14 @@ new Vue({
         getRandom() {
             $(".search-results").hide()
             $("#random-character").show()
-            axios.get("https://www.moogleapi.com/api/characters/random")
+            axios.get("https://www.moogleapi.com/api/v1/characters/random")
             .then(response => {this.random = response.data})
         },
         getLoad() {
             $(".search-results").hide()
             $("#random-character").show()
 
-            axios.get("https://www.moogleapi.com/api/characters/93ded01c-8d50-4ecb-e180-08d5f285a2b8")
+            axios.get("https://www.moogleapi.com/api/v1/characters/c111db78-8c94-4a89-5351-08d6afc3b4ff")
             .then(response => {this.random = response.data})
         }
     },

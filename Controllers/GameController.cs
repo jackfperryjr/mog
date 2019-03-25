@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
@@ -16,9 +17,9 @@ namespace Moogle.Controllers
     [Authorize]
     public class GameController : Controller
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public GameController(CharacterContext context)
+        public GameController(ApplicationDbContext context)
         {
             _context = context;
         }

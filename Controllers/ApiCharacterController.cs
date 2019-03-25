@@ -10,16 +10,17 @@ using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
 {
-    [Route("/api/characters")]
-    public class CharactersController : ControllerBase
+    [Route("/api/v1/characters")]
+    public class ApiCharacterController : ControllerBase
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CharactersController(CharacterContext context)
+        public ApiCharacterController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -36,7 +37,7 @@ namespace Moogle.Controllers
 
         //GET api/characters/id
         [AllowAnonymous]
-        [HttpGet("{name}", Name = "GetCharacter")]
+        [HttpGet("{id}", Name = "GetCharacter")]
         public IActionResult Get(Guid? id)
         {
             var character = _context.Character.Find(id);

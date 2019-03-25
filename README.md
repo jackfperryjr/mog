@@ -68,7 +68,7 @@ new Vue({
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 ```
     
-### Character propeteries
+### Character properties
 
 * Name (First and last, if they have one)
 * Origin (The game they originated in)

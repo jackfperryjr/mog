@@ -16,76 +16,82 @@
 <hr />
 <form asp-action="Index" method="get">
     <div id="input-container">
-        <p class="text-left">
-            <span class="glyphicon glyphicon-search"></span>
-            <input class="input-bar" type="text" name="SearchString" placeholder='Search ex. "04"' value="@ViewData["CurrentFilter"]" />
-            <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
-            <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add game</a>
-        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <span class="glyphicon glyphicon-search"></span>
+                <input class="input-bar" style="max-width:250px;margin: 0 !important;" type="text" name="SearchString" placeholder='Search ex. "04"' value="@ViewData["CurrentFilter"]" />
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+                <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add game</a>
+            </div>
+        </div>
     </div>
 </form>
-<div class="row">
-    @foreach (var item in Model) 
-    {
-        <div class="well col-md-4 text-center character-card">
-            <a data-toggle="modal" href="@("#viewModal" + item.GameId)"><img class="character-list-thumb" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/></a>
-            <div class="modal fade" id="@("viewModal" + item.GameId)" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content text-center">
-                        @using (Html.BeginForm("Details", "Game"))
-                        {
-                            <input type="hidden" value="@item.GameId" name="GameId" />
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">X</button>
-                                <h4 class="modal-title">@item.Title</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model) 
+        {
+            <div class="well col-md-4 text-center character-card">
+                <a data-toggle="modal" href="@("#viewModal" + item.GameId)"><img class="character-list-thumb" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/></a>
+                <div class="modal fade" id="@("viewModal" + item.GameId)" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                            @using (Html.BeginForm("Details", "Game"))
+                            {
+                                <input type="hidden" value="@item.GameId" name="GameId" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">@item.Title</h4>
                                 </div>
-                                <div class="row text-left">
-                                    <div class="col-md-12">
-                                        <h4 id="desc">@item.Description</h4>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
+                                    </div>
+                                    <div class="row text-left">
+                                        <div class="col-md-12">
+                                            <h4 id="desc">@item.Description</h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
-                                <a class="btn btn-default shadow" asp-action="Edit" asp-route-id="@item.GameId">edit</a>
-                                <button type="button" class="btn btn-default shadow" data-dismiss="modal">close</button>
-                            </div>
-                        }
+                                <div class="modal-footer">
+                                    <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
+                                    <a class="btn btn-default shadow" asp-action="Edit" asp-route-id="@item.GameId">edit</a>
+                                    <button type="button" class="btn btn-default shadow" data-dismiss="modal">close</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br/>
-            <span>
-                <a asp-action="Edit" asp-route-id="@item.GameId">edit</a> | 
-                <a data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
-                    <div class="modal fade" id="@("deleteModal" + item.GameId)" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content text-center">
-                                @using (Html.BeginForm("Delete", "Game"))
-                                {
-                                    <input type="hidden" value="@item.GameId" name="Id" />
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">X</button>
-                                        <h4 class="modal-title">Delete @item.Title</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
-                                        <br/><br/>
-                                        <p>Are you sure you want to delete @item.Title?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger">yes</button>
-                                        <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
-                                    </div>
-                                }
+                <br/>
+                <span style="font-size:12px;">
+                    <a asp-action="Edit" asp-route-id="@item.GameId">edit</a> | 
+                    <a data-toggle="modal" href="@("#deleteModal" + item.GameId)">delete</a>
+                        <div class="modal fade" id="@("deleteModal" + item.GameId)" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-center">
+                                    @using (Html.BeginForm("Delete", "Game"))
+                                    {
+                                        <input type="hidden" value="@item.GameId" name="Id" />
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">X</button>
+                                            <h4 class="modal-title">Delete @item.Title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="character-delete-img-game" asp-route-id="@item.GameId" src="@item.Picture" alt="@item.Title" title="@item.Title"/>
+                                            <br/><br/>
+                                            <p>Are you sure you want to delete @item.Title?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">yes</button>
+                                            <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    </div>  
-                </span>                      
+                        </div>  
+                    </span>                      
+        </div>
+        }
     </div>
-    }
 </div>

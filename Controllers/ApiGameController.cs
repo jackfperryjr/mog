@@ -8,16 +8,17 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Linq;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
 {
-    [Route("/api/games")]
-    public class GamesController : ControllerBase
+    [Route("/api/v1/games")]
+    public class ApiGameController : ControllerBase
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public GamesController(CharacterContext context)
+        public ApiGameController(ApplicationDbContext context)
         {
             _context = context;
         }

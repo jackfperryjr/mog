@@ -12,33 +12,37 @@
 <form asp-action="Edit">
     <div class="add-edit-list">
         <div class="row">
-            <img style="margin:5px;" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
+            <img style="min-width:300px;max-width:500px;min-height:200px;max-height:300px;margin:5px;" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
         </div>
         <div class="row" style="margin:50px 0;">
             <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Title" class="login-bar" placeholder="Enter game title" title="Enter game title."/>
+                    <input asp-for="Title" class="login-bar" style="width:100%;" placeholder="Enter game title" title="Enter game title."/>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">game title</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Picture" class="login-bar" placeholder="images/logos/ff-&lt;game-title&gt;.jpg" title="Enter url for picture."/>
+                    <input asp-for="Picture" class="login-bar" style="width:100%;" placeholder="images/logos/ff-&lt;game-title&gt;.jpg" title="Enter url for picture."/>
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="ReleaseDate" class="login-bar" placeholder='Enter release date ex. "March 3, 1982"' title="Enter game's release date."/>
+                    <input asp-for="ReleaseDate" class="login-bar" style="width:100%;" placeholder='Enter release date ex. "March 3, 1982"' title="Enter game's release date."/>
                     <span asp-validation-for="ReleaseDate" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">release date</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Platform" class="login-bar" placeholder='Enter platform ex. "Playstation 1"' title="Enter the platform game was released on."/>
+                    <input asp-for="Platform" class="login-bar" style="width:100%;" placeholder='Enter platform ex. "Playstation 1"' title="Enter the platform game was released on."/>
                     <span asp-validation-for="Platform" class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">platform</span>
             </div>
         </div>
         <div class="row">

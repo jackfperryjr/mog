@@ -10,16 +10,17 @@ using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Moogle.Data;
 using Moogle.Models;
 
 namespace Moogle.Controllers
 {
-    [Route("/api/monsters")]
-    public class MonstersController : ControllerBase
+    [Route("/api/v1/monsters")]
+    public class ApiMonsterController : ControllerBase
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MonstersController(CharacterContext context)
+        public ApiMonsterController(ApplicationDbContext context)
         {
             _context = context;
         }

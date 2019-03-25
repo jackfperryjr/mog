@@ -357,7 +357,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   margin: 30px auto 0 auto;
 }
 .fixed-heading-col {
-  padding: 30px;
+  padding: 5px 30px 5px 30px;
 }
 .fixed-heading-paragraph {
   font-size: 16px;
@@ -402,8 +402,10 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   font-size:2em;font-weight:bolder;
 }
 .site-logo {
+  min-width:200px;
   font-size:40px;
   letter-spacing:10px;
+  margin-left:-20px;
   cursor:pointer;
   font-family:'Josefin Sans',sans-serif;
 }

@@ -8,15 +8,14 @@
 }
 
 <h2>edit character</h2>
-
 <hr />
-<form asp-action="Edit" enctype="multipart/form-data">
+<form asp-action="Edit">
     <div class="add-edit-list">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <select asp-for="Origin" class="login-bar" title="Select character origin">
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <select asp-for="Origin" class="login-bar login-picture">
                         <option value="Final Fantasy 01">Final Fantasy 01</option>
                         <option value="Final Fantasy 02">Final Fantasy 02</option>
                         <option value="Final Fantasy 03">Final Fantasy 03</option>  
@@ -37,16 +36,9 @@
                     </select>
                     <span asp-validation-for="Origin" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Name" class="login-bar" placeholder="Enter character name" title="Enter character name" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Race" class="login-bar" placeholder="Enter character race"  title="Enter character race" />
-                    <span asp-validation-for="Race" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <select asp-for="Gender" class="login-bar" title="Select character gender" >
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">game</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <select asp-for="Gender" class="login-bar login-picture">
                         <option>Enter character gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -54,75 +46,134 @@
                     </select>                
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Age" class="login-bar" placeholder="Enter character age" title="Enter character age" />
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">gender</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Name" class="login-bar login-picture" placeholder="Enter character name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">name</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Race" class="login-bar login-picture" placeholder="Enter character race"/>
+                    <span asp-validation-for="Race" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">race</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Age" class="login-bar login-picture" placeholder="Enter character age"/>
                     <span asp-validation-for="Age" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Job" class="login-bar" placeholder="Enter character class or job/class" title="Enter character job/class" />
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">age</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Job" class="login-bar login-picture" placeholder="Enter character class or job"/>
                     <span asp-validation-for="Job" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Height" class="login-bar" placeholder="Enter height in meters" title="Enter height in meters" />
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">class/job</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Height" class="login-bar login-picture" placeholder="Enter height in meters"/>
                     <span asp-validation-for="Height" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Weight" class="login-bar" placeholder="Enter weight in kilograms" title="Enter weight in kilograms" />
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">height</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Weight" class="login-bar login-picture" placeholder="Enter weight in kilograms"/>
                     <span asp-validation-for="Weight" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Hp" class="login-bar" placeholder="Enter Hp" title="" />
-                    <span asp-validation-for="Hp" class="text-danger"></span>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">weight</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response2" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response2" class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response3" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response3" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response4" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response4" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response5" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response5" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response6" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response6" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response7" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response7" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response8" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response8" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response9" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response9" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Response10" class="login-bar login-picture" placeholder="Dating profile response"/>
+                    <span asp-validation-for="Response10" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating response</span>
             </div>
             <div id="desc-position" class="col-md-6">
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
-                <div style="width:400px;height:400px;">
-                    <img style="width:250px;height:auto;margin:5px;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <img style="width:250px;height:auto;margin:5px;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Picture2" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
+                    <span asp-validation-for="Picture2" class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Picture3" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
+                    <span asp-validation-for="Picture3" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Picture4" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
+                    <span asp-validation-for="Picture4" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Picture5" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
+                    <span asp-validation-for="Picture5" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">character description</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <textarea id="desc-input" asp-for="Response1" class="login-bar" placeholder="Enter a character dating profile in this space" title="Enter a character dating profile in this space" ></textarea>
+                    <span asp-validation-for="Response1" class="text-danger"></span>
+                </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">dating profile</span>
             </div>
         </div>
         <div class="row">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="form-group" style="margin-left:150px;">
-        <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
         <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
-        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        <a class="btn btn-default shadow" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
     </div>
 </form>
-<div style="margin-bottom:15px;">
-    <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content text-center">
-                @using (Html.BeginForm("Delete", "Character"))
-                {
-                    <input type="hidden" value="@Model.Id" name="Id" />
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 class="modal-title">Delete @Model.Name</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img class="character-delete-img" asp-route-id="@Model.Id" src=@Model.Picture alt="@Model.Name" title="@Model.Name"/>
-                        <br/><br/>
-                        <p>Are you sure you want to delete @Model.Name?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">yes</button>
-                        <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

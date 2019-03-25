@@ -17,9 +17,9 @@ namespace Moogle.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(CharacterContext context)
+        public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }
