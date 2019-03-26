@@ -6,11 +6,11 @@ MoogleApi is a database for all things Final Fantasy. Currently live at www.moog
 
 Use your favorite front-end framework to send a request:
 
-* https://www.moogleapi.com/api/characters
-* https://www.moogleapi.com/api/monsters
-* https://www.moogleapi.com/api/games
+* https://www.moogleapi.com/api/v1/characters
+* https://www.moogleapi.com/api/v1/monsters
+* https://www.moogleapi.com/api/v1/games
 
-* New! Now you can send a request to https://www.moogleapi.com/api/characters/random to get a random character!
+* New! Now you can send a request to https://www.moogleapi.com/api/v1/characters/random to get a random character!
 
 Then use that data in your website, webpage, or application!
 
@@ -26,11 +26,11 @@ new Vue({
     },
     methods: {
         getCharacters() {
-            axios.get("https://www.moogleapi.com/api/characters")
+            axios.get("https://www.moogleapi.com/api/v1/characters")
             .then(response => {this.characters = response.data})
         },
         getRandom() {
-            axios.get("https://www.moogleapi.com/api/characters/random")
+            axios.get("https://www.moogleapi.com/api/v1/characters/random")
             .then(response => {this.random = response.data})
         }
     data: {
