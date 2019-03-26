@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Moogle.Models;
+using Moogle.Data;
 
 namespace Moogle.Controllers
 {
@@ -16,9 +17,9 @@ namespace Moogle.Controllers
     [Authorize]
     public class MonsterController : Controller
     {
-        private readonly CharacterContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MonsterController(CharacterContext context)
+        public MonsterController(ApplicationDbContext context)
         {
             _context = context;
         }

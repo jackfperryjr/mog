@@ -14,36 +14,43 @@
         <div class="row">
             <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <input asp-for="Name" class="login-bar" placeholder="Enter monster name" title="Enter monster's name."/>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Name" class="login-bar login-picture" placeholder="Enter monster name" title="Enter monster's name."/>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Strength" class="login-bar" placeholder="What's this monster's strength?" title="Enter monster's strength."/>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">name</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Strength" class="login-bar login-picture" placeholder="What's this monster's strength?" title="Enter monster's strength."/>
                     <span asp-validation-for="Strength" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Weakness" class="login-bar" placeholder="What's this monster's weakness?" title="Enter monster's weakness."/>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">strength</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input asp-for="Weakness" class="login-bar login-picture" placeholder="What's this monster's weakness?" title="Enter monster's weakness."/>
                     <span asp-validation-for="Weakness" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input class="login-bar" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">weakness</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input class="login-bar" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input class="login-bar" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
+                <div class="form-group" style="margin-bottom:0 !important;">
+                    <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
             </div>
             <div id="desc-position" class="col-md-6">
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom:0 !important;">
                     <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
+                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
                 <img alt="No picture." title="Picture goes here." />
             </div>
         </div>
