@@ -1,11 +1,8 @@
 @model PaginatedList<Moogle.Models.Characters>
-
 @using Microsoft.AspNetCore.Identity
 @using Moogle.Models
-
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
 @{
     ViewData["Title"] = "| Characters";
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -20,8 +17,8 @@
     <div id="input-container">
         <div class="row">
             <div class="col-md-6">
-                <span class="glyphicon glyphicon-search"></span>
-                <input class="input-bar" style="border-radius:500px;max-width:300px;margin: 0 !important;" type="text" name="SearchString" placeholder='Search ex. "Lightning" or "13"' value="@ViewData["CurrentFilter"]" />
+                <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='Search ex. "Lightning"' value="@ViewData["CurrentFilter"]"/>
+                <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
             </div>
             <div class="col-md-6 text-right">
                 <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
@@ -90,7 +87,7 @@
             <br/>
         @if (User.IsInRole("Admin"))
             {
-                <span style="font-size:12px;">
+                <span class="font-12">
                     <a asp-action="Edit" asp-route-id="@item.Id">edit</a> | 
                     <a data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
                         <div class="modal fade" id="@("deleteModal" + item.Id)" tabindex="-1" role="dialog">
@@ -120,7 +117,6 @@
             }
         </div>
     }
-
 </div>
 <div class="text-center" style="margin-top:50px;">
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"

@@ -13,6 +13,23 @@ body {
 .container-mod {
   width: 70%;
 }
+.hr-info-box {
+  border:.5px solid #01579b;
+}
+.hr-home {
+  border:.5px solid #01579b;
+  width: 50%;
+}
+.info-box {
+  min-height:220px;
+  border-radius:40px;
+  border:4px solid #fff;
+}
+.about-box {
+  margin-bottom:30px;
+  padding:5px 30px;
+  border-radius:50px;
+}
 h1 {
   cursor: default;
 }
@@ -67,8 +84,37 @@ i:focus {
 #random-character {
   display: none;
 }
+.label-under {
+  color:#cc0000;
+  margin-bottom:5px;
+  float:left;
+}
+.font-12 {
+  font-size:12px;
+}
+.font-10 {
+  font-size:10px;
+}
 .no-space {
   letter-spacing: -35px;
+}
+.no-margin {
+  margin:0 !important;
+}
+.bg-green {
+  background-color:#c8e6c9;
+}
+.bg-red {
+  background-color:#ffcdd2
+}
+.bg-yellow {
+  background-color:#ffecb3;
+}
+.bg-blue {
+  background-color:#bbdefb;
+}
+.bg-grey {
+  background-color:#e0e0e0;
 }
 .black {
   color: #000;
@@ -106,6 +152,12 @@ i:focus {
   margin: 0 auto;
   width: 50%;
   height: 80px;
+}
+.fancy-search {
+  padding:10px 0 10px 15px;
+  border-radius:500px;
+  background-color:#eceff1;
+  border:1px solid transparent;
 }
 input,
 input:focus {
@@ -387,6 +439,10 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
   background:#fff;
 }
+.navbar-mod { 
+  background:#fff;
+  border:transparent;
+}
 .dropdown-menu {
   display: none;
   width: 200px;
@@ -411,6 +467,15 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 .span-logo {
   margin:0 10px;
+}
+.site-span-api {
+  color:#000;
+  font-size:12px;
+  font-weight:bolder;
+  letter-spacing:0;
+}
+.site-span-api-sm {
+  font-size: 6px;
 }
 .logo-img {
   width:27px;

@@ -24,13 +24,10 @@ namespace Moogle
             using (var scope = host.Services.CreateScope())
             {
                 var provider = scope.ServiceProvider;
-                // var context = provider.GetService<CharacterContext>();
-				// context.Database.Migrate();
 				provider.GetService<ApplicationDbContext>().Database.Migrate();
                 Roles.CreateRoles(provider, Startup.Configuration);
                 //SeedData.SeedDB(context);
             }
-
             host.Run();
         }
         public static IWebHost BuildWebHost(string[] args) =>

@@ -1,6 +1,5 @@
 ﻿@using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
-
 @section MetaTags
 {
     <meta property="og:url" content="www.moogleapi.com">
@@ -11,149 +10,136 @@
     <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
     <meta name="author" content="Jack F. Perry, Jr.">
 }
-
 @section Scripts
 {
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="~/js/site.js"></script>
 }
-
 <div id="vue-app">
-<div class="row fixed-heading">
-    <div class="col-md-12 fixed-heading-col text-center site-title">
-        <h1 class="title-1">MoogleApi</h1>
-        <h2 class="title-2">A RESTful Final Fantasy API</h2>
-        <h5 class="title-5">There's currently <strong>{{character.length}}</strong> characters and counting!</h5>
+    <div class="row fixed-heading">
+        <div class="col-md-12 fixed-heading-col text-center site-title">
+            <h1 class="title-1">MoogleApi</h1>
+            <h2 class="title-2">A RESTful Final Fantasy API</h2>
+            <h5 class="title-5">There's currently <strong>{{character.length}}</strong> characters and counting!</h5>
+        </div>
     </div>
-</div>
-<!-- ======================== -->
-<!-- Start of VueJs container -->
-
-<div class="container">
-    <!-- <div class="row" style="margin-top:50px;">
-        <div class="col-md-12" style="margin:0 auto;"> -->
-            <h2 class="text-center">Try it out!</h1>
-            <hr style="width:50%;border:.5px solid #01579b"/>
-            <div class="search-card">
-                <form class="form-inline has-feedback">
-                    <input id="search" v-model="search" type="input" style="padding:10px 0 10px 15px;border-radius:500px;background-color:#eceff1;border:1px solid transparent;">
-                    <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue"></i>
-                </form>
-            </div>
-            <!-- ============== -->
-            <!-- Search results -->
-            <div v-for="character in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
-                <div class="col-md-8">
-                    <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
-                    <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
-                    <p class="dark-bluish-gray">{{character.description}}</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>
-                            <strong>Origin:</strong> {{character.origin}}<br/>
-                            <strong>Job:</strong> {{character.job}}<br/>
-                            <strong>Age:</strong> {{character.age}}<br/>
-                            <!-- <strong>HP:</strong> {{character.hp}} -->
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>
-                            <strong>Race:</strong> {{character.race}}<br/>
-                            <strong>Height:</strong> {{character.height}}m<br/>
-                            <strong>Weight:</strong> {{character.weight}}kg
-                            </p>
-                        </div>
-                        <br/>
+    <!-- Start of VueJs container -->
+    <div class="container">
+        <h2 class="text-center">Try it out!</h1>
+        <hr class="hr-home" />
+        <div class="search-card">
+            <form class="form-inline has-feedback">
+                <input id="search" class="fancy-search" v-model="search" type="input" />
+                <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue"></i>
+            </form>
+        </div>
+        <!-- Search results -->
+        <div v-for="character in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
+            <div class="col-md-8">
+                <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
+                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
+                <p class="dark-bluish-gray">{{character.description}}</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>
+                        <strong>Origin:</strong> {{character.origin}}<br/>
+                        <strong>Job:</strong> {{character.job}}<br/>
+                        <strong>Age:</strong> {{character.age}}<br/>
+                        </p>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
-                        <img class="moogle-img" :src="character.picture" :alt="character.name" title="Click to view a larger picture"><br/>
-                    </button>
-                    <div id="imageModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="moogle-modal-img" :src="modal.picture" :alt="modal.name" :title="modal.name">
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <p>
+                        <strong>Race:</strong> {{character.race}}<br/>
+                        <strong>Height:</strong> {{character.height}}m<br/>
+                        <strong>Weight:</strong> {{character.weight}}kg
+                        </p>
                     </div>
                     <br/>
                 </div>
-                <div class="row moogle-row">
-                    <div class="col-md-4 pull-right">
-                        <button class="h5 blue pull-right btn-link" v-on:click="scrollTop()">Back to top</button>
-                    </div>
-                </div>
             </div>
-            <!-- ================ -->
-            <!-- Random character -->
-            <div id="random-character" class="row moogle-row mix-buffer">
-                <div class="col-md-8">
-                    <h4 class="moogle-h4"><strong>{{random.name}}</strong></h4>
-                    <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random.name}}</a></h7><br/>
-                    <p class="dark-bluish-gray">{{random.description}}</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p><strong>Origin:</strong> {{random.origin}}<br/>
-                            <strong>Job:</strong> {{random.job}}<br/>
-                            <strong>Age:</strong> {{random.age}}</p>
-                            </div>                    
-                            <div class="col-md-6"><p><strong>Race:</strong> {{random.race}}<br/>
-                            <strong>Height:</strong> {{random.height}}m<br/>
-                            <strong>Weight:</strong> {{random.weight}}kg</p>
-                        </div>
-                        <br/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
-                        <img class="moogle-img" :src="random.picture" :alt="random.name" title="Click to view a larger picture"><br/>
-                    </button>
-                    <div id="randomModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="text-center"><strong>{{random.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="moogle-modal-img" :src="random.picture" :alt="random.name" :title="random.name">
-                                </div>
+            <div class="col-md-4">
+                <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
+                    <img class="moogle-img" :src="character.picture" :alt="character.name" title="Click to view a larger picture"><br/>
+                </button>
+                <div id="imageModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                            </div>
+                            <div class="modal-body">
+                                <img class="moogle-modal-img" :src="modal.picture" :alt="modal.name" :title="modal.name">
                             </div>
                         </div>
                     </div>
+                </div>
+                <br/>
+            </div>
+            <div class="row moogle-row">
+                <div class="col-md-4 pull-right">
+                    <button class="h5 blue pull-right btn-link" v-on:click="scrollTop()">Back to top</button>
+                </div>
+            </div>
+        </div>
+        <!-- Random character -->
+        <div id="random-character" class="row moogle-row mix-buffer">
+            <div class="col-md-8">
+                <h4 class="moogle-h4"><strong>{{random.name}}</strong></h4>
+                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random.name}}</a></h7><br/>
+                <p class="dark-bluish-gray">{{random.description}}</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><strong>Origin:</strong> {{random.origin}}<br/>
+                        <strong>Job:</strong> {{random.job}}<br/>
+                        <strong>Age:</strong> {{random.age}}</p>
+                        </div>                    
+                        <div class="col-md-6"><p><strong>Race:</strong> {{random.race}}<br/>
+                        <strong>Height:</strong> {{random.height}}m<br/>
+                        <strong>Weight:</strong> {{random.weight}}kg</p>
+                    </div>
                     <br/>
                 </div>
-            <!-- </div>
-        </div> -->
-    </div>
-    <div class="container container-mod">
-        <div class="row">
-            <div class="col-md-4 text-center form-group" style="min-height:220px;background-color:#c8e6c9;border-radius:40px;border:4px solid #fff;">
-                <h4><strong>What is this?</strong></h4>
-                <hr style="border:.5px solid #01579b"/>
-                <h5 class="text-left">This is a <a asp-controller="Home" asp-action="About">RESTful API</a> intentionally limited to GET requests. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
             </div>
-            <div class="col-md-4 text-center form-group" style="min-height:220px;background-color:#ffecb3;border-radius:40px;border:4px solid #fff;">
-                <h4><strong>Where to start?</strong></h4>
-                <hr style="border:.5px solid #01579b"/>
-                <h5 class="text-left">You can checkout the <a href="https://github.com/jackfperryjr/moogle#readme" target="_blank">README</a> on GitHub.</h5>
-                <h5 class="text-left">Or checkout <a href="https://www.moogleapi.com/swagger/index.html" target="_blank">SWAGGER</a> for testing.</h5>
-                <h5 class="text-left">And I've built a simple working example <a href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">HERE</a>.</h5>
+            <div class="col-md-4">
+                <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
+                    <img class="moogle-img" :src="random.picture" :alt="random.name" title="Click to view a larger picture"><br/>
+                </button>
+                <div id="randomModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="text-center"><strong>{{random.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                            </div>
+                            <div class="modal-body">
+                                <img class="moogle-modal-img" :src="random.picture" :alt="random.name" :title="random.name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
             </div>
-            <div class="col-md-4 text-center form-group" style="min-height:220px;background-color:#ffcdd2;border-radius:40px;border:4px solid #fff;">
-                <h4><strong>Hosted by Azure</strong></h4>
-                <hr style="border:.5px solid #01579b"/>
-                <a href="https://azure.microsoft.com" target="_blank"><img style="width:150px;" src="@Url.Content("/images/azure-logo.png")"></a>
+        </div>
+        <div class="container container-mod">
+            <div class="row">
+                <div class="col-md-4 text-center form-group info-box bg-green">
+                    <h4><strong>What is this?</strong></h4>
+                    <hr class="hr-info-box" />
+                    <h5 class="text-left">This is a <a asp-controller="Home" asp-action="About">RESTful API</a> intentionally limited to GET requests. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
+                </div>
+                <div class="col-md-4 text-center form-group info-box bg-yellow">
+                    <h4><strong>Where to start?</strong></h4>
+                    <hr class="hr-info-box" />
+                    <h5 class="text-left">You can checkout the <a href="https://github.com/jackfperryjr/moogle#readme" target="_blank">README</a> on GitHub.</h5>
+                    <h5 class="text-left">Or checkout <a href="https://www.moogleapi.com/swagger/index.html" target="_blank">SWAGGER</a> for testing.</h5>
+                    <h5 class="text-left">And I've built a simple working example <a href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">HERE</a>.</h5>
+                </div>
+                <div class="col-md-4 text-center form-group info-box bg-red">
+                    <h4><strong>Hosted by Azure</strong></h4>
+                    <hr class="hr-info-box" />
+                    <a href="https://azure.microsoft.com" target="_blank"><img style="width:150px;" src="@Url.Content("/images/azure-logo.png")"></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
-

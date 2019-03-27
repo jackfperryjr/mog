@@ -16,7 +16,6 @@ namespace Moogle
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
             this.AddRange(items);
         }
 

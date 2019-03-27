@@ -1,6 +1,5 @@
 @using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
-
 @section MetaTags
 {
     <meta property="og:url" content="www.moogleapi.com">
@@ -11,55 +10,53 @@
     <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
     <meta name="author" content="Jack F. Perry, Jr.">
 }
-
 @section Scripts
 {
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="~/js/site.js"></script>
 }
-
 <div class="container container-mod" style="margin-top:50px;">
     <div class="row">
         <h3>What is this?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#bbdefb;border-radius:50px;">
+        <div class="row about-box bg-blue">
             <h4>This is a RESTful API intentionally limited to GET requests. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h4>
         </div>
     </div>
     <div class="row">
         <h3>What is an API?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#ffcdd2;border-radius:50px;">
+        <div class="row about-box bg-red">
             <h4>An API <strong>(Application Programming Interface)</strong> is a software-to-software interface, not a user interface. With APIs, applications talk to each other without any user knowledge or intervention. When you buy movie tickets online and enter your credit card information, the movie ticket Web site uses an API to send your credit card information to a remote application that verifies whether your information is correct. Once payment is confirmed, the remote application sends a response back to the movie ticket Web site saying it's OK to issue the tickets.</h4>
         </div>
     </div>
     <div class="row">
         <h3>Aren't there a bunch of Final Fantasy websites?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#ffecb3;border-radius:50px;">
+        <div class="row about-box bg-yellow">
             <h4>Exactly. That means there's a bunch of different sources of the same/similar data.</h4>
             <h4>The goal is to provide a single source of data that any website can consume and use. When new games come out it could take some time for a variety of websites to catch up. With the API it could be updated once and the new information can then be consumed by any number of websites at the same time.</h4>
         </div>
     </div>
     <div class="row">
         <h3>The API is missing stuff!</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#bbdefb;border-radius:50px;">
+        <div class="row about-box bg-blue">
             <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an email: <a href="mailto:jackfperryjr@gmail.com">jackfperryjr@gmail.com</a></h4>
         </div>
     </div>
     <div class="row">
         <h3>Where did you get the data?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#c8e6c9;border-radius:50px;">
+        <div class="row about-box bg-green">
             <h4>The data was gathered from multiple sources across the internet and from legitimate booklets and manuals. (I have a bit of a Final Fantasy game collection!)</h4>
         </div>
     </div>
     <div class="row">
         <h3>What is the tech stack?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#ffcdd2;border-radius:50px;">
+        <div class="row about-box bg-red">
             <h4>The API is built in C# with .NET Core 2.0 (V2 will be in 3.0 when it's available). It's hosted with Azure, uses an Azure SQL database, and set behind Cloudflare for caching speed. The home page and my sample <a href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">example</a> are wired up with VueJs.</h4>
         </div>
     </div>
     <div class="row">
         <h3>Can I help?</h3>
-        <div class="row" style="margin-bottom:30px;padding:5px 30px;background-color:#e0e0e0;border-radius:50px;">
+        <div class="row about-box bg-grey">
             <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! Or if you like what I'm doing and you're using it for your own projects or for teaching purposes and want to thank me with money, I've set up <a href="https://www.stripe.com" target="_blank">STRIPE</a> for that. No pressure, though; this thing is totally free to the public!</h4>
             <form asp-action="Charge" method="post" class="text-center mix-buffer">
                 <script src="https://checkout.stripe.com/checkout.js"
@@ -78,5 +75,3 @@
         </div>
     </div>
 </div>
-
-

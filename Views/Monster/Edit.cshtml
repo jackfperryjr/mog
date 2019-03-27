@@ -1,12 +1,10 @@
 @model Moogle.Models.Monster
-
 @{
     ViewData["Title"] = "| Edit";
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
-
 <h2>edit monster</h2>
 <hr />
 <form asp-action="Edit">
@@ -19,37 +17,37 @@
                     <input asp-for="Name" class="login-bar login-picture" placeholder="Enter monster name" title="Enter monster's name."/>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">name</span>
+                <span class="font-10 label-under">name</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input asp-for="Strength" class="login-bar login-picture" placeholder="What's this monster's strength?" title="Enter monster's strength."/>
                     <span asp-validation-for="Strength" class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">strength</span>
+                <span class="font-10 label-under">strength</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input asp-for="Weakness" class="login-bar login-picture" placeholder="What's this monster's weakness?" title="Enter monster's weakness."/>
                     <span asp-validation-for="Weakness" class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">weakness</span>
+                <span class="font-10 label-under">weakness</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
+                <span class="font-10 label-under">stat</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
+                <span class="font-10 label-under">stat</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input class="login-bar login-picture" style="cursor:not-allowed;" placeholder="Future monster stat/info" disabled/>
                     <span class="text-danger"></span>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">stat</span>
+                <span class="font-10 label-under">stat</span>
             </div>
             <div id="desc-position" class="col-md-6">
                 <div class="form-group" style="margin-bottom:0 !important;">
