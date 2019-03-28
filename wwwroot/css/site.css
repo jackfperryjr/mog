@@ -334,7 +334,6 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   margin: 0 auto;
   text-align: center;
 }
-
 .character-profile-img {
   margin-top: 10px; 
   width: 100%; 
@@ -488,6 +487,12 @@ button.stripe-button-el>span {
   background-image: none;
   border-radius:50px;
 }
+.copyright {
+  display:inline;
+}
+.mobile-copyright {
+  display:none;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     .site-title {
@@ -614,6 +619,12 @@ button.stripe-button-el>span {
     }
     .navbar-toggle {
       float:none;
+    }
+    .copyright {
+      display:none;
+    }
+    .mobile-copyright {
+      display:inline;
     }
 }
 
