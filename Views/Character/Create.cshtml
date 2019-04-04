@@ -7,7 +7,7 @@
 }
 <h2>add a new character</h2>
 <hr />
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="add-edit-list">
         <div class="row">
             <div class="col-md-6">
@@ -122,32 +122,62 @@
                 <span class="font-10 label-under">dating response</span>
             </div>
             <div id="desc-position" class="col-md-6">
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input asp-for="Picture" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
-                    <span asp-validation-for="Picture" class="text-danger"></span>
+
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
+                        <span asp-validation-for="Picture" class="text-danger"></span>
+                    </div>
                 </div>
                 <span class="font-10 label-under">picture</span>
-                <img alt="No picture." title="Picture goes here." />
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input asp-for="Picture2" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
-                    <span asp-validation-for="Picture2" class="text-danger"></span>
+
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture2" type="file" name="picture" style="display:none;" onchange="$('#picture2-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture2-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
+                        <span asp-validation-for="Picture2" class="text-danger"></span>
+                    </div>
                 </div>
-                <span class="font-10 label-under">picture</span>
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input asp-for="Picture3" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
-                    <span asp-validation-for="Picture3" class="text-danger"></span>
+                <span class="font-10 label-under">picture2</span>
+
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture3" type="file" name="picture" style="display:none;" onchange="$('#picture3-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture3-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
+                        <span asp-validation-for="Picture3" class="text-danger"></span>
+                    </div>
                 </div>
-                <span class="font-10 label-under">picture</span>
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input asp-for="Picture4" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
-                    <span asp-validation-for="Picture4" class="text-danger"></span>
+                <span class="font-10 label-under">picture3</span>
+
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture4" type="file" name="picture" style="display:none;" onchange="$('#picture4-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture4-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
+                        <span asp-validation-for="Picture4" class="text-danger"></span>
+                    </div>
                 </div>
-                <span class="font-10 label-under">picture</span>
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input asp-for="Picture5" class="login-bar login-picture" placeholder="images/ff-&lt;name&gt;-sample.jpg"  title="Enter image url" />
-                    <span asp-validation-for="Picture5" class="text-danger"></span>
+                <span class="font-10 label-under">picture4</span>
+
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload
+                            <input asp-for="Picture5" type="file" name="picture" style="display:none;" onchange="$('#picture5-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture5-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
+                        <span asp-validation-for="Picture5" class="text-danger"></span>
+                    </div>
                 </div>
-                <span class="font-10 label-under">picture</span>
+                <span class="font-10 label-under">picture5</span>
+
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <textarea id="desc-input" asp-for="Description" class="login-bar" placeholder="Enter a character description in this space" title="Enter a character description in this space" ></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
@@ -166,6 +196,13 @@
         <a class="btn btn-default shadow" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
     </div>
 </form>
+
+<!-- <div class="input-group">
+    <label class="btn btn-primary btn-file pull-left">
+        <input id="whatever" type="file" style="display:none;" onchange="$('#whatever-else').html(this.files[0].name)" />
+    </label>
+    <span class="form-control" id="whatever-else"></span>
+</div> -->
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

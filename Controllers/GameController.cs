@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authentication;
@@ -18,10 +20,12 @@ namespace Moogle.Controllers
     public class GameController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment _env;
 
-        public GameController(ApplicationDbContext context)
+        public GameController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Game
@@ -86,10 +90,33 @@ namespace Moogle.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(game);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            return View(game);
+            await _context.SaveChangesAsync();
+
+            string webRootPath = _env.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+            var gameFromDb = _context.Games.Find(game.GameId);
+
+            if (files.Count != 0) 
+            {
+                var upload = Path.Combine(webRootPath, @"images");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filestream = new FileStream(Path.Combine(upload, "Game-" + game.Title + "-Picture" + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filestream);
+                }
+                gameFromDb.Picture = @"\" + @"images" + @"\" + "Game-" + game.Title + "-Picture" + extension;
+            }
+            else 
+            {
+                //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
+                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
+                gameFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
+            }
+            //return View(monster);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Game/Edit/5
@@ -168,8 +195,8 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var games = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
-            _context.Games.Remove(games);
+            var game = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
+            _context.Games.Remove(game);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

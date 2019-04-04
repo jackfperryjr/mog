@@ -23,12 +23,16 @@
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">game title</span>
-                <div class="form-group" style="margin-bottom:0 !important;">
-                    <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Picture" class="login-bar" style="width:100%;" placeholder="images/logos/ff-&lt;game-title&gt;.jpg" title="Enter url for picture."/>
-                    <span asp-validation-for="Picture" class="text-danger"></span>
+                <div class="form-group" style="margin-bottom:10px !important;">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;overflow:hidden;">@Model.Picture</span>
+                        <span asp-validation-for="Picture" class="text-danger"></span>
+                    </div>
                 </div>
-                <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">picture</span>
+                <span class="font-10 label-under">picture</span>
             </div>
             <div class="col-md-6">
                 <div class="form-group" style="margin-bottom:0 !important;">
@@ -65,7 +69,7 @@
     <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content text-center">
-                @using (Html.BeginForm("Delete", "Character"))
+                @using (Html.BeginForm("Delete", "Game"))
                 {
                     <input type="hidden" value="@Model.GameId" name="GameId" />
                     <div class="modal-header">

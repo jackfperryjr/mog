@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authentication;
@@ -18,10 +20,12 @@ namespace Moogle.Controllers
     public class MonsterController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment _env { get; }
 
-        public MonsterController(ApplicationDbContext context)
+        public MonsterController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Monster
@@ -86,10 +90,33 @@ namespace Moogle.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(monster);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            return View(monster);
+            await _context.SaveChangesAsync();
+
+            string webRootPath = _env.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+            var monsterFromDb = _context.Monsters.Find(monster.MonsterId);
+
+            if (files.Count != 0) 
+            {
+                var upload = Path.Combine(webRootPath, @"images");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filestream);
+                }
+                monsterFromDb.Picture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
+            }
+            else 
+            {
+                //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
+                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
+                monsterFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
+            }
+            //return View(monster);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Monster/Edit/5

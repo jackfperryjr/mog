@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authentication;
@@ -17,10 +19,12 @@ namespace Moogle.Controllers
     public class CharacterController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment _env { get; }
 
-        public CharacterController(ApplicationDbContext context)
+        public CharacterController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Character
@@ -89,10 +93,60 @@ namespace Moogle.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(characters);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // await _context.SaveChangesAsync();
+                // return RedirectToAction(nameof(Index));
             }
-            return View(characters);
+            await _context.SaveChangesAsync();
+
+            string webRootPath = _env.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+            var characterFromDb = _context.Character.Find(characters.Id);
+
+            if (files.Count != 0) 
+            {
+                for (var i = 0; i < files.Count; i++) {
+                    var upload = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[i].FileName);
+
+                    using (var filestream = new FileStream(Path.Combine(upload, "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension), FileMode.Create))
+                    {
+                        files[i].CopyTo(filestream);
+                        filestream.Flush();
+                    }
+                    if (i == 0) 
+                    {
+                        characterFromDb.Picture = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                    }
+                    if (i == 1) 
+                    {
+                        characterFromDb.Picture2 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                    }
+                    if (i == 2) 
+                    {
+                        characterFromDb.Picture3 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                    }
+                    if (i == 3) 
+                    {
+                        characterFromDb.Picture4 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                    }
+                    if (i == 4) 
+                    {
+                        characterFromDb.Picture5 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                    }
+                }
+            }
+
+            // else 
+            // {
+            //     var upload = Path.Combine(webRootPath, @"images", "default-image.png");
+            //     System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + characters.Id + ".png");
+            //     characterFromDb.Picture = @"\" + @"images" + @"\" + "default-image.png";
+            // }
+
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            //return View(characters);
         }
 
         // GET: Character/Edit/5
