@@ -7,7 +7,7 @@
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
 
-<h2>edit game</h2>
+<h2 class="top-buffer">edit game</h2>
 <hr />
 <form asp-action="Edit">
     <div class="add-edit-list">
@@ -25,7 +25,10 @@
                 <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">game title</span>
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;overflow:hidden;">@Model.Picture</span>

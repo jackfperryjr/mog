@@ -5,7 +5,7 @@
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
-<h2>add a new character</h2>
+<h2 class="top-buffer">add a new character</h2>
 <hr />
 <form asp-action="Create" enctype="multipart/form-data">
     <div class="add-edit-list">
@@ -125,7 +125,10 @@
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
@@ -136,7 +139,10 @@
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture2" type="file" name="picture" style="display:none;" onchange="$('#picture2-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture2" type="file" name="picture" style="display:none;" onchange="$('#picture2-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture2-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
@@ -147,7 +153,10 @@
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture3" type="file" name="picture" style="display:none;" onchange="$('#picture3-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture3" type="file" name="picture" style="display:none;" onchange="$('#picture3-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture3-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
@@ -158,7 +167,10 @@
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                            <input asp-for="Picture4" type="file" name="picture" style="display:none;" onchange="$('#picture4-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture4" type="file" name="picture" style="display:none;" onchange="$('#picture4-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture4-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>
@@ -169,7 +181,10 @@
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left" style="margin-top:10px;width:20%;">upload
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload
+                            <input asp-for="Picture5" type="file" name="picture" style="display:none;" onchange="$('#picture5-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture5" type="file" name="picture" style="display:none;" onchange="$('#picture5-info').html(this.files[0].name)" />
                         </label>
                         <span class="form-control login-bar login-picture" id="picture5-info" style="margin-top:10px;width:80%;background-color:#eceff1;"></span>

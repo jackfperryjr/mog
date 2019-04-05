@@ -10,6 +10,9 @@ body {
   font-family: "Raleway";
   font-size: 16px;
 }
+.navbar-username {
+  margin-top:20px;
+}
 .container-mod {
   width: 70%;
 }
@@ -493,8 +496,23 @@ button.stripe-button-el>span {
 .mobile-copyright {
   display:none;
 }
+.btn-mobile-upload {
+  display:none !important;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    .btn-web-upload {
+      display:none !important;
+    }
+    .btn-mobile-upload {
+      display:block !important;
+    }
+    .navbar-username {
+      display:none !important;
+    }
+    .navbar-icon {
+      display:none;
+    }
     .site-title {
       margin-left:0;
       margin-top:30px;
@@ -531,6 +549,7 @@ button.stripe-button-el>span {
       display: block;
     }
     .dropdown-menu {
+      position: static;
       display: block;
       width: 100%;
     }
