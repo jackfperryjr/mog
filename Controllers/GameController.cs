@@ -75,6 +75,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Create
+        [Authorize(Roles="Admin")]
         public IActionResult Create()
         {
             return View();
@@ -85,6 +86,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Description")] Game game)
         {
             if (ModelState.IsValid)
@@ -120,6 +122,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Edit/5
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -140,6 +143,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(Guid id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description")] Game games)
         {
             if (id != games.GameId)
@@ -173,6 +177,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Game/Delete/5
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -193,6 +198,7 @@ namespace Moogle.Controllers
         // POST: Game/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var game = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
