@@ -55,6 +55,7 @@ project.fragment.lock.json
 appsettings.json
 appsettings.Development.json
 bundleconfig.json
+.DS_Store
 artifacts/
 **/Properties/launchSettings.json
 
