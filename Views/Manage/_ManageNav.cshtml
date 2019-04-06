@@ -5,8 +5,8 @@
 }
 
 <ul class="nav nav-pills nav-stacked" style="margin-top:20px;">
-    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">profile</a></li>
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">password</a></li>
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)" style="padding-right:50px;padding-left:50px;"><a asp-action="Index">profile</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)" style="padding-right:50px;padding-left:50px;"><a asp-action="ChangePassword">password</a></li>
     @if (hasExternalLogins)
     {
         <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>

@@ -517,7 +517,7 @@ button.stripe-button-el>span {
   display:none !important;
 }
 .img-user {
-  margin:23px 0;
+  margin:23px auto;
   width:200px;
   height:200px;
   border-radius:50%;
