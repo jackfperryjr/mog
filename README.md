@@ -1,4 +1,4 @@
-# M<img src="wwwroot/images/ff-moogle.png" width="20">ogleApi
+# M<img src="wwwroot/images/icons/icon-ff-moogle.png" width="20">ogleApi
 
 MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! The homepage is a single page application/search engine using VueJs! Check it out.
 
