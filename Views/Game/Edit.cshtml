@@ -1,20 +1,18 @@
 @model Moogle.Models.Game
-
 @{
     ViewData["Title"] = "| Edit";
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
-
 <h2 class="top-buffer">edit game</h2>
 <hr />
 <form asp-action="Edit">
     <div class="add-edit-list">
         <div class="row">
-            <img style="min-width:300px;max-width:500px;min-height:200px;max-height:300px;margin:5px;" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
+            <img class="img-display-format" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
         </div>
-        <div class="row" style="margin:50px 0;">
+        <div class="row">
             <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group" style="margin-bottom:0 !important;">
@@ -31,7 +29,7 @@
                         <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
                             <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
                         </label>
-                        <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;overflow:hidden;">@Model.Picture</span>
+                        <span class="form-control login-bar login-picture img-input-format" id="picture-info">@Model.Picture</span>
                         <span asp-validation-for="Picture" class="text-danger"></span>
                     </div>
                 </div>
@@ -62,10 +60,12 @@
             </div>
         </div>
     </div>
-    <div class="form-group" style="margin-left:150px;">
-        <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
-        <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
-        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+    <div class="add-edit-list">
+        <div class="form-group top-buffer">
+            <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
+            <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
+            <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        </div>
     </div>
 </form>
 <div style="margin-bottom:15px;">

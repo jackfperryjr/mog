@@ -55,13 +55,13 @@
                 </div>
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;max-width:20%;">upload 
                             <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
                         </label>
-                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;max-width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;overflow:hidden;" onchange="$('#picture-info').html(this.files[0].name)" />
                         </label>
-                        <span class="form-control login-bar login-picture" id="picture-info" style="margin-top:10px;width:80%;background-color:#eceff1;overflow:hidden;">@Model.Picture</span>
+                        <span class="form-control login-bar login-picture img-input-format" id="picture-info">@Model.Picture</span>
                         <span asp-validation-for="Picture" class="text-danger"></span>
                     </div>
                 </div>
@@ -76,11 +76,14 @@
             </div>
         </div>
     </div>
-    <div class="form-group" style="margin-left:150px;">
-        <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
-        <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
-        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+    <div class="add-edit-list">
+        <div class="form-group top-buffer">
+            <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
+            <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
+            <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
+        </div>
     </div>
+    
 </form>
 <div style="margin-bottom:15px;">
     <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">

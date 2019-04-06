@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +26,7 @@ namespace Moogle.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
+        private IHostingEnvironment _env;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -33,13 +36,15 @@ namespace Moogle.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          IHostingEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _env = env;
         }
 
         [TempData]
@@ -106,7 +111,21 @@ namespace Moogle.Controllers
 
             if (model.Picture != user.Picture)
             {
-               user.Picture = model.Picture;
+               //user.Picture = model.Picture;
+                string webRootPath = _env.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+                if (files.Count != 0) 
+                {
+                    var upload = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    using (var filestream = new FileStream(Path.Combine(upload, "User-" + user.Id + "-Picture" + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(filestream);
+                    }
+                    user.Picture = @"\" + @"images" + @"\" + "User-" + user.Id + "-Picture" + extension;
+                }
             }
 
 
@@ -119,6 +138,8 @@ namespace Moogle.Controllers
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
             }
+
+            
 
             await _userManager.UpdateAsync(user);
             StatusMessage = "Your profile has been updated";

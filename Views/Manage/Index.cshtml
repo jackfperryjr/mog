@@ -3,57 +3,70 @@
     ViewData["Title"] = "| Profile";
     ViewData.AddActivePage(ManageNavPages.Index);
 }
-
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
 @{ 
     var user = await UserManager.GetUserAsync(User); 
 }
-
-<h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
-<div class="row">
-    <div class="col-md-6">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <input asp-for="FirstName" class="login-bar" value="@user.FirstName" placeholder="Enter first name" title="Enter first name"  />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input asp-for="LastName" class="login-bar" value="@user.LastName" placeholder="Enter last name" title="Enter last name" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                @if (Model.IsEmailConfirmed)
-                {
-                    <div class="input-group">
-                        <input asp-for="Email" class="login-bar" placeholder="Enter email" title="Enter email" />
-                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+<div class="add-edit-list">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="FirstName" class="login-bar login-picture" value="@user.FirstName" placeholder="Enter first name" title="Enter first name"  />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="LastName" class="login-bar login-picture" value="@user.LastName" placeholder="Enter last name" title="Enter last name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @if (Model.IsEmailConfirmed)
+                    {
+                        <div class="input-group" style="width:100%;">
+                            <input asp-for="Email" class="login-bar login-picture" placeholder="Enter email" title="Enter email" />
+                            <!-- <span class="input-group-addon" style="display:none;" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span> -->
+                        </div>
+                    }
+                    else
+                    {
+                        <input asp-for="Email" class="login-bar login-picture" placeholder="Enter email"/>
+                        <!-- <button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button> -->
+                    }
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <input asp-for="PhoneNumber" class="login-bar login-picture" placeholder="Enter phone number" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group" style="width:100%;">
+                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;max-width:20%;">upload 
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;max-width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
+                            <input asp-for="Picture" type="file" name="picture" style="display:none;overflow:hidden;" onchange="$('#picture-info').html(this.files[0].name)" />
+                        </label>
+                        <span class="form-control login-bar login-picture img-input-format" id="picture-info">@Model.Picture</span>
+                        <span asp-validation-for="Picture" class="text-danger"></span>
                     </div>
-                }
-                else
-                {
-                    <input asp-for="Email" class="login-bar" placeholder="Enter email"/>
-                    <!-- <button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button> -->
-                }
-                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- <div class="form-group">
+                    <input asp-for="Picture" class="login-bar" placeholder="Enter picture url" title="Enter picture url" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div> -->
+
+                <button type="submit" class="btn btn-default" style="margin:30px auto 0 auto;"><span class="glyphicon glyphicon-ok"></span> save</button>
+            </form>
+        </div>
+        <div class="col-md-offset-1 col-md-5">
+            <div>
+                <img class="img-user" src="@user.Picture" title="Picture of you!">
             </div>
-            <div class="form-group">
-                <input asp-for="PhoneNumber" class="login-bar" placeholder="Enter phone number" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input asp-for="Picture" class="login-bar" placeholder="Enter picture url" title="Enter picture url" />
-                <span asp-validation-for="Picture" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default" style="margin-top:30px;"><span class="glyphicon glyphicon-ok"></span> save</button>
-        </form>
-    </div>
-    <div class="col-md-4">
-        <div>
-            <img style="margin:23px 0;width:200px;border-radius:50%;box-shadow: 2px 2px 4px #37474F;float:right;" src="@user.Picture" title="Picture of the user.">
         </div>
     </div>
 </div>
