@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Moogle.Services;
 using Moogle.Models;
 using Moogle.Data;
 
@@ -20,11 +21,19 @@ namespace Moogle.Controllers
     public class MonsterController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailSender;
+        private readonly UserManager<ApplicationUser> _userManager;
         private IHostingEnvironment _env { get; }
 
-        public MonsterController(ApplicationDbContext context, IHostingEnvironment env)
+        public MonsterController(
+            ApplicationDbContext context, 
+            IEmailSender emailSender, 
+            UserManager<ApplicationUser> userManager, 
+            IHostingEnvironment env)
         {
             _context = context;
+            _emailSender = emailSender;
+            _userManager = userManager;
             _env = env;
         }
 
@@ -115,6 +124,10 @@ namespace Moogle.Controllers
                 monsterFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
             }
             //return View(monster);
+
+            var user = await _userManager.GetUserAsync(User);
+            await _emailSender.SendUpdateEmailAsync("Monster added", user.FirstName, user.Email, "to", "added");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -195,6 +208,10 @@ namespace Moogle.Controllers
         {
             var monsters = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
             _context.Monsters.Remove(monsters);
+
+            var user = await _userManager.GetUserAsync(User);
+            await _emailSender.SendUpdateEmailAsync("Monster deleted", user.FirstName, user.Email, "from", "deleted");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
