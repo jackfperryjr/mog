@@ -28,6 +28,7 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add new user &nbsp;<span class="glyphicon glyphicon-user"></span></a></li> 
+                        <li><a asp-controller="Account" asp-action="UserConfiguration" title="Click to manage users.">Manage users &nbsp;<span class="glyphicon glyphicon-user"></span></a></li> 
                     }
                     <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters.">Characters &nbsp;<span class="glyphicon glyphicon-user"></span></a></li>
                     <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games.">Games &nbsp;<span class="glyphicon glyphicon-cd"></span></a></li>

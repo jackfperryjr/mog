@@ -21,17 +21,20 @@ namespace Moogle.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
+            ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -237,6 +240,30 @@ namespace Moogle.Controllers
                 }
                 AddErrors(result);
             }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles="Admin")]
+        public IActionResult UserConfiguration(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UserConfiguration(RegisterViewModel model, string returnUrl = null)
+        {
+            // ViewData["ReturnUrl"] = returnUrl;
+            // if (ModelState.IsValid)
+            // {
+            //     var users = await _context.Users.ToListAsync();
+            //     return View(users);
+            // }
 
             // If we got this far, something failed, redisplay form
             return View(model);

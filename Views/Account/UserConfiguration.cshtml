@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Identity
+@using Moogle.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "| Users";
+    var users = await UserManager.GetUserAsync(User);
+}
+@section Styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
+<h2 class="top-buffer">users list</h2>
+<hr />
+<!-- <form asp-action="Index" method="get">
+    <div id="input-container">
+        <div class="row">
+            <div class="col-md-6">
+                <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='Search ex. "chocobo"' value="@ViewData["CurrentFilter"]"/>
+                <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+                <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add monster</a>
+            </div>
+        </div>
+    </div>
+</form> -->
+<div class="row">
+</div>
