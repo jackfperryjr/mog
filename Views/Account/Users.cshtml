@@ -1,0 +1,46 @@
+@model IEnumerable<Moogle.Models.ApplicationUserViewModel>
+@using Microsoft.AspNetCore.Identity
+@using Moogle.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "| Users";
+    var users = await UserManager.GetUserAsync(User);
+}
+<h2 class="top-buffer">users</h2>
+<hr />
+<form asp-action="Index" method="get">
+    <div id="input-container">
+        <div class="row">
+            <div class="col-md-6">
+                <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='This is just for looks, for now...' value="@ViewData["CurrentFilter"]" disabled/>
+                <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn back-btn" asp-action="UserConfiguration"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+                <a class="btn back-btn" asp-action="Register"><span class="glyphicon glyphicon-plus"></span> add user</a>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <div class="panel-body">  
+        <table class="table table-hover table-bordered table-condensed">  
+            <thead>  
+                <tr>  
+                    <td><strong>Name</strong></td>
+                    <td><strong>Email</strong></td>  
+                    <td></td>
+                </tr>  
+            </thead>  
+            @foreach (var user in Model)  
+            {  
+                <tr>  
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.Email</td>  
+                    <td>x</td>
+                </tr>  
+            }  
+        </table>  
+    </div>
+</div>

@@ -208,6 +208,33 @@ namespace Moogle.Controllers
             return View();
         }
 
+        [Authorize(Roles="Admin")]
+        public IActionResult Users()  
+        {  
+            var users = (from user in _context.Users  
+                        select new  
+                        {  
+                            UserId = user.Id,                                        
+                            FirstName = user.FirstName,  
+                            LastName = user.LastName,
+                            Email = user.Email  
+                            // RoleNames = (from userRole in user.Roles  
+                            //             join role in _context.Roles on userRole.RoleId   
+                            //             equals role.Id  
+                            //             select role.Name).ToList()  
+                        }).ToList().Select(u => new ApplicationUserViewModel()  
+
+                        {  
+                            UserId = u.UserId,  
+                            FirstName = u.FirstName, 
+                            LastName = u.LastName, 
+                            Email = u.Email  
+                            //Role = string.Join(",", p.RoleNames)  
+                        });  
+   
+            return View(users);  
+        } 
+
         [HttpGet]
         [Authorize(Roles="Admin")] // Because only I want to register new users
         public IActionResult Register(string returnUrl = null)
@@ -245,29 +272,47 @@ namespace Moogle.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize(Roles="Admin")]
-        public IActionResult UserConfiguration(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
+        // [Authorize(Roles="Admin")]
+        // public async Task<IActionResult> UserDelete(Guid? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-        [HttpPost]
-        [Authorize(Roles="Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UserConfiguration(RegisterViewModel model, string returnUrl = null)
-        {
-            // ViewData["ReturnUrl"] = returnUrl;
-            // if (ModelState.IsValid)
-            // {
-            //     var users = await _context.Users.ToListAsync();
-            //     return View(users);
-            // }
+        //     var users = await _context.Users
+        //         .SingleOrDefaultAsync(u => u.Id == id);
+        //     if (users == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //     return View(users);
+        // }
+
+        // [Authorize(Roles="Admin")]
+        // public async Task<IActionResult> UserDeleteConfirmed(string returnUrl = null)  
+        // {  
+        //     ViewData["ReturnUrl"] = returnUrl;
+        //     if (ModelState.IsValid)
+        //     {
+        //         var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = "New User", Picture = "images/icons/icon-default-profile.jpg" };
+        //         var result = await _userManager.CreateAsync(user, model.Password);
+        //         if (result.Succeeded)
+        //         {
+        //             _logger.LogInformation("User created a new account with password.");
+
+        //             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+        //             await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+        //             return RedirectToLocal(returnUrl);
+        //         }
+        //         AddErrors(result);
+        //     } 
+   
+        //     return RedirectToLocal(returnUrl); 
+        // } 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
