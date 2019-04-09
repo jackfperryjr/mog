@@ -217,19 +217,13 @@ namespace Moogle.Controllers
                             UserId = user.Id,                                        
                             FirstName = user.FirstName,  
                             LastName = user.LastName,
-                            Email = user.Email  
-                            // RoleNames = (from userRole in user.Roles  
-                            //             join role in _context.Roles on userRole.RoleId   
-                            //             equals role.Id  
-                            //             select role.Name).ToList()  
+                            Email = user.Email 
                         }).ToList().Select(u => new ApplicationUserViewModel()  
-
                         {  
                             UserId = u.UserId,  
                             FirstName = u.FirstName, 
                             LastName = u.LastName, 
                             Email = u.Email  
-                            //Role = string.Join(",", p.RoleNames)  
                         });  
    
             return View(users);  
@@ -272,47 +266,44 @@ namespace Moogle.Controllers
             return View(model);
         }
 
-        // [Authorize(Roles="Admin")]
-        // public async Task<IActionResult> UserDelete(Guid? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
+        [Authorize(Roles="Admin")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //     var users = await _context.Users
-        //         .SingleOrDefaultAsync(u => u.Id == id);
-        //     if (users == null)
-        //     {
-        //         return NotFound();
-        //     }
+            var users = await _userManager.Users
+                .SingleOrDefaultAsync(u => u.Id == id);
+            if (users == null)
+            {
+                return NotFound();
+            }
 
-        //     return View(users);
-        // }
+            return View(users);
+        }
 
-        // [Authorize(Roles="Admin")]
-        // public async Task<IActionResult> UserDeleteConfirmed(string returnUrl = null)  
-        // {  
-        //     ViewData["ReturnUrl"] = returnUrl;
-        //     if (ModelState.IsValid)
-        //     {
-        //         var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = "New User", Picture = "images/icons/icon-default-profile.jpg" };
-        //         var result = await _userManager.CreateAsync(user, model.Password);
-        //         if (result.Succeeded)
-        //         {
-        //             _logger.LogInformation("User created a new account with password.");
+        [Authorize(Roles="Admin")]
+        public async Task<IActionResult> DeleteConfirmed(string id, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
 
-        //             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        //             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-        //             await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+            if(ModelState.IsValid){
+                if (id == null)
+                {
+                    return View();
+                }
+                var user = await _userManager.FindByIdAsync(id);
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
 
-        //             return RedirectToLocal(returnUrl);
-        //         }
-        //         AddErrors(result);
-        //     } 
-   
-        //     return RedirectToLocal(returnUrl); 
-        // } 
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
