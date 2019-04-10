@@ -35,7 +35,7 @@
             @if (user.Email != "jack.franklin.perryjr@gmail.com")
             {
                 <tr>  
-                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.FirstName</td>
                     <td>@user.Email</td>  
                     <td>
                         @using (Html.BeginForm("Delete", "Account"))
