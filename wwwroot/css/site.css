@@ -245,6 +245,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 /* Admin character management stuff */
 .navbar-icon {
   width: 30px;
+  height: 30px;
   border-radius: 50%;
   transition: all .3s ease-in-out
 }

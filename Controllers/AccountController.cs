@@ -257,7 +257,14 @@ namespace Moogle.Controllers
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToLocal(returnUrl);
+                    if (User.IsInRole("Admin")) 
+                    {
+                        return RedirectToAction(nameof(Users));
+                    }
+                    else 
+                    {
+                        return RedirectToAction(nameof(MonsterController.Index), "Monster"); // Just in case I open up registration.
+                    }
                 }
                 AddErrors(result);
             }
@@ -274,35 +281,10 @@ namespace Moogle.Controllers
                 return NotFound();
             }
 
-            var users = await _userManager.Users
-                .SingleOrDefaultAsync(u => u.Id == id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            return View(users);
-        }
-
-        [Authorize(Roles="Admin")]
-        public async Task<IActionResult> DeleteConfirmed(string id, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-
-            if(ModelState.IsValid){
-                if (id == null)
-                {
-                    return View();
-                }
-                var user = await _userManager.FindByIdAsync(id);
-                var result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToLocal(returnUrl);
-                }
-            }
-
-            return View();
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Users));
         }
 
         [HttpPost]

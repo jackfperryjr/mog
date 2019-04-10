@@ -9,7 +9,6 @@
 }
 <h2 class="top-buffer">users</h2>
 <hr />
-<form asp-action="Index" method="get">
     <div id="input-container">
         <div class="row">
             <div class="col-md-6">
@@ -17,12 +16,11 @@
                 <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
             </div>
             <div class="col-md-6 text-right">
-                <a class="btn back-btn" asp-action="UserConfiguration"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+                <a class="btn back-btn" asp-action="Users"><span class="glyphicon glyphicon-th-list"></span> full list</a>
                 <a class="btn back-btn" asp-action="Register"><span class="glyphicon glyphicon-plus"></span> add user</a>
             </div>
         </div>
     </div>
-</form>
 <div class="container top-buffer" style="max-width:800px;"> 
     <table class="table table-hover table-bordered table-condensed">  
         <thead>  
@@ -40,8 +38,11 @@
                     <td>@user.FirstName @user.LastName</td>
                     <td>@user.Email</td>  
                     <td>
-                        <input type="hidden" value="@user.UserId" name="UserId" />
-                        <a title="Delete user?"><span class="glyphicon glyphicon-trash"></span></a>
+                        @using (Html.BeginForm("Delete", "Account"))
+                        {
+                            <input type="hidden" value="@user.UserId" name="Id" />
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                        }
                     </td>
                 </tr> 
             }
