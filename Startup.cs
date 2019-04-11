@@ -40,11 +40,10 @@ namespace Moogle
                 options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
             // Adding Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(Configuration =>
-            {
-                Configuration.SignIn.RequireConfirmedEmail = true;
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                { Configuration.SignIn.RequireConfirmedEmail = true; })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
             // Add application services.
             services.AddSingleton<IEmailSender, EmailSender>();
             //services.AddTransient<IEmailSender, EmailSender>();

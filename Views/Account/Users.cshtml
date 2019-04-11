@@ -37,12 +37,29 @@
                 <tr>  
                     <td>@user.FirstName</td>
                     <td>@user.Email</td>  
-                    <td>
-                        @using (Html.BeginForm("Delete", "Account"))
-                        {
-                            <input type="hidden" value="@user.UserId" name="Id" />
-                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                        }
+                    <td style="width:35px !important;">
+                        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + user.UserId)"><span class="glyphicon glyphicon-trash"></span></a>
+                            <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-center">
+                                    @using (Html.BeginForm("Delete", "Account"))
+                                    {
+                                        <input type="hidden" value="@user.UserId" name="Id" />
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">X</button>
+                                            <h4 class="modal-title">Delete @user.Email</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete @user.Email?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">yes</button>
+                                            <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>  
                     </td>
                 </tr> 
             }

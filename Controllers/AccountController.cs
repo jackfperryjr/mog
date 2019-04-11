@@ -217,13 +217,15 @@ namespace Moogle.Controllers
                             UserId = user.Id,                                        
                             FirstName = user.FirstName,  
                             LastName = user.LastName,
-                            Email = user.Email 
+                            Email = user.Email,
+                            EmailConfirmed = user.EmailConfirmed 
                         }).ToList().Select(u => new ApplicationUserViewModel()  
                         {  
                             UserId = u.UserId,  
                             FirstName = u.FirstName, 
                             LastName = u.LastName, 
-                            Email = u.Email  
+                            Email = u.Email,
+                            EmailConfirmed = u.EmailConfirmed.ToString()  
                         });  
    
             return View(users);  
@@ -254,7 +256,7 @@ namespace Moogle.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-                    await _emailSender.SendEmailConfirmationAsync("jack.franklin.perryjr@gmail.com", callbackUrl);
+                    await _emailSender.SendEmailConfirmationAsync("jackfperryjr@gmail.com", callbackUrl);
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
