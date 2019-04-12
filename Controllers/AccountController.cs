@@ -256,7 +256,7 @@ namespace Moogle.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-                    await _emailSender.SendEmailConfirmationAsync("jackfperryjr@gmail.com", callbackUrl);
+                    await _emailSender.SendRegistrationEmailToAdminAsync(model.Email);
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
