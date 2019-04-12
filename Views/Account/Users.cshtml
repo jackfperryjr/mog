@@ -27,6 +27,7 @@
             <tr>  
                 <td><strong>Name</strong></td>
                 <td><strong>Email</strong></td>  
+                <td style="max-width:70px !important;"><strong>Email Confirmed</strong></td>
                 <td></td>
             </tr>  
         </thead>  
@@ -36,7 +37,8 @@
             {
                 <tr>  
                     <td>@user.FirstName</td>
-                    <td>@user.Email</td>  
+                    <td>@user.Email</td> 
+                    <td style="max-width:70px !important;">@user.EmailConfirmed</td>
                     <td style="width:35px !important;">
                         <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + user.UserId)"><span class="glyphicon glyphicon-trash"></span></a>
                             <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">

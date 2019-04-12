@@ -8,7 +8,7 @@
 @{ 
     var user = await UserManager.GetUserAsync(User); 
 }
-@Html.Partial("_StatusMessage", Model.StatusMessage)
+<partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="add-edit-list">
     <div class="row">
         <div class="col-md-6">
