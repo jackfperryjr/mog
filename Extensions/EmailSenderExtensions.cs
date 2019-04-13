@@ -12,7 +12,7 @@ namespace Moogle.Services
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
             return emailSender.SendEmailAsync(email, "Confirm Email",
-                $"Thanks for helping out!<br/><br/>I've registered you at this email address (<strong>" + email + "</strong>) and your default password is: <strong>p@ssW0rd</strong><br/><br/>Please confirm your account by clicking this <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>. I suggest you change your password once you're logged in. You will currently have access to modifying data for monsters only. If you have any suggestions or questions feel free to email me.<br/><br/>Thanks again!<br/>Jack");
+                $"Thanks for helping out!<br/><br/>I've registered you at this email address and your default password is: <strong>p@ssW0rd</strong><br/><br/>Please confirm your account by clicking this <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>. I suggest you change your password once you're logged in. You will currently have access to modifying data for monsters only. If you have any suggestions or questions feel free to email me.<br/><br/>Thanks again!<br/>Jack");
         }
 
         public static Task SendRegistrationEmailToAdminAsync(this IEmailSender emailSender, string email)
