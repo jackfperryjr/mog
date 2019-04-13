@@ -32,7 +32,7 @@ namespace Moogle.Controllers
         {
             return View();
         }
-        public IActionResult Jack()
+        public IActionResult JackFPerryJr()
         {
             return View();
         }

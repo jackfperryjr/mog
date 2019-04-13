@@ -302,17 +302,6 @@ body {
 h1 {
   cursor: default;
 }
-
-i {
-  color: #4285F4;
-  padding-left: 10px;
-  font-size: 24px;
-}
-i:hover,
-i:focus {
-  color: #9933CC;
-  transform: rotate(7deg);
-}
 /* Styling Moogle title */
 .site-title {
   font-size: 6em;
