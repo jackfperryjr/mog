@@ -1,19 +1,10 @@
 @using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
-@section MetaTags
-{
-    <meta property="og:url" content="www.moogleapi.com">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="MoogleApi">
-    <meta property="og:description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
-    <meta property="og:owner" content="Jack F. Perry, Jr.">
-    <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
-    <meta name="author" content="Jack F. Perry, Jr.">
+@{
+    ViewData["Title"] = "| About";
 }
 @section Scripts
 {
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="~/js/site.js"></script>
 }
 <div class="container container-mod" style="margin-top:50px;">
