@@ -22,49 +22,41 @@
         </div>
     </div>
 <div class="container top-buffer" style="max-width:800px;"> 
-    <table class="table table-hover table-bordered table-condensed">  
-        <thead>  
-            <tr>  
-                <td><strong>Name</strong></td>
-                <td><strong>Email</strong></td>  
-                <td style="max-width:70px !important;"><strong>Email Confirmed</strong></td>
-                <td></td>
-            </tr>  
-        </thead>  
-        @foreach (var user in Model)  
-        {  
-            @if (user.Email != "jack.franklin.perryjr@gmail.com")
-            {
-                <tr>  
-                    <td>@user.FirstName</td>
-                    <td>@user.Email</td> 
-                    <td style="max-width:70px !important;">@user.EmailConfirmed</td>
-                    <td style="width:35px !important;">
-                        <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + user.UserId)"><span class="glyphicon glyphicon-trash"></span></a>
-                            <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content text-center">
-                                    @using (Html.BeginForm("Delete", "Account"))
-                                    {
-                                        <input type="hidden" value="@user.UserId" name="Id" />
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">X</button>
-                                            <h4 class="modal-title">Delete @user.Email</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete @user.Email?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-danger">yes</button>
-                                            <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
-                                        </div>
-                                    }
-                                </div>
+@foreach (var user in Model)  
+{  
+    @if (user.Email != "jack.franklin.perryjr@gmail.com")
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title pull-left">@user.FirstName @user.LastName</span>
+                <span class="panel-title pull-right">@user.Email</span>
+            </div>
+            <div class="panel-body">
+                <p>email confirmed? @user.EmailConfirmed</p>
+                <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + user.UserId)">remove?</a>
+                <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                        @using (Html.BeginForm("Delete", "Account"))
+                        {
+                            <input type="hidden" value="@user.UserId" name="Id" />
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                <h4 class="modal-title">Delete @user.Email</h4>
                             </div>
-                        </div>  
-                    </td>
-                </tr> 
-            }
-        }  
-    </table>  
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete @user.Email?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">yes</button>
+                                <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
+                            </div>
+                        }
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    }
+}  
 </div>
