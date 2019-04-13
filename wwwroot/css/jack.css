@@ -343,29 +343,6 @@ h1 {
 .close-modified {
   margin: 10px;
 }
-/* Search card */
-.search-card {
-  margin: 0 auto;
-  width: 50%;
-  height: 80px;
-}
-input[type="text"],
-input[type="text"]:focus {
-  font-size: inherit;
-}
-#search-icon {
-  font-size: 16px;
-  margin-right: 5px;
-}
-#search {
-  width: 100%;
-  transition: all .3s ease-in-out;
-}
-#search:hover,
-#search:focus {
-  box-shadow: 1px 1px 2px rgb(200,200,200);
-  transition: all .3s ease-in-out;
-}
 .dark-bluish-gray {
   color: #37474f;
 }
