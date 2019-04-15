@@ -9,10 +9,11 @@
 }
 <h2 class="top-buffer">users</h2>
 <hr />
+<form asp-action="Users" method="get">
     <div id="input-container">
         <div class="row">
             <div class="col-md-6">
-                <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='This is just for looks, for now...' value="@ViewData["CurrentFilter"]" disabled/>
+                <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='Search...' value="@ViewData["CurrentFilter"]" />
                 <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
             </div>
             <div class="col-md-6 text-right">
@@ -21,6 +22,7 @@
             </div>
         </div>
     </div>
+</form>
 <div class="container top-buffer"> 
     <div class="row bottom-buffer">
     @foreach (var user in Model)  

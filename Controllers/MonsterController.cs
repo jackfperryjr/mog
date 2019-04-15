@@ -153,9 +153,9 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monsters)
+        public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
-            if (id != monsters.MonsterId)
+            if (id != monster.MonsterId)
             {
                 return NotFound();
             }
@@ -164,12 +164,39 @@ namespace Moogle.Controllers
             {
                 try
                 {
-                    _context.Update(monsters);
+                    string webRootPath = _env.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+                    var newPicture = "";
+                    //var monsterFromDb = _context.Monsters.Find(monster.MonsterId);
+
+                    if (files.Count != 0) 
+                    {
+                        var upload = Path.Combine(webRootPath, @"images");
+                        var extension = Path.GetExtension(files[0].FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(filestream);
+                        }
+                        newPicture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
+                        if (monster.Picture != newPicture) 
+                        {
+                            monster.Picture = newPicture;
+                        }
+                    }
+                    else 
+                    {
+                        monster.Picture = newPicture;
+                        //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
+                        //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
+                        //monsterFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
+                    }                   
+                     _context.Update(monster);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MonsterExists(monsters.MonsterId))
+                    if (!MonsterExists(monster.MonsterId))
                     {
                         return NotFound();
                     }
@@ -180,7 +207,7 @@ namespace Moogle.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(monsters);
+            return View(monster);
         }
 
         // GET: Monster/Delete/5

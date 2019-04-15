@@ -209,8 +209,20 @@ namespace Moogle.Controllers
         }
 
         [Authorize(Roles="Admin")]
-        public IActionResult Users()  
+        public IActionResult Users(string currentFilter, string sortOrder, string searchString, int? page)  
         {  
+            ViewData["EmailSort"] = String.IsNullOrEmpty(sortOrder) ? "Email" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             var users = (from user in _context.Users  
                         select new  
                         {  
@@ -227,8 +239,14 @@ namespace Moogle.Controllers
                             Email = u.Email,
                             EmailConfirmed = u.EmailConfirmed.ToString()  
                         });  
-   
-            return View(users);  
+
+            users = users.OrderBy(u => u.Email);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.Email.Contains(searchString.First().ToString() + searchString.Substring(1))); // Search by user email
+            }
+
+            return View(users.ToList());  
         } 
 
         [HttpGet]
@@ -247,7 +265,7 @@ namespace Moogle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = "New User", Picture = "images/icons/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "images/icons/icon-default-profile.jpg" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
