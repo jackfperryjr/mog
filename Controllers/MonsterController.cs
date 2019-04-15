@@ -160,43 +160,22 @@ namespace Moogle.Controllers
                 return NotFound();
             }
 
+            var monsterFromDb = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string webRootPath = _env.WebRootPath;
-                    var files = HttpContext.Request.Form.Files;
-                    var newPicture = "";
-                    //var monsterFromDb = _context.Monsters.Find(monster.MonsterId);
+                    monsterFromDb.Name = monster.Name;
+                    monsterFromDb.Strength = monster.Strength;
+                    monsterFromDb.Weakness = monster.Weakness;
 
-                    if (files.Count != 0) 
-                    {
-                        var upload = Path.Combine(webRootPath, @"images");
-                        var extension = Path.GetExtension(files[0].FileName);
-
-                        using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
-                        {
-                            files[0].CopyTo(filestream);
-                        }
-                        newPicture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
-                        if (monster.Picture != newPicture) 
-                        {
-                            monster.Picture = newPicture;
-                        }
-                    }
-                    else 
-                    {
-                        monster.Picture = newPicture;
-                        //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
-                        //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
-                        //monsterFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
-                    }                   
-                     _context.Update(monster);
+                    //_context.Update(monsterFromDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MonsterExists(monster.MonsterId))
+                    if (!MonsterExists(monsterFromDb.MonsterId))
                     {
                         return NotFound();
                     }
@@ -207,7 +186,7 @@ namespace Moogle.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(monster);
+            return View(monsterFromDb);
         }
 
         // GET: Monster/Delete/5
