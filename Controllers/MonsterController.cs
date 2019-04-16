@@ -170,6 +170,32 @@ namespace Moogle.Controllers
                     monsterFromDb.Strength = monster.Strength;
                     monsterFromDb.Weakness = monster.Weakness;
 
+                    string webRootPath = _env.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+
+                    if (monster.Picture != monsterFromDb.Picture) 
+                    {
+                        if (files.Count != 0 ) 
+                        {
+                            var upload = Path.Combine(webRootPath, @"images");
+                            var extension = Path.GetExtension(files[0].FileName);
+
+                            using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                            {
+                                files[0].CopyTo(filestream);
+                            }
+                            monsterFromDb.Picture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
+                        }
+                        else
+                        {
+                            monster.Picture = monsterFromDb.Picture;
+                        }
+                    }
+                    // else 
+                    // {
+                    //     monsterFromDb.Picture = monster.Picture;
+                    // }
+
                     //_context.Update(monsterFromDb);
                     await _context.SaveChangesAsync();
                 }
