@@ -169,6 +169,7 @@ namespace Moogle.Controllers
                     monsterFromDb.Name = monster.Name;
                     monsterFromDb.Strength = monster.Strength;
                     monsterFromDb.Weakness = monster.Weakness;
+                    monsterFromDb.Description = monster.Description;
 
                     string webRootPath = _env.WebRootPath;
                     var files = HttpContext.Request.Form.Files;
