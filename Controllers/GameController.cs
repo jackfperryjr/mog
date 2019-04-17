@@ -113,10 +113,10 @@ namespace Moogle.Controllers
             else 
             {
                 //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
-                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
+                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + game.GameId + ".png");
                 gameFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
             }
-            //return View(monster);
+            //return View(game);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -144,24 +144,56 @@ namespace Moogle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> Edit(Guid id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description")] Game games)
+        public async Task<IActionResult> Edit(Guid id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description")] Game game)
         {
-            if (id != games.GameId)
+            if (id != game.GameId)
             {
                 return NotFound();
             }
 
+            var gameFromDb = await _context.Games.SingleOrDefaultAsync(g => g.GameId == id);
+
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                    _context.Update(games);
+                                try
+                {
+                    gameFromDb.Title = game.Title;
+                    gameFromDb.Platform = game.Platform;
+                    gameFromDb.ReleaseDate = game.ReleaseDate;
+                    gameFromDb.Description = game.Description;
+
+                    string webRootPath = _env.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+
+                    if (game.Picture != gameFromDb.Picture) 
+                    {
+                        if (files.Count != 0 ) 
+                        {
+                            var upload = Path.Combine(webRootPath, @"images");
+                            var extension = Path.GetExtension(files[0].FileName);
+
+                            using (var filestream = new FileStream(Path.Combine(upload, "game-" + game.GameId + "-Picture" + extension), FileMode.Create))
+                            {
+                                files[0].CopyTo(filestream);
+                            }
+                            gameFromDb.Picture = @"\" + @"images" + @"\" + "game-" + game.GameId + "-Picture" + extension;
+                        }
+                        else
+                        {
+                            game.Picture = gameFromDb.Picture;
+                        }
+                    }
+                    // else 
+                    // {
+                    //     gameFromDb.Picture = game.Picture;
+                    // }
+
+                    //_context.Update(gameFromDb);
                     await _context.SaveChangesAsync();
-                //}
-                /*
+                }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GameExists(games.GameId))
+                    if (!GameExists(gameFromDb.GameId))
                     {
                         return NotFound();
                     }
@@ -170,10 +202,9 @@ namespace Moogle.Controllers
                         throw;
                     }
                 }
-                */
                 return RedirectToAction(nameof(Index));
             }
-            return View(games);
+            return View(gameFromDb);
         }
 
         // GET: Game/Delete/5

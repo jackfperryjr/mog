@@ -224,14 +224,14 @@ namespace Moogle.Controllers
                 return NotFound();
             }
 
-            var monsters = await _context.Monsters
+            var monster = await _context.Monsters
                 .SingleOrDefaultAsync(m => m.MonsterId == id);
-            if (monsters == null)
+            if (monster == null)
             {
                 return NotFound();
             }
 
-            return View(monsters);
+            return View(monster);
         }
 
         // POST: Monster/Delete/5
@@ -239,8 +239,8 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var monsters = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
-            _context.Monsters.Remove(monsters);
+            var monster = await _context.Monsters.SingleOrDefaultAsync(m => m.MonsterId == id);
+            _context.Monsters.Remove(monster);
 
             var user = await _userManager.GetUserAsync(User);
             await _emailSender.SendUpdateEmailAsync("Monster deleted", user.FirstName, user.Email, "from", "deleted");

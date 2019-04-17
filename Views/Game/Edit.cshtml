@@ -64,35 +64,10 @@
         <div class="form-group top-buffer">
             <a class="btn btn-default shadow" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
             <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
-            <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal")"><span class="glyphicon glyphicon-remove"></span> delete</a>
         </div>
     </div>
 </form>
-<div style="margin-bottom:15px;">
-    <div class="modal fade" id="@("deleteModal")" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content text-center">
-                @using (Html.BeginForm("Delete", "Game"))
-                {
-                    <input type="hidden" value="@Model.GameId" name="GameId" />
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h4 class="modal-title">Delete @Model.Title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img class="character-delete-img-game" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title"/>
-                        <br/><br/>
-                        <p>Are you sure you want to delete @Model.Title?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">yes</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">no</button>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
