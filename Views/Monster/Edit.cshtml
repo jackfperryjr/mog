@@ -7,7 +7,7 @@
 }
 <h2 class="top-buffer">edit monster</h2>
 <hr />
-<form asp-action="Edit" enctype="multipart/form-data">
+<form asp-action="Edit" >
     <div class="add-edit-list">
         <div class="row">
             <div class="col-md-6">
@@ -51,7 +51,7 @@
             </div>
             <div id="desc-position" class="col-md-6">
                 <div style="width:250px;height:250px;">
-                    <img style="width:250px;height:auto;margin:5px;" asp-route-id="@Model.MonsterId" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                    <img style="width:100%;height:auto;max-height:100%;margin:5px;" asp-route-id="@Model.MonsterId" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
                 </div>
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
