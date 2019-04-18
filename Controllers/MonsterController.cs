@@ -211,7 +211,7 @@ namespace Moogle.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
             return View(monsterFromDb);
         }
