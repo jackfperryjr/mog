@@ -4,6 +4,7 @@
 @section Scripts
 {
     <script src="~/js/site.js"></script>
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 }
 <div class="row fixed-heading">
     <div class="col-md-12 fixed-heading-col text-center site-title">
@@ -23,39 +24,53 @@
         </h1>
     </div>
 </div>
-<div class="row row-modified top-buffer">
+<div class="container container-modified top-buffer">
     <div class="col-md-6">
-        <img id="jack" class="featurette-image img-responsive img-circle center-block" src="@Url.Content("/images/icons/icon-me.jpg")" alt="Circle with a real picture of Jack's face." title="Jack's face.">
+        <img id="jack" class="featurette-image img-responsive img-circle center-block top-buffer" src="@Url.Content("/images/icons/icon-me.jpg")" alt="Circle with a real picture of Jack's face." title="Jack's face.">
+        <h4 class="top-buffer text-center"><span data-toggle="modal" data-target="#resumeModal" style="cursor: pointer;text-decoration: underline; color: #337ab7;">Resume</span></h4>
+        <div id="resumeModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-center"><strong><a href="@Url.Content("/images/icons/jackfperryjr-resume.pdf")" download>Download</a></strong><span class="close" data-dismiss="modal">X</span></h3>
+                    </div>
+                    <div class="modal-body">
+                        <img class="moogle-modal-img" src="@Url.Content("/images/icons/jackfperryjr-resume.png")" alt="Jack's resume" title="Jack's resume">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="jackfperryjr"><a class="LI-simple-link" href='https://www.linkedin.com/in/jackfperryjr?trk=profile-badge'>Jack F. Perry, Jr.</a></div> -->
     </div>
     <div class="col-md-6">
         <div class="row">
             <h3>Who am I?</h3>
             <div class="row about-box bg-blue">
-                <h4>I'm Jack F. Perry, Jr. Born in Ohio, living in Louisville, KY. I graduated with an Associate's in Applied Sciences (Computer Programming). I'm also a graduate of Code Louisville in Front End Web Develeopment, C#/.NET(.NET Core), Python, and Android/Kotlin. Learning is a passion of mine and I continue to teach myself new programming languages, technologies, and best practices on a daily basis!</h4>
+                <h4>I'm Jack F. Perry, Jr. Born in Ohio, living in Louisville, KY. I graduated with an Associate's in Applied Sciences (Computer Programming). I'm also a graduate of Code Louisville in Front End Web Develeopment, C#/.NET(.NET Core), Python, Android/Kotlin, and React.js. Learning is a passion of mine and I continue to teach myself new programming languages, technologies, and best practices on a daily basis!</h4>
             </div>
         </div>
         <div class="row">
             <h3>What do I do?</h3>
             <div class="row about-box bg-red">
-                <h4>I work as a fullstack .NET developer with a bias towards .NET Core. Though, I have studied a wee bit of SQL, Python, Java, Kotlin with Android, JavaScript, and a handful of JavaScript frameworks/libraries. And I build neat things like this.</h4>
+                <h4>I work as a fullstack .NET developer with a bias towards .NET Core. Though, I have studied a wee bit of SQL, Python, Java, Kotlin with Android, JavaScript, and a handful of JavaScript frameworks/libraries. And I like to build neat things like this.</h4>
             </div>
         </div>
         <div class="row">
-            <h3>Title</h3>
+            <h3>Photographer/Graphic Designer/Artist</h3>
             <div class="row about-box bg-yellow">
-                <h4>Stuff stuff stuff.</h4>
+                <h4>I like to consider myself an artist. I've dabbled in graphic design and photography and I've even volunteered my services as such. I no longer keep examples of my work on display anywhere, though. Keep it secret; keep it safe. &#x1f609;</h4>
             </div>
         </div>
         <div class="row">
-            <h3>Title</h3>
+            <h3>Final Fantasy</h3>
             <div class="row about-box bg-blue">
-                <h4>Stuff stuff stuff.</h4>
+                <h4>Obviously. I don't consider myself a huge game nerd. However, I got into Final Fantasy at an early age and it never stopped. I have a bit of a collection of the games and strategy guides. I don't play much anymore but I try to keep up on what's going on.</h4>
             </div>
         </div>
         <div class="row">
-            <h3>Title</h3>
+            <h3>Work</h3>
             <div class="row about-box bg-green">
-                <h4>Stuff stuff stuff.</h4>
+                <h4>I love to write code and design websites or applications. I don't do much freelance work, but if you've stumbled upon this place of mine and are interested in talking about freelance work or a fulltime position I'm always open to talking. I have a link to my resume under my picture and of course links to GitHub and LinkedIn at the bottom.</h4>
             </div>
         </div>
     </div>

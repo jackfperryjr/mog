@@ -530,8 +530,14 @@ button.stripe-button-el>span {
   background-position: center center;
   background-repeat: no-repeat;
 }
+.img-responsive {
+  width: 60% !important;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    .img-responsive {
+      width: 80% !important;
+    }
     .img-user {
       display:block;
       box-shadow: 2px 2px 4px #37474F;

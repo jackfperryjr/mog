@@ -7,6 +7,7 @@
     ViewData["Title"] = "| Characters";
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var user = await UserManager.GetUserAsync(User);
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
@@ -24,7 +25,10 @@
                 <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
                 @if (SignInManager.IsSignedIn(User))
                 {
+                    @if (User.IsInRole("Admin"))
+                    {
                     <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add character</a>
+                    }
                 }
             </div>
         </div>
