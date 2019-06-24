@@ -7,12 +7,12 @@
         {
             @RenderSection("MetaTags", required: false)
         }
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
         <link rel="icon" href="~/images/icons/icon-ff-moogle.png" />
         <title>MoogleApi @ViewData["Title"]</title>
         <environment include="Production">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
             @RenderSection("Styles", false)
         </environment>
         <environment exclude="Production">
@@ -20,6 +20,7 @@
                 asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                 asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
         </environment>
     </head>
     <body>
@@ -39,7 +40,7 @@
                             <span class="site-span-api">API</span>
                         </h1>
                     </button>
-                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement">
+                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
                         <!-- Toying with different image site-titles -->
                         <!-- ======================================= -->
                         <!-- <img style="width:250px;" src="@Url.Content("/images/moogleapi-logo.png")"> -->

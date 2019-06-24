@@ -1,7 +1,8 @@
 ﻿/* Importing Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
-/* Defining some animations */
+
+@import "https://use.fontawesome.com/releases/v5.4.0/css/all.css";
 
 /* Modifying HTML elements */
 body {
@@ -247,8 +248,8 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 /* Admin character management stuff */
 .navbar-icon {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   transition: all .3s ease-in-out
 }
@@ -354,7 +355,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .character-card {
   width: 150px;
   height: 150px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 25px 0;
   background-color: transparent;
   border: none; 
 }
@@ -610,15 +611,14 @@ button.stripe-button-el>span {
       display: block;
       float: none;
     }
-    .character-list-thumb,
     .game-list-thumb {
       height: 200px;
       width: 200px;
     }
     .character-card {
-      width: 250px;
-      height: 250px;
-      margin: 10px auto 20px auto;
+      /* width: 250px;
+      height: 250px; */
+      margin: 10px auto 25px auto;
     }
     .login-bar {
       width: 250px;

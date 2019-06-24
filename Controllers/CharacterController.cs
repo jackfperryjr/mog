@@ -44,14 +44,14 @@ namespace Moogle.Controllers
             }
 
             var characters = from c in _context.Character select c;
-            characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
+            characters = characters.OrderByDescending(c => c.Origin ).ThenBy(c => c.Name);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 characters = characters.Where(c => c.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1)) || c.Origin.Contains(searchString));
             }
 
-            int pageSize = 15;
+            int pageSize = 16;
             return View(await PaginatedList<Characters>.CreateAsync(characters.AsNoTracking(), page ?? 1, pageSize));
             //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
         }
