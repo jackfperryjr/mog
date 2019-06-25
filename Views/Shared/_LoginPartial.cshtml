@@ -12,20 +12,14 @@
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            <span class="general-nav">
             <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue" style="font-size: 18px;"></span></a></li>
             <li><a asp-controller="Home" asp-action="About" title="About"><span class="fas fa-question-circle red" style="font-size: 18px;"></span></a></li>
             <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span></a></li>
+            </span>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><img class="navbar-icon" src="@user.Picture"></a>
                 <ul class="dropdown-menu">
-                    <li><a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
-                    <span class="blue" style="font-size:18px;">M</span>
-                    <span class="red" style="font-size:18px;">o</span>
-                    <span class="yellow" style="font-size:18px;">o</span>
-                    <span class="blue" style="font-size:18px;">g</span>
-                    <span class="green" style="font-size:18px;">l</span>
-                    <span class="red" style="font-size:18px;">e</span>
-                    <span><img src="@Url.Content("/images/icons/icon-ff-moogle.png")" alt="Moogle face." style="width:20px;margin-left:5px;"></span></a></li>
                     <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile.">Profile &nbsp;<span class="fas fa-address-card blue" style="font-size: 18px;"></span></a></li>
                     @if (User.IsInRole("Admin"))
                     {

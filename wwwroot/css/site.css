@@ -534,8 +534,20 @@ button.stripe-button-el>span {
 .img-responsive {
   width: 60% !important;
 }
+.general-nav {
+  letter-spacing: 5px;
+  float: left;
+  margin-top: 16px;
+}
+.general-nav li {
+  display: inline-block;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    .general-nav {
+      margin-top: 0;
+      margin-left: 20px;
+    }
     .img-responsive {
       width: 80% !important;
     }
