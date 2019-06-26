@@ -229,6 +229,7 @@ namespace Moogle.Controllers
                             UserId = user.Id,                                        
                             FirstName = user.FirstName,  
                             LastName = user.LastName,
+                            Picture = user.Picture,
                             Email = user.Email,
                             EmailConfirmed = user.EmailConfirmed 
                         }).ToList().Select(u => new ApplicationUserViewModel()  
@@ -236,6 +237,7 @@ namespace Moogle.Controllers
                             UserId = u.UserId,  
                             FirstName = u.FirstName, 
                             LastName = u.LastName, 
+                            Picture = u.Picture,
                             Email = u.Email,
                             EmailConfirmed = u.EmailConfirmed.ToString()  
                         });  
