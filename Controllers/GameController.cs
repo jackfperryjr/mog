@@ -114,7 +114,7 @@ namespace Moogle.Controllers
             {
                 //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
                 //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + game.GameId + ".png");
-                gameFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
+                gameFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
             }
             //return View(game);
             await _context.SaveChangesAsync();

@@ -267,7 +267,7 @@ namespace Moogle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "images/icons/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "icons/icon-default-profile.jpg" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
