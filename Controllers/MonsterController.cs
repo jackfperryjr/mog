@@ -121,7 +121,7 @@ namespace Moogle.Controllers
             {
                 //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
                 //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
-                monsterFromDb.Picture = @"\" + @"images" + @"\" + "Default-Image.png";
+                monsterFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
             }
             //return View(monster);
 
