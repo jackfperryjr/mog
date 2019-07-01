@@ -102,8 +102,8 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
-            var account = _credentials.BlobAccount;
-            var key = _credentials.BlobKey;
+            var account = "mooglestorage"; //_credentials.BlobAccount;
+            var key = "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw=="; //_credentials.BlobKey;
             var storageCredentials = new StorageCredentials(account, key);
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
