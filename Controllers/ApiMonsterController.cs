@@ -1,15 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using System.Text;
 using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Moogle.Data;
 using Moogle.Models;
 

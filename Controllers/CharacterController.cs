@@ -1,15 +1,15 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.Extensions.Options;
+using Moogle.Services;
 using Moogle.Data;
 using Moogle.Models;
 
@@ -21,11 +21,17 @@ namespace Moogle.Controllers
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment _env { get; }
 
-        public CharacterController(ApplicationDbContext context, IHostingEnvironment env)
+        public CharacterController(
+            ApplicationDbContext context, 
+            IHostingEnvironment env,
+            IOptions<BlobStorageOptions> blob)
         {
             _context = context;
             _env = env;
+            _credentials = blob.Value;
         }
+
+        public BlobStorageOptions _credentials { get; } //set only via Secret Manager
 
         // GET: Character
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -90,6 +96,14 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
+            var account = _credentials.BlobAccount;
+            var key = _credentials.BlobKey;
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (ModelState.IsValid)
             {
                 _context.Add(characters);
@@ -107,31 +121,34 @@ namespace Moogle.Controllers
                 for (var i = 0; i < files.Count; i++) {
                     var upload = Path.Combine(webRootPath, @"images");
                     var extension = Path.GetExtension(files[i].FileName);
+                    var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
 
                     using (var filestream = new FileStream(Path.Combine(upload, "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension), FileMode.Create))
                     {
                         files[i].CopyTo(filestream);
+                        await newBlob.UploadFromFileAsync(upload + "/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
                         filestream.Flush();
+                        filestream.Close(); 
                     }
                     if (i == 0) 
                     {
-                        characterFromDb.Picture = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
                     }
                     if (i == 1) 
                     {
-                        characterFromDb.Picture2 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
                     }
                     if (i == 2) 
                     {
-                        characterFromDb.Picture3 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
                     }
                     if (i == 3) 
                     {
-                        characterFromDb.Picture4 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
                     }
                     if (i == 4) 
                     {
-                        characterFromDb.Picture5 = @"\" + @"images" + @"\" + "Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
                     }
                 }
             }

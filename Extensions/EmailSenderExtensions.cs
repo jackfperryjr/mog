@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Moogle.Services;
 
 namespace Moogle.Services
 {
@@ -17,13 +13,13 @@ namespace Moogle.Services
 
         public static Task SendRegistrationEmailToAdminAsync(this IEmailSender emailSender, string email)
         {
-            return emailSender.SendEmailAsync("jack.franklin.perryjr@gmail.com", "Registration Email",
+            return emailSender.SendEmailAsync("jackfperryjr@gmail.com", "Registration Email",
                 $"Hey you,<br/><br/>You've registered <strong>" + email + "</strong> to help you out. I suggest you keep an eye on them.<br/><br/>You from the future/past or something,<br/>Jack");
         }
 
         public static Task SendUpdateEmailAsync(this IEmailSender emailSender, string subject, string userName, string userEmail, string toOrFrom, string action)
         {
-            return emailSender.SendEmailAsync("jack.franklin.perryjr@gmail.com", subject,
+            return emailSender.SendEmailAsync("jackfperryjr@gmail.com", subject,
                 $"Hey you,<br/><br/>" + userName + " (" + userEmail + ") has " + action + " a monster " + toOrFrom + " the API. You might want to check it out.");
         }
     }

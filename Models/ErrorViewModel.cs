@@ -1,5 +1,3 @@
-using System;
-
 namespace Moogle.Models
 {
     public class ErrorViewModel

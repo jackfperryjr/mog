@@ -1,15 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using System.Text;
 using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Moogle.Data;
 using Moogle.Models;
 
@@ -37,7 +30,7 @@ namespace Moogle.Controllers
 
         //GET api/characters/id
         [AllowAnonymous]
-        [HttpGet("{id}", Name = "GetCharacter")]
+        [HttpGet("{id}")]
         public IActionResult Get(Guid? id)
         {
             var character = _context.Character.Find(id);
@@ -46,7 +39,7 @@ namespace Moogle.Controllers
                 return NotFound();
             }
             return Ok(character);
-        }   
+        }     
 
         //GET api/characters/random
         [AllowAnonymous]

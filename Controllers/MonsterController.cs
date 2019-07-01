@@ -1,15 +1,15 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.Extensions.Options;
 using Moogle.Services;
 using Moogle.Models;
 using Moogle.Data;
@@ -24,18 +24,24 @@ namespace Moogle.Controllers
         private readonly IEmailSender _emailSender;
         private readonly UserManager<ApplicationUser> _userManager;
         private IHostingEnvironment _env { get; }
+        //private IConfiguration _configuration;
 
         public MonsterController(
             ApplicationDbContext context, 
             IEmailSender emailSender, 
             UserManager<ApplicationUser> userManager, 
-            IHostingEnvironment env)
+            IHostingEnvironment env,
+            IOptions<BlobStorageOptions> blob)   
         {
             _context = context;
             _emailSender = emailSender;
             _userManager = userManager;
             _env = env;
+            _credentials = blob.Value;
+
         }
+
+        public BlobStorageOptions _credentials { get; } //set only via Secret Manager
 
         // GET: Monster
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -96,6 +102,14 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
+            var account = _credentials.BlobAccount;
+            var key = _credentials.BlobKey;
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (ModelState.IsValid)
             {
                 _context.Add(monster);
@@ -110,17 +124,18 @@ namespace Moogle.Controllers
             {
                 var upload = Path.Combine(webRootPath, @"images");
                 var extension = Path.GetExtension(files[0].FileName);
+                var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
 
                 using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
                 {
                     files[0].CopyTo(filestream);
+                    await newBlob.UploadFromFileAsync(upload + "/Monster-" + monster.MonsterId + "-Picture" + extension);
+                    filestream.Close();  
                 }
-                monsterFromDb.Picture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
+                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
             }
             else 
             {
-                //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
-                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + monster.MonsterId + ".png");
                 monsterFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
             }
             //return View(monster);
