@@ -102,8 +102,8 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
-            var account = "mooglestorage"; //_credentials.BlobAccount;
-            var key = "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw=="; //_credentials.BlobKey;
+            var account = _credentials.BlobAccount;
+            var key = _credentials.BlobKey;
             var storageCredentials = new StorageCredentials(account, key);
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
@@ -122,14 +122,14 @@ namespace Moogle.Controllers
 
             if (files.Count != 0) 
             {
-                var upload = Path.Combine(webRootPath, @"images");
+                //var upload = Path.Combine(webRootPath, @"images");
                 var extension = Path.GetExtension(files[0].FileName);
                 var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
 
-                using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                using (var filestream = new FileStream(Path.Combine("Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
                 {
                     files[0].CopyTo(filestream);
-                    await newBlob.UploadFromFileAsync(upload + "/Monster-" + monster.MonsterId + "-Picture" + extension);
+                    await newBlob.UploadFromFileAsync("Monster-" + monster.MonsterId + "-Picture" + extension);
                     filestream.Close();  
                 }
                 monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
