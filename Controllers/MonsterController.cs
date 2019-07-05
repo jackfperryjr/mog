@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -126,17 +127,18 @@ namespace Moogle.Controllers
                 var extension = Path.GetExtension(files[0].FileName);
                 var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
 
-                using (var filestream = new FileStream(Path.Combine("Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                using (var filestream = new MemoryStream())
                 {
                     files[0].CopyTo(filestream);
-                    await newBlob.UploadFromFileAsync("Monster-" + monster.MonsterId + "-Picture" + extension);
-                    filestream.Close();  
+                    filestream.Position = 0;
+                    await newBlob.UploadFromStreamAsync(filestream);
+                    //filestream.Close();  
                 }
                 monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
             }
             else 
             {
-                monsterFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
+                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/imagesicon-default-image.png";
             }
             //return View(monster);
 

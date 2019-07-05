@@ -96,8 +96,8 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
-            var account = "mooglestorage"; //_credentials.BlobAccount;
-            var key = "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw=="; //_credentials.BlobKey;;
+            var account = _credentials.BlobAccount;
+            var key = _credentials.BlobKey;;
             var storageCredentials = new StorageCredentials(account, key);
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
