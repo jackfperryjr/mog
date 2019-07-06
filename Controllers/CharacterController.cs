@@ -112,23 +112,20 @@ namespace Moogle.Controllers
             }
             await _context.SaveChangesAsync();
 
-            //string webRootPath = _env.WebRootPath;
             var files = HttpContext.Request.Form.Files;
             var characterFromDb = _context.Character.Find(characters.Id);
 
             if (files.Count != 0) 
             {
                 for (var i = 0; i < files.Count; i++) {
-                    //var upload = Path.Combine(webRootPath, @"images");
                     var extension = Path.GetExtension(files[i].FileName);
                     var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
 
-                    using (var filestream = new FileStream(Path.Combine("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension), FileMode.Create))
+                    using (var filestream = new MemoryStream())
                     {
                         files[i].CopyTo(filestream);
-                        await newBlob.UploadFromFileAsync("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
-                        filestream.Flush();
-                        filestream.Close(); 
+                        filestream.Position = 0;
+                        await newBlob.UploadFromStreamAsync(filestream);
                     }
                     if (i == 0) 
                     {
