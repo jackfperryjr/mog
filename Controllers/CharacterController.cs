@@ -98,7 +98,7 @@ namespace Moogle.Controllers
         {
             var account = _credentials.BlobAccount;
             var key = _credentials.BlobKey;;
-            var storageCredentials = new StorageCredentials(account, key);
+            var storageCredentials = new StorageCredentials("mooglestorage", "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw==");
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference("images");
