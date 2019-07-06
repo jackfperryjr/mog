@@ -106,7 +106,7 @@ namespace Moogle.Controllers
             var account = _credentials.BlobAccount;
             var key = _credentials.BlobKey;
             var storageCredentials = new StorageCredentials(account, key);
-            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, "mooglestorage", endpointSuffix: null, useHttps: true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference("images");
             await container.CreateIfNotExistsAsync();
@@ -117,13 +117,11 @@ namespace Moogle.Controllers
             }
             await _context.SaveChangesAsync();
 
-            string webRootPath = _env.WebRootPath;
             var files = HttpContext.Request.Form.Files;
             var monsterFromDb = _context.Monsters.Find(monster.MonsterId);
 
             if (files.Count != 0) 
             {
-                //var upload = Path.Combine(webRootPath, @"images");
                 var extension = Path.GetExtension(files[0].FileName);
                 var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
 
@@ -132,7 +130,6 @@ namespace Moogle.Controllers
                     files[0].CopyTo(filestream);
                     filestream.Position = 0;
                     await newBlob.UploadFromStreamAsync(filestream);
-                    //filestream.Close();  
                 }
                 monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
             }
