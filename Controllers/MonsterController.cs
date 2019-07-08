@@ -167,6 +167,14 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (id != monster.MonsterId)
             {
                 return NotFound();
@@ -190,14 +198,16 @@ namespace Moogle.Controllers
                     {
                         if (files.Count != 0 ) 
                         {
-                            var upload = Path.Combine(webRootPath, @"images");
                             var extension = Path.GetExtension(files[0].FileName);
+                            var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
 
-                            using (var filestream = new FileStream(Path.Combine(upload, "Monster-" + monster.MonsterId + "-Picture" + extension), FileMode.Create))
+                            using (var filestream = new MemoryStream())
                             {
                                 files[0].CopyTo(filestream);
+                                filestream.Position = 0;
+                                await newBlob.UploadFromStreamAsync(filestream);
                             }
-                            monsterFromDb.Picture = @"\" + @"images" + @"\" + "Monster-" + monster.MonsterId + "-Picture" + extension;
+                                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
                         }
                         else
                         {
