@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 using Moogle.Services;
 using Moogle.Models;
 using Moogle.Data;
@@ -25,24 +24,23 @@ namespace Moogle.Controllers
         private readonly IEmailSender _emailSender;
         private readonly UserManager<ApplicationUser> _userManager;
         private IHostingEnvironment _env { get; }
-        //private IConfiguration _configuration;
+        private IConfiguration _configuration;
 
         public MonsterController(
             ApplicationDbContext context, 
             IEmailSender emailSender, 
             UserManager<ApplicationUser> userManager, 
             IHostingEnvironment env,
-            IOptions<BlobStorageOptions> blob)   
+            IConfiguration configuration)   
         {
             _context = context;
             _emailSender = emailSender;
             _userManager = userManager;
             _env = env;
-            _credentials = blob.Value;
-
+            _configuration = configuration;
         }
 
-        public BlobStorageOptions _credentials { get; } //set only via Secret Manager
+        public static IConfiguration configuration { get; private set; }
 
         // GET: Monster
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -103,9 +101,9 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
         {
-            var account = _credentials.BlobAccount;
-            var key = _credentials.BlobKey;
-            var storageCredentials = new StorageCredentials("mooglestorage", "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw==");
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference("images");

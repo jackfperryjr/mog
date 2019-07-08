@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.Extensions.Options;
-using Moogle.Services;
+using Microsoft.Extensions.Configuration;
 using Moogle.Data;
 using Moogle.Models;
 
@@ -20,18 +19,19 @@ namespace Moogle.Controllers
     {
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment _env { get; }
+        private IConfiguration _configuration;
 
         public CharacterController(
             ApplicationDbContext context, 
             IHostingEnvironment env,
-            IOptions<BlobStorageOptions> blob)
+            IConfiguration configuration)
         {
             _context = context;
             _env = env;
-            _credentials = blob.Value;
+            _configuration = configuration;
         }
 
-        public BlobStorageOptions _credentials { get; } //set only via Secret Manager
+        public static IConfiguration configuration { get; private set; }
 
         // GET: Character
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -96,9 +96,9 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
-            var account = _credentials.BlobAccount;
-            var key = _credentials.BlobKey;;
-            var storageCredentials = new StorageCredentials("mooglestorage", "Jg1KxwT7fkXhfU4qMcvntBexSNUelBF2IhXF0gifBdOBMZRhmA9resnjm5FL5Ty1wfO4fyKt29vCjEFfhuSuKw==");
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
             var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference("images");

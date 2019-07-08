@@ -42,9 +42,7 @@ namespace Moogle
             
             // Add application services.
             services.AddSingleton<IEmailSender, EmailSender>();
-            //services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
-            services.Configure<BlobStorageOptions>(Configuration);
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
