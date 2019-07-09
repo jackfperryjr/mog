@@ -9,8 +9,14 @@ Use your favorite front-end framework to send a request:
 * https://www.moogleapi.com/api/v1/characters
 * https://www.moogleapi.com/api/v1/monsters
 * https://www.moogleapi.com/api/v1/games
+* https://www.moogleapi.com/api/v1/characters/random
 
-* New! Now you can send a request to https://www.moogleapi.com/api/v1/characters/random to get a random character!
+### New! ` /search ` route has been added to the Monster and Character controllers!
+
+* https://www.moogleapi.com/api/v1/characters/search?name=lightning
+* https://www.moogleapi.com/api/v1/monsters/search?name=chocobo
+
+##### *For now the search routes only handle the ` name ` parameter. More to come!
 
 Then use that data in your website, webpage, or application!
 
