@@ -5,22 +5,24 @@ MoogleApi is a database for all things Final Fantasy. Currently live at www.moog
 ### Easy to use!
 
 Use your favorite front-end framework to send a request:
+```
+https://www.moogleapi.com/api/v1/characters
+https://www.moogleapi.com/api/v1/monsters
+https://www.moogleapi.com/api/v1/games
+https://www.moogleapi.com/api/v1/characters/random
+```
 
-* https://www.moogleapi.com/api/v1/characters
-* https://www.moogleapi.com/api/v1/monsters
-* https://www.moogleapi.com/api/v1/games
-* https://www.moogleapi.com/api/v1/characters/random
-
-### New! ` /search ` route has been added to the Monster and Character controllers!
-
-* https://www.moogleapi.com/api/v1/characters/search?name=lightning
-* https://www.moogleapi.com/api/v1/characters/search?gender=female
-* https://www.moogleapi.com/api/v1/characters/search?job=l'cie
-* https://www.moogleapi.com/api/v1/characters/search?race=human
-* https://www.moogleapi.com/api/v1/characters/search?origin=13
-
-* https://www.moogleapi.com/api/v1/monsters/search?name=chocobo
-
+### New! ` /search ` route has been added to the Monster and Character controllers! ###
+```
+https://www.moogleapi.com/api/v1/characters/search?name=lightning
+https://www.moogleapi.com/api/v1/characters/search?gender=female
+https://www.moogleapi.com/api/v1/characters/search?job=l'cie
+https://www.moogleapi.com/api/v1/characters/search?race=human
+https://www.moogleapi.com/api/v1/characters/search?origin=13
+```
+```
+https://www.moogleapi.com/api/v1/monsters/search?name=chocobo
+```
 ##### *For now the search routes only handle the ` name ` parameter on the Monster controller. More to come!
 
 Then use that data in your website, webpage, or application!
