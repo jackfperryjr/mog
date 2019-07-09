@@ -29,12 +29,31 @@ namespace Moogle.Controllers
         }
 
         //GET api/characters/search?name=lightning
+        //GET api/characters/search?gender=female
+        //GET api/characters/search?job=l'cie
+        //GET api/characters/search?race=human
+        //GET api/characters/search?origin=13
         [AllowAnonymous]
         [HttpGet("search")]
-        public List<Characters> Search([FromQuery]string name) 
+        public List<Characters> Search([FromQuery]string name, string gender, string job, string race, string origin) 
         { 
             var characters = from c in _context.Character select c;
-            characters = characters.OrderBy(c => c.Name).Where(c => c.Name.Contains(name));
+
+            if (name != null) {
+                characters = characters.OrderBy(c => c.Name).Where(c => c.Name.Contains(name));
+            }
+            if (gender != null) {
+                characters = characters.OrderBy(c => c.Name).Where(c => c.Gender == gender);
+            }
+            if (job != null) {
+                characters = characters.OrderBy(c => c.Name).Where(c => c.Job.Contains(job));
+            }
+            if (race != null) {
+                characters = characters.OrderBy(c => c.Name).Where(c => c.Race.Contains(race));
+            }
+            if (origin != null) {
+                characters = characters.OrderBy(c => c.Name).Where(c => c.Origin.Contains(origin));
+            }
             return characters.ToList();
         }
 
