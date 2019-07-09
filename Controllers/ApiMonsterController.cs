@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
@@ -25,6 +26,16 @@ namespace Moogle.Controllers
         {
             var monsters = from m in _context.Monsters select m;
             monsters = monsters.OrderBy(m => m.Name);
+            return monsters.ToList();
+        }
+
+        //GET api/monsters/search?name=chocobo
+        [AllowAnonymous]
+        [HttpGet("search")]
+        public List<Monster> Search([FromQuery]string name) 
+        { 
+            var monsters = from m in _context.Monsters select m;
+            monsters = monsters.OrderBy(m => m.Name).Where(m => m.Name == name);
             return monsters.ToList();
         }
 

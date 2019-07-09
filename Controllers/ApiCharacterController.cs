@@ -28,6 +28,16 @@ namespace Moogle.Controllers
             return characters.ToList();
         }
 
+        //GET api/characters/search?name=lightning
+        [AllowAnonymous]
+        [HttpGet("search")]
+        public List<Characters> Search([FromQuery]string name) 
+        { 
+            var characters = from c in _context.Character select c;
+            characters = characters.OrderBy(c => c.Name).Where(c => c.Name.Contains(name));
+            return characters.ToList();
+        }
+
         //GET api/characters/id
         [AllowAnonymous]
         [HttpGet("{id}")]

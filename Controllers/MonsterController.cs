@@ -191,7 +191,6 @@ namespace Moogle.Controllers
                     monsterFromDb.Weakness = monster.Weakness;
                     monsterFromDb.Description = monster.Description;
 
-                    string webRootPath = _env.WebRootPath;
                     var files = HttpContext.Request.Form.Files;
 
                     if (monster.Picture != monsterFromDb.Picture) 
