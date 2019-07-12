@@ -12,6 +12,12 @@
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
 <h2 class="top-buffer">monster list</h2>
+@if (@TempData["Status"] != null) {
+<div id="edit-success-container" class='@TempData["ClassName"]' style='@TempData["ContainerHeight"]'>
+    <span onclick="hideSuccess()" class='pull-right' style='cursor: pointer; color: #fff; font-size: 28px; padding-right: 10px;'>&times;</span>
+    <h3 class='text-center' style='margin: auto; padding: 5px;'>@TempData["Message"]</h3>
+</div>
+}
 <hr />
 <form asp-action="Index" method="get">
     <div id="input-container">
@@ -113,3 +119,11 @@
     <span class="fas fa-arrow-right" style="font-size: 18px;"></span>
     </a>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function hideSuccess() {
+            $("#edit-success-container").hide();
+        }
+    </script>
+}

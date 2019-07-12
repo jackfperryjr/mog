@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.Extensions.Configuration;
 using Moogle.Data;
 using Moogle.Models;
 using Moogle.Models.ManageViewModels;
@@ -27,6 +30,7 @@ namespace Moogle.Controllers
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
         private IHostingEnvironment _env;
+        private IConfiguration _configuration;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -38,7 +42,8 @@ namespace Moogle.Controllers
             IEmailSender emailSender,
             ILogger<ManageController> logger,
             UrlEncoder urlEncoder,
-            IHostingEnvironment env)
+            IHostingEnvironment env,
+            IConfiguration configuration)
         {
             _context = context;
             _userManager = userManager;
@@ -47,7 +52,9 @@ namespace Moogle.Controllers
             _logger = logger;
             _urlEncoder = urlEncoder;
             _env = env;
+            _configuration = configuration;
         }
+        public static IConfiguration configuration { get; private set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -80,6 +87,14 @@ namespace Moogle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(IndexViewModel model)
         {
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -113,23 +128,22 @@ namespace Moogle.Controllers
 
             if (model.Picture != user.Picture)
             {
-               //user.Picture = model.Picture;
-                string webRootPath = _env.WebRootPath;
                 var files = HttpContext.Request.Form.Files;
 
                 if (files.Count != 0) 
                 {
-                    var upload = Path.Combine(webRootPath, @"images");
                     var extension = Path.GetExtension(files[0].FileName);
+                    var newBlob = container.GetBlockBlobReference("User-" + user.Id + "-Picture" + extension);
 
-                    using (var filestream = new FileStream(Path.Combine(upload, "User-" + user.Id + "-Picture" + extension), FileMode.Create))
+                    using (var filestream = new MemoryStream())
                     {
                         files[0].CopyTo(filestream);
+                        filestream.Position = 0;
+                        await newBlob.UploadFromStreamAsync(filestream);
                     }
-                    user.Picture = @"\" + @"images" + @"\" + "User-" + user.Id + "-Picture" + extension;
+                    user.Picture = "https://mooglestorage.blob.core.windows.net/images/User-" + user.Id + "-Picture" + extension;
                 }
             }
-
 
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)

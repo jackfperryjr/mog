@@ -186,16 +186,75 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Age,Gender,Race,Job,Height,Weight,Origin,Description,Picture,Picture2,Picture3,Picture4,Picture5,Response1,Response2,Response3,Response4,Response5,Response6,Response7,Response8,Response9,Response10")] Characters characters)
         {
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (id != characters.Id)
             {
                 return NotFound();
             }
+            var characterFromDb = await _context.Character.SingleOrDefaultAsync(c => c.Id == id);
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(characters);
+                    // _context.Update(characters);
+                    // await _context.SaveChangesAsync();
+                    characterFromDb.Name = characters.Name;
+                    characterFromDb.Age = characters.Age;
+                    characterFromDb.Race = characters.Race;
+                    characterFromDb.Gender = characters.Gender;
+                    characterFromDb.Job = characters.Job;
+                    characterFromDb.Height = characters.Height;
+                    characterFromDb.Weight = characters.Weight;
+                    characterFromDb.Origin = characters.Origin;
+                    characterFromDb.Description = characters.Description;
+
+                    var files = HttpContext.Request.Form.Files;
+
+                    if (characters.Picture != characterFromDb.Picture) 
+                    {
+                        if (files.Count != 0) 
+                        {
+                            for (var i = 0; i < files.Count; i++) {
+                                var extension = Path.GetExtension(files[i].FileName);
+                                var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
+
+                                using (var filestream = new MemoryStream())
+                                {
+                                    files[i].CopyTo(filestream);
+                                    filestream.Position = 0;
+                                    await newBlob.UploadFromStreamAsync(filestream);
+                                }
+                                if (i == 0) 
+                                {
+                                    characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                }
+                                if (i == 1) 
+                                {
+                                    characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                }
+                                if (i == 2) 
+                                {
+                                    characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                }
+                                if (i == 3) 
+                                {
+                                    characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                }
+                                if (i == 4) 
+                                {
+                                    characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                }
+                            }
+                        }
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

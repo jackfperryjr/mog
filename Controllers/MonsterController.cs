@@ -41,6 +41,8 @@ namespace Moogle.Controllers
         }
 
         public static IConfiguration configuration { get; private set; }
+        [TempData]
+        public string StatusMessage { get; set; }
 
         // GET: Monster
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -67,7 +69,6 @@ namespace Moogle.Controllers
 
             int pageSize = 10;
             return View(await PaginatedList<Monster>.CreateAsync(monsters.AsNoTracking(), page ?? 1, pageSize));
-            //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
         }
 
         // GET: Monster/Details/5
@@ -141,6 +142,10 @@ namespace Moogle.Controllers
             await _emailSender.SendUpdateEmailAsync("Monster added", user.FirstName, user.Email, "to", "added");
 
             await _context.SaveChangesAsync();
+            TempData["ClassName"] = "bg-success";
+            TempData["ContainerHeight"] = "height: 50px;";
+            TempData["Message"] = "Your monster was added!";
+            TempData["Status"] = "Success";
             return RedirectToAction(nameof(Index));
         }
 
@@ -208,17 +213,11 @@ namespace Moogle.Controllers
                             }
                                 monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
                         }
-                        else
-                        {
-                            monster.Picture = monsterFromDb.Picture;
-                        }
                     }
-                    // else 
-                    // {
-                    //     monsterFromDb.Picture = monster.Picture;
-                    // }
-
-                    //_context.Update(monsterFromDb);
+                    TempData["ClassName"] = "bg-success";
+                    TempData["ContainerHeight"] = "height: 50px;";
+                    TempData["Message"] = "This monster has been updated!";
+                    TempData["Status"] = "Success";
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
