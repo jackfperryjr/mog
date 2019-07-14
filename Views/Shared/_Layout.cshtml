@@ -29,7 +29,6 @@
                 <div class="navbar-header text-center">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
-                        <!-- <img style="width:40px;"src="@Url.Content("/icons/chocobo.png")"> -->
                         <h1 class="site-logo">
                             <span class="blue no-space">M</span>
                             <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
@@ -37,16 +36,11 @@
                             <span class="blue no-space">g</span>
                             <span class="green no-space">l</span>
                             <span class="letter-e red no-space">e</span>
-                            <span class="site-span-api">API</span>
+                            <span class="site-span-api">API <span id="menu-hamburger" class="fas fa-caret-down green" style="padding-left:5%;font-size: 28px;"></span></span>
                         </h1>
+                        <!-- <div><span id="menu-caret" class="fas fa-caret-down"></span></div> -->
                     </button>
                     <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
-                        <!-- Toying with different image site-titles -->
-                        <!-- ======================================= -->
-                        <!-- <img style="width:250px;" src="@Url.Content("/icons/moogleapi-logo.png")"> -->
-                        <!-- <img style="width:250px;" src="@Url.Content("/icons/moogleapi-bw.png")"> -->
-                        <!-- <img style="width:250px;border-radius:100px;" src="@Url.Content("/icons/moogleapi-halloween.png")"> -->
-                        <!-- These need to be adjusted -->
                         <h1 class="site-logo swap">
                             <span class="blue no-space">M</span>
                             <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
@@ -115,12 +109,17 @@
             },
             function() {
                 $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-                $(this).toggleClass("open");       
+                $(this).toggleClass("open");   
             });
             // Click outside menu to close it
             //$(document).click(function () {
             //    $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
             //});
+            $(".navbar-toggle").click(function () {
+                //$("#menu-caret").toggleClass("rotate-caret");
+                $("#menu-hamburger").toggleClass("fas fa-caret-down green");
+                $("#menu-hamburger").toggleClass("fas fa-caret-up red");
+            });
         </script>
     </body>
 </html>

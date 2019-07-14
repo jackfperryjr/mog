@@ -542,6 +542,9 @@ button.stripe-button-el>span {
 .general-nav li {
   display: inline-block;
 }
+.mobile-nav-text {
+  display: none;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     .general-nav {
@@ -699,7 +702,7 @@ button.stripe-button-el>span {
       display:none;
     }
     .navbar-header button {
-      margin:8px auto;
+      margin:8px auto 0 auto;
     }
     .navbar-toggle {
       float:none;
@@ -709,6 +712,9 @@ button.stripe-button-el>span {
     }
     .mobile-copyright {
       display:inline;
+    }
+    .mobile-nav-text {
+      display: inline;
     }
 }
 

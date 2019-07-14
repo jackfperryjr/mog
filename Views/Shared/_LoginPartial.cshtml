@@ -20,16 +20,16 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><img class="navbar-icon" src="@user.Picture"></a>
                 <ul class="dropdown-menu">
-                    <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile.">Profile &nbsp;<span class="fas fa-address-card blue" style="font-size: 18px;"></span></a></li>
+                    <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile."><span class="fas fa-address-card blue" style="font-size: 18px;"></span> Profile</a></li>
                     @if (User.IsInRole("Admin"))
                     {
                         <!-- <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add new user &nbsp;<span class="glyphicon glyphicon-user"></span></a></li>  -->
-                        <li><a asp-controller="Account" asp-action="Users" title="Click to manage users.">Manage users &nbsp;<span class="fas fa-user-friends red" style="font-size: 18px;"></span></a></li> 
+                        <li><a asp-controller="Account" asp-action="Users" title="Click to manage users."><span class="fas fa-user-friends red" style="font-size: 18px;"></span> Manage Users</a></li> 
                     }
-                    <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters.">Characters &nbsp;<span class="fas fa-users yellow" style="font-size: 18px;"></span></a></li>
-                    <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games.">Games &nbsp;<span class="fas fa-gamepad blue" style="font-size: 18px;"></span></a></li>
-                    <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters.">Monsters &nbsp;<span class="fas fa-pastafarianism green" style="font-size: 18px;"></span></a></li>
-                    <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link pull-right" title="Click to sign out.">Logout &nbsp;<span class="fas fa-sign-out-alt red" style="font-size: 18px;"></span></button></li>
+                    <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters."><span class="fas fa-users yellow" style="font-size: 18px;"></span> Characters</a></li>
+                    <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games."><span class="fas fa-gamepad blue" style="font-size: 18px;"></span> Games</a></li>
+                    <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters."><span class="fas fa-pastafarianism green" style="font-size: 18px;"></span> Monsters</a></li>
+                    <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link pull-right" title="Click to sign out."><span class="fas fa-sign-out-alt red" style="font-size: 18px;"></span> Logout</button></li>
                 </ul>
             </li>
         </ul>
@@ -37,10 +37,10 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right" style="margin-top:20px;text-align:center;">
-        <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue" style="font-size: 18px;"></span></a></li>
-        <li><a asp-controller="Home" asp-action="About" title="About"><span class="fas fa-question-circle red" style="font-size: 18px;"></span></a></li>
-        <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span></a></li>
-        <li><a asp-controller="Account" asp-action="Login" title="Login"><span class="fas fa-sign-in-alt green" style="font-size: 18px;"></span></a></li>
+    <ul class="nav navbar-nav navbar-right" style="margin-top:20px;">
+        <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue" style="font-size: 18px;"></span> <span class="mobile-nav-text">Home</span></a></li>
+        <li><a asp-controller="Home" asp-action="About" title="About"><span class="fas fa-question-circle red" style="font-size: 18px;"></span> <span class="mobile-nav-text">About</span></a></li>
+        <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span> <span class="mobile-nav-text">The Developer</span></a></li>
+        <li><a asp-controller="Account" asp-action="Login" title="Login"><span class="fas fa-sign-in-alt green" style="font-size: 18px;"></span> <span class="mobile-nav-text">Login</span></a></li>
     </ul>
 }
