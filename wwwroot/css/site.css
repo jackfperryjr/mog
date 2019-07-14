@@ -574,7 +574,7 @@ button.stripe-button-el>span {
     }
     .btn-mobile-upload {
       display:block !important;
-      max-width:43px;
+      max-width:100%;
     }
     .navbar-username {
       display:none !important;

@@ -24,13 +24,13 @@
     </div>
 </form>
 <div class="container top-buffer"> 
-    <div class="row bottom-buffer">
+    <div class="row bottom-buffer" style="margin-right: auto; margin-left: auto; padding-left:5%;">
     @foreach (var user in Model)  
     {  
         @if (user.Email != "jack.franklin.perryjr@gmail.com")
         {
-            <div class="well col-md-4 character-card" style="min-width:250px!important;">
-                <p><img src="@user.Picture" style="width: 40px; margin-right: 2px;" />@user.FirstName @user.LastName</p>
+            <div class="well col-md-4 character-card" style="min-width:250px!important;min-height: 200px;">
+                <div><img src="@user.Picture" style="width: 40px;height:40px;border-radius:50%;margin-right:3px;" />@user.FirstName @user.LastName</div>
                 <p>@user.Email</p>
                 <p>email confirmed? @user.EmailConfirmed</p>
                 <br/>
