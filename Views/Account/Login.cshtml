@@ -8,14 +8,14 @@
     ViewData["Title"] = "| Login";
 }
 <div class="row" style="margin:20% auto;">
-    <div class="col-md-5" style="background-color:#fafafa;border-radius:5px;margin:0 auto !important;float:none !important;">
+    <div class="col-md-5" style="background-color:transparent;border-radius:5px;margin:0 auto !important;float:none !important;">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <h2>please log in</h2>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <input asp-for="Email" class="login-bar" style="width:100%;" placeholder="Enter email" />
+                    <input asp-for="Email" class="login-bar login-picture" style="width:100%;" placeholder="Enter email" />
                     <br/><span asp-validation-for="Email" class="text-danger"></span>
                     <input asp-for="Password" class="login-bar" style="width:100%;" placeholder="Enter password" />
                     <br/><span asp-validation-for="Password" class="text-danger"></span>

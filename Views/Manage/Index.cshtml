@@ -47,12 +47,12 @@
                     <img id="img-output" class="img-user" src="@user.Picture" title="Picture of you!" title="Click to change picture." style="cursor:pointer;">
                     <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
                 </label>
-                <h5>Click image to change</h5>
+                <h5>Click to change image</h5>
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <span id="img-output-verify" class="green" style="font-size:10px;margin-top:10px;"></span>
         </div>
-        <button type="submit" class="btn btn-default" style="margin:30px auto 0 auto;"><span class="glyphicon glyphicon-ok"></span> save</button>
+        <button type="submit" class="btn btn-default pull-left" style="margin:30px auto 0 auto;"><span class="glyphicon glyphicon-ok"></span> save</button>
     </form>
 </div>
 

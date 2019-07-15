@@ -166,7 +166,10 @@ i:focus {
   background-color:#eceff1;
   border:1px solid transparent;
 }
-input,
+input {
+  width:100%;
+}
+/* input,
 input:focus {
   width: 100%;
   font-size: inherit;
@@ -174,6 +177,12 @@ input:focus {
   background-color:#eceff1;
   outline: none !important;
   transition: all .3s ease-in-out;
+} */
+.login-picture:focus {
+  border-bottom: 2.5px solid #CC0000;
+  border-radius: 5px;
+  transition: all .1s ease-in-out;
+  font-weight: bolder;
 }
 ::placeholder {
   font-size: 14px;
@@ -396,6 +405,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 .login-picture {
   width: 100%;
+  background: transparent;
 }
 #delete-warning {
   max-width: 50%;
