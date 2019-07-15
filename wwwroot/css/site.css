@@ -168,6 +168,7 @@ i:focus {
 }
 input {
   width:100%;
+  border-bottom: 2px solid #000;
 }
 /* input,
 input:focus {
@@ -179,7 +180,7 @@ input:focus {
   transition: all .3s ease-in-out;
 } */
 .login-picture:focus {
-  border-bottom: 2.5px solid #CC0000;
+  border-bottom: 3px solid #CC0000;
   border-radius: 5px;
   transition: all .1s ease-in-out;
   font-weight: bolder;
