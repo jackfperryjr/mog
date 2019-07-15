@@ -168,7 +168,6 @@ i:focus {
 }
 input {
   width:100%;
-  border-bottom: 2px solid #000;
 }
 /* input,
 input:focus {
@@ -407,6 +406,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .login-picture {
   width: 100%;
   background: transparent;
+  border-bottom: 2px solid #000;
 }
 #delete-warning {
   max-width: 50%;
