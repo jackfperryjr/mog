@@ -122,7 +122,7 @@ namespace Moogle.Controllers
             if (files.Count != 0) 
             {
                 var extension = Path.GetExtension(files[0].FileName);
-                var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
+                var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + extension);
 
                 using (var filestream = new MemoryStream())
                 {
@@ -130,7 +130,7 @@ namespace Moogle.Controllers
                     filestream.Position = 0;
                     await newBlob.UploadFromStreamAsync(filestream);
                 }
-                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
+                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + extension;
             }
             else 
             {
@@ -203,7 +203,7 @@ namespace Moogle.Controllers
                         if (files.Count != 0 ) 
                         {
                             var extension = Path.GetExtension(files[0].FileName);
-                            var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + "-Picture" + extension);
+                            var newBlob = container.GetBlockBlobReference("Monster-" + monster.MonsterId + extension);
 
                             using (var filestream = new MemoryStream())
                             {
@@ -211,7 +211,7 @@ namespace Moogle.Controllers
                                 filestream.Position = 0;
                                 await newBlob.UploadFromStreamAsync(filestream);
                             }
-                                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + "-Picture" + extension;
+                                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Monster-" + monster.MonsterId + extension;
                         }
                     }
                     TempData["ClassName"] = "bg-success";

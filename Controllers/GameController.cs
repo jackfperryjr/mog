@@ -100,11 +100,11 @@ namespace Moogle.Controllers
                 var upload = Path.Combine(webRootPath, @"images");
                 var extension = Path.GetExtension(files[0].FileName);
 
-                using (var filestream = new FileStream(Path.Combine(upload, "Game-" + game.Title + "-Picture" + extension), FileMode.Create))
+                using (var filestream = new FileStream(Path.Combine(upload, "Game-" + game.Title + extension), FileMode.Create))
                 {
                     files[0].CopyTo(filestream);
                 }
-                gameFromDb.Picture = @"\" + @"images" + @"\" + "Game-" + game.Title + "-Picture" + extension;
+                gameFromDb.Picture = @"\" + @"images" + @"\" + "Game-" + game.Title + extension;
             }
             else 
             {

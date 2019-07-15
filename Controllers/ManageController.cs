@@ -133,7 +133,7 @@ namespace Moogle.Controllers
                 if (files.Count != 0) 
                 {
                     var extension = Path.GetExtension(files[0].FileName);
-                    var newBlob = container.GetBlockBlobReference("User-" + user.Id + "-Picture" + extension);
+                    var newBlob = container.GetBlockBlobReference("User-" + user.Id + extension);
 
                     using (var filestream = new MemoryStream())
                     {
@@ -141,7 +141,7 @@ namespace Moogle.Controllers
                         filestream.Position = 0;
                         await newBlob.UploadFromStreamAsync(filestream);
                     }
-                    user.Picture = "https://mooglestorage.blob.core.windows.net/images/User-" + user.Id + "-Picture" + extension;
+                    user.Picture = "https://mooglestorage.blob.core.windows.net/images/User-" + user.Id + extension;
                 }
             }
 

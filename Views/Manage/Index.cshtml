@@ -41,22 +41,13 @@
                     <input asp-for="PhoneNumber" class="login-bar login-picture" placeholder="Enter phone number" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
-                <!-- <div class="form-group">
-                    <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:100%;max-width:100%;">upload 
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" />
-                        </label>
-                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:100%;max-width:100%;"><span class="glyphicon glyphicon-cloud-upload"></span>
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;overflow:hidden;" />
-                        </label>
-                    </div>
-                </div> -->
             </div>
             <div class="col-md-6">
                 <label>
                     <img id="img-output" class="img-user" src="@user.Picture" title="Picture of you!" title="Click to change picture." style="cursor:pointer;">
-                    <input asp-for="Picture" type="file" accept="image/*" name="picture" style="display:none;" onchange="onFileSelected(event)" />
+                    <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
                 </label>
+                <h5>Click image to change</h5>
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <span id="img-output-verify" class="green" style="font-size:10px;margin-top:10px;"></span>
@@ -68,19 +59,9 @@
 @section Scripts {
     @{await Html.PartialAsync("_ValidationScriptsPartial");}
     <script type="text/javascript">
-        function onFileSelected(event) {
-            let selectedFile = event.target.files[0];
-            let reader = new FileReader();
-
-            let imgtag = $("#img-output");
-            imgtag.title = selectedFile.name;
-
-            reader.onload = function(event) {
-                imgtag.src = event.target.result;
-            };
-
-            reader.readAsDataURL(selectedFile);
-            $("#img-output-verify").html("Click save to change your image!");
-        }
+        $("#img-input").change(function(event){
+            let imgPath = URL.createObjectURL(event.target.files[0]);
+            $("#img-output").fadeIn("fast").attr('src',imgPath); 
+        }) 
     </script>
 }

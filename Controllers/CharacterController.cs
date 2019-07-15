@@ -119,7 +119,7 @@ namespace Moogle.Controllers
             {
                 for (var i = 0; i < files.Count; i++) {
                     var extension = Path.GetExtension(files[i].FileName);
-                    var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
+                    var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + (i + 1).ToString() + extension);
 
                     using (var filestream = new MemoryStream())
                     {
@@ -129,23 +129,23 @@ namespace Moogle.Controllers
                     }
                     if (i == 0) 
                     {
-                        characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                     }
                     if (i == 1) 
                     {
-                        characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                     }
                     if (i == 2) 
                     {
-                        characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                     }
                     if (i == 3) 
                     {
-                        characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                     }
                     if (i == 4) 
                     {
-                        characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                        characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                     }
                 }
             }
@@ -224,7 +224,7 @@ namespace Moogle.Controllers
                         {
                             for (var i = 0; i < files.Count; i++) {
                                 var extension = Path.GetExtension(files[i].FileName);
-                                var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension);
+                                var newBlob = container.GetBlockBlobReference("Character-" + characters.Id + (i + 1).ToString() + extension);
 
                                 using (var filestream = new MemoryStream())
                                 {
@@ -234,23 +234,23 @@ namespace Moogle.Controllers
                                 }
                                 if (i == 0) 
                                 {
-                                    characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                    characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                                 }
                                 if (i == 1) 
                                 {
-                                    characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                    characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                                 }
                                 if (i == 2) 
                                 {
-                                    characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                    characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                                 }
                                 if (i == 3) 
                                 {
-                                    characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                    characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                                 }
                                 if (i == 4) 
                                 {
-                                    characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + "-Picture" + (i + 1).ToString() + extension;
+                                    characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + characters.Id + (i + 1).ToString() + extension;
                                 }
                             }
                         }
