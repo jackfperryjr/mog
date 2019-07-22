@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Moogle.Data;
-using Moogle.Models;
 
 namespace Moogle
 {
@@ -24,6 +15,7 @@ namespace Moogle
             using (var scope = host.Services.CreateScope())
             {
                 var provider = scope.ServiceProvider;
+                // provider.GetService<ApplicationDbContext>().Database.EnsureCreated();
 				provider.GetService<ApplicationDbContext>().Database.Migrate();
                 Roles.CreateRoles(provider, Startup.Configuration);
                 //SeedData.SeedDB(context);

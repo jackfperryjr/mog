@@ -31,6 +31,7 @@
                         <option value="Final Fantasy 13-2">Final Fantasy 13-2</option>
                         <option value="Final Fantasy 14">Final Fantasy 14</option>
                         <option value="Final Fantasy 15">Final Fantasy 15</option>
+                        <option value="Final Fantasy BE">Final Fantasy Brave Exvius</option>
                     </select>
                     <span asp-validation-for="Origin" class="text-danger"></span>
                 </div>
@@ -123,19 +124,14 @@
             </div>
             <div id="desc-position" class="col-md-6">
 
-                <div class="form-group" style="margin-bottom:10px !important;">
-                    <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
-                        </label>
-                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
-                        </label>
-                        <span class="form-control login-bar login-picture img-input-format" id="picture-info"></span>
-                        <span asp-validation-for="Picture" class="text-danger"></span>
-                    </div>
+                <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
+                    <label>
+                        <img id="img-output" style="width:100%;height:auto;max-height:100%;margin:5px;cursor:pointer;" src="https://mooglestorage.blob.core.windows.net/images/icon-default-image.png" />
+                        <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
+                    </label>
+                    <h5>Click to change image</h5>
+                    <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
-                <span class="font-10 label-under">picture</span>
 
                 <div class="form-group" style="margin-bottom:10px !important;">
                     <div class="input-group" style="width:100%;">
@@ -223,4 +219,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        function hideSuccess() {
+            $("#edit-success-container").hide();
+        }
+        $("#img-input").change(function(event){
+            let imgPath = URL.createObjectURL(event.target.files[0]);
+            $("#img-output").fadeIn("fast").attr('src',imgPath); 
+        }) 
+    </script>
 }

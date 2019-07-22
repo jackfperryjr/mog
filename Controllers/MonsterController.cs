@@ -134,7 +134,7 @@ namespace Moogle.Controllers
             }
             else 
             {
-                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/imagesicon-default-image.png";
+                monsterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-image.png";
             }
             //return View(monster);
 
