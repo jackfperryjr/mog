@@ -20,17 +20,11 @@
                 </div>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
-                    <input asp-for="Strength" class="login-bar login-picture" placeholder="What's this monster's strength?" title="Enter monster's strength."/>
-                    <span asp-validation-for="Strength" class="text-danger"></span>
-                    <span class="font-10 label-under">strength</span>
+                    <input asp-for="JapaneseName" class="login-bar login-picture" placeholder="Enter monster japanese name" title="Enter monster's japanese name."/>
+                    <span asp-validation-for="JapaneseName" class="text-danger"></span>
+                    <span class="font-10 label-under">japanese name</span>
                 </div>
                 <div class="form-group" style="margin-bottom:0 !important;">
-                    <input type="hidden" asp-for="MonsterId" />
-                    <input asp-for="Weakness" class="login-bar login-picture" placeholder="What's this monster's weakness?" title="Enter monster's weakness."/>
-                    <span asp-validation-for="Weakness" class="text-danger"></span>
-                    <span class="font-10 label-under">weakness</span>
-                </div>
-                <!-- <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <input asp-for="ElementalAffinity" class="login-bar login-picture" placeholder="What's this monster's elemental affinity?" title="Enter monster's elemental affinity."/>
                     <span asp-validation-for="ElementalAffinity" class="text-danger"></span>
@@ -64,16 +58,16 @@
                     <div class="col-md-6">
                         <div class="form-group" style="margin-bottom:0 !important;">
                             <input type="hidden" asp-for="MonsterId" />
-                            <input asp-for="Hp" class="login-bar login-picture" placeholder="Enter hp" title="Enter monster's hp."/>
-                            <span asp-validation-for="Hp" class="text-danger"></span>
+                            <input asp-for="HitPoints" class="login-bar login-picture" placeholder="Enter hp" title="Enter monster's hp."/>
+                            <span asp-validation-for="HitPoints" class="text-danger"></span>
                             <span class="font-10 label-under">hp</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" style="margin-bottom:0 !important;">
                             <input type="hidden" asp-for="MonsterId" />
-                            <input asp-for="Mp" class="login-bar login-picture" placeholder="Enter mp" title="Enter monster's mp."/>
-                            <span asp-validation-for="Mp" class="text-danger"></span>
+                            <input asp-for="ManaPoints" class="login-bar login-picture" placeholder="Enter mp" title="Enter monster's mp."/>
+                            <span asp-validation-for="ManaPoints" class="text-danger"></span>
                             <span class="font-10 label-under">mp</span>
                         </div>
                     </div>
@@ -83,7 +77,7 @@
                     <input asp-for="Game" class="login-bar login-picture" placeholder="What game did this monster come from?" title="Enter game from which this monster came."/>
                     <span asp-validation-for="Game" class="text-danger"></span>
                     <span class="font-10 label-under">game</span>
-                </div> -->
+                </div>
             </div>
             <div id="desc-position" class="col-md-6">
                 <div class="input-group" style="height:250px;width:250px;margin:0 auto;">

@@ -100,7 +100,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
+        public async Task<IActionResult> Create([Bind("MonsterId,Name,JapaneseName,ElementalAffinity,ElementalWeakness,HitPoints,ManaPoints,Attack,Defense,Description,Picture,Game,AddedBy")] Monster monster)
         {
             var account = _configuration["AzureStorageConfig:AccountName"];
             var key = _configuration["AzureStorageConfig:AccountKey"];
@@ -110,10 +110,10 @@ namespace Moogle.Controllers
             var container = cloudBlobClient.GetContainerReference("images");
             await container.CreateIfNotExistsAsync();
 
-            if (ModelState.IsValid)
-            {
+            // if (ModelState.IsValid) // Until I figure out why it's false.
+            // {
                 _context.Add(monster);
-            }
+            //}
             await _context.SaveChangesAsync();
 
             var files = HttpContext.Request.Form.Files;
@@ -170,7 +170,7 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,Strength,Weakness,Description,Picture")] Monster monster)
+        public async Task<IActionResult> Edit(Guid id, [Bind("MonsterId,Name,JapaneseName,ElementalAffinity,ElementalWeakness,HitPoints,ManaPoints,Attack,Defense,Description,Picture,Game,AddedBy")] Monster monster)
         {
             var account = _configuration["AzureStorageConfig:AccountName"];
             var key = _configuration["AzureStorageConfig:AccountKey"];
@@ -192,9 +192,16 @@ namespace Moogle.Controllers
                 try
                 {
                     monsterFromDb.Name = monster.Name;
-                    monsterFromDb.Strength = monster.Strength;
-                    monsterFromDb.Weakness = monster.Weakness;
+                    monsterFromDb.JapaneseName = monster.JapaneseName;
+                    monsterFromDb.ElementalAffinity = monster.ElementalAffinity;
+                    monsterFromDb.ElementalWeakness = monster.ElementalWeakness;
+                    monsterFromDb.HitPoints = monster.HitPoints;
+                    monsterFromDb.ManaPoints = monster.ManaPoints;
+                    monsterFromDb.Attack = monster.Attack;
+                    monsterFromDb.Defense = monster.Defense;
                     monsterFromDb.Description = monster.Description;
+                    monsterFromDb.Game = monster.Game;
+                    monsterFromDb.AddedBy = monster.AddedBy;
 
                     var files = HttpContext.Request.Form.Files;
 
