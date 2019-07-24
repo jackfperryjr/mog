@@ -1,6 +1,7 @@
 
 using System;  
 using System.ComponentModel.DataAnnotations;  
+using Newtonsoft.Json;
 
 namespace Moogle.Models  
 {  
@@ -19,6 +20,7 @@ namespace Moogle.Models
         public string Picture { get; set; }
         public string Description { get; set; }
         public string Game { get; set; }
+        [JsonIgnore]
         public string AddedBy { get; set; }
     }  
 }
