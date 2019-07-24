@@ -143,7 +143,7 @@ namespace Moogle.Controllers
 
             await _context.SaveChangesAsync();
             TempData["ClassName"] = "bg-success";
-            TempData["ContainerHeight"] = "height: 50px;";
+            TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
             TempData["Message"] = "Your monster was added!";
             TempData["Status"] = "Success";
             return RedirectToAction(nameof(Index));
@@ -222,7 +222,7 @@ namespace Moogle.Controllers
                         }
                     }
                     TempData["ClassName"] = "bg-success";
-                    TempData["ContainerHeight"] = "height: 50px;";
+                    TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
                     TempData["Message"] = "This monster has been updated!";
                     TempData["Status"] = "Success";
                     await _context.SaveChangesAsync();

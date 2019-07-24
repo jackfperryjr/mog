@@ -1,6 +1,8 @@
 @model Moogle.Models.Monster
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "| Add";
+    var user = await UserManager.GetUserAsync(User);
 }
 @section Styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
@@ -11,6 +13,7 @@
     <div class="add-edit-list">
         <div class="row">
             <div class="col-md-6">
+                <input type="hidden" asp-for="AddedBy" value="@user.Email" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
@@ -74,7 +77,26 @@
                 </div>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
-                    <input asp-for="Game" class="login-bar login-picture" placeholder="What game did this monster come from?" title="Enter game from which this monster came."/>
+                    <select asp-for="Game" class="login-bar login-picture">
+                        <option value="Final Fantasy 01">Final Fantasy 01</option>
+                        <option value="Final Fantasy 02">Final Fantasy 02</option>
+                        <option value="Final Fantasy 03">Final Fantasy 03</option>  
+                        <option value="Final Fantasy 04">Final Fantasy 04</option>
+                        <option value="Final Fantasy 05">Final Fantasy 05</option>
+                        <option value="Final Fantasy 06">Final Fantasy 06</option>
+                        <option value="Final Fantasy 07">Final Fantasy 07</option>
+                        <option value="Final Fantasy 08">Final Fantasy 08</option>
+                        <option value="Final Fantasy 09">Final Fantasy 09</option>
+                        <option value="Final Fantasy 10">Final Fantasy 10</option>
+                        <option value="Final Fantasy 10-2">Final Fantasy 10-2</option>
+                        <option value="Final Fantasy 11">Final Fantasy 11</option>
+                        <option value="Final Fantasy 12">Final Fantasy 12</option>
+                        <option value="Final Fantasy 13">Final Fantasy 13</option>
+                        <option value="Final Fantasy 13-2">Final Fantasy 13-2</option>
+                        <option value="Final Fantasy 14">Final Fantasy 14</option>
+                        <option value="Final Fantasy 15">Final Fantasy 15</option>
+                        <option value="Final Fantasy BE">Final Fantasy Brave Exvius</option>
+                    </select>
                     <span asp-validation-for="Game" class="text-danger"></span>
                     <span class="font-10 label-under">game</span>
                 </div>
