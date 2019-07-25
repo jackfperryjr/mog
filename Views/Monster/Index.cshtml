@@ -111,18 +111,16 @@
     </div>                     
     }
 </div>
-<div id="list-btns" class="text-center" style="margin-top:50px;">
+<div class="text-center" style="margin-top:50px;">
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex - 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-warning shadow @prevDisabled">
-    <span class="fas fa-arrow-left" style="font-size: 18px;"></span>
+    class="fas fa-arrow-left yellow index-arrow-left-circle @prevDisabled">
     </a>
     <a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
     asp-route-page="@(Model.PageIndex + 1)"
     asp-route-currentFilter="@ViewData["CurrentFilter"]"
-    class="btn btn-primary shadow @nextDisabled">
-    <span class="fas fa-arrow-right" style="font-size: 18px;"></span>
+    class="fas fa-arrow-right blue index-arrow-right-circle @nextDisabled">
     </a>
 </div>
 

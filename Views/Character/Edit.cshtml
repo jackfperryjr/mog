@@ -123,15 +123,15 @@
                 <span class="font-10 label-under">dating response</span>
             </div>
             <div id="desc-position" class="col-md-6">
-                <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
+                <div class="img-container">
                     <label>
-                        <img id="img-output" style="width:100%;height:auto;max-height:100%;margin:5px;cursor:pointer;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                        <img id="img-output" style="max-width:100%;height:auto;margin:5px;cursor:pointer;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
                         <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
                     </label>
-                    <h5>click to change image</h5>
-                    <span asp-validation-for="Picture" class="text-danger"></span>
+                <h5>click to change image</h5>
+                <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
-                <div class="row" style="min-height:200px;">
+                <div class="row" style="min-height:200px;margin-top:100px;">
                     <div class="col-md-6" style="min-height:200px;">
                         <img style="width:100px;height:100px;margin:5px;" asp-route-id="@Model.Id" src="@Model.Picture2" alt="@Model.Name" title="@Model.Name" />
                         <div class="form-group" style="margin-bottom:10px !important;">
@@ -214,8 +214,8 @@
     </div>
     <div class="add-edit-list">
         <div class="form-group top-buffer">
-            <button type="submit" class="btn btn-default shadow"><span class="glyphicon glyphicon-ok"></span> save</button>
-            <a class="btn btn-default shadow" asp-action="Index"><span class="glyphicon glyphicon-arrow-left"></span> cancel</a>
+            <button class="btn btn-link far fa-times-circle edit-cancel yellow" asp-action="Index"></button>
+            <button type="submit" class="btn btn-link far fa-check-circle edit-save blue"></button>
         </div>
     </div>
 </form>
