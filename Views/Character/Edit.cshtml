@@ -125,7 +125,7 @@
             <div id="desc-position" class="col-md-6">
                 <div class="img-container">
                     <label>
-                        <img id="img-output" style="max-width:100%;height:auto;margin:5px;cursor:pointer;" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                        <img id="img-output" class="img-character" asp-route-id="@Model.Id" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
                         <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
                     </label>
                 <h5>click to change image</h5>

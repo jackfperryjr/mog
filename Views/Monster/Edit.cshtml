@@ -107,7 +107,7 @@
             <div id="desc-position" class="col-md-6">
                 <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
                     <label>
-                        <img id="img-output" style="width:100%;height:auto;max-height:100%;margin:5px;cursor:pointer;" asp-route-id="@Model.MonsterId" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
+                        <img id="img-output" class="img-monster" asp-route-id="@Model.MonsterId" src="@Model.Picture" alt="@Model.Name" title="@Model.Name" />
                         <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
                     </label>
                     <h5>click to change image</h5>
