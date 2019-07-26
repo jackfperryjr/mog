@@ -138,8 +138,10 @@ namespace Moogle.Controllers
             }
             //return View(monster);
 
-            var user = await _userManager.GetUserAsync(User);
-            await _emailSender.SendUpdateEmailAsync("Monster added", user.FirstName, user.Email, "to", "added");
+            if (!User.IsInRole("Admin")) {
+                var user = await _userManager.GetUserAsync(User);
+                await _emailSender.SendUpdateEmailAsync("Monster added", user.FirstName, user.Email, "to", "added");
+            }
 
             await _context.SaveChangesAsync();
             TempData["ClassName"] = "bg-success";
