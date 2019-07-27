@@ -10,41 +10,35 @@
 <form asp-action="Edit">
     <div class="add-edit-list">
         <div class="row">
-            <img class="img-display-format" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
+            <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
+                <label>
+                    <img id="img-output" class="img-game" asp-route-id="@Model.GameId" src="@Model.Picture" alt="@Model.Title" title="@Model.Title" />
+                    <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
+                </label>
+                <h5>click to change image</h5>
+                <span asp-validation-for="Picture" class="text-danger"></span>
+            </div>        
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Title" class="login-bar" style="width:100%;" placeholder="Enter game title" title="Enter game title."/>
+                    <input asp-for="Title" class="login-bar login-picture" style="width:100%;" placeholder="Enter game title" title="Enter game title."/>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">game title</span>
-                <div class="form-group" style="margin-bottom:10px !important;">
-                    <div class="input-group" style="width:100%;">
-                        <label class="btn btn-primary btn-file pull-left btn-web-upload" style="margin-top:10px;width:20%;">upload 
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
-                        </label>
-                        <label class="btn btn-primary btn-file pull-left btn-mobile-upload" style="margin-top:10px;width:20%;"><span class="glyphicon glyphicon-cloud-upload"></span>
-                            <input asp-for="Picture" type="file" name="picture" style="display:none;" onchange="$('#picture-info').html(this.files[0].name)" />
-                        </label>
-                        <span class="form-control login-bar login-picture img-input-format" id="picture-info">@Model.Picture</span>
-                        <span asp-validation-for="Picture" class="text-danger"></span>
-                    </div>
-                </div>
-                <span class="font-10 label-under">picture</span>
             </div>
             <div class="col-md-6">
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="ReleaseDate" class="login-bar" style="width:100%;" placeholder='Enter release date ex. "March 3, 1982"' title="Enter game's release date."/>
+                    <input asp-for="ReleaseDate" class="login-bar login-picture" style="width:100%;" placeholder='Enter release date ex. "March 3, 1982"' title="Enter game's release date."/>
                     <span asp-validation-for="ReleaseDate" class="text-danger"></span>
                 </div>
                 <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">release date</span>
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="GameId" />
-                    <input asp-for="Platform" class="login-bar" style="width:100%;" placeholder='Enter platform ex. "Playstation 1"' title="Enter the platform game was released on."/>
+                    <input asp-for="Platform" class="login-bar login-picture" style="width:100%;" placeholder='Enter platform ex. "Playstation 1"' title="Enter the platform game was released on."/>
                     <span asp-validation-for="Platform" class="text-danger"></span>
                 </div>
                 <span style="color:#cc0000;font-size:10px;margin-bottom:5px;float:left;">platform</span>
@@ -67,3 +61,15 @@
         </div>
     </div>
 </form>
+
+@section Scripts {
+    <script type="text/javascript">
+        function hideSuccess() {
+            $("#edit-success-container").hide();
+        }
+        $("#img-input").change(function(event){
+            let imgPath = URL.createObjectURL(event.target.files[0]);
+            $("#img-output").fadeIn("fast").attr('src',imgPath); 
+        }) 
+    </script>
+}

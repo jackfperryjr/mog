@@ -5,9 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Data;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.Extensions.Configuration;
+using Moogle.Services;
 using Moogle.Models;
+using Moogle.Data;
 
 namespace Moogle.Controllers
 {
@@ -16,13 +21,28 @@ namespace Moogle.Controllers
     public class GameController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private IHostingEnvironment _env;
+        private readonly IEmailSender _emailSender;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private IHostingEnvironment _env { get; }
+        private IConfiguration _configuration;
 
-        public GameController(ApplicationDbContext context, IHostingEnvironment env)
+        public GameController(
+            ApplicationDbContext context, 
+            IEmailSender emailSender, 
+            UserManager<ApplicationUser> userManager, 
+            IHostingEnvironment env,
+            IConfiguration configuration)   
         {
             _context = context;
+            _emailSender = emailSender;
+            _userManager = userManager;
             _env = env;
+            _configuration = configuration;
         }
+
+        public static IConfiguration configuration { get; private set; }
+        [TempData]
+        public string StatusMessage { get; set; }
 
         // GET: Game
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -85,35 +105,52 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Create([Bind("GameId,Title,Picture,Platform,ReleaseDate,Description")] Game game)
         {
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (ModelState.IsValid)
             {
                 _context.Add(game);
             }
             await _context.SaveChangesAsync();
 
-            string webRootPath = _env.WebRootPath;
             var files = HttpContext.Request.Form.Files;
             var gameFromDb = _context.Games.Find(game.GameId);
 
             if (files.Count != 0) 
             {
-                var upload = Path.Combine(webRootPath, @"images");
                 var extension = Path.GetExtension(files[0].FileName);
+                var newBlob = container.GetBlockBlobReference("Game-" + game.GameId + extension);
 
-                using (var filestream = new FileStream(Path.Combine(upload, "Game-" + game.Title + extension), FileMode.Create))
+                using (var filestream = new MemoryStream())
                 {
                     files[0].CopyTo(filestream);
+                    filestream.Position = 0;
+                    await newBlob.UploadFromStreamAsync(filestream);
                 }
-                gameFromDb.Picture = @"\" + @"images" + @"\" + "Game-" + game.Title + extension;
+                gameFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Game-" + game.GameId + extension;
             }
             else 
             {
-                //var upload = Path.Combine(webRootPath, @"images", "default-image.png");
-                //System.IO.File.Copy(upload, webRootPath + @"\" + @"images" + @"\" + game.GameId + ".png");
-                gameFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
+                gameFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-image.png";
             }
-            //return View(game);
+            //return View(monster);
+
+            if (!User.IsInRole("Admin")) {
+                var user = await _userManager.GetUserAsync(User);
+                await _emailSender.SendUpdateEmailAsync("Monster added", user.FirstName, user.Email, "to", "added");
+            }
+
             await _context.SaveChangesAsync();
+            TempData["ClassName"] = "bg-success";
+            TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
+            TempData["Message"] = "Game added!";
+            TempData["Status"] = "Success";
             return RedirectToAction(nameof(Index));
         }
 
@@ -142,6 +179,14 @@ namespace Moogle.Controllers
         [Authorize(Roles="Admin")]
         public async Task<IActionResult> Edit(Guid id, [Bind("GameId,Title,ReleaseDate,Platform,Picture,Description")] Game game)
         {
+            var account = _configuration["AzureStorageConfig:AccountName"];
+            var key = _configuration["AzureStorageConfig:AccountKey"];
+            var storageCredentials = new StorageCredentials(account, key);
+            var cloudStorageAccount = new CloudStorageAccount(storageCredentials, true);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference("images");
+            await container.CreateIfNotExistsAsync();
+
             if (id != game.GameId)
             {
                 return NotFound();
@@ -151,40 +196,35 @@ namespace Moogle.Controllers
 
             if (ModelState.IsValid)
             {
-                                try
+                try
                 {
                     gameFromDb.Title = game.Title;
-                    gameFromDb.Platform = game.Platform;
                     gameFromDb.ReleaseDate = game.ReleaseDate;
+                    gameFromDb.Platform = game.Platform;
                     gameFromDb.Description = game.Description;
 
-                    string webRootPath = _env.WebRootPath;
                     var files = HttpContext.Request.Form.Files;
 
                     if (game.Picture != gameFromDb.Picture) 
                     {
                         if (files.Count != 0 ) 
                         {
-                            var upload = Path.Combine(webRootPath, @"images");
                             var extension = Path.GetExtension(files[0].FileName);
+                            var newBlob = container.GetBlockBlobReference("Game-" + game.GameId + extension);
 
-                            using (var filestream = new FileStream(Path.Combine(upload, "game-" + game.GameId + "-Picture" + extension), FileMode.Create))
+                            using (var filestream = new MemoryStream())
                             {
                                 files[0].CopyTo(filestream);
+                                filestream.Position = 0;
+                                await newBlob.UploadFromStreamAsync(filestream);
                             }
-                            gameFromDb.Picture = @"\" + @"images" + @"\" + "game-" + game.GameId + "-Picture" + extension;
-                        }
-                        else
-                        {
-                            game.Picture = gameFromDb.Picture;
+                                gameFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Game-" + game.GameId + extension;
                         }
                     }
-                    // else 
-                    // {
-                    //     gameFromDb.Picture = game.Picture;
-                    // }
-
-                    //_context.Update(gameFromDb);
+                    TempData["ClassName"] = "bg-success";
+                    TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
+                    TempData["Message"] = "Game updated!";
+                    TempData["Status"] = "Success";
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

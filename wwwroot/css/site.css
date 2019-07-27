@@ -67,9 +67,24 @@ i {
   font-size: 20px;
   float: right;
 }
-i:hover,
-i:focus {
-  color: rgb(30,130,220);
+.fa-facebook-square:hover,
+.fa-facebook-square:focus {
+  color: #4285F4;
+  transform: rotate(7deg);
+}
+.fa-instagram:hover,
+.ffa-instagram:focus {
+  color: #CC0000;
+  transform: rotate(7deg);
+}
+.fa-github-square:hover,
+.fa-github-square:focus {
+  color: #ffbb33;
+  transform: rotate(7deg);
+}
+.fa-linkedin:hover,
+.fa-linkedin:focus {
+  color: #007E33;
   transform: rotate(7deg);
 }
 /* Styling Moogle title */
@@ -636,6 +651,12 @@ button.stripe-button-el>span {
   background-repeat: no-repeat;
   border:4px solid #000;
   cursor:pointer;
+}
+.img-game {
+  margin: 5px;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
 }
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
