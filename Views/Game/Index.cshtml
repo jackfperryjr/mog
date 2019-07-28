@@ -22,13 +22,13 @@
         <div class="row">
             <div class="col-md-6">
                 <input id="search" class="fancy-search" type="text" name="SearchString" placeholder='Search ex. "04"' value="@ViewData["CurrentFilter"]"/>
-                <i id="search-icon" class="glyphicon glyphicon-search form-control-feedback blue" style="margin-right:30px;"></i>
+                <i id="search-icon" class="fas fa-search form-control-feedback blue" style="margin-right:30px;"></i>
             </div>
             <div class="col-md-6 text-right">
-                <a class="btn back-btn" asp-action="Index"><span class="glyphicon glyphicon-th-list"></span> full list</a>
+                <a class="btn back-btn" asp-action="Index">full list</a>
                 @if (User.IsInRole("Admin"))
                 {
-                <a class="btn back-btn" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> add game</a>
+                <a class="btn back-btn" asp-action="Create">add game</a>
                 }
             </div>
         </div>
