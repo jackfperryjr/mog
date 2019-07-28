@@ -168,6 +168,10 @@ i {
   display: none;
 }
 /* Forms */
+.fa-search {
+  padding-top: 2%;
+  font-size: 18px !important;
+}
 .label-under {
   color:#cc0000;
   margin-bottom:5px;
