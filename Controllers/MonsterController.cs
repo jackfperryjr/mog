@@ -41,8 +41,6 @@ namespace Moogle.Controllers
         }
 
         public static IConfiguration configuration { get; private set; }
-        [TempData]
-        public string StatusMessage { get; set; }
 
         // GET: Monster
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)

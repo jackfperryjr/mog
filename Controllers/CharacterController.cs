@@ -155,7 +155,10 @@ namespace Moogle.Controllers
             //     characterFromDb.Picture = @"\" + @"icons" + @"\" + "icon-default-image.png";
             // }
 
-
+            TempData["ClassName"] = "bg-success";
+            TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
+            TempData["Message"] = "Character added!";
+            TempData["Status"] = "Success";
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
             //return View(characters);
@@ -255,6 +258,10 @@ namespace Moogle.Controllers
                             }
                         }
                     }
+                    TempData["ClassName"] = "bg-success";
+                    TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
+                    TempData["Message"] = "Character updated!";
+                    TempData["Status"] = "Success";
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -268,9 +275,9 @@ namespace Moogle.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
-            return View(characters);
+            return View(characterFromDb);
         }
 
         // GET: Character/Delete/5

@@ -41,8 +41,6 @@ namespace Moogle.Controllers
         }
 
         public static IConfiguration configuration { get; private set; }
-        [TempData]
-        public string StatusMessage { get; set; }
 
         // GET: Game
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
@@ -238,7 +236,7 @@ namespace Moogle.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
             return View(gameFromDb);
         }

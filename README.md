@@ -90,7 +90,7 @@ new Vue({
 * Height
 * Weight
 * Picture
-* Description (Sometimes short, sometimes lengthy)
+* Description
 
 If I wasn't able to find the data for the character a set of question marks (??) is substituted.<br>
 This is a very simple data set only consisting of the games in the main series (1-15). Although, I'll look into supporting spin-offs as time permits. The data typically refers to the origin of the character, however, more info related to the character's other appearances is usually mentioned in the description.
@@ -98,12 +98,18 @@ This is a very simple data set only consisting of the games in the main series (
 ### Monster properties
 
 * Name
-* Strength
-* Weakness
+* Japanese name
+* Elemental affinity(s)
+* Elemental weakness(es)
+* Hit points
+* Mana points
+* Attack
+* Defense
+* Game
 * Picture
 * Description
 
-Currently there are very few monsters and very simplistic data. If you're interested in helping, let's talk!
+The monster database is growing! If you're interested in helping, let's talk.
 
 ### Game properties
 
