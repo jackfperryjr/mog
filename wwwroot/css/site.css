@@ -4,12 +4,40 @@
 
 @import "https://use.fontawesome.com/releases/v5.4.0/css/all.css";
 
-/* Modifying HTML elements */
+/* Modifying HTML elements and Bootstrap overrides */
 body {
   padding-top: 50px;
   padding-bottom: 20px;
   font-family: "Raleway";
   font-size: 16px;
+}
+.container-mod {
+  width: 70%;
+}
+.fixed-heading {
+  text-align: center; 
+  width: 100%; 
+  margin: 30px auto 0 auto;
+}
+.fixed-heading-col {
+  padding: 5px 30px 5px 30px;
+}
+.fixed-heading-paragraph {
+  font-size: 16px;
+  text-align: left;
+}
+/* End of that stuff */
+/* Navbar mods */
+.general-nav {
+  letter-spacing: 5px;
+  float: left;
+  margin-top: 16px;
+}
+.general-nav li {
+  display: inline-block;
+}
+.mobile-nav-text {
+  display: none;
 }
 .jack-title {
   font-size: 96px;
@@ -17,9 +45,41 @@ body {
 .navbar-username {
   margin-top:20px;
 }
-.container-mod {
-  width: 70%;
+.navbar-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: -2.5px;
+  cursor: pointer;
 }
+#logout:hover {
+  color: #37474F;
+  font-weight: bolder;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+.navbar-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  transition: all .3s ease-in-out
+}
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  background:#fff;
+}
+.navbar-mod { 
+  background:#fff;
+  border:transparent;
+}
+.dropdown-menu {
+  display: none;
+  width: 200px;
+}
+.dropdown-menu > li {
+  padding: 5px 0;
+  float: right;
+}
+/* End of navbar */
+/* _Layout styles */
 .hr-info-box {
   border:.5px solid #01579b;
 }
@@ -87,6 +147,13 @@ i {
   color: #007E33;
   transform: rotate(7deg);
 }
+.copyright {
+  display:inline;
+}
+.mobile-copyright {
+  display:none;
+}
+/* End of _Layout styles */
 /* Styling Moogle title */
 .site-title {
   margin-top:30px;
@@ -97,15 +164,10 @@ i {
 .letter-e {
   margin-left:-12px;
 }
-.navbar-title {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 16px;
-  letter-spacing: -2.5px;
-  cursor: pointer;
-}
 #random-character {
   display: none;
 }
+/* Forms */
 .label-under {
   color:#cc0000;
   margin-bottom:5px;
@@ -117,12 +179,66 @@ i {
 .font-10 {
   font-size:10px;
 }
-.no-space {
-  letter-spacing: -35px;
+input {
+  width:100%;
 }
-.no-margin {
-  margin:0 !important;
+.login-picture:focus {
+  border-bottom: 3px solid #CC0000;
+  border-radius: 5px;
+  transition: all .1s ease-in-out;
+  font-weight: bolder;
 }
+::placeholder {
+  font-size: 14px;
+  color:#455a64 ;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+.input-bar,
+.login-bar {
+  margin: 30px 20px 30px 0;
+  padding: 5px;
+  width: 350px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(0,0,0);
+  border-left: none;
+  outline: none;
+  border-radius: 0;
+  font-size: 16px;
+}
+.login-bar {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.login-picture {
+  width: 100%;
+  background: transparent;
+  border-bottom: 2px solid #000;
+}
+#desc {
+  line-height: 25px;
+}
+#desc-input {
+  border: 2px solid rgb(0,0,0);
+  border-radius: 5px;
+  resize: none;
+  width: 100%;
+  height: 215px;
+  overflow: scroll;
+}
+#desc-input:focus {
+  border: 3px solid #cc0000;
+}
+#desc-position {
+  float: right;
+}
+/* End of forms */
+/* Colors */
 .bg-green {
   background-color:#c8e6c9;
 }
@@ -153,7 +269,17 @@ i {
 .green {
   color: #007E33;
 }
+.dark-bluish-gray {
+  color: #37474f;
+}
+/* End of colors */
 /* Spacer classes */
+.no-space {
+  letter-spacing: -35px;
+}
+.no-margin {
+  margin:0 !important;
+}
 .top-buffer {
   margin-top: 40px;
 }
@@ -169,6 +295,7 @@ i {
 .close-modified {
   margin: 10px;
 }
+/* End of spacer classes */
 /* Search card */
 .search-card {
   margin: 0 auto;
@@ -181,33 +308,6 @@ i {
   background-color:#eceff1;
   border:1px solid transparent;
 }
-input {
-  width:100%;
-}
-/* input,
-input:focus {
-  width: 100%;
-  font-size: inherit;
-  border-radius: 500px;
-  background-color:#eceff1;
-  outline: none !important;
-  transition: all .3s ease-in-out;
-} */
-.login-picture:focus {
-  border-bottom: 3px solid #CC0000;
-  border-radius: 5px;
-  transition: all .1s ease-in-out;
-  font-weight: bolder;
-}
-::placeholder {
-  font-size: 14px;
-  color:#455a64 ;
-}
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
-input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
-input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
-
 #search-icon {
   font-size: 16px;
   margin-top: 5px;
@@ -220,274 +320,15 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .search-result > a:focus {
   color: #2e7d32;
 }
+/* Counters, though only characters are currently being counted */
 #counterC,
 #counterG,
 #counterM {
   font-weight: bolder;
   font-size: 16px;
 }
-#result {
-  outline: none;
-  width: 100%;
-  overflow: scroll;
-}
-.moogle-table {
-  color: #37474f; 
-  width:50%;
-}
-.moogle-row {
-  margin-right: 0;
-  margin-left: 0;
-}
-.moogle-h4 {
-  color: #2962ff;
-  margin-bottom: -.5px;
-}
-.moogle-modal-button {
-  background: transparent; 
-  padding: 10px; 
-  border: 1px solid #e0e0e0; 
-  margin: 20px 0; 
-  float: right;
-}
-.moogle-img {
-  width: 200px;
-}
-.moogle-modal-img {
-  width: 100%;
-}
-.dark-bluish-gray {
-  color: #37474f;
-}
-/* Logout link */
-#logout:hover {
-  color: #37474F;
-  font-weight: bolder;
-  text-decoration: none;
-  transition: all .3s ease-in-out;
-}
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-/* Admin character management stuff */
-.navbar-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  transition: all .3s ease-in-out
-}
-#character-list {
-  max-width: 100%;
-  margin: 50px auto;
-}
-.character-list-item {
-  font-size: 12px;
-  letter-spacing: 3px;
-  font-weight: bolder;
-  width: 25%;
-}
-.character-list-thumb,
-.game-list-thumb {
-  object-fit: fill; /* Do not scale the image */
-  object-position: center; /* Center the image within the element */
-  height: 100px;
-  width: 100px;
-  border-radius: 5px; 
-  border: 1px solid rgb(248,248,248);
-  box-shadow: none;
-  opacity: 1;
-  transition: all .3s ease-in-out;
-}
-.game-list-thumb {
-  width: 180px;
-  height: 160px;
-  max-width: 180px;
-  max-height: 160px;
-}
-.character-list-thumb:hover,
-.character-list-thumb:focus,
-.character-list-thumb:active,
-.game-list-thumb:hover,
-.game-list-thumb:focus,
-.game-list-thumb:active {
-  box-shadow: 2px 2px 6px rgb(150,150,150);
-  transform: translate(0, -1px);
-  opacity: .9;
-  transition: all .3s ease-in-out;
-}
-#totals {
-  display: none;
-}
-#loader {
-  display: block;
-}
-/*
-.load-bar {
-  position: relative;
-  margin-top: 5px;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #fff, #fdba2c, #fff);
-  opacity: .7;
-}
-.bar {
-  content: "";
-  display: inline;
-  position: absolute;
-  height: 100%; /* Editor complains, but this is needed */ /*
-  left: 50%;
-  text-align: center;
-}
-*/
-.bar:nth-child(1) {
-  background: linear-gradient(to right, #fff, #da4733, #fff);
-  animation: loading 3s linear infinite;
-}
-.bar:nth-child(2) {
-  background: linear-gradient(to right, #fff, #3b78e7, #fff);
-  animation: loading 3s linear 1s infinite;
-}
-.bar:nth-child(3) {
-  background: linear-gradient(to right, #fff, #fdba2c, #fff);
-  animation: loading 3s linear 2s infinite;
-}
-@keyframes loading {
-    from {left: 50%; width: 0;z-index:100;}
-    33.3333% {left: 0; width: 100%;z-index: 10;}
-    to {left: 0; width: 100%;}
-}
-.index-list {
-  width: 80%; 
-  text-align: center;
-}
-.add-edit-list {
-  width: 75%; 
-  margin: 0 auto;
-  text-align: center;
-}
-.character-profile-img {
-  margin-top: 10px; 
-  width: 100%; 
-  height: auto;
-  border: none;
-  border-radius: 5px; 
-  box-shadow: 2px 2px 6px rgb(150,150,150);
-  opacity: .9;
-  transition: all .3s ease-in-out;  
-}
-.character-card {
-  width: 150px;
-  height: 150px;
-  margin: 10px 0 25px 0;
-  background-color: transparent;
-  border: none; 
-}
-#character-profile-img:hover,
-#character-profile-img:focus,
-#character-profile-img:active  {
-  box-shadow: none;
-  opacity: 1;
-  transform: translate(0, 1px);
-  transition: all .3s ease-in-out;
-} 
-.character-delete-img {
-  width: 200px;
-}
-.character-delete-img-game {
-  width: 350px;
-}
-.index-button {
-  float: right;
-  margin: 2.5px;
-}
-.input-bar,
-.login-bar {
-  margin: 30px 20px 30px 0;
-  padding: 5px;
-  width: 350px;
-  border-top: none;
-  border-right: none;
-  border-bottom: 1px solid rgb(0,0,0);
-  border-left: none;
-  outline: none;
-  border-radius: 0;
-  font-size: 16px;
-}
-.login-bar {
-  font-size: 16px;
-  margin: 10px 0;
-}
-.login-picture {
-  width: 100%;
-  background: transparent;
-  border-bottom: 2px solid #000;
-}
-#delete-warning {
-  max-width: 50%;
-  color: rgb(255,0,0);
-  font-weight: bolder;
-}
-#detail-view {
-  max-width: 100%;
-  min-height: 200px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 0 auto 20px auto;
-}
-/* Some modified Bootstrap stuff (Or I made them up to fix something) */
-.fixed-heading {
-  text-align: center; 
-  width: 100%; 
-  margin: 30px auto 0 auto;
-}
-.fixed-heading-col {
-  padding: 5px 30px 5px 30px;
-}
-.fixed-heading-paragraph {
-  font-size: 16px;
-  text-align: left;
-}
-/* Make a shadow */
-.shadow {
-  box-shadow: 2px 2px 4px rgb(150,150,150);
-}
-.shadow:hover {
-  box-shadow: none;
-}
-/* Description box */
-#desc {
-  line-height: 25px;
-}
-#desc-input {
-  border: 2px solid rgb(0,0,0);
-  border-radius: 5px;
-  resize: none;
-  width: 100%;
-  height: 215px;
-  overflow: scroll;
-}
-#desc-input:focus {
-  border: 3px solid #cc0000;
-}
-#desc-position {
-  float: right;
-}
-.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-  background:#fff;
-}
-.navbar-mod { 
-  background:#fff;
-  border:transparent;
-}
-.dropdown-menu {
-  display: none;
-  width: 200px;
-}
-.dropdown-menu > li {
-  padding: 5px 0;
-  float: right;
-}
+/* End of counters */
+/* Home demo plugin */
 .title-1 {
   font-size:4em;
 }
@@ -519,18 +360,157 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   margin-right:-35px;
   transform: rotate(-12deg);
 }
+#result {
+  outline: none;
+  width: 100%;
+  overflow: scroll;
+}
+.moogle-table {
+  color: #37474f; 
+  width:50%;
+}
+.moogle-row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.moogle-h4 {
+  color: #2962ff;
+  margin-bottom: -.5px;
+}
+.moogle-modal-button {
+  background: transparent; 
+  padding: 10px; 
+  border: 1px solid #e0e0e0; 
+  margin: 20px 0; 
+  float: right;
+}
+.moogle-img {
+  width: 200px;
+}
+.moogle-modal-img {
+  width: 100%;
+}
+/* End of demo stuff */
+/* Model index pages */
+#character-list {
+  max-width: 100%;
+  margin: 50px auto;
+}
+.character-list-item {
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bolder;
+  width: 25%;
+}
+.character-list-thumb,
+.game-list-thumb {
+  object-fit: fill; 
+  object-position: center; 
+  height: 100px;
+  width: 100px;
+  border-radius: 5px; 
+  border: 1px solid rgb(248,248,248);
+  box-shadow: none;
+  opacity: 1;
+  transition: all .3s ease-in-out;
+}
+.game-list-thumb {
+  width: 180px;
+  height: 160px;
+  max-width: 180px;
+  max-height: 160px;
+}
+.character-list-thumb:hover,
+.character-list-thumb:focus,
+.character-list-thumb:active,
+.game-list-thumb:hover,
+.game-list-thumb:focus,
+.game-list-thumb:active {
+  box-shadow: 2px 2px 6px rgb(150,150,150);
+  transform: translate(0, -1px);
+  opacity: .9;
+  transition: all .3s ease-in-out;
+}
+.index-list {
+  width: 80%; 
+  text-align: center;
+}
+.add-edit-list {
+  width: 75%; 
+  margin: 0 auto;
+  text-align: center;
+}
+.character-card {
+  width: 150px;
+  height: 150px;
+  margin: 10px 0 25px 0;
+  background-color: transparent;
+  border: none; 
+}
+.character-delete-img {
+  width: 200px;
+}
+.character-delete-img-game {
+  width: 350px;
+}
+.index-button {
+  float: right;
+  margin: 2.5px;
+}
+/* End of model index page stuff */
+/* Loader bar that isn't currently being used but I don't want to remove the styles yet */
+.load-bar {
+  position: relative;
+  margin-top: 5px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #fff, #fdba2c, #fff);
+  opacity: .7;
+}
+.bar {
+  content: "";
+  display: inline;
+  position: absolute;
+  height: 100%; /* Editor complains, but this is needed */
+  left: 50%;
+  text-align: center;
+}
+
+.bar:nth-child(1) {
+  background: linear-gradient(to right, #fff, #da4733, #fff);
+  animation: loading 3s linear infinite;
+}
+.bar:nth-child(2) {
+  background: linear-gradient(to right, #fff, #3b78e7, #fff);
+  animation: loading 3s linear 1s infinite;
+}
+.bar:nth-child(3) {
+  background: linear-gradient(to right, #fff, #fdba2c, #fff);
+  animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {left: 50%; width: 0;z-index:100;}
+    33.3333% {left: 0; width: 100%;z-index: 10;}
+    to {left: 0; width: 100%;}
+}
+/* End of loader bar */
+/* Make a shadow */
+.shadow {
+  box-shadow: 2px 2px 4px rgb(150,150,150);
+}
+.shadow:hover {
+  box-shadow: none;
+}
+/* End of shadow */
+/* Stripe button */
 button.stripe-button-el,
 button.stripe-button-el>span {
   background-color: #000 !important;
   background-image: none;
   border-radius:50px;
 }
-.copyright {
-  display:inline;
-}
-.mobile-copyright {
-  display:none;
-}
+/* End of Stripe button */
+/* Upload styles to be removed */
 .btn-mobile-upload {
   display:none !important;
 }
@@ -541,16 +521,11 @@ button.stripe-button-el>span {
   background-color:#eceff1;
   overflow:hidden;
 }
-.img-display-format {
-  min-width:300px;
-  max-width:500px;
-  min-height:200px;
-  max-height:300px;
-  margin:5px;
-}
 .format-c {
   display:none !important;
 }
+/* End of upload stuff to be removed */
+/* Specific image classes */
 .img-user {
   margin:23px auto;
   width:200px;
@@ -562,20 +537,38 @@ button.stripe-button-el>span {
   background-position: center center;
   background-repeat: no-repeat;
 }
-.img-responsive {
-  width: 60% !important;
+.img-character {
+  margin: 5px;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  object-fit: cover;
+  object-position: 50% 1%;
+  background-position: top;
+  background-repeat: no-repeat;
+  border:4px solid #000;
+  cursor:pointer;
 }
-.general-nav {
-  letter-spacing: 5px;
-  float: left;
-  margin-top: 16px;
+.img-monster {
+  margin: 5px;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  object-fit: cover;
+  object-position: 50% 1%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border:4px solid #000;
+  cursor:pointer;
 }
-.general-nav li {
-  display: inline-block;
+.img-game {
+  margin: 5px;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
 }
-.mobile-nav-text {
-  display: none;
-}
+/* End of image classes */
+/* Special buttons for forms and index */
 .edit-save {
   font-size: 38px;
   transition: ease-in-out .2s;
@@ -628,50 +621,48 @@ button.stripe-button-el>span {
   pointer-events: none;
   opacity: 0.5;
 }
-.img-character {
-  margin: 5px;
-  width:250px;
-  height:250px;
-  border-radius:50%;
-  object-fit: cover;
-  object-position: 50% 1%;
-  background-position: top;
-  background-repeat: no-repeat;
-  border:4px solid #000;
-  cursor:pointer;
-}
-.img-monster {
-  margin: 5px;
-  width:250px;
-  height:250px;
-  border-radius:50%;
-  object-fit: cover;
-  object-position: 50% 1%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border:4px solid #000;
-  cursor:pointer;
-}
-.img-game {
-  margin: 5px;
-  width: 200px;
-  height: auto;
-  cursor: pointer;
-}
+/* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    /* Nav */
     .general-nav {
       margin-top: 0;
       margin-left: 20px;
-    }
-    .img-responsive {
-      width: 80% !important;
     }
     .img-user {
       display:block;
       box-shadow: 2px 2px 4px #37474F;
       float:none;
     }
+    .navbar-username {
+      display:none !important;
+    }
+    .navbar-icon {
+      display:none;
+    }
+    .dropdown {
+      display: block;
+    }
+    .dropdown-menu {
+      position: static;
+      display: block;
+      width: 100%;
+    }
+    .dropdown-menu > li {
+      display: block;
+      float: none;
+    }
+    .mobile-nav-text {
+      display: inline;
+    }
+    .navbar-header button {
+      margin:8px auto 0 auto;
+    }
+    .navbar-toggle {
+      float:none;
+    }
+    /* End of nav */
+    /* To be removed */
     .format-c {
       display:inline-block !important;
     }
@@ -689,105 +680,8 @@ button.stripe-button-el>span {
       display:block !important;
       max-width:100%;
     }
-    .navbar-username {
-      display:none !important;
-    }
-    .navbar-icon {
-      display:none;
-    }
-    .site-title {
-      margin-left:0;
-      margin-top:30px;
-      min-height:200px;
-      background-color:#e0e0e0;
-      border-radius:500px;
-    }
-    .title-1 {
-      font-size:3.5em;
-    }
-    .title-2 {
-      font-size:1.25em;font-weight:bolder;
-    }
-    .title-3 {
-      font-size: 14px;
-    }
-    .container {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-    .container-mod {
-      width: 100%;
-    }
-    .no-space {
-      letter-spacing: -25px;
-    }
-    /* .navbar {
-      display: none;
-    }
-    .navbar-icon {
-      display: none;
-    } */
-    .dropdown {
-      display: block;
-    }
-    .dropdown-menu {
-      position: static;
-      display: block;
-      width: 100%;
-    }
-    .dropdown-menu > li {
-      display: block;
-      float: none;
-    }
-    .game-list-thumb {
-      height: 200px;
-      width: 200px;
-    }
-    .character-card {
-      /* width: 250px;
-      height: 250px; */
-      margin: 10px auto 25px auto;
-    }
-    .login-bar {
-      width: 250px;
-    }
-    .search-card {
-      margin: 0 auto;
-      width: 90%;
-    }
-    #character-list {
-      max-width: 100%;
-    }
-    #character-list-name,
-    #character-list-origin {
-      font-size: 14px;
-    }
-    #delete-warning {
-      max-width: 100%;
-    }
-    #detail-view {
-      max-width: 100%;
-    }
-    #input-container {
-      width: 100%;
-    }
-    .input-bar {
-      width: 250px;
-      margin-right: 0;
-    }
-    #search-btn {
-      float: right; 
-      margin: 30px 7px 30px 0;
-    }
-    .back-btn {
-      margin-top: 25px;
-    }
-    #desc-position {
-      float: none;
-    }
-    .index-list {
-      width: 100%;
-    }
+    /* End of to be removed */
+    /* Home demo stuff */
     .moogle-table {
       width: 100%;
     }
@@ -814,21 +708,87 @@ button.stripe-button-el>span {
     .swap {
       display:none;
     }
-    .navbar-header button {
-      margin:8px auto 0 auto;
+    .site-title {
+      margin-left:0;
+      margin-top:30px;
+      min-height:200px;
+      background-color:#e0e0e0;
+      border-radius:500px;
     }
-    .navbar-toggle {
-      float:none;
+    .title-1 {
+      font-size:3.5em;
     }
+    .title-2 {
+      font-size:1.25em;font-weight:bolder;
+    }
+    .title-3 {
+      font-size: 14px;
+    }
+    /* End of demo stuff */
+    /* Spacer, Boostrap overrides, misc */
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    .container-mod {
+      width: 100%;
+    }
+    .no-space {
+      letter-spacing: -25px;
+    }
+    /* End of misc */
+    /* Model index, forms */
+    .game-list-thumb {
+      height: 200px;
+      width: 200px;
+    }
+    .character-card {
+      margin: 10px auto 25px auto;
+    }
+    .login-bar {
+      width: 250px;
+    }
+    .search-card {
+      margin: 0 auto;
+      width: 90%;
+    }
+    #character-list {
+      max-width: 100%;
+    }
+    #character-list-name,
+    #character-list-origin {
+      font-size: 14px;
+    }
+    #input-container {
+      width: 100%;
+    }
+    .input-bar {
+      width: 250px;
+      margin-right: 0;
+    }
+    #search-btn {
+      float: right; 
+      margin: 30px 7px 30px 0;
+    }
+    .back-btn {
+      margin-top: 25px;
+    }
+    #desc-position {
+      float: none;
+    }
+    .index-list {
+      width: 100%;
+    }
+    /* End of index, forms */
+    /* Copyright */
     .copyright {
       display:none;
     }
     .mobile-copyright {
       display:inline;
     }
-    .mobile-nav-text {
-      display: inline;
-    }
+    /* End of copyright */
+    /* Special button stuff */
     .edit-save {
       font-size: 38px;
       transition: ease-in-out .2s;
@@ -881,5 +841,5 @@ button.stripe-button-el>span {
       pointer-events: none;
       opacity: 0.5;
     }
+    /* End of special button stuff */
 }
-
