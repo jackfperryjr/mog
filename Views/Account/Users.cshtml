@@ -34,7 +34,7 @@
                 <p>@user.Email</p>
                 <p>email confirmed? @user.EmailConfirmed</p>
                 <br/>
-                <a class="btn btn-danger" data-toggle="modal" href="@("#deleteModal" + user.UserId)">remove?</a>
+                <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + user.UserId)">remove?</a>
                 <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content text-center">
@@ -49,8 +49,8 @@
                                 <p>Are you sure you want to delete @user.Email?</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-danger">yes</button>
-                                <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
+                                <button type="submit" class="btn btn-red">yes</button>
+                                <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
                             </div>
                         }
                         </div>

@@ -51,7 +51,7 @@
                     {
                     <input type="hidden" value="@item.Id" name="Id" />
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">@item.Name</h4>
                     </div>
                     <div class="modal-body">
@@ -78,9 +78,9 @@
                     <div class="modal-footer">
                         @if (User.IsInRole("Admin")) 
                         {
-                        <a class="btn btn-warning shadow" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
-                        <a class="btn btn-default shadow" asp-action="Edit" asp-route-id="@item.Id">edit</a>
-                        <button type="button" class="btn btn-default shadow" data-dismiss="modal">close</button>
+                        <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + item.Id)">delete</a>
+                        <a class="btn btn-yellow" asp-action="Edit" asp-route-id="@item.Id">edit</a>
+                        <button type="button" class="btn btn-blue" data-dismiss="modal">close</button>
                         }
                         else 
                         {
@@ -104,7 +104,7 @@
                             {
                                 <input type="hidden" value="@item.Id" name="Id" />
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">X</button>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title">Delete @item.Name</h4>
                                 </div>
                                 <div class="modal-body">
@@ -113,8 +113,8 @@
                                     <p>Are you sure you want to delete @item.Name?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">yes</button>
-                                    <button type="button" class="btn btn-default shadow" data-dismiss="modal">no</button>
+                                    <button type="submit" class="btn btn-red">yes</button>
+                                    <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
                                 </div>
                             }
                         </div>

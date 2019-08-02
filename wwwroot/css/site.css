@@ -243,11 +243,63 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 /* End of forms */
 /* Colors */
+.btn-blue {
+  background-color: #4285F4;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-blue:hover,
+.btn-blue:focus {
+  background-color: #bbdefb;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-green {
+  background-color: #007E33;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-green:hover,
+.btn-green:focus {
+  background-color: #c8e6c9;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-yellow {
+  background-color: #ffbb33;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-yellow:hover,
+.btn-yellow:focus {
+  background-color: #ffecb3;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-red {
+  background-color: #CC0000;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
+.btn-red:hover,
+.btn-red:focus {
+  background-color: #ffcdd2;
+  color: #fff;
+  text-decoration: none;
+  transition: ease-in-out .1s;
+}
 .bg-green {
   background-color:#c8e6c9;
 }
 .bg-red {
-  background-color:#ffcdd2
+  background-color:#ffcdd2;
 }
 .bg-yellow {
   background-color:#ffecb3;
@@ -578,7 +630,7 @@ button.stripe-button-el>span {
   transition: ease-in-out .2s;
 }
 .edit-save:hover {
-  color: #4285F4;
+  color: #007E33;
   text-decoration: none;
   transform: scale(1.1);
   transition: ease-in-out .2s;
@@ -588,14 +640,14 @@ button.stripe-button-el>span {
   transition: ease-in-out .2s;
 }
 .edit-cancel:hover {
-  color: #ffbb33;
+  color: #cc0000;
   text-decoration: none;
   transform: scale(1.1);
   transition: ease-in-out .2s;
 }
 .index-arrow-right-circle {
   margin-left: 10px;
-  padding: 4px;
+  padding: 4px 5.5px;
   border: 4px solid;
   border-radius: 50%;
   font-size: 24px;
@@ -609,7 +661,7 @@ button.stripe-button-el>span {
 }
 .index-arrow-left-circle {
   margin-right: 10px;
-  padding: 4px;
+  padding: 4px 5.5px;
   border: 4px solid;
   border-radius: 50%;
   font-size: 24px;

@@ -264,7 +264,8 @@ namespace Moogle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "icons/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-profile.jpg" };
+                model.Password = PasswordGenerator.GeneratePassword(); // Custom helper to generate passwords.
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -272,7 +273,7 @@ namespace Moogle.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, model.Password, callbackUrl);
                     await _emailSender.SendRegistrationEmailToAdminAsync(model.Email);
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
