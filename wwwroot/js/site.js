@@ -47,7 +47,8 @@ new Vue({
             $(".search-results").hide()
             $("#random-character").show()
 
-            axios.get("https://www.moogleapi.com/api/v1/characters/c111db78-8c94-4a89-5351-08d6afc3b4ff")
+            // axios.get("https://www.moogleapi.com/api/v1/characters/75c054fe-d022-44d4-102f-08d6afcab3e2") // Using id (returns single entity)
+            axios.get("https://www.moogleapi.com/api/v1/characters/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
             .then(response => {this.random = response.data})
         }
     },

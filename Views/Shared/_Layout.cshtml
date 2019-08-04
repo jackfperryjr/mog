@@ -102,19 +102,6 @@
         @RenderSection("Scripts", required: false)
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-            // Click function for navigation menu
-            $(".dropdown").click(function () {
-                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "down" }, 400);
-                $(this).toggleClass('open'); 
-            },
-            function() {
-                $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-                $(this).toggleClass("open");   
-            });
-            // Click outside menu to close it
-            //$(document).click(function () {
-            //    $(".dropdown-menu", this).not(".in .dropdown-menu").stop(true,true).toggle("slide", { direction: "up" }, 400);
-            //});
             $(".navbar-toggle").click(function () {
                 //$("#menu-caret").toggleClass("rotate-caret");
                 $("#menu-hamburger").toggleClass("fas fa-caret-down green");

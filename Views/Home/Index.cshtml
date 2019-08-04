@@ -85,34 +85,34 @@
         <!-- Random character -->
         <div id="random-character" class="row moogle-row mix-buffer">
             <div class="col-md-8">
-                <h4 class="moogle-h4"><strong>{{random.name}}</strong></h4>
-                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random.name}}</a></h7><br/>
-                <p class="dark-bluish-gray">{{random.description}}</p>
+                <h4 class="moogle-h4"><strong>{{random[0].name}}</strong></h4>
+                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random[0].name}}</a></h7><br/>
+                <p class="dark-bluish-gray">{{random[0].description}}</p>
                 <div class="row">
                     <div class="col-md-4">
-                        <p><strong>Origin:</strong> {{random.origin}}<br/>
-                        <strong>Job:</strong> {{random.job}}<br/>
-                        <strong>Age:</strong> {{random.age}}</p>
+                        <p><strong>Origin:</strong> {{random[0].origin}}<br/>
+                        <strong>Job:</strong> {{random[0].job}}<br/>
+                        <strong>Age:</strong> {{random[0].age}}</p>
                         </div>                    
-                        <div class="col-md-6"><p><strong>Race:</strong> {{random.race}}<br/>
-                        <strong>Height:</strong> {{random.height}}m<br/>
-                        <strong>Weight:</strong> {{random.weight}}kg</p>
+                        <div class="col-md-6"><p><strong>Race:</strong> {{random[0].race}}<br/>
+                        <strong>Height:</strong> {{random[0].height}}m<br/>
+                        <strong>Weight:</strong> {{random[0].weight}}kg</p>
                     </div>
                     <br/>
                 </div>
             </div>
             <div class="col-md-4">
                 <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
-                    <img class="moogle-img" :src="random.picture" :alt="random.name" title="Click to view a larger picture"><br/>
+                    <img class="moogle-img" :src="random[0].picture" :alt="random[0].name" title="Click to view a larger picture"><br/>
                 </button>
                 <div id="randomModal" class="modal fade" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="text-center"><strong>{{random.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                                <h3 class="text-center"><strong>{{random[0].name}}</strong><span class="close" data-dismiss="modal">&times;</span></h3>
                             </div>
                             <div class="modal-body">
-                                <img class="moogle-modal-img" :src="random.picture" :alt="random.name" :title="random.name">
+                                <img class="moogle-modal-img" :src="random[0].picture" :alt="random[0].name" :title="random[0].name">
                             </div>
                         </div>
                     </div>

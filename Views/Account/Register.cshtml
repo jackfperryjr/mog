@@ -6,6 +6,7 @@
     <div class="col-md-5" style="background-color:transparent;min-height:300px;border-radius:5px;padding:10px;margin:0 auto !important;float:none !important;">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
             <h2>register a new user</h2>
+            <hr/>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="Email" class="login-bar login-picture" style="width:100%" placeholder="Enter email" />
@@ -19,7 +20,7 @@
                 <input asp-for="ConfirmPassword" class="login-bar" style="width:100%" value="p@ssW0rd" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-blue">register</button>
+            <button type="submit" class="btn btn-blue pull-right">register</button>
         </form>
     </div>
 </div>

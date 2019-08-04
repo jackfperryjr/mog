@@ -11,6 +11,10 @@ body {
   font-family: "Raleway";
   font-size: 16px;
 }
+.active > a {
+  background-color: #4285F4 !important;
+  color: #fff !important;
+}
 .container-mod {
   width: 70%;
 }
@@ -69,14 +73,6 @@ body {
 .navbar-mod { 
   background:#fff;
   border:transparent;
-}
-.dropdown-menu {
-  display: none;
-  width: 200px;
-}
-.dropdown-menu > li {
-  padding: 5px 0;
-  float: right;
 }
 /* End of navbar */
 /* _Layout styles */
@@ -366,7 +362,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 #search-icon {
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: 7px;
   margin-right: 15px;
 }
 .search-result,
@@ -692,21 +688,6 @@ button.stripe-button-el>span {
     }
     .navbar-username {
       display:none !important;
-    }
-    .navbar-icon {
-      display:none;
-    }
-    .dropdown {
-      display: block;
-    }
-    .dropdown-menu {
-      position: static;
-      display: block;
-      width: 100%;
-    }
-    .dropdown-menu > li {
-      display: block;
-      float: none;
     }
     .mobile-nav-text {
       display: inline;

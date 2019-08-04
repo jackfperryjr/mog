@@ -228,7 +228,7 @@ namespace Moogle.Controllers
                             LastName = user.LastName,
                             Picture = user.Picture,
                             Email = user.Email,
-                            EmailConfirmed = user.EmailConfirmed 
+                            EmailConfirmed = user.EmailConfirmed
                         }).ToList().Select(u => new ApplicationUserViewModel()  
                         {  
                             UserId = u.UserId,  
@@ -236,7 +236,7 @@ namespace Moogle.Controllers
                             LastName = u.LastName, 
                             Picture = u.Picture,
                             Email = u.Email,
-                            EmailConfirmed = u.EmailConfirmed.ToString()  
+                            EmailConfirmed = u.EmailConfirmed.ToString(),
                         });  
 
             users = users.OrderBy(u => u.Email);
@@ -247,6 +247,28 @@ namespace Moogle.Controllers
 
             return View(users.ToList());  
         } 
+        [Authorize(Roles="Admin")]
+        public async Task<IActionResult> UserRoles(string id, int role)  
+        {  
+            // if (id == null)
+            // {
+            //     return NotFound();
+            // }
+
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var roles = await _userManager.GetRolesAsync(user);
+
+            // if (role == 1)
+            // {
+                
+            // }
+            // if (role == 2)
+            // {
+                
+            // }
+
+            return RedirectToAction(nameof(Users));
+        }
 
         [HttpGet]
         [Authorize(Roles="Admin")] // Because only I want to register new users

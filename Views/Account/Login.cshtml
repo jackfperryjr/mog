@@ -12,7 +12,7 @@
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <h2>please log in</h2>
-                <hr />
+                <hr/>
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <input asp-for="Email" class="login-bar login-picture" style="width:100%;" placeholder="Enter email" />
@@ -20,21 +20,19 @@
                     <input asp-for="Password" class="login-bar" style="width:100%;" placeholder="Enter password" />
                     <br/><span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="RememberMe" style="padding-left: 0;">
                             <input asp-for="RememberMe" style="margin-left: 1px;" />
                             @Html.DisplayNameFor(m => m.RememberMe)
                         </label>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-blue"><span class="fas fa-user"></span>login</button>
+                    <button type="submit" class="btn btn-blue pull-right">login</button>
                 </div>
-                <div class="form-group">
-                    <p>
-                        <a asp-action="ForgotPassword">a chocobo ate my password</a>
-                    </p>
+                <div class="form-group" style="margin-top:60px;">
+                    <a asp-action="ForgotPassword" class="font-12 pull-right">a chocobo ate my password</a>
                     <!-- <p>
                         <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
                     </p> -->
