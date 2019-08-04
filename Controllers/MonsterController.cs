@@ -65,7 +65,7 @@ namespace Moogle.Controllers
                 monsters = monsters.Where(m => m.Name.Contains(searchString.First().ToString().ToUpper() + searchString.Substring(1))); // Search by name of monster
             }
 
-            int pageSize = 10;
+            int pageSize = 14;
             return View(await PaginatedList<Monster>.CreateAsync(monsters.AsNoTracking(), page ?? 1, pageSize));
         }
 

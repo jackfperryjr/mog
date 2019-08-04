@@ -59,7 +59,6 @@ namespace Moogle.Controllers
 
             int pageSize = 14;
             return View(await PaginatedList<Characters>.CreateAsync(characters.AsNoTracking(), page ?? 1, pageSize));
-            //return View(await characters.AsNoTracking()/*.Take(10)*/.ToListAsync());
         }
 
         // GET: Character/Details/5
