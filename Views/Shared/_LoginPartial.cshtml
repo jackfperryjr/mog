@@ -13,7 +13,7 @@
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue" style="font-size: 18px;"></span> Home</a></li>
-            <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle red" style="font-size: 18px;"></span> FAQ</a></li>
+            <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow" style="font-size: 18px;"></span> FAQ</a></li>
             <!-- <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span></a></li> -->
             @if (User.IsInRole("Admin"))
             {
@@ -32,7 +32,7 @@ else
 {
     <ul class="nav navbar-nav navbar-right" style="margin-top:20px;">
         <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue" style="font-size: 18px;"></span> Home</a></li>
-        <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle red" style="font-size: 18px;"></span> About</a></li>
+        <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow" style="font-size: 18px;"></span> About</a></li>
         <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span> The Developer</a></li>
         <li><a asp-controller="Account" asp-action="Login" title="Login"><span class="fas fa-sign-in-alt green" style="font-size: 18px;"></span></a></li>
     </ul>
