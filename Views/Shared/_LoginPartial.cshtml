@@ -20,9 +20,9 @@
                 <!-- <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add new user</a></li>  -->
                 <li><a asp-controller="Account" asp-action="Users" title="Click to manage users."><span class="fas fa-user-friends red" style="font-size: 18px;"></span> Users</a></li> 
             }
-            <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters."><span class="fas fa-users yellow" style="font-size: 18px;"></span> Characters</a></li>
-            <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games."><span class="fas fa-gamepad blue" style="font-size: 18px;"></span> Games</a></li>
-            <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters."><span class="fas fa-pastafarianism green" style="font-size: 18px;"></span> Monsters</a></li>
+            <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-characters.png")"> Characters</a></li>
+            <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-games.png")"> Games</a></li>
+            <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-monsters.png")"> Monsters</a></li>
             <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile."><img class="navbar-icon" src="@user.Picture"><span class="mobile-nav-text"> Profile</span></a></li>
             <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link pull-right" title="Click to sign out."><span class="fas fa-sign-out-alt red" style="font-size: 18px;"></span></button></li>
         </ul>
