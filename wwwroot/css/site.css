@@ -61,6 +61,12 @@ body {
   text-decoration: none;
   transition: all .3s ease-in-out;
 }
+.fa-home,
+.fa-fa-question-circle,
+.fa-user-friends,
+.fa-sign-out-alt {
+  font-size: 18px;
+}
 .navbar-icon {
   width: 22px;
   height: 22px;
@@ -68,11 +74,13 @@ body {
   transition: all .3s ease-in-out
 }
 .nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-  background:#fff;
+  background:rgba(255,255,255,.8);
 }
-.navbar-mod { 
-  background:#fff;
+
+.navbar-mod {
+  background:rgba(255,255,255,.8);
   border:transparent;
+  backdrop-filter: blur(5px);
 }
 /* End of navbar */
 /* _Layout styles */
@@ -681,6 +689,26 @@ button.stripe-button-el>span {
       margin-top: 0;
       margin-left: 20px;
     }
+    .navbar-collapse {
+      height: 100vh !important;
+      max-height: 100vh !important;
+      overflow-y: none !important;
+    }
+    .navbar-nav > li {
+      padding-left: 45px;
+      margin: 15px auto;
+      font-size: 45px;
+    }
+    .navbar-icon {
+      height: 45px;
+      width: 45px;
+    }
+    .fa-home,
+    .fa-fa-question-circle,
+    .fa-user-friends,
+    .fa-sign-out-alt {
+      font-size: 36px;
+    }
     .img-user {
       display:block;
       box-shadow: 2px 2px 4px #37474F;
@@ -691,6 +719,7 @@ button.stripe-button-el>span {
     }
     .mobile-nav-text {
       display: inline;
+      font-size: 45px;
     }
     .navbar-header button {
       margin:8px auto 0 auto;
