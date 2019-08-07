@@ -57,7 +57,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div id="main" class="container">
             @RenderBody()
         </div>
         <footer>
@@ -106,6 +106,7 @@
                 //$("#menu-caret").toggleClass("rotate-caret");
                 $("#menu-hamburger").toggleClass("fas fa-caret-down green");
                 $("#menu-hamburger").toggleClass("fas fa-caret-up red");
+                $("#main").toggleClass("blur");
             });
         </script>
     </body>

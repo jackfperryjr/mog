@@ -64,7 +64,9 @@ body {
 .fa-home,
 .fa-fa-question-circle,
 .fa-user-friends,
-.fa-sign-out-alt {
+.fa-user,
+.fa-sign-out-alt,
+.fa-sign-in-alt {
   font-size: 18px;
 }
 .navbar-icon {
@@ -693,21 +695,29 @@ button.stripe-button-el>span {
       height: 100vh !important;
       max-height: 100vh !important;
       overflow-y: none !important;
+      margin-top: -5px;
+      /* backdrop-filter: blur(5px); */ /* This isn't working :( */
     }
     .navbar-nav > li {
-      padding-left: 45px;
-      margin: 15px auto;
-      font-size: 45px;
+      padding-left: 42px;
+      margin: 12px auto;
+      font-size: 42px;
     }
     .navbar-icon {
-      height: 45px;
-      width: 45px;
+      height: 42px;
+      width: 42px;
     }
     .fa-home,
     .fa-fa-question-circle,
     .fa-user-friends,
-    .fa-sign-out-alt {
-      font-size: 36px;
+    .fa-user,
+    .fa-sign-out-alt,
+    .fa-sign-in-alt {
+      font-size: 34px;
+    }
+    .fa-sign-out-alt,
+    .fa-sign-in-alt {
+      margin-left: 10px;
     }
     .img-user {
       display:block;
@@ -719,13 +729,15 @@ button.stripe-button-el>span {
     }
     .mobile-nav-text {
       display: inline;
-      font-size: 45px;
+      font-size: 42px;
     }
     .navbar-header button {
       margin:8px auto 0 auto;
     }
     .navbar-toggle {
       float:none;
+      width: 100%;
+      background: transparent !important;
     }
     /* End of nav */
     /* To be removed */
@@ -766,10 +778,11 @@ button.stripe-button-el>span {
     .site-logo {
       margin:0;
       text-align: center;
-      font-size:40px;
+      font-size:50px;
       letter-spacing:10px;
       cursor:pointer;
       font-family:'Josefin Sans',sans-serif;
+      background: transparent;
     }
     .swap {
       display:none;
@@ -792,6 +805,9 @@ button.stripe-button-el>span {
     }
     /* End of demo stuff */
     /* Spacer, Boostrap overrides, misc */
+    .blur {
+      filter: blur(5px);
+    }
     .container {
       padding-right: 15px;
       padding-left: 15px;
