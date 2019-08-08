@@ -1,0 +1,17 @@
+{
+    "name": "MoogleApi",
+    "short_name": "MoogleApi",
+    "description": "MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.",
+    "icons": [
+      {
+        "src": "/icons/icon-ff-moogle-192.png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/icons/icon-ff-moogle-512.png",
+        "sizes": "512x512"
+      }
+    ],
+    "display": "standalone",
+    "start_url": "/"
+  }
