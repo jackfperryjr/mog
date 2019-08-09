@@ -34,9 +34,9 @@
 else
 {
     <ul class="nav navbar-nav navbar-right" style="margin-top:20px;">
-        <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue"></span> Home</a></li>
-        <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow"></span> About</a></li>
-        <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow"></span> Developer</a></li>
-        <li><a asp-controller="Account" asp-action="Login" title="Login"><span class="mobile-nav-text">Login</span> <span class="fas fa-sign-in-alt green"></span></a></li>
+        <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue"></span><span class="mobile-display-none"> Home</span></a></li>
+        <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow"></span><span class="mobile-display-none"> FAQ</span></a></li>
+        <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow"></span><span class="mobile-display-none"> Developer</span></a></li>
+        <li><a asp-controller="Account" asp-action="Login" title="Login"><span class="mobile-nav-text"><span class="mobile-display-none"> Login</span> <span class="fas fa-sign-in-alt green"></span></a></li>
     </ul>
 }
