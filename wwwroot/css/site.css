@@ -689,6 +689,11 @@ button.stripe-button-el>span {
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    body {
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+    }
     /* Nav */
     .general-nav {
       margin-top: 0;
