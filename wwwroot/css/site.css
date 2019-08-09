@@ -708,12 +708,14 @@ button.stripe-button-el>span {
     }
     .nav {
       background-color: #fff;
+      margin: 0 auto;
     }
     .nav > li {
       display: inline-block;
+      margin: 0 auto;
     }
     .navbar-nav > li {
-      padding: 0;
+      padding: 10px 0;
       margin: 2px auto;
       font-size: 38px;
     }
