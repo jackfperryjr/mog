@@ -12,19 +12,22 @@
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue"></span> Home</a></li>
-            <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow"></span> FAQ</a></li>
+            <li><a asp-controller="Home" asp-action="Index" title="Home"><span class="fas fa-home blue"></span><span class="mobile-display-none"> Home</span></a></li>
+            @if (!User.IsInRole("Admin"))
+            {
+                <li><a asp-controller="Home" asp-action="About" title="FAQ"><span class="fas fa-question-circle yellow"></span><span class="mobile-display-none"> FAQ</span></a></li>
+            }
             <!-- <li><a asp-controller="Home" asp-action="JackFPerryJr" title="The Developer"><span class="fas fa-user yellow" style="font-size: 18px;"></span></a></li> -->
             @if (User.IsInRole("Admin"))
             {
                 <!-- <li><a asp-controller="Account" asp-action="Register" title="Click to register new user.">Add new user</a></li>  -->
-                <li><a asp-controller="Account" asp-action="Users" title="Click to manage users."><span class="fas fa-user-friends red"></span> Users</a></li> 
+                <li><a asp-controller="Account" asp-action="Users" title="Click to manage users."><span class="fas fa-user-friends red"></span><span class="mobile-display-none"> Users</span></a></li> 
             }
-            <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-characters.png")"> Characters</a></li>
-            <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-games.png")"> Games</a></li>
-            <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-monsters.png")"> Monsters</a></li>
-            <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile."><img class="navbar-icon" src="@user.Picture"><span class="mobile-nav-text"> Profile</span></a></li>
-            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out."><span class="mobile-nav-text">Logout</span> <span class="fas fa-sign-out-alt red"></span></button></li>
+            <li><a asp-controller="Character" asp-action="Index" title="Click to view or manage characters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-characters.png")"> <span class="mobile-display-none"> Characters</span></a></li>
+            <li><a asp-controller="Game" asp-action="Index" title="Click to view or manage games."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-games.png")"> <span class="mobile-display-none"> Games</span></a></li>
+            <li><a asp-controller="Monster" asp-action="Index" title="Click to view or manage monsters."><img class="navbar-icon" src="@Url.Content("/icons/icon-ff-monsters.png")"> <span class="mobile-display-none"> Monsters</span></a></li>
+            <li><a asp-controller="Manage" asp-action="Index" title="Click to manage profile."><img class="navbar-icon" src="@user.Picture"></a></li>
+            <li><button id="logout" type="submit" class="btn btn-link navbar-btn navbar-link" title="Click to sign out."><span class="fas fa-sign-out-alt red"></span></button></li>
         </ul>
     </form>
 }

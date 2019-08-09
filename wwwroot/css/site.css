@@ -683,6 +683,9 @@ button.stripe-button-el>span {
   pointer-events: none;
   opacity: 0.5;
 }
+.mobile-only {
+  display: none;
+}
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -698,10 +701,25 @@ button.stripe-button-el>span {
       margin-top: -5px;
       /* backdrop-filter: blur(5px); */ /* This isn't working :( */
     }
+    .nav {
+      background-color: #fff;
+    }
+    .nav > li {
+      display: inline-block;
+    }
     .navbar-nav > li {
-      padding-left: 42px;
+      padding: 0;
       margin: 2px auto;
-      font-size: 42px;
+      font-size: 38px;
+    }
+    .navbar-nav > li:first-child {
+      padding-left: 20px;
+    }
+    .navbar-nav > li > button {
+      padding-left: 3px;
+    }
+    .navbar-nav > li > a {
+      padding: 3px;
     }
     .navbar-icon {
       height: 42px;
@@ -776,16 +794,22 @@ button.stripe-button-el>span {
       margin-right:-25px;
     }
     .site-logo {
-      margin:0;
+      margin:-10px auto -40px auto;
       text-align: center;
       font-size:50px;
       letter-spacing:10px;
-      cursor:pointer;
+      cursor:default;
       font-family:'Josefin Sans',sans-serif;
       background: transparent;
     }
-    .swap {
-      display:none;
+    .mobile-display-none {
+      display: none;
+    }
+    .mobile-only {
+      display: block;
+    }
+    .mobile-only-footer {
+      margin-top: 100px;
     }
     .site-title {
       margin-left:0;
