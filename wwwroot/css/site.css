@@ -814,7 +814,7 @@ button.stripe-button-el>span {
       display: block;
     }
     .mobile-only-footer {
-      margin-top: 100px;
+      margin: 100px auto 30px auto;
     }
     .site-title {
       margin-left:0;
