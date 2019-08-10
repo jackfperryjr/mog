@@ -686,6 +686,9 @@ button.stripe-button-el>span {
 .mobile-only {
   display: none;
 }
+.mobile-only-social {
+  display: none;
+}
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -831,6 +834,15 @@ button.stripe-button-el>span {
     }
     .mobile-only {
       display: block;
+    }
+    .mobile-only-social {
+      display: block;
+      margin: 0 auto !important;
+      text-align: center !important;
+    }
+    .mobile-only-social i {
+      font-size: 36px !important;
+      float: none !important;
     }
     .mobile-only-footer {
       margin: 100px auto 30px auto;
