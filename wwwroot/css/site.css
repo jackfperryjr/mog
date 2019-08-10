@@ -689,7 +689,24 @@ button.stripe-button-el>span {
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    .sticky-search-bar {
+      position: fixed;
+      width: 100%;
+      border-bottom: 1px solid #b0bec5;
+      left: 0;
+      top: 0;
+      border-radius: 2px;
+      z-index: 2000;
+    }
+    .sticky-search-icon {
+      position:fixed;
+      color: #b0bec5;
+      right: 0;
+      top: 0;
+      z-index: 2100;
+    }
     body {
+      margin-top: -20px;
       -webkit-touch-callout: none;
       -webkit-tap-highlight-color: transparent;
       -webkit-user-select: none;
@@ -699,31 +716,31 @@ button.stripe-button-el>span {
       margin-top: 0;
       margin-left: 20px;
     }
-    .navbar-collapse {
-      height: 100vh !important;
-      max-height: 100vh !important;
-      overflow-y: none !important;
-      margin-top: -5px;
-      /* backdrop-filter: blur(5px); */ /* This isn't working :( */
-    }
     .nav {
       background-color: #fff;
       margin: 0 auto;
+      padding-bottom: 20px;
+      text-align: center;
     }
     .nav > li {
       display: inline-block;
       margin: 0 auto;
     }
     .navbar-nav > li {
-      padding: 10px 0;
+      padding: 0;
       margin: 2px auto;
       font-size: 38px;
     }
     .navbar-nav > li:first-child {
-      padding-left: 20px;
+      padding-left: 10px;
     }
     .navbar-nav > li > button {
-      padding-left: 3px;
+      padding-left: 0;
+      margin-left: 0;
+    }
+    .navbar-nav > li > button > span {
+      padding-left: 0;
+      margin-left: 0;
     }
     .navbar-nav > li > a {
       padding: 3px;

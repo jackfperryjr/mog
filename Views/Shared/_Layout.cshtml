@@ -120,15 +120,27 @@
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
             </script>
         </environment>
-
         @RenderSection("Scripts", required: false)
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-            $(".navbar-toggle").click(function () {
-                //$("#menu-caret").toggleClass("rotate-caret");
-                $("#menu-hamburger").toggleClass("fas fa-caret-down green");
-                $("#menu-hamburger").toggleClass("fas fa-caret-up red");
-                $("#main").toggleClass("blur");
+            $(this).delay(1000).queue(function() {
+                let search = $('#search').offset().top;
+    
+                let stickySearch = function(){
+                    let scrollTop = $(window).scrollTop();
+                
+                    if (scrollTop > search) { 
+                        $("#search").addClass("sticky-search-bar");
+                        $("#search-icon").addClass("sticky-search-icon")
+                    } else {
+                        $('#search').removeClass("sticky-search-bar"); 
+                        $("#search-icon").removeClass("sticky-search-icon")
+                    }
+                };
+            
+                stickySearch();
+                $(window).scroll(function() {
+                stickySearch();
+                });
             });
         </script>
     </body>

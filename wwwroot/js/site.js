@@ -1,3 +1,7 @@
+$(document).ready(function() {
+
+});
+
 // List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
     "Search ex. ''Lightning'' or ''13''",

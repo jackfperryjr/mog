@@ -15,5 +15,6 @@
       }
     ],
     "display": "standalone",
-    "start_url": "/"
+    "orientation": "portrait",
+    "start_url": "https://www.moogleapi.com"
   }
