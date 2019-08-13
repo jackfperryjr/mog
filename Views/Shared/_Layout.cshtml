@@ -3,14 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        <meta name=”apple-mobile-web-app-capable” content=”yes”>
-        <meta name=”mobile-web-app-capable” content=”yes”>
-        <meta name="apple-mobile-web-app-status-bar-style" content="default">
         @if (IsSectionDefined("MetaTags"))
         {
             @RenderSection("MetaTags", required: false)
         }
-        <link rel="icon" href="~/icons/icon-ff-moogle.png" />
+        <!-- Start of PWA elements -->
+        <meta name=”apple-mobile-web-app-capable” content=”yes”>
+        <meta name=”mobile-web-app-capable” content=”yes”>
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-title" content="MoogleApi">
+        <meta name="apple-mobile-web-app-orientations" content="portrait-any">
+        <!-- Home screen icon -->
         <link rel="apple-touch-icon" href="~/icons/icon-ff-moogle-180.png">
         <!-- iPhone Xs Max (1242px x 2688px) --> 
         <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="~/icons/icon-ff-moogle-1242x2688.png">
@@ -30,7 +34,9 @@
         <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="~/icons/icon-ff-moogle-1668x2224.png">
         <!-- iPad Mini, Air (1536px x 2048px) --> 
         <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="~/icons/icon-ff-moogle-1536x2048.png">
+        <!-- End of PWA elements -->
 
+        <link rel="icon" href="~/icons/icon-ff-moogle.png" />
         <title>MoogleApi @ViewData["Title"]</title>
         <environment include="Production">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
