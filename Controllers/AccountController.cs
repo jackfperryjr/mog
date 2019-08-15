@@ -544,7 +544,7 @@ namespace Moogle.Controllers
             else
             {
                 // Login takes user to character index page
-                return RedirectToAction(nameof(CharacterController.Index), "Character");
+                return RedirectToAction(nameof(BlogController.Index), "Blog");
             }
         }
     }

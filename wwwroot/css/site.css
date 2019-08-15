@@ -689,6 +689,29 @@ button.stripe-button-el>span {
 .mobile-only-social {
   display: none;
 }
+.add-blog {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size:31px;
+  position:fixed; 
+  top: 30%;
+  right: 0;
+  z-index: 2000;
+}
+.add-blog > a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  top: 30px;
+  left: 37px;
+}
+/* .add-blog > a > .fas {
+  width: 26px !important;
+  max-width: 26px !important;
+  height: 22.75px !important;
+  max-height: 22.75px !important;
+} */
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

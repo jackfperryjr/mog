@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -22,6 +19,12 @@ namespace Moogle.Services
         public Task SendEmailAsync(string email, string subject, string message)
         {
             return Execute(Options.SendGridKey, subject, message, email);
+        }
+        
+        public Task SendSmsAsync(string number, string message)
+        {
+            // Plug in your SMS service here to send a text message.
+            return Task.FromResult(0);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)

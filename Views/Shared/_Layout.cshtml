@@ -54,15 +54,17 @@
         </environment>
     </head>
     <body>
-        <h1 class="site-logo mobile-only">
-            <span class="blue no-space">M</span>
-            <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
-            <span class="yellow no-space">o</span>
-            <span class="blue no-space">g</span>
-            <span class="green no-space">l</span>
-            <span class="letter-e red no-space">e</span>
-            <span class="site-span-api">API</span>
-        </h1>
+        <a class="mobile-only" asp-controller="Blog" asp-action="Index">
+            <h1 class="site-logo">
+                <span class="blue no-space">M</span>
+                <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
+                <span class="yellow no-space">o</span>
+                <span class="blue no-space">g</span>
+                <span class="green no-space">l</span>
+                <span class="letter-e red no-space">e</span>
+                <span class="site-span-api">API</span>
+            </h1>
+        </a>
         <nav class="navbar navbar-inverse navbar-fixed-top navbar-mod mobile-display-none">
             <div class="container">
                 <div class="navbar-header text-center">
@@ -79,7 +81,7 @@
                         </h1>
                         <!-- <div><span id="menu-caret" class="fas fa-caret-down"></span></div> -->
                     </button>
-                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
+                    <a asp-controller="Blog" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
                         <h1 class="site-logo mobile-display-none">
                             <span class="blue no-space">M</span>
                             <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
@@ -161,7 +163,7 @@
             
                 stickySearch();
                 $(window).scroll(function() {
-                stickySearch();
+                    stickySearch();
                 });
             });
         </script>

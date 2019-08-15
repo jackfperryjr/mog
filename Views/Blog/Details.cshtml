@@ -1,0 +1,39 @@
+@model Moogle.Models.BlogPost
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "| " + Model.Title;
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<h1 class="top-buffer" style="font-weight:bolder;">@Model.Title</h1>
+<div class="article-page container top-buffer">
+    <div class="col-md-8 article-details">
+        <!-- @Html.Partial("_BlogSummary", Model) -->
+        <!-- <markdown source="@Model.Content"></markdown> -->
+        <blockquote style="margin-top:25px;">@Model.Content</blockquote>
+        <p>
+            <img style="width:60px;height:60px;border-radius:50%;margin-right:20px;" src="@Model.Author.Picture" />
+            Posted by: @Model.Author.Email on @Model.CreatedDate.ToString("dd MMM yyyy")
+        </p>
+    </div>
+
+    <div class="col-md-4">
+        <div class="container-fluid sidebar">
+            <div class="row">
+                <a asp-action="Create" class="btn-blue" style="border-radius: 50%;padding: 18px 22px;font-size:26px;position:fixed; top: 20%;right: 0;">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="row">
+                <a class="btn btn-blue" asp-action="Index">Back to List</a>
+                @if (User.IsInRole("Admin") || user.Email == Model.Author.Email)
+                {
+                    <a class="btn btn-yellow" asp-action="Delete" asp-route-id="@Model.BlogPostId">Delete</a>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
