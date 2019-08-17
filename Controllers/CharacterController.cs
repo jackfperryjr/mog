@@ -34,6 +34,7 @@ namespace Moogle.Controllers
         public static IConfiguration configuration { get; private set; }
 
         // GET: Character
+        [Authorize(Roles="Admin, Manager")]
         public async Task<IActionResult> Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
@@ -62,6 +63,7 @@ namespace Moogle.Controllers
         }
 
         // GET: Character/Details/5
+        [Authorize(Roles="Admin, Manager")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)

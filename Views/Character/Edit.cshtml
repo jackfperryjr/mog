@@ -225,15 +225,3 @@
         </div>
     </div>
 </form>
-
-@section Scripts {
-    <script type="text/javascript">
-        function hideSuccess() {
-            $("#edit-success-container").hide();
-        }
-        $("#img-input").change(function(event){
-            let imgPath = URL.createObjectURL(event.target.files[0]);
-            $("#img-output").fadeIn("fast").attr('src',imgPath); 
-        }) 
-    </script>
-}

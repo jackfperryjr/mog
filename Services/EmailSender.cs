@@ -32,7 +32,7 @@ namespace Moogle.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("jack@moogleapi.com", "Jack"),
+                From = new EmailAddress("jack@moogleapi.com", "MoogleApi"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

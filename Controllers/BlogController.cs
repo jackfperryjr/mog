@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moogle.Data;
 using Moogle.Models;
+using Moogle.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
@@ -14,11 +15,13 @@ namespace Moogle.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public BlogController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public BlogController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: Articles
@@ -48,7 +51,6 @@ namespace Moogle.Controllers
         }
 
         // GET: Articles/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -59,22 +61,26 @@ namespace Moogle.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Create([Bind("Title,Content")] BlogPost post)
         {
             if (ModelState.IsValid)
             {
                 post.AuthorId = _userManager.GetUserId(this.User);
+                post.Author = await _userManager.GetUserAsync(this.User);
                 post.CreatedDate = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
+                if (post.AuthorId != "5f6f5e73-47b8-4610-ae30-9c062716c86d")
+                {
+                    await _emailSender.SendBlogPostToAdminEmailAsync(post.Content, post.Author.FirstName, post.Author.Email);
+                }
+
                 return RedirectToAction("Index");
             }
             return View(post);
         }
 
         // GET: Articles/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -94,7 +100,6 @@ namespace Moogle.Controllers
         // POST: Articles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var post = await _context.BlogPosts.SingleOrDefaultAsync(b => b.BlogPostId == id);

@@ -3,22 +3,28 @@
     ViewData["Title"] = "| Register";
 }
 <div class="row" style="margin:20% auto;">
+    @if (@TempData["Status"] != null) {
+    <div id="edit-success-container" class='@TempData["ClassName"]' style='@TempData["ContainerHeight"]'>
+        <span onclick="hideSuccess()" class='pull-right' style='cursor: pointer; color: #fff; font-size: 28px; padding-right: 10px;'>&times;</span>
+        <h3 class='text-center' style='margin: auto; padding: 5px;'>@TempData["Message"]</h3>
+    </div>
+    }
     <div class="col-md-5" style="background-color:transparent;min-height:300px;border-radius:5px;padding:10px;margin:0 auto !important;float:none !important;">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h2>register a new user</h2>
+            <h2>register</h2>
             <hr/>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="Email" class="login-bar login-picture" style="width:100%" placeholder="Enter email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group" style="display:none;">
-                <input asp-for="Password" class="login-bar" style="width:100%" value="p@ssW0rd" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="form-group">
+                <input asp-for="FirstName" class="login-bar" style="width:100%" placeholder="Enter first name" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group" style="display:none;">
-                <input asp-for="ConfirmPassword" class="login-bar" style="width:100%" value="p@ssW0rd" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            <div class="form-group">
+                <input asp-for="LastName" class="login-bar" style="width:100%" placeholder="Enter last name" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-blue pull-right">register</button>
         </form>

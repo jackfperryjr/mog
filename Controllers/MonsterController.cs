@@ -17,7 +17,7 @@ using Moogle.Data;
 namespace Moogle.Controllers
 {
     
-    [Authorize]
+    [Authorize(Roles="Admin, Manager")]
     public class MonsterController : Controller
     {
         private readonly ApplicationDbContext _context;

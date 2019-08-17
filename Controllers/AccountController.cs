@@ -248,30 +248,39 @@ namespace Moogle.Controllers
             return View(users.ToList());  
         } 
         [Authorize(Roles="Admin")]
-        public async Task<IActionResult> UserRoles(string id, int role)  
-        {  
-            // if (id == null)
-            // {
-            //     return NotFound();
-            // }
+        public async Task<IActionResult> EditUserRole(string id, int role)  
+        { 
+            var userRole = "";
+            if (role == 1) 
+            {
+                userRole = "Admin";
+            }
+            else if (role == 2) 
+            {
+                userRole = "Manager";
+            }
+            else 
+            {
+                userRole = "Member";
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
-            var roles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRoleAsync(user, "Admin");
+            await _userManager.RemoveFromRoleAsync(user, "Manager");
+            await _userManager.RemoveFromRoleAsync(user, "Member");
 
-            // if (role == 1)
-            // {
-                
-            // }
-            // if (role == 2)
-            // {
-                
-            // }
-
+            await _userManager.AddToRoleAsync(user, userRole);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Users));
         }
 
         [HttpGet]
-        [Authorize(Roles="Admin")] // Because only I want to register new users
+        [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -279,35 +288,40 @@ namespace Moogle.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")] // Same as above
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = "New User", Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = model.FirstName, LastName = model.LastName, Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-profile.jpg" };
                 model.Password = PasswordGenerator.GeneratePassword(); // Custom helper to generate passwords.
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    await _userManager.AddToRoleAsync(user, "Member"); // Every new user gets this generic role by default.
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, model.Password, callbackUrl);
                     await _emailSender.SendRegistrationEmailToAdminAsync(model.Email);
 
+                    TempData["ClassName"] = "bg-success";
+                    TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
+                    TempData["Message"] = "Registered! You should receive an email with a confirmation link and your password.";
+                    TempData["Status"] = "Success";
+                    
                     //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    if (User.IsInRole("Admin")) 
-                    {
-                        return RedirectToAction(nameof(Users));
-                    }
-                    else 
-                    {
-                        return RedirectToAction(nameof(MonsterController.Index), "Monster"); // Just in case I open up registration.
-                    }
+                    // if (User.IsInRole("Admin")) 
+                    // {
+                    //     return RedirectToAction(nameof(Users));
+                    // }
+                    // else 
+                    // {
+                    //     return RedirectToAction(nameof(BlogController.Index), "Blog");
+                    // }
                 }
                 AddErrors(result);
             }

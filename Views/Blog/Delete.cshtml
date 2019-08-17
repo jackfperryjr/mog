@@ -4,8 +4,7 @@
     ViewData["Title"] = "| Delete";
 }
 
-<h2>Delete</h2>
-
+<h2 class="top-buffer">Delete</h2>
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Post</h4>
@@ -27,8 +26,8 @@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="delete" class="btn btn-red" />
+            <a class="btn btn-blue" style="margin-top:5px;" asp-action="Index">back to list</a>
         </div>
     </form>
 </div>

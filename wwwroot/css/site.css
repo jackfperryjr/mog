@@ -250,6 +250,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 /* End of forms */
 /* Colors */
 .btn-blue {
+  margin: 2px;
   background-color: #4285F4;
   color: #fff;
   text-decoration: none;
@@ -263,6 +264,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   transition: ease-in-out .1s;
 }
 .btn-green {
+  margin: 2px;
   background-color: #007E33;
   color: #fff;
   text-decoration: none;
@@ -276,6 +278,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   transition: ease-in-out .1s;
 }
 .btn-yellow {
+  margin: 2px;
   background-color: #ffbb33;
   color: #fff;
   text-decoration: none;
@@ -289,6 +292,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   transition: ease-in-out .1s;
 }
 .btn-red {
+  margin: 2px;
   background-color: #CC0000;
   color: #fff;
   text-decoration: none;
@@ -695,7 +699,7 @@ button.stripe-button-el>span {
   border-radius: 50%;
   font-size:31px;
   position:fixed; 
-  top: 30%;
+  top: 20%;
   right: 0;
   z-index: 2000;
 }
@@ -706,12 +710,6 @@ button.stripe-button-el>span {
   top: 30px;
   left: 37px;
 }
-/* .add-blog > a > .fas {
-  width: 26px !important;
-  max-width: 26px !important;
-  height: 22.75px !important;
-  max-height: 22.75px !important;
-} */
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

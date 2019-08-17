@@ -24,41 +24,122 @@
     </div>
 </form>
 <div class="container top-buffer"> 
-    <div class="row bottom-buffer" style="margin-right: auto; margin-left: auto; padding-left:5%;">
+    <!-- <div class="row bottom-buffer" style="margin-right: auto; margin-left: auto; padding-left:5%;"> -->
+    <table class="table table-condensed">
+        <tr>
+            <td></td>
+            <td>user</td>
+            <td>email confirmed?</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     @foreach (var user in Model)  
     {  
         @if (user.Email != "jackfperryjr@gmail.com")
         {
-            <div class="well col-md-4 character-card" style="min-width:250px!important;min-height: 200px;">
-                <div><img src="@user.Picture" style="width: 40px;height:40px;border-radius:50%;margin-right:3px;" />@user.FirstName @user.LastName</div>
-                <p>@user.Email</p>
-                <p>email confirmed? @user.EmailConfirmed</p>
-                <br/>
-                <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + user.UserId)">remove?</a>
-                <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-center">
-                        @using (Html.BeginForm("Delete", "Account"))
-                        {
-                            <input type="hidden" value="@user.UserId" name="Id" />
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">X</button>
-                                <h4 class="modal-title">Delete @user.Email</h4>
+            <tr>
+                <td><img src="@user.Picture" style="width: 40px;height:40px;border-radius:50%;margin-right:3px;" /></td>
+                <td>@user.FirstName @user.LastName</td>
+                <td>@user.EmailConfirmed</td>
+                <td><a class="btn btn-blue" data-toggle="modal" href="@("#makeAdminModal" + user.UserId)">make admin?</a>
+                    <div class="modal fade" id="@("makeAdminModal" + user.UserId)" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content text-center">
+                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            {
+                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="1" name="role" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Make @user.Email an admin</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to make @user.Email an admin?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-red">yes</button>
+                                    <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
+                                </div>
+                            }
                             </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete @user.Email?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-red">yes</button>
-                                <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
-                            </div>
-                        }
                         </div>
-                    </div>
-                </div>  
-            </div>
+                    </div> 
+                    <a class="btn btn-green" data-toggle="modal" href="@("#makeManagerModal" + user.UserId)">make manager?</a>
+                    <div class="modal fade" id="@("makeManagerModal" + user.UserId)" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content text-center">
+                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            {
+                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="2" name="role" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Make @user.Email a manager</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to make @user.Email a manager?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-red">yes</button>
+                                    <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    </div> 
+                    <a class="btn btn-yellow" data-toggle="modal" href="@("#makeMemberModal" + user.UserId)">make member?</a>
+                    <div class="modal fade" id="@("makeMemberModal" + user.UserId)" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content text-center">
+                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            {
+                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="0" name="role" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Make @user.Email a member</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to make @user.Email a member?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-red">yes</button>
+                                    <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    </div> 
+                    <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + user.UserId)">delete user?</a>
+                    <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content text-center">
+                            @using (Html.BeginForm("Delete", "Account"))
+                            {
+                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">X</button>
+                                    <h4 class="modal-title">Delete @user.Email</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete @user.Email?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-red">yes</button>
+                                    <button type="button" class="btn btn-blue" data-dismiss="modal">no</button>
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    </div>  
+                </td>
+            </tr>
+            <!-- </div> -->
         }
     }  
-    </div>
+    <!-- </div> -->
+    </table>
 
 </div>
