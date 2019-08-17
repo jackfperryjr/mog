@@ -1,4 +1,4 @@
-@model IEnumerable<Moogle.Models.ApplicationUserViewModel>
+@model IEnumerable<Moogle.Models.ApplicationUser>
 @using Microsoft.AspNetCore.Identity
 @using Moogle.Models
 @inject SignInManager<ApplicationUser> SignInManager
@@ -23,13 +23,13 @@
         </div>
     </div>
 </form>
-<div class="container top-buffer"> 
+<div class="top-buffer"> 
     <!-- <div class="row bottom-buffer" style="margin-right: auto; margin-left: auto; padding-left:5%;"> -->
     <table class="table table-condensed">
         <tr>
             <td></td>
             <td>user</td>
-            <td>email confirmed?</td>
+            <td><span class="mobile-display-none">email confirmed?</span></td>
             <td></td>
             <td></td>
             <td></td>
@@ -42,14 +42,14 @@
             <tr>
                 <td><img src="@user.Picture" style="width: 40px;height:40px;border-radius:50%;margin-right:3px;" /></td>
                 <td>@user.FirstName @user.LastName</td>
-                <td>@user.EmailConfirmed</td>
-                <td><a class="btn btn-blue" data-toggle="modal" href="@("#makeAdminModal" + user.UserId)">make admin?</a>
-                    <div class="modal fade" id="@("makeAdminModal" + user.UserId)" tabindex="-1" role="dialog">
+                <td><span class="mobile-display-none">@user.EmailConfirmed</span></td>
+                <td class="text-right"><a class="btn btn-blue" data-toggle="modal" href="@("#makeAdminModal" + user.Id)">make admin?</a>
+                    <div class="modal fade" id="@("makeAdminModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
                             @using (Html.BeginForm("EditUserRole", "Account"))
                             {
-                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="1" name="role" />
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -66,13 +66,13 @@
                             </div>
                         </div>
                     </div> 
-                    <a class="btn btn-green" data-toggle="modal" href="@("#makeManagerModal" + user.UserId)">make manager?</a>
-                    <div class="modal fade" id="@("makeManagerModal" + user.UserId)" tabindex="-1" role="dialog">
+                    <a class="btn btn-green" data-toggle="modal" href="@("#makeManagerModal" + user.Id)">make manager?</a>
+                    <div class="modal fade" id="@("makeManagerModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
                             @using (Html.BeginForm("EditUserRole", "Account"))
                             {
-                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="2" name="role" />
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -89,13 +89,13 @@
                             </div>
                         </div>
                     </div> 
-                    <a class="btn btn-yellow" data-toggle="modal" href="@("#makeMemberModal" + user.UserId)">make member?</a>
-                    <div class="modal fade" id="@("makeMemberModal" + user.UserId)" tabindex="-1" role="dialog">
+                    <a class="btn btn-yellow" data-toggle="modal" href="@("#makeMemberModal" + user.Id)">make member?</a>
+                    <div class="modal fade" id="@("makeMemberModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
                             @using (Html.BeginForm("EditUserRole", "Account"))
                             {
-                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="0" name="role" />
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -112,13 +112,13 @@
                             </div>
                         </div>
                     </div> 
-                    <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + user.UserId)">delete user?</a>
-                    <div class="modal fade" id="@("deleteModal" + user.UserId)" tabindex="-1" role="dialog">
+                    <a class="btn btn-red" data-toggle="modal" href="@("#deleteModal" + user.Id)">delete user?</a>
+                    <div class="modal fade" id="@("deleteModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
                             @using (Html.BeginForm("Delete", "Account"))
                             {
-                                <input type="hidden" value="@user.UserId" name="Id" />
+                                <input type="hidden" value="@user.Id" name="Id" />
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">X</button>
                                     <h4 class="modal-title">Delete @user.Email</h4>

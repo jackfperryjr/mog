@@ -9,6 +9,6 @@ namespace Moogle.Models
         public string Picture { get; set; }
         public string Email { get; set; }  
         public string EmailConfirmed { get; set; }
-        public virtual AspNetRoles Role { get; set; }
-    } 
+        public ApplicationUserRole Role { get; set; }
+    }
 }

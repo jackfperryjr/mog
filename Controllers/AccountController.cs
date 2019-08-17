@@ -228,17 +228,20 @@ namespace Moogle.Controllers
                             LastName = user.LastName,
                             Picture = user.Picture,
                             Email = user.Email,
-                            EmailConfirmed = user.EmailConfirmed
-                        }).ToList().Select(u => new ApplicationUserViewModel()  
+                            EmailConfirmed = user.EmailConfirmed,
+                            UserRole = user.UserRole,
+                        }).ToList()
+                        .Select(u => new ApplicationUser()  
                         {  
-                            UserId = u.UserId,  
+                            Id = u.UserId,  
                             FirstName = u.FirstName, 
                             LastName = u.LastName, 
                             Picture = u.Picture,
                             Email = u.Email,
-                            EmailConfirmed = u.EmailConfirmed.ToString(),
+                            EmailConfirmed = u.EmailConfirmed,
+                            UserRole = u.UserRole,
                         });  
-
+                        
             users = users.OrderBy(u => u.Email);
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -311,17 +314,6 @@ namespace Moogle.Controllers
                     TempData["ContainerHeight"] = "height: 50px; border-radius: 5px;";
                     TempData["Message"] = "Registered! You should receive an email with a confirmation link and your password.";
                     TempData["Status"] = "Success";
-                    
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
-
-                    // if (User.IsInRole("Admin")) 
-                    // {
-                    //     return RedirectToAction(nameof(Users));
-                    // }
-                    // else 
-                    // {
-                    //     return RedirectToAction(nameof(BlogController.Index), "Blog");
-                    // }
                 }
                 AddErrors(result);
             }
