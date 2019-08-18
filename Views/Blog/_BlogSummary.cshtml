@@ -3,7 +3,7 @@
 <div class="row article-summary" style="margin-top:50px;">
     <div class="col-md-10">
         <img style="width: 40px; height: 40px; border-radius: 50%;margin-right:10px;" src=@Model.Author.Picture />
-        <span style="font-size:22px;margin-right:30px;">@(Model.Author.FirstName ?? Model.Author.Email)</span>
+        <span style="font-size:22px;margin-right:30px;">@(Model.Author.FirstName)</span>
         <span><a asp-action="Details" asp-route-id="@Model.BlogPostId">@Model.Title</a></span>
     </div>
 </div>
