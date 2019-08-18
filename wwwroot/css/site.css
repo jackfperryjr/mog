@@ -373,6 +373,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   border-radius:500px;
   background-color:#eceff1;
   border:1px solid transparent;
+  transition: ease-in-out .1s;
 }
 #search-icon {
   font-size: 16px;
@@ -721,6 +722,7 @@ button.stripe-button-el>span {
       top: 0;
       border-radius: 2px;
       z-index: 2000;
+      transition: ease-in-out .1s;
     }
     .sticky-search-icon {
       position:fixed;
@@ -728,6 +730,7 @@ button.stripe-button-el>span {
       right: 0;
       top: 0;
       z-index: 2100;
+      transition: ease-in-out .1s;
     }
     body {
       margin-top: -20px;
