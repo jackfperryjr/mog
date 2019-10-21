@@ -13,7 +13,6 @@ namespace Moogle.Data
         public DbSet<Moogle.Models.Characters> Character { get; set; } // I did this one backwards
         public DbSet<Moogle.Models.Monster> Monsters { get; set; }  
         public DbSet<Moogle.Models.Game> Games { get; set; }  
-        public DbSet<BlogPost> BlogPosts { get; set; }
         
         // protected override void OnModelCreating(ModelBuilder builder)
         // {

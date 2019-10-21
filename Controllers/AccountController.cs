@@ -283,7 +283,7 @@ namespace Moogle.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles="Admin")]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -292,7 +292,7 @@ namespace Moogle.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -550,7 +550,7 @@ namespace Moogle.Controllers
             else
             {
                 // Login takes user to character index page
-                return RedirectToAction(nameof(BlogController.Index), "Blog");
+                return RedirectToAction(nameof(CharacterController.Index), "Character");
             }
         }
     }

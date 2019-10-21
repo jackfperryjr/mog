@@ -16,7 +16,7 @@ namespace Moogle
             {
                 var provider = scope.ServiceProvider;
                 // provider.GetService<ApplicationDbContext>().Database.EnsureCreated();
-				provider.GetService<ApplicationDbContext>().Database.Migrate();
+				//provider.GetService<ApplicationDbContext>().Database.Migrate();
                 Roles.CreateRoles(provider, Startup.Configuration);
                 //SeedData.SeedDB(context);
             }
