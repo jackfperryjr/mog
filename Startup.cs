@@ -95,12 +95,15 @@ namespace Moogle
             app.UseCors("CorsPolicy");
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "/swagger/v1/swagger.json";
+            });
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("./v1/swagger.json", "MoogleApi v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoogleApi v1");
             });
             app.UseMvc(routes =>
             {
