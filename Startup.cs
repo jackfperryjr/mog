@@ -66,7 +66,13 @@ namespace Moogle
                 { 
                     Title = "MoogleApi", 
                     Version = "v1",
-                    Description = "A simple web API for Final Fantasy characters, monsters, and games!"
+                    Description = "A simple web API for Final Fantasy characters, monsters, and games!",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Jack F. Perry, Jr.",
+                        Email = "jackfperryjr@gmail.com",
+                        Url = new Uri("https://www.moogleapi.com")
+                    }
                 });
             });
             services.AddProgressiveWebApp();
