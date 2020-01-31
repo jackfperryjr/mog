@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using Stripe;
 using Moogle.Data;
 using Moogle.Models;
@@ -61,17 +62,11 @@ namespace Moogle
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info 
+                c.SwaggerDoc("v1", new OpenApiInfo 
                 { 
                     Title = "MoogleApi", 
                     Version = "v1",
-                    Description = "A simple web API for Final Fantasy characters, monsters, and games!",
-                    Contact = new Contact
-                    {
-                        Name = "Jack F. Perry, Jr.",
-                        Email = "jackfperryjr@gmail.com",
-                        Url = "https://www.moogleapi.com"
-                    } 
+                    Description = "A simple web API for Final Fantasy characters, monsters, and games!"
                 });
             });
             services.AddProgressiveWebApp();
