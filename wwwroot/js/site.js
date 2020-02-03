@@ -28,7 +28,7 @@ new Vue({
     },
     methods: {
         getCharacters() {
-            axios.get("api/v1/characters")
+            axios.get("api/v1/character")
             .then(response => {this.character = response.data})
         },
         setModal(character) {
