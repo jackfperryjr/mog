@@ -40,7 +40,7 @@ new Vue({
         getRandom() {
             $(".search-results").hide()
             $("#random-character").show()
-            axios.get("https://www.moogleapi.com/api/v1/characters/random")
+            axios.get("https://www.moogleapi.com/api/v1/character/random")
             .then(response => {this.random = response.data})
         },
         getLoad() {
@@ -48,7 +48,7 @@ new Vue({
             $("#random-character").show()
 
             // axios.get("https://www.moogleapi.com/api/v1/characters/75c054fe-d022-44d4-102f-08d6afcab3e2") // Using id (returns single entity)
-            axios.get("https://www.moogleapi.com/api/v1/characters/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
+            axios.get("https://www.moogleapi.com/api/v1/character/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
             .then(response => {this.random = response.data})
         }
     },
