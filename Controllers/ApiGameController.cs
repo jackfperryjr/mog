@@ -8,7 +8,7 @@ using Moogle.Models;
 
 namespace Moogle.Controllers
 {
-    [Route("/api/v1/[controller]")]
+    [Route("/api/[controller]")]
     public class ApiGameController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
