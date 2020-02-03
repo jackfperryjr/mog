@@ -84,7 +84,7 @@ namespace Moogle
         StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
 
             if (env.IsDevelopment())
-            {
+            {  
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
