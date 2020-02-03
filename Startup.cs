@@ -101,7 +101,7 @@ namespace Moogle
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("./swagger/v1/swagger.json", "MoogleApi v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoogleApi v1");
             });
             app.UseMvc(routes =>
             {
