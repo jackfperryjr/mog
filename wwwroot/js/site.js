@@ -1,3 +1,5 @@
+let url = window.location.origin;
+
 // List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
     "Search ex. ''Lightning'' or ''13''",
@@ -28,7 +30,7 @@ new Vue({
     },
     methods: {
         getCharacters() {
-            axios.get("api/apicharacter")
+            axios.get(url + "/api/v1/characters")
             .then(response => {this.character = response.data})
         },
         setModal(character) {
@@ -40,15 +42,15 @@ new Vue({
         getRandom() {
             $(".search-results").hide()
             $("#random-character").show()
-            axios.get("https://www.moogleapi.com/api/apicharacter/random")
+            axios.get(url + "/api/v1/characters/random")
             .then(response => {this.random = response.data})
         },
         getLoad() {
             $(".search-results").hide()
             $("#random-character").show()
 
-            // axios.get("https://www.moogleapi.com/api/v1/characters/75c054fe-d022-44d4-102f-08d6afcab3e2") // Using id (returns single entity)
-            axios.get("https://www.moogleapi.com/api/apicharacter/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
+            // axios.get(url + "/api/v1/characters/75c054fe-d022-44d4-102f-08d6afcab3e2") // Using id (returns single entity)
+            axios.get(url + "/api/v1/characters/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
             .then(response => {this.random = response.data})
         }
     },

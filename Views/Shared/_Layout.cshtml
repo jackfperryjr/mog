@@ -39,18 +39,11 @@
 
         <link rel="icon" href="~/icons/icon-ff-moogle.png" />
         <title>MoogleApi @ViewData["Title"]</title>
-        <environment include="Production">
+        <environment include="Development, Production">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
             @RenderSection("Styles", false)
-        </environment>
-        <environment exclude="Production">
-            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-                asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-                asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
         </environment>
     </head>
     <body>
@@ -126,23 +119,9 @@
             <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
             </span>
         </footer>
-        <environment include="Production">
+        <environment include="Development, Production">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        </environment>
-        <environment exclude="Production">
-            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-            </script>
-            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-            </script>
         </environment>
         @RenderSection("Scripts", required: false)
         <script>

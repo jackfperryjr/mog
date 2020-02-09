@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.OpenApi.Models;
 using Stripe;
 using Moogle.Data;
@@ -59,7 +59,7 @@ namespace Moogle
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
             });          
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
-            services.AddMvc();
+            services.AddMvc(c => c.Conventions.Add(new ApiExplorerIgnores())); // See class below Startup.
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
@@ -109,6 +109,17 @@ namespace Moogle
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+    }
+
+    // Hack to get around using Swagger with WebEssentials PWA.
+    // There is a PR to resolve the issue in WebEssentials PWA.
+    public class ApiExplorerIgnores : IActionModelConvention
+    {
+        public void Apply(ActionModel action)
+        {
+            if (action.Controller.ControllerName.Equals("Pwa"))
+                action.ApiExplorer.IsVisible = false;
         }
     }
 }
