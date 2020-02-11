@@ -25,7 +25,7 @@ namespace Moogle.Controllers
         {
             return View();
         }
-        public IActionResult JackFPerryJr()
+        public IActionResult Developer()
         {
             return View();
         }

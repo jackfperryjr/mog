@@ -163,7 +163,7 @@ i {
 /* Styling Moogle title */
 .site-title {
   margin-top:30px;
-  min-height:200px;
+  min-height:100px;
   background-color:#e0e0e0;
   border-radius:500px;
 }
@@ -714,15 +714,35 @@ button.stripe-button-el>span {
 /* End of special button stuff */
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
+    body {
+      margin-top: -20px;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .site-span-api {
+      color: #ffffff;
+    }
+    .fancy-search {
+      background-color: #000000!important;
+      color: #ffffff!important;
+      border: 1px solid #b0bec5;
+      transition: ease-in-out .2s;
+    }
     .sticky-search-bar {
       position: fixed;
       width: 100%;
+      border-color: #000000;
       border-bottom: 1px solid #b0bec5;
       left: 0;
       top: 0;
       border-radius: 2px;
       z-index: 2000;
-      transition: ease-in-out .1s;
+      transition: ease-in-out .2s;
+      background-color: #000000!important;
+      color: #ffffff!important;
     }
     .sticky-search-icon {
       position:fixed;
@@ -732,11 +752,13 @@ button.stripe-button-el>span {
       z-index: 2100;
       transition: ease-in-out .1s;
     }
-    body {
-      margin-top: -20px;
-      -webkit-touch-callout: none;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-user-select: none;
+    .green,
+    .search-result,
+    .search-result > a,
+    .search-result > a:hover,
+    .search-result > a:visited,
+    .search-result > a:focus {
+      color: #00C851;
     }
     /* Nav */
     .general-nav {
@@ -744,7 +766,7 @@ button.stripe-button-el>span {
       margin-left: 20px;
     }
     .nav {
-      background-color: #fff;
+      background-color: #000000;
       margin: 0 auto;
       padding-bottom: 20px;
       text-align: center;
@@ -754,7 +776,7 @@ button.stripe-button-el>span {
       margin: 0 auto;
     }
     .navbar-nav > li {
-      padding: 0;
+      padding: 0 5% 0 5%;
       margin: 2px auto;
       font-size: 38px;
     }
@@ -829,8 +851,24 @@ button.stripe-button-el>span {
     }
     /* End of to be removed */
     /* Home demo stuff */
+    #randomModal, 
+    #imageModal {
+      z-index: 5000;
+    }
+   .moal .modal-content,
+    #imageModal .modal-content {
+      background-color: #000000!important;
+    }
+    #randomModal .close,
+    #imageModal .close {
+      color: #ffffff;
+      opacity: .7;
+    }
     .moogle-table {
       width: 100%;
+    }
+    .moogle-h4 {
+      color: #4285F4;
     }
     .moogle-modal-button {
       margin: 0 auto;
@@ -874,9 +912,12 @@ button.stripe-button-el>span {
     .site-title {
       margin-left:0;
       margin-top:30px;
-      min-height:200px;
-      background-color:#e0e0e0;
+      min-height:100px;
+      background-color:#333333;
       border-radius:500px;
+    }
+    .dark-bluish-gray {
+      color: #78909c !important;
     }
     .title-1 {
       font-size:3.5em;
@@ -913,6 +954,8 @@ button.stripe-button-el>span {
     }
     .login-bar {
       width: 250px;
+      background-color: #000000;
+      color: #ffffff;
     }
     .search-card {
       margin: 0 auto;
@@ -1008,4 +1051,19 @@ button.stripe-button-el>span {
       opacity: 0.5;
     }
     /* End of special button stuff */
+    .bg-green {
+      background-color:#00C851;
+    }
+    .bg-red {
+      background-color:#cc0000;
+    }
+    .bg-yellow {
+      background-color:#ffbb33;
+    }
+    .bg-blue {
+      background-color:#4285F4;
+    }
+    .bg-grey {
+      background-color:#333333;
+    }
 }

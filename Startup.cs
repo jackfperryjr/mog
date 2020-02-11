@@ -30,18 +30,14 @@ namespace Moogle
         public static IConfiguration Configuration { get; private set; }
         private IHostingEnvironment Environment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
-            // Adding Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(Configuration =>
                 { Configuration.SignIn.RequireConfirmedEmail = true; })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-            
-            // Add application services.
             services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddCors(options =>
@@ -78,10 +74,9 @@ namespace Moogle
             services.AddProgressiveWebApp();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-        StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
+            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
 
             if (env.IsDevelopment())
             {  
@@ -97,8 +92,6 @@ namespace Moogle
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseSwagger();
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoogleApi v1");

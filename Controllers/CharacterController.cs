@@ -18,16 +18,13 @@ namespace Moogle.Controllers
     public class CharacterController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private IHostingEnvironment _env { get; }
         private IConfiguration _configuration;
 
         public CharacterController(
             ApplicationDbContext context, 
-            IHostingEnvironment env,
             IConfiguration configuration)
         {
             _context = context;
-            _env = env;
             _configuration = configuration;
         }
 

@@ -23,20 +23,17 @@ namespace Moogle.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IEmailSender _emailSender;
         private readonly UserManager<ApplicationUser> _userManager;
-        private IHostingEnvironment _env { get; }
         private IConfiguration _configuration;
 
         public GameController(
             ApplicationDbContext context, 
             IEmailSender emailSender, 
             UserManager<ApplicationUser> userManager, 
-            IHostingEnvironment env,
             IConfiguration configuration)   
         {
             _context = context;
             _emailSender = emailSender;
             _userManager = userManager;
-            _env = env;
             _configuration = configuration;
         }
 
