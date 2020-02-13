@@ -4,13 +4,12 @@
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 
-<ul class="nav nav-pills nav-stacked" style="margin-top:20px;">
-    <li class="@ManageNavPages.IndexNavClass(ViewContext)" style="padding-right:50px;padding-left:50px;"><a asp-action="Index">profile</a></li>
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)" style="padding-right:50px;padding-left:50px;"><a asp-action="ChangePassword">password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>
-    }
-    <!-- <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-action="TwoFactorAuthentication">Two-factor authentication</a></li> -->
+<ul class="nav nav-pills" style="margin-top:20px;">
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">profile</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">password</a></li>
+    <li class="@ManageNavPages.UsersNavClass(ViewContext)"><a asp-action="Users" title="Click to manage users.">users</a></li>
+    <form asp-controller="Account" asp-action="Logout" method="post">
+       <button id="logout" type="submit" class="btn btn-warning bg-yellow" style="padding:10px 15px;box-shadow:none;" title="Click to sign out.">logout</button>
+    </form>
 </ul>
 

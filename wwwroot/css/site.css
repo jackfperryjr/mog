@@ -787,10 +787,6 @@ button.stripe-button-el>span {
       padding-left: 0;
       margin-left: 0;
     }
-    .navbar-nav > li > button > span {
-      padding-left: 0;
-      margin-left: 0;
-    }
     .navbar-nav > li > a {
       padding: 3px;
     }
@@ -855,7 +851,7 @@ button.stripe-button-el>span {
     #imageModal {
       z-index: 5000;
     }
-   .moal .modal-content,
+    #randomModal .modal-content,
     #imageModal .modal-content {
       background-color: #000000!important;
     }
@@ -956,6 +952,15 @@ button.stripe-button-el>span {
       width: 250px;
       background-color: #000000;
       color: #ffffff;
+    }
+    .login-picture {
+      border-bottom: 2px solid #b0bec5;
+    }
+    .login-picture:focus {
+      border-bottom: 3px solid #00C851;
+      border-radius: 5px;
+      transition: all .1s ease-in-out;
+      font-weight: bolder;
     }
     .search-card {
       margin: 0 auto;

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Moogle.Data;
 using Moogle.Models;
 using Moogle.Models.ManageViewModels;
@@ -587,6 +588,97 @@ namespace Moogle.Controllers
 
             model.SharedKey = FormatKey(unformattedKey);
             model.AuthenticatorUri = GenerateQrCodeUri(user.Email, unformattedKey);
+        }
+
+        [Authorize(Roles="Admin")]
+        public IActionResult Users(string currentFilter, string sortOrder, string searchString, int? page)  
+        {  
+            ViewData["EmailSort"] = String.IsNullOrEmpty(sortOrder) ? "Email" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var users = (from user in _context.Users  
+                        select new  
+                        {  
+                            UserId = user.Id,                                        
+                            FirstName = user.FirstName,  
+                            LastName = user.LastName,
+                            Picture = user.Picture,
+                            Email = user.Email,
+                            EmailConfirmed = user.EmailConfirmed,
+                            UserRole = user.UserRole,
+                        }).ToList()
+                        .Select(u => new ApplicationUser()  
+                        {  
+                            Id = u.UserId,  
+                            FirstName = u.FirstName, 
+                            LastName = u.LastName, 
+                            Picture = u.Picture,
+                            Email = u.Email,
+                            EmailConfirmed = u.EmailConfirmed,
+                            UserRole = u.UserRole,
+                        });  
+                        
+            users = users.OrderBy(u => u.Email);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.Email.Contains(searchString.First().ToString() + searchString.Substring(1))); // Search by user email
+            }
+
+            return View(users.ToList());  
+        } 
+        [Authorize(Roles="Admin")]
+        public async Task<IActionResult> EditUserRole(string id, int role)  
+        { 
+            var userRole = "";
+            if (role == 1) 
+            {
+                userRole = "Admin";
+            }
+            else if (role == 2) 
+            {
+                userRole = "Manager";
+            }
+            else 
+            {
+                userRole = "Member";
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+            await _userManager.RemoveFromRoleAsync(user, "Admin");
+            await _userManager.RemoveFromRoleAsync(user, "Manager");
+            await _userManager.RemoveFromRoleAsync(user, "Member");
+
+            await _userManager.AddToRoleAsync(user, userRole);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Users));
+        }
+
+        [Authorize(Roles="Admin")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Users));
         }
     }
 }

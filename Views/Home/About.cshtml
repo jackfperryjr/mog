@@ -32,7 +32,7 @@
     <div class="row">
         <h3>The API is missing stuff!</h3>
         <div class="row about-box bg-blue">
-            <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an email: <a href="mailto:jackfperryjr@gmail.com">jackfperryjr@gmail.com</a></h4>
+            <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an email: <a class="blue" href="mailto:jackfperryjr@gmail.com">jackfperryjr@gmail.com</a></h4>
         </div>
     </div>
     <div class="row">
@@ -44,20 +44,20 @@
     <div class="row">
         <h3>What is the tech stack?</h3>
         <div class="row about-box bg-red">
-            <h4>The API is built in C# with .NET Core 2.0 (V2 will be in 3.0 when it's available). It's hosted with Azure, uses an Azure SQL database, and set behind Cloudflare for caching speed. The home page and my sample <a href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">example</a> are wired up with Vue.js.</h4>
+            <h4>The API is built in C# with .NET Core 2.2 currently (v2 will be in 3.0 when I get time). It's hosted on Azure, uses an Azure SQL database, and set behind Cloudflare for caching. The home page and my sample <a class="blue" href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">example</a> are wired up with Vue.js.</h4>
         </div>
     </div>
     <div class="row">
         <h3>Can I help?</h3>
         <div class="row about-box bg-grey">
-            <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! Or if you like what I'm doing and you're using it for your own projects or for teaching purposes and want to thank me with money, I've set up <a href="https://www.stripe.com" target="_blank">STRIPE</a> for that. No pressure, though; this thing is totally free to the public!</h4>
+            <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! Or if you like what I'm doing and you're using it for your own projects or for teaching purposes and want to thank me with money, I've set up <a class="blue" href="https://www.stripe.com" target="_blank">STRIPE</a> for that. No pressure, though; this thing is free to the public!</h4>
             <form asp-action="Charge" method="post" class="text-center mix-buffer">
                 <script src="https://checkout.stripe.com/checkout.js"
                         class="stripe-button"
                         data-key="@Stripe.Value.PublishableKey"
                         data-locale="auto"
                         data-name="MoogleApi"
-                        data-image="@Url.Content("/icons/ff-moogle.png")"
+                        data-image="@Url.Content("/icons/icon-square-moogle-512.png")"
                         data-amount="500"
                         data-zip-code="true"
                         data-label="Click to Donate"

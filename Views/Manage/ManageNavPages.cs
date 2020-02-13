@@ -12,6 +12,8 @@ namespace Moogle.Views.Manage
 
         public static string ChangePassword => "ChangePassword";
 
+        public static string Users => "Users";
+
         public static string ExternalLogins => "ExternalLogins";
 
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
@@ -19,6 +21,8 @@ namespace Moogle.Views.Manage
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
+
+        public static string UsersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Users);
 
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 

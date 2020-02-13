@@ -5,10 +5,9 @@
 @inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "| Users";
+    ViewData.AddActivePage(ManageNavPages.Users);
     var users = await UserManager.GetUserAsync(User);
 }
-<h2 class="top-buffer">users</h2>
-<hr />
 <form asp-action="Users" method="get">
     <div id="input-container">
         <div class="row">
@@ -31,9 +30,6 @@
             <td>user</td>
             <td><span class="mobile-display-none">email confirmed?</span></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
     @foreach (var user in Model)  
     {  
@@ -41,13 +37,13 @@
         {
             <tr>
                 <td><img src="@user.Picture" style="width: 40px;height:40px;border-radius:50%;margin-right:3px;" /></td>
-                <td>@user.FirstName @user.LastName</td>
+                <td style="min-width:100px;">@user.FirstName @user.LastName</td>
                 <td><span class="mobile-display-none">@user.EmailConfirmed</span></td>
                 <td class="text-right"><a class="btn btn-blue" data-toggle="modal" href="@("#makeAdminModal" + user.Id)">make admin?</a>
                     <div class="modal fade" id="@("makeAdminModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
-                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            @using (Html.BeginForm("EditUserRole", "Manage"))
                             {
                                 <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="1" name="role" />
@@ -70,7 +66,7 @@
                     <div class="modal fade" id="@("makeManagerModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
-                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            @using (Html.BeginForm("EditUserRole", "Manage"))
                             {
                                 <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="2" name="role" />
@@ -93,7 +89,7 @@
                     <div class="modal fade" id="@("makeMemberModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
-                            @using (Html.BeginForm("EditUserRole", "Account"))
+                            @using (Html.BeginForm("EditUserRole", "Manage"))
                             {
                                 <input type="hidden" value="@user.Id" name="Id" />
                                 <input type="hidden" value="0" name="role" />
@@ -116,7 +112,7 @@
                     <div class="modal fade" id="@("deleteModal" + user.Id)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content text-center">
-                            @using (Html.BeginForm("Delete", "Account"))
+                            @using (Html.BeginForm("Delete", "Manage"))
                             {
                                 <input type="hidden" value="@user.Id" name="Id" />
                                 <div class="modal-header">
