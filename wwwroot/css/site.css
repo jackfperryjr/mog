@@ -11,6 +11,9 @@ body {
   font-family: "Raleway";
   font-size: 16px;
 }
+.btn {
+  box-shadow: none;
+}
 .active > a {
   background-color: #4285F4 !important;
   color: #fff !important;
@@ -179,7 +182,7 @@ i {
   font-size: 18px !important;
 }
 .label-under {
-  color:#cc0000;
+  color:#00C851;
   margin-bottom:5px;
   float:left;
 }
@@ -480,6 +483,7 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
   box-shadow: none;
   opacity: 1;
   transition: all .3s ease-in-out;
+  background-color: #ffffff;
 }
 .game-list-thumb {
   width: 180px;
@@ -516,9 +520,11 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 .character-delete-img {
   width: 200px;
+  background-color: #ffffff;
 }
 .character-delete-img-game {
   width: 350px;
+  background-color: #ffffff;
 }
 .index-button {
   float: right;
@@ -599,7 +605,6 @@ button.stripe-button-el>span {
   height:200px;
   border-radius:50%;
   object-fit: fill;
-  box-shadow: 2px 2px 4px #37474F;
   float:right;
   background-position: center center;
   background-repeat: no-repeat;
@@ -778,7 +783,7 @@ button.stripe-button-el>span {
     .navbar-nav > li {
       padding: 0 5% 0 5%;
       margin: 2px auto;
-      font-size: 38px;
+      font-size: 30px;
     }
     .navbar-nav > li:first-child {
       padding-left: 10px;
@@ -791,8 +796,8 @@ button.stripe-button-el>span {
       padding: 3px;
     }
     .navbar-icon {
-      height: 42px;
-      width: 42px;
+      height: 38px;
+      width: 38px;
     }
     .fa-home,
     .fa-fa-question-circle,
@@ -808,7 +813,6 @@ button.stripe-button-el>span {
     }
     .img-user {
       display:block;
-      box-shadow: 2px 2px 4px #37474F;
       float:none;
     }
     .navbar-username {
@@ -847,16 +851,13 @@ button.stripe-button-el>span {
     }
     /* End of to be removed */
     /* Home demo stuff */
-    #randomModal, 
-    #imageModal {
+    .modal {
       z-index: 5000;
     }
-    #randomModal .modal-content,
-    #imageModal .modal-content {
+    .modal-content {
       background-color: #000000!important;
     }
-    #randomModal .close,
-    #imageModal .close {
+    .close{
       color: #ffffff;
       opacity: .7;
     }

@@ -12,6 +12,16 @@
 <form asp-action="Create" enctype="multipart/form-data">
     <div class="add-edit-list">
         <div class="row">
+            <div id="desc-position" class="col-md-6">
+                <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
+                    <label>
+                        <img id="img-output" class="img-monster" src="~/icons/icon-square-moogle-512.png" />
+                        <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
+                    </label>
+                    <h5>Click to change image</h5>
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
             <div class="col-md-6">
                 <input type="hidden" asp-for="AddedBy" value="@user.Email" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -78,6 +88,7 @@
                 <div class="form-group" style="margin-bottom:0 !important;">
                     <input type="hidden" asp-for="MonsterId" />
                     <select asp-for="Game" class="login-bar login-picture">
+                        <option value="0">Select an origin...</option>
                         <option value="Final Fantasy 01">Final Fantasy 01</option>
                         <option value="Final Fantasy 02">Final Fantasy 02</option>
                         <option value="Final Fantasy 03">Final Fantasy 03</option>  
@@ -99,16 +110,6 @@
                     </select>
                     <span asp-validation-for="Game" class="text-danger"></span>
                     <span class="font-10 label-under">game</span>
-                </div>
-            </div>
-            <div id="desc-position" class="col-md-6">
-                <div class="input-group" style="height:250px;width:250px;margin:0 auto;">
-                    <label>
-                        <img id="img-output" class="img-monster" src="https://mooglestorage.blob.core.windows.net/images/icon-default-image.png" />
-                        <input asp-for="Picture" id="img-input" type="file" accept="image/*" name="picture" style="display:none;" />
-                    </label>
-                    <h5>Click to change image</h5>
-                    <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
             </div>
         </div>

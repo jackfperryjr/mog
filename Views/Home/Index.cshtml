@@ -30,7 +30,7 @@
         <div class="search-card">
             <form class="form-inline has-feedback">
                 <input id="search" class="fancy-search" v-model="search" type="input" />
-                <i id="search-icon" class="fas fa-search form-control-feedback blue"></i>
+                <i id="search-icon" class="fas fa-search form-control-feedback blue" style="margin-top:12px;"></i>
             </form>
         </div>
         <!-- Search results -->
@@ -85,7 +85,7 @@
         <div id="random-character" class="row moogle-row mix-buffer">
             <div class="col-md-8">
                 <h4 class="moogle-h4"><strong>{{random[0].name}}</strong></h4>
-                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random.name" target="_blank">https://www.google.com/search?q={{random[0].name}}</a></h7><br/>
+                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random[0].name" target="_blank">https://www.google.com/search?q={{random[0].name}}</a></h7><br/>
                 <p class="dark-bluish-gray">{{random[0].description}}</p>
                 <div class="row">
                     <div class="col-md-4">
