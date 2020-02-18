@@ -221,7 +221,7 @@ namespace Mog.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = model.FirstName, LastName = model.LastName, Picture = "https://Mogstorage.blob.core.windows.net/images/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = model.FirstName, LastName = model.LastName, Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-profile.jpg" };
                 model.Password = PasswordGenerator.GeneratePassword(); // Custom helper to generate passwords.
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
