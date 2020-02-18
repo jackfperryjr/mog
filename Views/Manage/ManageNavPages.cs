@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Moogle.Views.Manage
+namespace Mog.Views.Manage
 {
     public static class ManageNavPages
     {

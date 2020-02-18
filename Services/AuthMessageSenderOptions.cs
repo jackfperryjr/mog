@@ -1,4 +1,4 @@
-namespace Moogle.Services
+namespace Mog.Services
 {
     public class AuthMessageSenderOptions
     {

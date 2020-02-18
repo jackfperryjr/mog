@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;  
 using Newtonsoft.Json;
 
-namespace Moogle.Models  
+namespace Mog.Models  
 {  
     public class Monster
     {  

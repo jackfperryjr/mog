@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel.DataAnnotations;  
 using Newtonsoft.Json;
 
-namespace Moogle.Models  
+namespace Mog.Models  
 {  
-    public class Characters 
+    public class Characters
     {  
         public Guid Id { get; set; }
         [Required]  

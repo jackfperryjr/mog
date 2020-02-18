@@ -14,12 +14,12 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Data;
-using Moogle.Models;
-using Moogle.Models.ManageViewModels;
-using Moogle.Services;
+using Mog.Data;
+using Mog.Models;
+using Mog.Models.ManageViewModels;
+using Mog.Services;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
     [Authorize]
     public class ManageController : Controller

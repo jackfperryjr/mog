@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Moogle.Data.Migrations
+namespace Mog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
@@ -122,7 +122,7 @@ namespace Moogle.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Moogle.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Mog.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -181,7 +181,7 @@ namespace Moogle.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -189,7 +189,7 @@ namespace Moogle.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -202,7 +202,7 @@ namespace Moogle.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

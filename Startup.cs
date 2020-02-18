@@ -8,11 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.OpenApi.Models;
 using Stripe;
-using Moogle.Data;
-using Moogle.Models;
-using Moogle.Services;
+using Mog.Data;
+using Mog.Models;
+using Mog.Services;
 
-namespace Moogle
+namespace Mog
 {
     public class StripeSettings
     {

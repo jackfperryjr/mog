@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Moogle.Data;
+using Mog.Data;
 
-namespace Moogle.Data.Migrations
+namespace Mog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20190718113218_NewMonsterTable")]
@@ -131,7 +131,7 @@ namespace Moogle.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Moogle.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Mog.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -188,7 +188,7 @@ namespace Moogle.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Moogle.Models.Characters", b =>
+            modelBuilder.Entity("Mog.Models.Characters", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -252,7 +252,7 @@ namespace Moogle.Data.Migrations
                     b.ToTable("Character");
                 });
 
-            modelBuilder.Entity("Moogle.Models.Game", b =>
+            modelBuilder.Entity("Mog.Models.Game", b =>
                 {
                     b.Property<Guid>("GameId")
                         .ValueGeneratedOnAdd();
@@ -273,7 +273,7 @@ namespace Moogle.Data.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("Moogle.Models.Monster", b =>
+            modelBuilder.Entity("Mog.Models.Monster", b =>
                 {
                     b.Property<Guid>("MonsterId")
                         .ValueGeneratedOnAdd();
@@ -316,7 +316,7 @@ namespace Moogle.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -324,7 +324,7 @@ namespace Moogle.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -337,7 +337,7 @@ namespace Moogle.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -345,7 +345,7 @@ namespace Moogle.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Moogle.Models.ApplicationUser")
+                    b.HasOne("Mog.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

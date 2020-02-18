@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Moogle
+namespace Mog
 {
     public class PasswordGenerator
     {

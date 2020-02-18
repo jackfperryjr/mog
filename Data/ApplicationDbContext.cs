@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Models;
+using Mog.Models;
 
-namespace Moogle.Data
+namespace Mog.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -10,9 +10,9 @@ namespace Moogle.Data
             : base(options)
         {
         }
-        public DbSet<Moogle.Models.Characters> Character { get; set; } // I did this one backwards
-        public DbSet<Moogle.Models.Monster> Monsters { get; set; }  
-        public DbSet<Moogle.Models.Game> Games { get; set; }  
+        public DbSet<Mog.Models.Characters> Character { get; set; } // I did this one backwards
+        public DbSet<Mog.Models.Monster> Monsters { get; set; }  
+        public DbSet<Mog.Models.Game> Games { get; set; }  
         
         // protected override void OnModelCreating(ModelBuilder builder)
         // {

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;  
 using System.ComponentModel;
 
-namespace Moogle.Models  
+namespace Mog.Models  
 {  
     public class Game
     {  

@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Stripe;
-using Moogle.Data;
-using Moogle.Models;
+using Mog.Data;
+using Mog.Models;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller

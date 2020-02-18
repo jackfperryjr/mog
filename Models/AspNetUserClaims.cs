@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Moogle.Models
+namespace Mog.Models
 {
     public partial class AspNetUserClaims
     {

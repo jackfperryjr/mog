@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Moogle.Services
+namespace Mog.Services
 {
     public interface ISmsSender
     {

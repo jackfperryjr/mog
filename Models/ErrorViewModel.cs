@@ -1,4 +1,4 @@
-namespace Moogle.Models
+namespace Mog.Models
 {
     public class ErrorViewModel
     {

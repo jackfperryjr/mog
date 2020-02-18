@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.Extensions.Configuration;
-using Moogle.Services;
-using Moogle.Models;
-using Moogle.Data;
+using Mog.Services;
+using Mog.Models;
+using Mog.Data;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
 
     [Authorize]

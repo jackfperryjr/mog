@@ -1,7 +1,7 @@
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace Moogle.Services
+namespace Mog.Services
 {
     public static class EmailSenderExtensions
     {

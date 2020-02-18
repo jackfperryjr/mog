@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Data;
+using Mog.Data;
 
-namespace Moogle
+namespace Mog
 {
     public class Program
     {

@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Models;
-using Moogle.Data;
-using Moogle.Models.AccountViewModels;
-using Moogle.Services;
+using Mog.Models;
+using Mog.Data;
+using Mog.Models.AccountViewModels;
+using Mog.Services;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -221,7 +221,7 @@ namespace Moogle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = model.FirstName, LastName = model.LastName, Picture = "https://mooglestorage.blob.core.windows.net/images/icon-default-profile.jpg" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email.ToLower(), FirstName = model.FirstName, LastName = model.LastName, Picture = "https://Mogstorage.blob.core.windows.net/images/icon-default-profile.jpg" };
                 model.Password = PasswordGenerator.GeneratePassword(); // Custom helper to generate passwords.
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

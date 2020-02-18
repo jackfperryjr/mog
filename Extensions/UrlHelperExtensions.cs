@@ -1,4 +1,4 @@
-using Moogle.Controllers;
+using Mog.Controllers;
 
 namespace Microsoft.AspNetCore.Mvc
 {

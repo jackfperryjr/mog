@@ -1,11 +1,11 @@
-using Moogle.Models;
+using Mog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 
-namespace Moogle.Data
+namespace Mog.Data
 {
     public static class Roles
     {

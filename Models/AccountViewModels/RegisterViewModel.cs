@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Moogle.Models.AccountViewModels
+namespace Mog.Models.AccountViewModels
 {
     public class RegisterViewModel
     {

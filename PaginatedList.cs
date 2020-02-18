@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Moogle.Models;
+using Mog.Models;
 
-namespace Moogle
+namespace Mog
 {
     public class PaginatedList<T> : List<T>
     {

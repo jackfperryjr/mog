@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Moogle.Data.Migrations
+namespace Mog.Data.Migrations
 {
     public partial class RenamedColumns : Migration
     {

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Linq;
-using Moogle.Data;
-using Moogle.Models;
+using Mog.Data;
+using Mog.Models;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
     [Route("/api/v1/characters")]
     public class ApiCharacterController : ControllerBase

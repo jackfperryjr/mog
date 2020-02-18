@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.Extensions.Configuration;
-using Moogle.Data;
-using Moogle.Models;
+using Mog.Data;
+using Mog.Models;
 
-namespace Moogle.Controllers
+namespace Mog.Controllers
 {
     [Authorize]
     public class CharacterController : Controller
