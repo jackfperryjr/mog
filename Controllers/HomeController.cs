@@ -40,15 +40,15 @@ namespace Mog.Controllers
             var charges = new StripeChargeService();
 
             var customer = customers.Create(new StripeCustomerCreateOptions {
-            Email = stripeEmail,
-            SourceToken = stripeToken
+                Email = stripeEmail,
+                SourceToken = stripeToken
             });
 
             var charge = charges.Create(new StripeChargeCreateOptions {
-            Amount = 500,
-            Description = "Donation",
-            Currency = "usd",
-            CustomerId = customer.Id,
+                Amount = 500,
+                Description = "Donation",
+                Currency = "usd",
+                CustomerId = customer.Id,
             });
 
             return View();

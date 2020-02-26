@@ -16,7 +16,6 @@ namespace Mog
             {
                 var provider = scope.ServiceProvider;
 				provider.GetService<ApplicationDbContext>().Database.Migrate();
-                Roles.CreateRoles(provider, Startup.Configuration);
             }
             host.Run();
         }

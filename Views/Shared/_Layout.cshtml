@@ -80,18 +80,15 @@
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </nav>
+        <div id="overlay">
+            <p>m</p>
+        </div>
         <div id="main" class="container">
             @RenderBody()
         </div>
-        <footer class="mobile-only mobile-only-footer">
-            <nav class="navbar navbar-inverse navbar-fixed-bottom navbar-mod">                
-                @await Html.PartialAsync("_LoginPartial")
-            </nav>
-        </footer>
         <footer class="mobile-display-none">
             <hr />
             <span id="copyright" class="copyright">&copy; 2018 - @DateTime.Now.Year </span>
@@ -126,10 +123,12 @@
                 
                     if (scrollTop > search) { 
                         $("#search").addClass("sticky-search-bar");
-                        $("#search-icon").addClass("sticky-search-icon")
+                        $("#search-icon").addClass("sticky-search-icon");
+                        $("#search-logo").show();
                     } else {
                         $('#search').removeClass("sticky-search-bar"); 
-                        $("#search-icon").removeClass("sticky-search-icon")
+                        $("#search-icon").removeClass("sticky-search-icon");
+                        $("#search-logo").hide();
                     }
                 };
             

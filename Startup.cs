@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,8 +8,6 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.OpenApi.Models;
 using Stripe;
 using Mog.Data;
-using Mog.Models;
-using Mog.Services;
 
 namespace Mog
 {
@@ -34,12 +31,6 @@ namespace Mog
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(Configuration =>
-                { Configuration.SignIn.RequireConfirmedEmail = true; })
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
-            services.AddSingleton<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -49,13 +40,10 @@ namespace Mog
                     .AllowCredentials()
                     .Build()
                 );
-            });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-            });          
+            });         
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.AddMvc(c => c.Conventions.Add(new ApiExplorerIgnores())); // See class below Startup.
+            //services.AddMvc();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
@@ -90,7 +78,6 @@ namespace Mog
 
             app.UseCors("CorsPolicy");
             app.UseStaticFiles();
-            app.UseAuthentication();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

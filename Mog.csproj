@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-Moogle-BB2DFA85-764C-41C1-8D6F-66E47C2B1DD6</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
@@ -12,11 +13,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="popper.js" Version="1.14.3" />
-    <PackageReference Include="Sendgrid" Version="9.9.0" />
     <PackageReference Include="Stripe.net" Version="17.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.59" />
-    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
 </Project>
