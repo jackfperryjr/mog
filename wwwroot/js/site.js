@@ -1,11 +1,5 @@
 let url = window.location.origin;
 
-$(document).ready(function(){
-    setTimeout(function(){ 
-        $("#overlay").fadeOut(250);
-    }, 1500);
-});
-
 // List for setting a random search example name as the input placeholder
 let randomPlaceholderList = [
     "Search ex. ''Lightning'' or ''13''",

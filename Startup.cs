@@ -6,16 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.OpenApi.Models;
-using Stripe;
 using Mog.Data;
 
 namespace Mog
 {
-    public class StripeSettings
-    {
-        public string SecretKey { get; set; }
-        public string PublishableKey { get; set; }
-    }
     public class Startup
     {
         public Startup(IConfiguration configuration, IHostingEnvironment env)
@@ -41,7 +35,6 @@ namespace Mog
                     .Build()
                 );
             });         
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.AddMvc(c => c.Conventions.Add(new ApiExplorerIgnores())); // See class below Startup.
             //services.AddMvc();
             services.AddSwaggerGen(c =>
@@ -64,8 +57,6 @@ namespace Mog
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
-
             if (env.IsDevelopment())
             {  
                 app.UseDeveloperExceptionPage();

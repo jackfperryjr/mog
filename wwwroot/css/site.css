@@ -4,23 +4,6 @@
 
 @import "https://use.fontawesome.com/releases/v5.4.0/css/all.css";
 
-#overlay {
-  position: fixed;
-  top:0;
-  width: 100vw;
-  height: 100vh;
-  color: #4285F4;
-  text-align: center;
-  background:rgba(255,255,255);
-  border:transparent;
-  backdrop-filter: blur(5px);
-  z-index: 7000;
-  transition: all .05s ease-in-out;
-  font-size:calc(120px + 10vmin);
-  font-weight: 600;
-  line-height: 100vh;
-}
-
 /* Modifying HTML elements and Bootstrap overrides */
 body {
   padding-top: 50px;
