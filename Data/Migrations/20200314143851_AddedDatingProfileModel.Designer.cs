@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mog.Data;
 
 namespace Mog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200314143851_AddedDatingProfileModel")]
+    partial class AddedDatingProfileModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Mog.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Mog.Models.Character", b =>
+            modelBuilder.Entity("Mog.Models.Characters", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -50,7 +52,7 @@ namespace Mog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Characters");
+                    b.ToTable("Character");
                 });
 
             modelBuilder.Entity("Mog.Models.DatingProfile", b =>
@@ -81,7 +83,7 @@ namespace Mog.Data.Migrations
 
                     b.Property<Guid>("DatingProfileId");
 
-                    b.Property<string>("Response");
+                    b.Property<string>("Reponse");
 
                     b.HasKey("Id");
 
@@ -198,7 +200,7 @@ namespace Mog.Data.Migrations
 
             modelBuilder.Entity("Mog.Models.DatingProfile", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithOne("DatingProfile")
                         .HasForeignKey("Mog.Models.DatingProfile", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -214,7 +216,7 @@ namespace Mog.Data.Migrations
 
             modelBuilder.Entity("Mog.Models.Picture", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithMany("Pictures")
                         .HasForeignKey("CollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -222,7 +224,7 @@ namespace Mog.Data.Migrations
 
             modelBuilder.Entity("Mog.Models.Stat", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithMany("Stats")
                         .HasForeignKey("CollectionId")
                         .OnDelete(DeleteBehavior.Cascade);

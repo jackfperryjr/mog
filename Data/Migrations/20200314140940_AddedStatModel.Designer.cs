@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mog.Data;
 
 namespace Mog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200314140940_AddedStatModel")]
+    partial class AddedStatModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Mog.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Mog.Models.Character", b =>
+            modelBuilder.Entity("Mog.Models.Characters", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -50,44 +52,7 @@ namespace Mog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Characters");
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Age");
-
-                    b.Property<string>("Bio");
-
-                    b.Property<Guid>("CharacterId");
-
-                    b.Property<string>("Gender");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId")
-                        .IsUnique();
-
-                    b.ToTable("DatingProfile");
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingResponse", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("DatingProfileId");
-
-                    b.Property<string>("Response");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DatingProfileId");
-
-                    b.ToTable("Responses");
+                    b.ToTable("Character");
                 });
 
             modelBuilder.Entity("Mog.Models.Game", b =>
@@ -151,7 +116,7 @@ namespace Mog.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("CollectionId");
+                    b.Property<Guid>("PictureCollectionId");
 
                     b.Property<int>("Primary");
 
@@ -159,7 +124,7 @@ namespace Mog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("PictureCollectionId");
 
                     b.ToTable("Pictures");
                 });
@@ -173,7 +138,7 @@ namespace Mog.Data.Migrations
 
                     b.Property<int>("Attack");
 
-                    b.Property<Guid>("CollectionId");
+                    b.Property<Guid>("CharacterId");
 
                     b.Property<int>("Defense");
 
@@ -185,46 +150,29 @@ namespace Mog.Data.Migrations
 
                     b.Property<int>("ManaPoints");
 
-                    b.Property<string>("Platform");
-
                     b.Property<int>("Spirit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("CharacterId")
+                        .IsUnique();
 
                     b.ToTable("Stats");
                 });
 
-            modelBuilder.Entity("Mog.Models.DatingProfile", b =>
-                {
-                    b.HasOne("Mog.Models.Character", "Character")
-                        .WithOne("DatingProfile")
-                        .HasForeignKey("Mog.Models.DatingProfile", "CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingResponse", b =>
-                {
-                    b.HasOne("Mog.Models.DatingProfile", "DatingProfile")
-                        .WithMany("Responses")
-                        .HasForeignKey("DatingProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Mog.Models.Picture", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithMany("Pictures")
-                        .HasForeignKey("CollectionId")
+                        .HasForeignKey("PictureCollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Mog.Models.Stat", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
-                        .WithMany("Stats")
-                        .HasForeignKey("CollectionId")
+                    b.HasOne("Mog.Models.Characters", "Character")
+                        .WithOne("Stats")
+                        .HasForeignKey("Mog.Models.Stat", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

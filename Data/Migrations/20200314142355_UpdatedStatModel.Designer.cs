@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mog.Data;
 
 namespace Mog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200314142355_UpdatedStatModel")]
+    partial class UpdatedStatModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Mog.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Mog.Models.Character", b =>
+            modelBuilder.Entity("Mog.Models.Characters", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -50,44 +52,7 @@ namespace Mog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Characters");
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Age");
-
-                    b.Property<string>("Bio");
-
-                    b.Property<Guid>("CharacterId");
-
-                    b.Property<string>("Gender");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId")
-                        .IsUnique();
-
-                    b.ToTable("DatingProfile");
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingResponse", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("DatingProfileId");
-
-                    b.Property<string>("Response");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DatingProfileId");
-
-                    b.ToTable("Responses");
+                    b.ToTable("Character");
                 });
 
             modelBuilder.Entity("Mog.Models.Game", b =>
@@ -196,25 +161,9 @@ namespace Mog.Data.Migrations
                     b.ToTable("Stats");
                 });
 
-            modelBuilder.Entity("Mog.Models.DatingProfile", b =>
-                {
-                    b.HasOne("Mog.Models.Character", "Character")
-                        .WithOne("DatingProfile")
-                        .HasForeignKey("Mog.Models.DatingProfile", "CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Mog.Models.DatingResponse", b =>
-                {
-                    b.HasOne("Mog.Models.DatingProfile", "DatingProfile")
-                        .WithMany("Responses")
-                        .HasForeignKey("DatingProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Mog.Models.Picture", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithMany("Pictures")
                         .HasForeignKey("CollectionId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -222,7 +171,7 @@ namespace Mog.Data.Migrations
 
             modelBuilder.Entity("Mog.Models.Stat", b =>
                 {
-                    b.HasOne("Mog.Models.Character", "Character")
+                    b.HasOne("Mog.Models.Characters", "Character")
                         .WithMany("Stats")
                         .HasForeignKey("CollectionId")
                         .OnDelete(DeleteBehavior.Cascade);

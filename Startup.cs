@@ -35,7 +35,10 @@ namespace Mog
                     .Build()
                 );
             });         
-            services.AddMvc(c => c.Conventions.Add(new ApiExplorerIgnores())); // See class below Startup.
+            services.AddMvc(c => c.Conventions.Add(new ApiExplorerIgnores())) // See class below Startup.
+            .AddJsonOptions(
+                    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                ); 
             //services.AddMvc();
             services.AddSwaggerGen(c =>
             {

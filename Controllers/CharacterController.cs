@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using Mog.Data;
@@ -21,9 +22,13 @@ namespace Mog.Controllers
         //GET all api/characters
         [AllowAnonymous]
         [HttpGet]
-        public List<Characters> GetAll()
+        public List<Character> GetAll()
         {
-            var characters = from c in _context.Character select c;
+            IQueryable<Character> characters = _context.Characters
+                                                .Include(c => c.Pictures)
+                                                .Include(c => c.Stats)
+                                                .Include(c => c.DatingProfile)
+                                                .ThenInclude(c => c.Responses);
             characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
             return characters.ToList();
         }
@@ -35,9 +40,13 @@ namespace Mog.Controllers
         //GET api/characters/search?origin=13
         [AllowAnonymous]
         [HttpGet("search")]
-        public List<Characters> Search([FromQuery]string name, string gender, string job, string race, string origin) 
+        public List<Character> Search([FromQuery]string name, string gender, string job, string race, string origin) 
         { 
-            var characters = from c in _context.Character select c;
+            IQueryable<Character> characters = _context.Characters
+                                                .Include(c => c.Pictures)
+                                                .Include(c => c.Stats)
+                                                .Include(c => c.DatingProfile)
+                                                .ThenInclude(c => c.Responses);
 
             if (name != null) {
                 characters = characters.OrderBy(c => c.Name).Where(c => c.Name.Contains(name));
@@ -62,7 +71,12 @@ namespace Mog.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid? id)
         {
-            var character = _context.Character.Find(id);
+            IQueryable<Character> character = _context.Characters
+                                                .Include(c => c.Pictures)
+                                                .Include(c => c.Stats)
+                                                .Include(c => c.DatingProfile)
+                                                .ThenInclude(c => c.Responses)
+                                                .Where(c => c.Id == id);
             if (character == null)
             {
                 return NotFound();
@@ -75,11 +89,15 @@ namespace Mog.Controllers
         [HttpGet("random", Name = "GetRandomCharacter")]
         public IActionResult GetRandom()
         {
-            IQueryable<Characters> characters = from c in _context.Character select c;
-            IList<Characters> characterList = characters.ToList();
+            IList<Character> characters = _context.Characters
+                                            .Include(c => c.Pictures)
+                                            .Include(c => c.Stats)
+                                            .Include(c => c.DatingProfile)
+                                            .ThenInclude(c => c.Responses)
+                                            .ToList();
 
             Random rand = new Random();
-            var character = characterList[rand.Next(characterList.Count)];
+            var character = characters[rand.Next(characters.Count)];
 
             return Ok(character);
         }  
