@@ -24,7 +24,7 @@ namespace Mog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("AzureUserDB")));
+                options.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
