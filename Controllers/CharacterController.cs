@@ -72,7 +72,7 @@ namespace Mog.Controllers
 
         //GET api/characters/random
         [AllowAnonymous]
-        [HttpGet("random", Name = "GetRandomCharacter")]
+        [HttpGet("random")]
         public IActionResult GetRandom()
         {
             IQueryable<Character> characters = from c in _context.Characters select c;
@@ -86,7 +86,7 @@ namespace Mog.Controllers
 
         //POST api/characters/add
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Add([FromBody] Character character)
         {
             return Ok(new
