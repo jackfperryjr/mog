@@ -10,7 +10,7 @@ namespace Mog.Data
             : base(options)
         {
         }
-        public DbSet<Mog.Models.Characters> Character { get; set; } // I did this one backwards
+        public DbSet<Mog.Models.Character> Characters { get; set; } // I did this one backwards
         public DbSet<Mog.Models.Monster> Monsters { get; set; }  
         public DbSet<Mog.Models.Game> Games { get; set; }  
         

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Mog.Models  
 {  
-    public class Characters
+    public class Character
     {  
         public Guid Id { get; set; }
         [Required]  

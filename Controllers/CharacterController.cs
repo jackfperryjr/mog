@@ -21,9 +21,9 @@ namespace Mog.Controllers
         //GET all api/characters
         [AllowAnonymous]
         [HttpGet]
-        public List<Characters> GetAll()
+        public List<Character> GetAll()
         {
-            var characters = from c in _context.Character select c;
+            var characters = from c in _context.Characters select c;
             characters = characters.OrderBy(c => c.Origin).ThenBy(c => c.Name);
             return characters.ToList();
         }
@@ -35,9 +35,9 @@ namespace Mog.Controllers
         //GET api/characters/search?origin=13
         [AllowAnonymous]
         [HttpGet("search")]
-        public List<Characters> Search([FromQuery]string name, string gender, string job, string race, string origin) 
+        public List<Character> Search([FromQuery]string name, string gender, string job, string race, string origin) 
         { 
-            var characters = from c in _context.Character select c;
+            var characters = from c in _context.Characters select c;
 
             if (name != null) {
                 characters = characters.OrderBy(c => c.Name).Where(c => c.Name.Contains(name));
@@ -62,7 +62,7 @@ namespace Mog.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid? id)
         {
-            var character = _context.Character.Find(id);
+            var character = _context.Characters.Find(id);
             if (character == null)
             {
                 return NotFound();
@@ -75,13 +75,25 @@ namespace Mog.Controllers
         [HttpGet("random", Name = "GetRandomCharacter")]
         public IActionResult GetRandom()
         {
-            IQueryable<Characters> characters = from c in _context.Character select c;
-            IList<Characters> characterList = characters.ToList();
+            IQueryable<Character> characters = from c in _context.Characters select c;
+            IList<Character> characterList = characters.ToList();
 
             Random rand = new Random();
             var character = characterList[rand.Next(characterList.Count)];
 
             return Ok(character);
         }  
+
+        //POST api/characters/add
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Add([FromBody] Character character)
+        {
+            return Ok(new
+                    {
+                        status = 200,
+                        message = "This endpoint does nothing for now."
+                    });
+        } 
     }
 }
