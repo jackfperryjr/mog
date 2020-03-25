@@ -23,7 +23,7 @@ namespace Mog.Models
         public string Origin { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
-        [JsonIgnore] // For another project.
+        [JsonIgnore] 
         public string Picture2 { get; set; }
         [JsonIgnore]
         public string Picture3 { get; set; }

@@ -1,6 +1,11 @@
 using System;
+using System.IO;
+using System.IdentityModel.Tokens.Jwt;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using Mog.Data;
@@ -12,10 +17,12 @@ namespace Mog.Controllers
     public class CharacterController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private IConfiguration _configuration;
 
-        public CharacterController(ApplicationDbContext context)
+        public CharacterController(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         //GET all api/characters
@@ -87,13 +94,153 @@ namespace Mog.Controllers
         //POST api/characters/add
         [AllowAnonymous]
         [HttpPost("add")]
-        public IActionResult Add([FromBody] Character character)
+        public async Task<IActionResult> AddCharacter([FromBody] Character character)
         {
-            return Ok(new
+            var container = ApplicationHelper.ConfigureBlobContainer(
+                        _configuration["StorageConfig:AccountName"], 
+                        _configuration["StorageConfig:AccountKey"]); 
+            await container.CreateIfNotExistsAsync();
+            var jwt = Request.Headers["Authorization"].ToString();
+            var isToken = ApplicationHelper.CheckForToken(jwt);
+
+            if (isToken)
+            {
+                jwt = jwt.Replace("Bearer ", string.Empty);
+            }
+            else 
+            {
+                return BadRequest(new
+                {
+                    status = 400,
+                    message = "No token provided."
+                });
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadToken(jwt);    
+            var issuer = _configuration.GetValue<string>("Issuer");        
+
+            if (ApplicationHelper.VerifyToken(token, issuer))
+            {
+                _context.Add(character);
+                await _context.SaveChangesAsync();
+                
+                if (HttpContext.Request.ContentType == "multipart/form-data") 
+                { 
+                    var characterFromDb = _context.Characters.Find(character.Id);
+                    var files = HttpContext.Request.Form.Files;
+
+                    if (files.Count != 0) 
+                    {
+                        for (var i = 0; i < files.Count; i++) {
+                            var extension = Path.GetExtension(files[i].FileName);
+                            var newBlob = container.GetBlockBlobReference("Character-" + character.Id + (i + 1).ToString() + extension);
+
+                            using (var filestream = new MemoryStream())
+                            {
+                                files[i].CopyTo(filestream);
+                                filestream.Position = 0;
+                                await newBlob.UploadFromStreamAsync(filestream);
+                            }
+                            if (i == 0) 
+                            {
+                                characterFromDb.Picture = "https://mooglestorage.blob.core.windows.net/images/Character-" + character.Id + (i + 1).ToString() + extension;
+                            }
+                            if (i == 1) 
+                            {
+                                characterFromDb.Picture2 = "https://mooglestorage.blob.core.windows.net/images/Character-" + character.Id + (i + 1).ToString() + extension;
+                            }
+                            if (i == 2) 
+                            {
+                                characterFromDb.Picture3 = "https://mooglestorage.blob.core.windows.net/images/Character-" + character.Id + (i + 1).ToString() + extension;
+                            }
+                            if (i == 3) 
+                            {
+                                characterFromDb.Picture4 = "https://mooglestorage.blob.core.windows.net/images/Character-" + character.Id + (i + 1).ToString() + extension;
+                            }
+                            if (i == 4) 
+                            {
+                                characterFromDb.Picture5 = "https://mooglestorage.blob.core.windows.net/images/Character-" + character.Id + (i + 1).ToString() + extension;
+                            }
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+                
+                return Ok(new
+                {
+                    status = 200,
+                    message = "Character added."
+                });
+            }
+            else 
+            {
+                return BadRequest(new
+                {
+                    status = 400,
+                    message = "Invalid token or no token provided."
+                });
+            }
+        } 
+
+        //DELETE api/characters/delete
+        [AllowAnonymous]
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteCharacter(Guid? id)
+        {
+            var jwt = Request.Headers["Authorization"].ToString();
+            var isToken = ApplicationHelper.CheckForToken(jwt);
+
+            if (isToken)
+            {
+                jwt = jwt.Replace("Bearer ", string.Empty);
+            }
+            else 
+            {
+                return BadRequest(new
+                {
+                    status = 400,
+                    message = "No token provided."
+                });
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadToken(jwt);    
+            var issuer = _configuration.GetValue<string>("Issuer");        
+
+            if (ApplicationHelper.VerifyToken(token, issuer))
+            {
+                var character = _context.Characters.Find(id);
+
+                if (character == null)
+                {
+                    return NotFound(new
+                    {
+                        status = 404,
+                        message = "Character could not be found."
+                    });
+                }
+                else 
+                {
+                    _context.Characters.Remove(character);
+                    _context.SaveChanges();
+
+                    return Ok(new
                     {
                         status = 200,
-                        message = "This endpoint does nothing for now."
+                        message = "Character deleted."
                     });
-        } 
+                }
+            }
+            else 
+            {
+                return BadRequest(new
+                {
+                    status = 400,
+                    message = "Invalid token or no token provided."
+                });
+            }
+        }
     }
 }

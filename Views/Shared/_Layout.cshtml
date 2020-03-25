@@ -65,7 +65,6 @@
                             <span class="letter-e red no-space">e</span>
                             <span class="site-span-api">API <span id="menu-hamburger" class="fas fa-caret-down green" style="padding-left:5%;font-size: 28px;"></span></span>
                         </h1>
-                        <!-- <div><span id="menu-caret" class="fas fa-caret-down"></span></div> -->
                     </button>
                     <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
                         <h1 class="site-logo mobile-display-none">
@@ -134,15 +133,6 @@
                     stickySearch();
                 });
             });
-
-            function hideSuccess() {
-                $("#edit-success-container").hide();
-            }
-
-            $("#img-input").change(function(event){
-                let imgPath = URL.createObjectURL(event.target.files[0]);
-                $("#img-output").fadeIn("fast").attr('src',imgPath); 
-            }) 
         </script>
     </body>
 </html>
