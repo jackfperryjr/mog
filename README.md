@@ -89,7 +89,8 @@ new Vue({
 * Job
 * Height
 * Weight
-* Picture
+* Pictures (an array)
+* Stats (an array)
 * Description
 
 If I wasn't able to find the data for the character a set of question marks (??) is substituted.<br>
