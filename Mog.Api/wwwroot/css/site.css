@@ -24,7 +24,7 @@ body {
   transition: all .3s ease-in-out
 }
 .navbar-mod {
-  background:rgba(255,255,255,.8);
+  background:transparent;
   border:transparent;
   backdrop-filter: blur(5px);
 }
@@ -99,7 +99,7 @@ i {
 .site-title {
   margin-top:30px;
   min-height:100px;
-  background-color:#e0e0e0;
+  background-color:#37474F;
   border-radius:500px;
 }
 .letter-e {
@@ -111,6 +111,13 @@ i {
 .fa-search {
   padding-top: 1.25%;
   font-size: 18px !important;
+}
+.feedback-icon {
+  position: absolute;
+  width: auto;
+  bottom: 10px;
+  right: 10px;
+  margin-top: 0;
 }
 input {
   width:100%;

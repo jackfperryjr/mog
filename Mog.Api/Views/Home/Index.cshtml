@@ -25,15 +25,23 @@
     <!-- Start of VueJs container -->
     <div class="container">
         <h2 class="text-center">Try it out!</h2>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span class="text-center" style="font-size:12px;">I'm in the middle of refactoring the database and API architecture and design. You may notice some pictures not rendering or other weird display issues. Bare with me while I complete this in my free time. :)</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>     
+
         <hr class="hr-home" />
         <div class="search-card">
             <form class="form-inline has-feedback">
                 <input id="search" class="fancy-search" v-model="search" type="input" />
-                <i id="search-icon" class="fas fa-search form-control-feedback blue"></i>
+                @* <i id="search-icon" class="fas fa-search feedback-icon blue"></i> *@
             </form>
         </div>
         <!-- Search results -->
-        <div v-for="character in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
+        <div v-for="(character) in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
             <div class="col-md-8">
                 <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
                 <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
@@ -57,7 +65,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
+                <button v-if="character.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
                     <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
                 </button>
                 <div id="imageModal" class="modal fade" role="dialog">
@@ -67,7 +75,7 @@
                                 <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
                             </div>
                             <div class="modal-body">
-                                <img class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
+                                <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
                             </div>
                         </div>
                     </div>
@@ -75,8 +83,8 @@
                 <br/>
             </div>
             <div class="row moogle-row">
-                <div class="col-md-4 pull-right">
-                    <button class="h5 blue pull-right btn-link" v-on:click="scrollTop()">Back to top</button>
+                <div class="col-md-12">
+                    <span class="blue text-right float-right" style="font-size:12px;cursor:pointer;" v-on:click="scrollTop()">Back to Top</span>
                 </div>
             </div>
         </div>
@@ -100,7 +108,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
+                <button v-if="random.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
                     <img class="moogle-img" :src="random[0].pictures[0].url" :alt="random[0].name" title="Click to view a larger picture"><br/>
                 </button>
                 <div id="randomModal" class="modal fade" role="dialog">
@@ -110,7 +118,7 @@
                                 <h3 class="text-center"><strong>{{random[0].name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
                             </div>
                             <div class="modal-body">
-                                <img class="moogle-modal-img" :src="random[0].pictures[0].url" :alt="random[0].name" :title="random[0].name">
+                                <img v-if="random.pictures" class="moogle-modal-img" :src="random[0].pictures[0].url" :alt="random[0].name" :title="random[0].name">
                             </div>
                         </div>
                     </div>
@@ -120,19 +128,19 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 text-center form-group info-box bg-green">
+                <div class="col-md-4 text-center info-box bg-green">
                     <h4><strong>What is this?</strong></h4>
                     <hr class="hr-info-box" />
                     <h5 class="text-left">This is a RESTful API intentionally limited to GET requests. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
                 </div>
-                <div class="col-md-4 text-center form-group info-box bg-yellow">
+                <div class="col-md-4 text-center info-box bg-yellow">
                     <h4><strong>Where to start?</strong></h4>
                     <hr class="hr-info-box" />
                     <h5 class="text-left">You can checkout the <a href="https://github.com/jackfperryjr/moogle#readme" target="_blank">README</a> on GitHub.</h5>
                     <h5 class="text-left">Or checkout <a href="/swagger/index.html" target="_blank">SWAGGER</a> for testing.</h5>
-                    <h5 class="text-left">And I've built a simple working example <a href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">HERE</a>.</h5>
+                    <h5 class="text-left">And I've built a simple working example <a href="https://jackfperryjr.github.io/moogle/" target="_blank">HERE</a>.</h5>
                 </div>
-                <div class="col-md-4 text-center form-group info-box bg-red">
+                <div class="col-md-4 text-center info-box bg-red">
                     <h4><strong>Hosted in Azure</strong></h4>
                     <hr class="hr-info-box" />
                     <a href="https://azure.microsoft.com" target="_blank"><img style="width:150px;" src="@Url.Content("/icons/icon-azure-logo.png")"></a>
