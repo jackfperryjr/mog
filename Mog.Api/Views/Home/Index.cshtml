@@ -42,49 +42,51 @@
         </div>
         <!-- Search results -->
         <div v-for="(character) in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
-            <div class="col-md-8">
-                <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
-                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
-                <p class="dark-bluish-gray">{{character.description}}</p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                        <strong>Origin:</strong> {{character.origin}}<br/>
-                        <strong>Job:</strong> {{character.job}}<br/>
-                        <strong>Age:</strong> {{character.age}}<br/>
-                        </p>
+            <div class="row moogle-row">
+                <div class="col-md-8">
+                    <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
+                    <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
+                    <p class="dark-bluish-gray">{{character.description}}</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                            <strong>Origin:</strong> {{character.origin}}<br/>
+                            <strong>Job:</strong> {{character.job}}<br/>
+                            <strong>Age:</strong> {{character.age}}<br/>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                            <strong>Race:</strong> {{character.race}}<br/>
+                            <strong>Height:</strong> {{character.height}}m<br/>
+                            <strong>Weight:</strong> {{character.weight}}kg
+                            </p>
+                        </div>
+                        <br/>
                     </div>
-                    <div class="col-md-6">
-                        <p>
-                        <strong>Race:</strong> {{character.race}}<br/>
-                        <strong>Height:</strong> {{character.height}}m<br/>
-                        <strong>Weight:</strong> {{character.weight}}kg
-                        </p>
+                </div>
+                <div class="col-md-4">
+                    <button v-if="character.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
+                        <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
+                    </button>
+                    <div id="imageModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                                </div>
+                                <div class="modal-body">
+                                    <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <br/>
                 </div>
             </div>
-            <div class="col-md-4">
-                <button v-if="character.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
-                    <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
-                </button>
-                <div id="imageModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
-                            </div>
-                            <div class="modal-body">
-                                <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-            </div>
-            <div class="row moogle-row">
-                <div class="col-md-12">
-                    <span class="blue text-right float-right" style="font-size:12px;cursor:pointer;" v-on:click="scrollTop()">Back to Top</span>
+            <div class="row moogle-row" style="width:100%;">
+                <div class="col-md-12 text-right float-right">
+                    <span class="blue" style="font-size:12px;cursor:pointer;" v-on:click="scrollTop()">Back to Top</span>
                 </div>
             </div>
         </div>
