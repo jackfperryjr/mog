@@ -22,25 +22,14 @@
             <h5 class="title-5"><strong>{{character.length}}</strong> characters and counting!</h5>
         </div>
     </div>
-    <!-- Start of VueJs container -->
     <div class="container">
-        <h2 class="text-center">Try it out!</h2>
-
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <span class="text-center" style="font-size:12px;">I'm in the middle of refactoring the database and API architecture and design. You may notice some pictures not rendering or other weird display issues. Bare with me while I complete this in my free time. :)</span>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>     
-
+        <h2 class="text-center">Try it out!</h2>  
         <hr class="hr-home" />
         <div class="search-card">
             <form class="form-inline has-feedback">
                 <input id="search" class="fancy-search" v-model="search" type="input" />
-                @* <i id="search-icon" class="fas fa-search feedback-icon blue"></i> *@
             </form>
         </div>
-        <!-- Search results -->
         <div v-for="(character) in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
             <div class="row moogle-row">
                 <div class="col-md-8">
@@ -73,7 +62,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
+                                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close float-right" data-dismiss="modal">X</span></h3>
                                 </div>
                                 <div class="modal-body">
                                     <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
@@ -90,50 +79,12 @@
                 </div>
             </div>
         </div>
-        <!-- Random character -->
-        <div id="random-character" class="row moogle-row mix-buffer">
-            <div class="col-md-8">
-                <h4 class="moogle-h4"><strong>{{random[0].name}}</strong></h4>
-                <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+random[0].name" target="_blank">https://www.google.com/search?q={{random[0].name}}</a></h7><br/>
-                <p class="dark-bluish-gray">{{random[0].description}}</p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p><strong>Origin:</strong> {{random[0].origin}}<br/>
-                        <strong>Job:</strong> {{random[0].job}}<br/>
-                        <strong>Age:</strong> {{random[0].age}}</p>
-                        </div>                    
-                        <div class="col-md-6"><p><strong>Race:</strong> {{random[0].race}}<br/>
-                        <strong>Height:</strong> {{random[0].height}}m<br/>
-                        <strong>Weight:</strong> {{random[0].weight}}kg</p>
-                    </div>
-                    <br/>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <button v-if="random.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#randomModal">
-                    <img class="moogle-img" :src="random[0].pictures[0].url" :alt="random[0].name" title="Click to view a larger picture"><br/>
-                </button>
-                <div id="randomModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="text-center"><strong>{{random[0].name}}</strong><span class="close" data-dismiss="modal">X</span></h3>
-                            </div>
-                            <div class="modal-body">
-                                <img v-if="random.pictures" class="moogle-modal-img" :src="random[0].pictures[0].url" :alt="random[0].name" :title="random[0].name">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 text-center info-box bg-green">
+                <div class="col-md-4 text-center info-box bg-blue">
                     <h4><strong>What is this?</strong></h4>
                     <hr class="hr-info-box" />
-                    <h5 class="text-left">This is a RESTful API intentionally limited to GET requests. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
+                    <h5 class="text-left">This is a RESTful API for Final Fantasy. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
                 </div>
                 <div class="col-md-4 text-center info-box bg-yellow">
                     <h4><strong>Where to start?</strong></h4>
@@ -166,12 +117,8 @@
                                 <h4>The goal is to provide a single source of data that any website can consume and use. When new games come out it could take some time for a variety of websites to catch up. With the API it could be updated once and the new information can then be consumed by any number of websites at the same time.</h4>
                             </div>
                         </div>
-                        <div class="row" style="margin:0;">
-                            <h3>The API is missing stuff!</h3>
-                            <div class="row about-box bg-blue">
-                                <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an email: <a class="blue" href="mailto:jackfperryjr@gmail.com">jackfperryjr@gmail.com</a></h4>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="row" style="margin:0;">
                             <h3>Where did you get the data?</h3>
                             <div class="row about-box bg-green">
@@ -181,39 +128,13 @@
                         <div class="row" style="margin:0;">
                             <h3>What is the tech stack?</h3>
                             <div class="row about-box bg-red">
-                                <h4>The API is built in C# with .NET Core 2.2 currently (v2 will be in 3.0 when I get time). It's hosted on Azure, uses an Azure SQL database, and set behind Cloudflare for caching. The home page and my sample <a class="blue" href="https://jackfperryjr.github.io/moogle-spa/" target="_blank">example</a> are wired up with Vue.js.</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row" style="margin:0;">
-                            <h3>Who am I?</h3>
-                            <div class="row about-box bg-blue">
-                                <h4>I'm Jack F. Perry, Jr. Born in Ohio, living in Louisville, KY. I started writing code at 16 for an online text-based MUD (nerd!). I moved from that into writing some JavaScript pretty early on and am a huge fan of it even now (though I wish I had kept up with it over the years). Learning is a passion of mine and I continue to teach myself new programming languages, technologies, and best practices on a daily basis!</h4>
+                                <h4>The API is built in C#/.NETCore 3.1. It's hosted in Azure, with an Azure SQL database, and set behind Cloudflare for caching. The home page and my sample <a class="blue" href="https://jackfperryjr.github.io/moogle/" target="_blank">example</a> are wired up with VueJs.</h4>
                             </div>
                         </div>
                         <div class="row" style="margin:0;">
-                            <h3>What do I do?</h3>
-                            <div class="row about-box bg-red">
-                                <h4>I work as a fullstack .NET developer with a bias towards .NET Core and JavaScript. Though, I have studied a wee bit of SQL, Python, Java, Kotlin with Android, JavaScript, and a handful of JavaScript frameworks/libraries. And I like to build neat things like this.</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>Photographer/Graphic Designer/Artist</h3>
-                            <div class="row about-box bg-yellow">
-                                <h4>I like to consider myself an artist. I've dabbled in graphic design and photography and I've even volunteered my services as such. I no longer keep examples of my work on display anywhere, though. Keep it secret; keep it safe. &#x1f609;</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>Final Fantasy</h3>
-                            <div class="row about-box bg-blue">
-                                <h4>Obviously. I don't consider myself a huge game nerd. However, I got into Final Fantasy at an early age and it never stopped. I have a bit of a collection of the games and strategy guides. I don't play much anymore but I try to keep up on what's going on.</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>Work</h3>
+                            <h3>The API is missing stuff!</h3>
                             <div class="row about-box bg-green">
-                                <h4>I love to write code and design websites and applications. I don't do much freelance work, but if you've stumbled upon this place of mine and are interested in talking about freelance work or a fulltime position I'm always open to talking.</h4>
+                                <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an <a class="blue" href="mailto:jackfperryjr@gmail.com">email.</a></h4>
                             </div>
                         </div>
                         <div class="row" style="margin:0;">

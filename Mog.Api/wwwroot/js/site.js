@@ -23,9 +23,6 @@ new Vue({
     mounted: function() {
         this.getCharacters()
     },
-    created: function() {
-        this.getLoad()
-    },
     methods: {
         getCharacters() {
             axios.get("https://www.moogleapi.com/api/v1/characters")
@@ -36,28 +33,15 @@ new Vue({
         },
         scrollTop() {
             $("html, body").animate({scrollTop:"0"}, 500)
-        },
-        getRandom() {
-            $(".search-results").hide()
-            $("#random-character").show()
-            axios.get("https://www.moogleapi.com/api/v1/characters/random")
-            .then(response => {this.random = response.data})
-        },
-        getLoad() {
-            $(".search-results").hide()
-            $("#random-character").show()
-
-            //axios.get(url + "/api/v1/characters/75c054fe-d022-44d4-102f-08d6afcab3e2") // Using id (returns single entity)
-            axios.get("https://www.moogleapi.com/api/v1/characters/search?name=lightning") // Using search route (returns array so rendering would take a different approach)
-            .then(response => {this.random = response.data})
         }
     },
     computed: {
         filtered: function() {
             let filtered = this.character;
+            let empty = ""
 
             if (!this.search) {
-                return this.getLoad();          
+                return empty;          
             }
 
             if (this.search) {
@@ -75,13 +59,11 @@ new Vue({
                 // However, it doesn't work in some mobile browsers.
                 // Maybe it works now, I'm too lazy to find out.
             }
-            $("#random-character").hide()
             $(".search-results").show()
             return filtered;
         },
     },
     data: {
-        random: {},
         character: [],
         search: "",
         modal: {},

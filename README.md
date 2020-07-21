@@ -82,6 +82,7 @@ new Vue({
 ### Character properties
 
 * Name (First and last, if they have one)
+* Japanese Name
 * Origin (The game they originated in)
 * Race
 * Gender
@@ -110,7 +111,7 @@ This is a very simple data set only consisting of the games in the main series (
 * Picture
 * Description
 
-The monster database is growing! If you're interested in helping, let's talk.
+The monster database is growing! 
 
 ### Game properties
 
@@ -122,5 +123,3 @@ The monster database is growing! If you're interested in helping, let's talk.
 Titles are simple, just 01-15 as of now. Release date refers to the Japanese release, I believe. 
 
 More documentation to come!
-
-
