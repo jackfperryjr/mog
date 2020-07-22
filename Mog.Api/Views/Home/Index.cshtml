@@ -61,9 +61,9 @@
                         </button>
                     </template>
                     <template v-else>
-                        <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
-                            <img class="moogle-img" src="https://mooglestorage.blob.core.windows.net/images/no-image.png" :alt="character.name" title="Click to view a larger picture"><br/>
-                        </button>
+                        <div class="moogle-modal-button">
+                            <img class="moogle-img" src="/images/no-image.png"><br/>
+                        </div>
                     </template>
                     <div id="imageModal" class="modal fade" role="dialog">
                         <div class="modal-dialog" role="document">
