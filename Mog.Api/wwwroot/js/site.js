@@ -51,7 +51,7 @@ new Vue({
                     return character.name.toLowerCase().indexOf(self.search) > -1
                     || character.name.indexOf(self.search) > -1
                     || character.origin.toLowerCase().indexOf(self.search) > -1; 
-                });    
+                });  
                 
                 //filtered = this.character
                 //.filter(c => c.name.toLowerCase().indexOf(self.search) > -1 || c.origin.toLowerCase().indexOf(self.search) > -1);
@@ -66,6 +66,6 @@ new Vue({
     data: {
         character: [],
         search: "",
-        modal: {},
+        modal: {}
     }
   })

@@ -55,9 +55,16 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <button v-if="character.pictures" type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
-                        <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
-                    </button>
+                    <template v-if="character.pictures[0]">
+                        <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
+                            <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
+                        </button>
+                    </template>
+                    <template v-else>
+                        <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
+                            <img class="moogle-img" src="https://mooglestorage.blob.core.windows.net/images/no-image.png" :alt="character.name" title="Click to view a larger picture"><br/>
+                        </button>
+                    </template>
                     <div id="imageModal" class="modal fade" role="dialog">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
