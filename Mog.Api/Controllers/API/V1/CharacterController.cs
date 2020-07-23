@@ -18,21 +18,33 @@ namespace Mog.Api.Controllers.API.V1
     public class CharacterController : ApiControllerBase
     {
         private readonly IFactory<IQueryable<Character>, Guid> _characterFactory;
+        private readonly IStore<Character> _characterStore;
 
         public CharacterController(
-            IFactory<IQueryable<Character>, Guid> characterFactory)
+            IFactory<IQueryable<Character>, Guid> characterFactory,
+            IStore<Character> characterStore)
         {
             _characterFactory = characterFactory;
+            _characterStore = characterStore;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
             try
             {
                 var characters = await _characterFactory.GetAsync(id, cancellationToken);
-                return Ok(characters);
+                if (characters.Any())
+                {
+                    return Ok(characters);
+                }
+                else 
+                {
+                    return NotFound(new
+                    {
+                        message = "There are no characters in the database."
+                    });                
+                }
             }
             catch
             {
@@ -40,7 +52,6 @@ namespace Mog.Api.Controllers.API.V1
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
@@ -48,15 +59,24 @@ namespace Mog.Api.Controllers.API.V1
             try
             {
                 var character = await _characterFactory.GetByKeyAsync(id, cancellationToken);
-                return Ok(character);
+                if (character.Any())
+                {
+                    return Ok(character);
+                }
+                else 
+                {
+                    return NotFound(new
+                    {
+                        message = "Couldn't find a character with that id."
+                    });                
+                }
             }
             catch
             {
-                return NotFound();
+                return BadRequest();
             }
         } 
 
-        [AllowAnonymous]
         [HttpGet("random")]
         public async Task<IActionResult> Random(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
@@ -72,7 +92,6 @@ namespace Mog.Api.Controllers.API.V1
             }
         } 
 
-        [AllowAnonymous]
         [HttpGet("search")]
         public async Task<IActionResult> Search([FromQuery]string name, string gender, string job, string race, string origin, CancellationToken cancellationToken = new CancellationToken()) 
         { 
@@ -98,12 +117,67 @@ namespace Mog.Api.Controllers.API.V1
                     characters = characters.OrderBy(c => c.Name).Where(c => c.Origin.Contains(origin));
                 }
 
-                return Ok(characters);
+                if (characters.Any())
+                {
+                    return Ok(characters);
+                }
+                else 
+                {
+                    return NotFound(new
+                    {
+                        message = "Couldn't find that character."
+                    });                
+                }
             }
             catch
             {
                 return BadRequest();
             }
-        }     
+        }  
+
+        [Authorize]
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] Character model, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            var character = await _characterFactory.GetByKeyAsync(id, cancellationToken);
+            bool verify = false;
+
+            if (character.FirstOrDefault().Id == model.Id)
+            {
+                verify = true;
+            }
+
+            if (verify)
+            {
+                await _characterStore.UpdateAsync(model, cancellationToken);
+            }
+
+            return Ok(new
+            {
+                message = "This will do nothing yet except return the character for the id passed to it and confirmation the model passed is the model you're attempting to update.",
+                verified = verify,
+                character = model
+            });
+        }
+
+        [Authorize]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            try 
+            {
+                var model = await _characterFactory.GetByKeyAsync(id, cancellationToken);
+                await _characterStore.DeleteAsync(model.FirstOrDefault(), cancellationToken);
+
+                return Ok(new
+                {
+                    message = "Character records removed successfully."
+                });
+            }
+            catch 
+            {
+                return BadRequest();
+            }
+        }
     }
 }

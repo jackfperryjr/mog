@@ -30,7 +30,6 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<IQueryable<Character>> GetByKeyAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))
         {
-
             IQueryable<Character> characters = _context.Characters
                                         .Include(x => x.Pictures)
                                         .Include(x => x.Stats)

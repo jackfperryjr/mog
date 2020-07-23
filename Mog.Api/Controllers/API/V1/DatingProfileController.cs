@@ -32,7 +32,17 @@ namespace Mog.Api.Controllers.API.V1
             try
             {
                 var datingProfiles = await _datingProfileFactory.GetAsync(id, cancellationToken);
-                return Ok(datingProfiles);
+                if (datingProfiles.Any())
+                {
+                    return Ok(datingProfiles);
+                }
+                else
+                {
+                    return NotFound(new
+                    {
+                        message = "There are no profiles yet."
+                    });
+                }
             }
             catch
             {
@@ -46,11 +56,21 @@ namespace Mog.Api.Controllers.API.V1
             try
             {
                 var datingProfile = await _datingProfileFactory.GetByKeyAsync(id, cancellationToken);
-                return Ok(datingProfile);
+                if (datingProfile.Any())
+                {
+                    return Ok(datingProfile);
+                }
+                else
+                {
+                    return NotFound(new
+                    {
+                        message = "There is no profile associated with this id."
+                    });
+                }            
             }
             catch
             {
-                return NotFound();
+                return BadRequest();
             }
         } 
     }
