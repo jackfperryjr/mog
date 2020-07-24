@@ -16,6 +16,7 @@ namespace Mog.Api.Controllers.API.V1
 {
     [ApiVersion("1")]
     [Authorize]
+    [Obsolete]
     public class DatingProfileController : ApiControllerBase
     {
         private readonly IFactory<IQueryable<DatingProfile>, Guid> _datingProfileFactory;

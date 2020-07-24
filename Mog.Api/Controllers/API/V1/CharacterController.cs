@@ -136,6 +136,7 @@ namespace Mog.Api.Controllers.API.V1
         }  
 
         [Authorize]
+        [Obsolete]
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] Character model, CancellationToken cancellationToken = new CancellationToken()) 
         {    
@@ -161,6 +162,7 @@ namespace Mog.Api.Controllers.API.V1
         }
 
         [Authorize]
+        [Obsolete]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
         {    
