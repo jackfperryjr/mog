@@ -19,7 +19,8 @@
     <div class="row">
         <div class="col-md-12 text-center blue">
             <h2 class="title-2">A RESTful Final Fantasy API</h2>
-            <h5 class="title-5"><strong>{{character.length}}</strong> characters and counting!</h5>
+            <h5 v-if="character.length > 0" class="title-5"><strong>{{character.length}}</strong> characters and counting!</h5>
+            <h5 v-else class="title-5"><strong><i class="fa fa-spinner fa-spin blue" style="float:none;" aria-hidden="true"></i></strong> characters and counting!</h5>
         </div>
     </div>
     <div class="container">
