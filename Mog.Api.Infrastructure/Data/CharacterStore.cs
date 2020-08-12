@@ -40,7 +40,19 @@ namespace Mog.Api.Infrastructure.Data
         {
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
 
-            // TODO: Update records.
+            character.Name = model.Name;
+            character.JapaneseName = model.JapaneseName;
+            character.Age = model.Age;
+            character.Gender = model.Gender;
+            character.Race = model.Race;
+            character.Job = model.Job;
+            character.Height = model.Height;
+            character.Weight = model.Weight;
+            character.Origin = model.Origin;
+            character.Description = model.Description;
+            // TODO: Update stat and picture records.
+
+            _context.SaveChanges();
 
             return model;
         }

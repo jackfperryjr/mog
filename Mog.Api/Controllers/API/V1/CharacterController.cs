@@ -138,7 +138,7 @@ namespace Mog.Api.Controllers.API.V1
         [Authorize]
         [Obsolete]
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Character model, CancellationToken cancellationToken = new CancellationToken()) 
+        public async Task<IActionResult> Update(Guid id, [FromForm] Character model, CancellationToken cancellationToken = new CancellationToken()) 
         {    
             var character = await _characterFactory.GetByKeyAsync(id, cancellationToken);
             bool verify = false;
@@ -155,7 +155,7 @@ namespace Mog.Api.Controllers.API.V1
 
             return Ok(new
             {
-                message = "This will do nothing yet except return the character for the id passed to it and confirmation the model passed is the model you're attempting to update.",
+                message = "This will only update the base character model so far.",
                 verified = verify,
                 character = model
             });
