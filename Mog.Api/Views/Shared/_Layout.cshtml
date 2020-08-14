@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        @if (IsSectionDefined("MetaTags"))
-        {
-            @RenderSection("MetaTags", required: false)
-        }
+        <meta property="og:url" content="www.moogleapi.com">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="MoogleApi">
+        <meta property="og:description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
+        <meta property="og:owner" content="Jack F. Perry, Jr.">
+        <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
+        <meta name="author" content="Jack F. Perry, Jr.">
         <!-- Start of PWA elements -->
         <meta name=”apple-mobile-web-app-capable” content=”yes” />
         <meta name=”mobile-web-app-capable” content=”yes” />
@@ -30,20 +33,19 @@
         <link href="~/icons/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
         <link href="~/icons/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
         <!-- End of PWA elements -->
-
-        <title>MoogleApi @ViewData["Title"]</title>
         <environment include="Development, Production">
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-            <link rel="stylesheet" href="~/css/site.css" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
-            @RenderSection("Styles", false)
+        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"  rel="stylesheet" />
+        <script src="~/js/site-prep.min.js"></script>
+        @RenderSection("Styles", false)
         </environment>
+        <title>MoogleApi</title>
     </head>
     <body>
-        <a class="mobile-only" asp-controller="Home" asp-action="Index" style="text-decoration:none;">
+        <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
             <h1 class="site-logo">
                 <span class="blue no-space">m</span>
-                <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
+                <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
                 <span class="yellow no-space">o</span>
                 <span class="blue no-space">g</span>
                 <span class="green no-space">l</span>
@@ -51,33 +53,13 @@
                 <span class="site-span-api">API</span>
             </h1>
         </a>
-        <nav class="navbar navbar-inverse navbar-fixed-top navbar-mod mobile-display-none">
-            <div class="container">
-                <div class="navbar-header text-center">
-                    <a asp-controller="Home" asp-action="Index" style="text-decoration:none;" class="mobile-placement" title="MoogleApi">
-                        <h1 class="site-logo mobile-display-none">
-                            <span class="blue no-space">m</span>
-                            <span class="span-logo"><img class="logo-img" src="@Url.Content("/icons/icon-ff-moogle.png")" alt="Moogle face for one of the Os."></span>
-                            <span class="yellow no-space">o</span>
-                            <span class="blue no-space">g</span>
-                            <span class="green no-space">l</span>
-                            <span class="letter-e red no-space">e</span>
-                            <span class="site-span-api">API</span>
-                        </h1>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-                </div>
-            </div>
-        </nav>
         <div id="main" class="container">
             @RenderBody()
         </div>
         <footer class="mobile-display-none">
-            <hr />
             <span id="copyright" class="copyright">&copy; 2018 - @DateTime.Now.Year </span>
             <span id="copyright" class="mobile-copyright">&copy;  @DateTime.Now.Year </span>
-            <a class="navbar-title" asp-controller="Home" asp-action="Index" title="Click to go to search page.">
+            <a asp-controller="Home" asp-action="Index" title="Click to go to search page.">
                 <span class="blue">m</span>
                 <span class="red">o</span>
                 <span class="yellow">o</span>
@@ -93,34 +75,7 @@
             <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
             </span>
         </footer>
-        <environment include="Development, Production">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        </environment>
+        <script src="~/js/site-index.js"></script>
         @RenderSection("Scripts", required: false)
-        <script>
-            $(this).delay(1000).queue(function() {
-                let search = $('#search').offset().top;
-    
-                let stickySearch = function(){
-                    let scrollTop = $(window).scrollTop();
-                
-                    if (scrollTop > search) { 
-                        $("#search").addClass("sticky-search-bar");
-                        $("#search-icon").addClass("sticky-search-icon");
-                        $("#search-logo").show();
-                    } else {
-                        $('#search').removeClass("sticky-search-bar"); 
-                        $("#search-icon").removeClass("sticky-search-icon");
-                        $("#search-logo").hide();
-                    }
-                };
-            
-                stickySearch();
-                $(window).scroll(function() {
-                    stickySearch();
-                });
-            });
-        </script>
     </body>
 </html>

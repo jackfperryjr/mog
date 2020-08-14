@@ -1,40 +1,21 @@
-﻿/* Importing Google fonts */
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-
-@import "https://use.fontawesome.com/releases/v5.4.0/css/all.css";
-
-/* Modifying HTML elements and Bootstrap overrides */
-#main {
+﻿#main {
   padding-top: 20px;
 }
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('../customfonts/JosefinSans-VariableFont_wght.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../customfonts/Raleway-VariableFont_wght.ttf') format('opentype');
+}
+
 body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+  padding: 50px;
   font-family: "Raleway";
-  font-size: 16px;
-}
-.navbar-title {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 16px;
-  letter-spacing: -2.5px;
-  cursor: pointer;
-}
-.navbar-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  transition: all .3s ease-in-out
-}
-.navbar-mod {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  background:transparent;
-  border:transparent;
-  backdrop-filter: blur(5px);
-  z-index: 2000;
+  font-size: 14px;
 }
 /* _Layout styles */
 .hr-info-box {

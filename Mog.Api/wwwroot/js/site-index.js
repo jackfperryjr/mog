@@ -1,5 +1,28 @@
+$(this).delay(1000).queue(function() {
+    var search = $('#search').offset().top;
+
+    var stickySearch = function(){
+        var scrollTop = $(window).scrollTop();
+    
+        if (scrollTop > search) { 
+            $("#search").addClass("sticky-search-bar");
+            $("#search-icon").addClass("sticky-search-icon");
+            $("#search-logo").show();
+        } else {
+            $('#search').removeClass("sticky-search-bar"); 
+            $("#search-icon").removeClass("sticky-search-icon");
+            $("#search-logo").hide();
+        }
+    };
+
+    stickySearch();
+    $(window).scroll(function() {
+        stickySearch();
+    });
+});
+
 // List for setting a random search example name as the input placeholder
-let randomPlaceholderList = [
+var randomPlaceholderList = [
     "Search ex. ''Lightning'' or ''13''",
     "Search ex. ''Ashe'' or ''12''",
     "Search ex. ''Yuna'' or ''10''",
@@ -13,7 +36,7 @@ let randomPlaceholderList = [
 ];
 
 // Randomly choosing from the list
-let randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPlaceholderList.length)];
+var randomPlaceholder = randomPlaceholderList[Math.floor(Math.random()*randomPlaceholderList.length)];
 
 $("#search").attr("placeholder", randomPlaceholder);
 
@@ -37,27 +60,21 @@ new Vue({
     },
     computed: {
         filtered: function() {
-            let filtered = this.character;
-            let empty = ""
+            var filtered = this.character;
+            var empty = ""
 
             if (!this.search) {
                 return empty;          
             }
 
             if (this.search) {
-                let self = this;
+                var self = this;
                 filtered = this.character
                 .filter(function(character) {
                     return character.name.toLowerCase().indexOf(self.search) > -1
                     || character.name.indexOf(self.search) > -1
                     || character.origin.toLowerCase().indexOf(self.search) > -1; 
                 });  
-                
-                //filtered = this.character
-                //.filter(c => c.name.toLowerCase().indexOf(self.search) > -1 || c.origin.toLowerCase().indexOf(self.search) > -1);
-                // The above is an alternate arrow function.
-                // However, it doesn't work in some mobile browsers.
-                // Maybe it works now, I'm too lazy to find out.
             }
             $(".search-results").show()
             return filtered;

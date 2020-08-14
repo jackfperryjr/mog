@@ -1,21 +1,4 @@
-﻿@using Microsoft.Extensions.Options
-@section MetaTags
-{
-    <meta property="og:url" content="www.moogleapi.com">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="MoogleApi">
-    <meta property="og:description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
-    <meta property="og:owner" content="Jack F. Perry, Jr.">
-    <meta name="description" content="MoogleApi is your search engine for Final Fantasy. Easily find, and learn more, about your favorite games, characters, and monsters.">
-    <meta name="author" content="Jack F. Perry, Jr.">
-}
-@section Scripts
-{
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="~/js/site.js"></script>
-}
-<div id="vue-app">
+﻿<div id="vue-app">
     <div class="row">
         <div class="col-md-12 text-center blue">
             <h2 class="title-2">A RESTful Final Fantasy API</h2>
@@ -84,74 +67,6 @@
             <div class="row moogle-row" style="width:100%;">
                 <div class="col-md-12 text-right float-right">
                     <span class="blue" style="font-size:12px;cursor:pointer;" v-on:click="scrollTop()">Back to Top</span>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-center info-box bg-blue">
-                    <h4><strong>What is this?</strong></h4>
-                    <hr class="hr-info-box" />
-                    <h5 class="text-left">This is a RESTful API for Final Fantasy. I hope the database behind will eventually become an extensive library of all your favorite characters and monsters from the main series of Final Fantasy.</h5>
-                </div>
-                <div class="col-md-4 text-center info-box bg-yellow">
-                    <h4><strong>Where to start?</strong></h4>
-                    <hr class="hr-info-box" />
-                    <h5 class="text-left">You can checkout the <a href="https://github.com/jackfperryjr/moogle#readme" target="_blank">README</a> on GitHub.</h5>
-                    <h5 class="text-left">Or checkout <a href="/swagger/index.html" target="_blank">SWAGGER</a> for testing.</h5>
-                    <h5 class="text-left">And I've built a simple working example <a href="https://jackfperryjr.github.io/moogle/" target="_blank">HERE</a>.</h5>
-                </div>
-                <div class="col-md-4 text-center info-box bg-red">
-                    <h4><strong>Hosted in Azure</strong></h4>
-                    <hr class="hr-info-box" />
-                    <a href="https://azure.microsoft.com" target="_blank"><img style="width:150px;" src="@Url.Content("/icons/icon-azure-logo.png")"></a>
-                </div>
-            </div>
-        </div>
-        <div id="about-container" class="container">
-            <div class="container top-buffer">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row" style="margin:0;">
-                            <h3>What is an API?</h3>
-                            <div class="row about-box bg-blue">
-                                <h4>An API <strong>(Application Programming Interface)</strong> is a software-to-software interface, not a user interface. With APIs, applications talk to each other without any user knowledge or intervention. When you buy movie tickets online and enter your credit card information, the movie ticket website uses an API to send your credit card information to a remote application that verifies whether your information is correct. Once payment is confirmed, the remote application sends a response back to the movie ticket website saying it's okay to issue the tickets.</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>Aren't there a bunch of Final Fantasy websites?</h3>
-                            <div class="row about-box bg-yellow">
-                                <h4>Exactly. That means there's a bunch of different sources of the same/similar data.</h4>
-                                <h4>The goal is to provide a single source of data that any website can consume and use. When new games come out it could take some time for a variety of websites to catch up. With the API it could be updated once and the new information can then be consumed by any number of websites at the same time.</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row" style="margin:0;">
-                            <h3>Where did you get the data?</h3>
-                            <div class="row about-box bg-green">
-                                <h4>The data was gathered from multiple sources across the internet and from legitimate booklets and manuals. (I have a bit of a Final Fantasy game collection!)</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>What is the tech stack?</h3>
-                            <div class="row about-box bg-red">
-                                <h4>The API is built in C#/.NETCore 3.1. It's hosted in Azure, with an Azure SQL database, and set behind Cloudflare for caching. The home page and my sample <a class="blue" href="https://jackfperryjr.github.io/moogle/" target="_blank">example</a> are wired up with VueJs.</h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>The API is missing stuff!</h3>
-                            <div class="row about-box bg-green">
-                                <h4>I know! I contribute and update when I have time but it's just me doing it! I'd love to find contributors; so if you're interested send me an <a class="blue" href="mailto:jackfperryjr@gmail.com">email.</a></h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin:0;">
-                            <h3>Can I help?</h3>
-                            <div class="row about-box bg-grey">
-                                <h4>Absolutely! If you'd like to help contribute to the data send me an email. I'm super open to suggestions and collaboration! 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
