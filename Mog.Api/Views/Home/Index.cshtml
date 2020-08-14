@@ -1,74 +1,70 @@
 ﻿<div id="vue-app">
-    <div class="row">
-        <div class="col-md-12 text-center blue">
-            <h2 class="title-2">A RESTful Final Fantasy API</h2>
-            <h5 v-if="character.length > 0" class="title-5"><strong>{{character.length}}</strong> characters and counting!</h5>
-            <h5 v-else class="title-5"><strong><i class="fa fa-spinner fa-spin blue" style="float:none;" aria-hidden="true"></i></strong> characters and counting!</h5>
-        </div>
-    </div>
-    <div class="container">
-        <h2 class="text-center">Try it out!</h2>  
-        <hr class="hr-home" />
-        <div class="search-card">
-            <form class="form-inline has-feedback">
-                <input id="search" class="fancy-search" v-model="search" type="input" />
-            </form>
-        </div>
-        <div v-for="(character) in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
-            <div class="row moogle-row">
-                <div class="col-md-8">
-                    <h4 class="moogle-h4"><strong>{{character.name}}</strong></h4>
-                    <h7 class="search-result">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h7><br/>
-                    <p class="dark-bluish-gray">{{character.description}}</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>
-                            <strong>Origin:</strong> {{character.origin}}<br/>
-                            <strong>Job:</strong> {{character.job}}<br/>
-                            <strong>Age:</strong> {{character.age}}<br/>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>
-                            <strong>Race:</strong> {{character.race}}<br/>
-                            <strong>Height:</strong> {{character.height}}m<br/>
-                            <strong>Weight:</strong> {{character.weight}}kg
-                            </p>
-                        </div>
-                        <br/>
-                    </div>
+    <div class="row index">
+        <div class="col-md-4">
+            <div class="row search-card-row bg-white">
+                <div class="col-md-12 text-center blue">
+                    <h2 class="title-2">A RESTful Final Fantasy API</h2>
+                    <h5 v-if="character.length > 0" class="title-5"><strong>{{character.length}}</strong> characters and counting!</h5>
+                    <h5 v-else class="title-5"><strong><i class="fa fa-spinner fa-spin blue" style="float:none;" aria-hidden="true"></i></strong> characters and counting!</h5>
+                    <h4 class="text-center">Try it out!</h4> 
                 </div>
-                <div class="col-md-4">
-                    <template v-if="character.pictures[0]">
-                        <button type="button" class="moogle-modal-button" data-toggle="modal" data-target="#imageModal" v-on:click="setModal(character)">
-                            <img class="moogle-img" :src="character.pictures[0].url" :alt="character.name" title="Click to view a larger picture"><br/>
-                        </button>
-                    </template>
-                    <template v-else>
-                        <div class="moogle-modal-button">
-                            <img class="moogle-img" src="/images/no-image.png"><br/>
-                        </div>
-                    </template>
-                    <div id="imageModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close float-right" data-dismiss="modal">X</span></h3>
+                <div class="search-card">
+                    <form class="form-inline has-feedback">
+                        <input id="search" class="fancy-search bg-light text-dark" v-model="search" type="input" />
+                    </form>
+                </div>
+            </div>
+            <div class="container search-results-container">
+                <div v-for="(character) in filtered" :key="character.id" class="search-results row moogle-row mix-buffer" >
+                    <div class="row moogle-row">
+                        <div class="col-md-10">
+                            <h4 class="text-primary"><strong>{{character.name}}</strong></h4>
+                            <h6 class="text-success">To learn more visit <a :href="'https://www.google.com/search?q=final+fantasy+'+character.name" target="_blank">https://www.google.com/search?q={{character.name}}</a></h6>
+                            <p class="text-muted">{{character.description}}</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>
+                                    <strong>Origin:</strong> {{character.origin}}<br/>
+                                    <strong>Job:</strong> {{character.job}}<br/>
+                                    <strong>Age:</strong> {{character.age}}<br/>
+                                    </p>
                                 </div>
-                                <div class="modal-body">
-                                    <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
+                                <div class="col-md-4">
+                                    <p>
+                                    <strong>Race:</strong> {{character.race}}<br/>
+                                    <strong>Height:</strong> {{character.height}}m<br/>
+                                    <strong>Weight:</strong> {{character.weight}}kg
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <template v-if="character.pictures[0]">
+                                        <img class="search-results-img" :src="character.pictures[0].url" :alt="character.name">
+                                    </template>
+                                    <template v-else>
+                                        <img class="search-results-img" src="/images/no-image.png">
+                                    </template>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br/>
                 </div>
             </div>
-            <div class="row moogle-row" style="width:100%;">
-                <div class="col-md-12 text-right float-right">
-                    <span class="blue" style="font-size:12px;cursor:pointer;" v-on:click="scrollTop()">Back to Top</span>
+        </div>
+        <div class="col-md-8">
+            <partial name="_Information" />
+        </div>
+    </div>
+    <div id="imageModal" class="modal fade" role="dialog" style="z-index:5000;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-center"><strong>{{modal.name}}</strong><span class="close float-right" data-dismiss="modal">X</span></h3>
+                </div>
+                <div class="modal-body">
+                    <img v-if="modal.pictures" class="moogle-modal-img" :src="modal.pictures[0].url" :alt="modal.name" :title="modal.name">
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

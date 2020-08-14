@@ -35,30 +35,31 @@
         <!-- End of PWA elements -->
         <environment include="Development, Production">
         <link href="~/css/site.min.css" rel="stylesheet" />
-        <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"  rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/2f51bb661c.js" crossorigin="anonymous"></script>
         <script src="~/js/site-prep.min.js"></script>
         @RenderSection("Styles", false)
         </environment>
         <title>MoogleApi</title>
     </head>
     <body>
-        <a asp-controller="Home" asp-action="Index" style="text-decoration:none;">
+        <div class="site-logo-container">
             <h1 class="site-logo">
-                <span class="blue no-space">m</span>
-                <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
-                <span class="yellow no-space">o</span>
-                <span class="blue no-space">g</span>
-                <span class="green no-space">l</span>
-                <span class="letter-e red no-space">e</span>
-                <span class="site-span-api">API</span>
+                <a asp-controller="Home" asp-action="Index">
+                    <span class="blue no-space">m</span>
+                    <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
+                    <span class="yellow no-space">o</span>
+                    <span class="blue no-space">g</span>
+                    <span class="green no-space">l</span>
+                    <span class="letter-e red no-space">e</span>
+                    <span class="site-span-api text-dark">API</span>
+                </a>
             </h1>
-        </a>
-        <div id="main" class="container">
+        </div>
+        <div id="main">
             @RenderBody()
         </div>
-        <footer class="mobile-display-none">
-            <span id="copyright" class="copyright">&copy; 2018 - @DateTime.Now.Year </span>
-            <span id="copyright" class="mobile-copyright">&copy;  @DateTime.Now.Year </span>
+        <footer>
+            <span class="copyright">&copy; 2018 - @DateTime.Now.Year</span>
             <a asp-controller="Home" asp-action="Index" title="Click to go to search page.">
                 <span class="blue">m</span>
                 <span class="red">o</span>
@@ -69,10 +70,10 @@
                 <span class="site-span-api site-span-api-sm">API</span>
             </a> 
             <span id="social-icons">
-            <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
-            <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
-            <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/jackfperryjr" target="_blank" title="Visit Facebook."><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.linkedin.com/in/jackfperryjr" target="_blank" title="Visit LinkedIn."><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/jackfperryjr" target="_blank" title="Visit GitHub."><i class="fab fa-github-square"></i></a>
+                <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
             </span>
         </footer>
         <script src="~/js/site-index.js"></script>
