@@ -42,7 +42,7 @@ body {
   letter-spacing: -35px;
 }
 .custom-margin-left {
-  margin-left:-12px;
+  margin-left: -12px;
 }
 .site-span-api {
   font-size: 12px;
@@ -53,8 +53,8 @@ body {
   font-size: 6px;
 }
 .logo-img {
-  width:27px;
-  margin-right:-35px;
+  width: 27px;
+  margin-right: -35px;
   transform: rotate(-12deg);
 }
 /*_Information*/
@@ -62,8 +62,8 @@ body {
   z-index: 500;
 }
 .info-box {
-  min-height:220px;
-  border-radius:5px;
+  min-height: 220px;
+  border-radius: 5px;
 }
 .info-box p {
   padding: 0 20px;
@@ -78,6 +78,7 @@ body {
 footer {
   width: 80%;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 footer a,
 footer a:visited {
@@ -183,5 +184,23 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 
 @media screen and (max-width: 767px) {
-/*TODO: Fill in mobile rules*/
+  .search-card-row {
+    padding-top: 50px;
+    width: 100%;
+  }
+  footer {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  footer > .copyright {
+    display: none;
+  }
+  footer > a {
+    display: none;
+  }
+  footer i {
+    font-size: 34px;
+    float: none;
+    margin: 0 10px;
+  }
 }
