@@ -34,9 +34,9 @@
         <link href="~/icons/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
         <!-- End of PWA elements -->
         <environment include="Development, Production">
-        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="~/css/moogleapi-main.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2f51bb661c.js" crossorigin="anonymous"></script>
-        <script src="~/js/site-prep.min.js"></script>
+        <script src="~/js/moogleapi-prep.min.js"></script>
         @RenderSection("Styles", false)
         </environment>
         <title>MoogleApi</title>
@@ -45,13 +45,13 @@
         <div class="site-logo-container">
             <h1 class="site-logo">
                 <a asp-controller="Home" asp-action="Index">
-                    <span class="blue no-space">m</span>
-                    <span class="span-logo"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
-                    <span class="yellow no-space">o</span>
-                    <span class="blue no-space">g</span>
-                    <span class="green no-space">l</span>
-                    <span class="letter-e red no-space">e</span>
-                    <span class="site-span-api text-dark">API</span>
+                    <span class="text-primary no-space">m</span>
+                    <span class="mx-sm-10"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
+                    <span class="text-secondary no-space">o</span>
+                    <span class="text-primary no-space">g</span>
+                    <span class="text-success no-space">l</span>
+                    <span class="text-danger custom-margin-left no-space">e</span>
+                    <span class="text-dark site-span-api">API</span>
                 </a>
             </h1>
         </div>
@@ -76,7 +76,7 @@
                 <a href="https://www.instagram.com/jackfperryjr" target="_blank" title="Visit Instagram."><i class="fab fa-instagram"></i></a>
             </span>
         </footer>
-        <script src="~/js/site-index.js"></script>
+        <script src="~/js/moogleapi-main.js"></script>
         @RenderSection("Scripts", required: false)
     </body>
 </html>
