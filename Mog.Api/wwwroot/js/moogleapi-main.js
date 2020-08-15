@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    if (halfmoon.readCookie("darkModeOn") == "yes") {
+        halfmoon.toggleDarkMode();
+    } 
+});
+
 $(this).delay(1000).queue(function() {
     var search = $('#search').offset().top;
 
