@@ -1,4 +1,4 @@
-# M<img src="Mog.Api/wwwroot/icons/icon-ff-moogle.png" width="20">ogleApi
+# M<img src="Mog.Api/wwwroot/images/moogle.png" width="20">ogleApi
 
 MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! The homepage is a single page application/search engine using VueJs! Check it out.
 
@@ -122,4 +122,16 @@ The monster database is growing!
 
 Titles are simple, just 01-15 as of now. Release date refers to the Japanese release, I believe. 
 
-More documentation to come!
+## Dependencies 
+### Client (home/index)
+* [jQuery](https://github.com/jquery/jquery)
+* [Halfmoon](https://github.com/halfmoonui/halfmoon)
+* [Vue](https://github.com/vuejs/vue)
+* [Axios](https://github.com/axios/axios) 
+
+### Server (API)
+* [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier)
+* [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)
+* [JWT](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer)
+    * [jwt.io](https://jwt.io/)
+* Microsoft stack (NETCore, EFCore, SqlServer, etc.)
