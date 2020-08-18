@@ -13,6 +13,8 @@ namespace Mog.Api.Core.Models
         [JsonIgnore]
         public Guid Id { get; set; }  
         public string Platform { get; set; }
+        public int Level { get; set; }
+        public string Class { get; set; }
         public int HitPoints { get; set; }
         public int ManaPoints { get; set; }
         public int Attack { get; set; }
