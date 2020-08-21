@@ -10,7 +10,6 @@ namespace Mog.Api.Core.Models
     {  
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [JsonIgnore]
         public Guid Id { get; set; }  
         public string Platform { get; set; }
         public int Level { get; set; }
