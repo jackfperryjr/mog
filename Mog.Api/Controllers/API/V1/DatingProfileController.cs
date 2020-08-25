@@ -15,7 +15,7 @@ using Mog.Api.Core.Extensions;
 namespace Mog.Api.Controllers.API.V1
 {
     [ApiVersion("1")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Obsolete]
     public class DatingProfileController : ApiControllerBase
     {

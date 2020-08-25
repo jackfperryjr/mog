@@ -22,9 +22,9 @@ namespace Mog.Api.Core.Models
         public int MagicDefense { get; set; }
         public int Agility { get; set; }
         public int Spirit { get; set; }
-        [JsonIgnore]
         public Guid CollectionId { get; set; }
         [ForeignKey("CollectionId")]
+        [JsonIgnore]
         public Character Character { get; set; }
     } 
 }

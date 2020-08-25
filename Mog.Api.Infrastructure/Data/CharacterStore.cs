@@ -50,10 +50,8 @@ namespace Mog.Api.Infrastructure.Data
             character.Weight = model.Weight;
             character.Origin = model.Origin;
             character.Description = model.Description;
-            // TODO: Update stat and picture records.
 
             _context.SaveChanges();
-
             return model;
         }
 

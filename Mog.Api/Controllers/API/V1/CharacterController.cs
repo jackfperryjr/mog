@@ -135,7 +135,7 @@ namespace Mog.Api.Controllers.API.V1
             }
         }  
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Obsolete]
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(Guid id, [FromForm] Character model, CancellationToken cancellationToken = new CancellationToken()) 
@@ -151,17 +151,20 @@ namespace Mog.Api.Controllers.API.V1
             if (verify)
             {
                 await _characterStore.UpdateAsync(model, cancellationToken);
+                return Ok(new
+                {
+                    message = "Character updated successfully.",
+                    verified = verify,
+                    character = model
+                });
             }
-
-            return Ok(new
+            else
             {
-                message = "This will only update the base character model so far.",
-                verified = verify,
-                character = model
-            });
+                return BadRequest();
+            }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Obsolete]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
@@ -170,7 +173,6 @@ namespace Mog.Api.Controllers.API.V1
             {
                 var model = await _characterFactory.GetByKeyAsync(id, cancellationToken);
                 await _characterStore.DeleteAsync(model.FirstOrDefault(), cancellationToken);
-
                 return Ok(new
                 {
                     message = "Character records removed successfully."

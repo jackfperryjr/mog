@@ -79,6 +79,7 @@ namespace Mog.Api.Core.Extensions
                         ValidateIssuer = true,
                         ValidIssuer = "ChocoboApi",
                         ValidateAudience = true,
+                        ValidateLifetime = true,
                         ValidAudiences = new List<string>() { "MoogleApi" }
                     };
                 });
