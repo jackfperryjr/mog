@@ -35,7 +35,9 @@ namespace Mog.Api.Infrastructure.Data
         {
             _context.Add(model);
             _context.SaveChanges();
-            return model;
+
+            var character = _context.Characters.Find(model.Id);
+            return character;
         }
 
         public async Task<Character> UpdateAsync(Character model, CancellationToken cancellationToken = new CancellationToken())

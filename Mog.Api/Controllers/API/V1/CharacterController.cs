@@ -142,10 +142,11 @@ namespace Mog.Api.Controllers.API.V1
         {    
             try 
             {
-                await _characterStore.AddAsync(model, cancellationToken);
+                var character = await _characterStore.AddAsync(model, cancellationToken);
                 return Ok(new
                 {
-                    message = "Character record added successfully."
+                    message = "Character record added successfully.",
+                    character = character
                 });
             }
             catch 
