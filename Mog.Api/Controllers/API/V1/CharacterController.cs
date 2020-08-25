@@ -137,6 +137,25 @@ namespace Mog.Api.Controllers.API.V1
 
         [Authorize(Roles = "Admin")]
         [Obsolete]
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromForm] Character model, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            try 
+            {
+                await _characterStore.AddAsync(model, cancellationToken);
+                return Ok(new
+                {
+                    message = "Character record added successfully."
+                });
+            }
+            catch 
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Obsolete]
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update(Guid id, [FromForm] Character model, CancellationToken cancellationToken = new CancellationToken()) 
         {    

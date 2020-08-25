@@ -33,7 +33,9 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> AddAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new NotImplementedException();
+            _context.Add(model);
+            _context.SaveChanges();
+            return model;
         }
 
         public async Task<Character> UpdateAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
