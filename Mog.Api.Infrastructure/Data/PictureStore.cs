@@ -78,6 +78,7 @@ namespace Mog.Api.Infrastructure.Data
 
             _context.Pictures.RemoveRange(_context.Pictures.Where(x => x.CollectionId == model.CollectionId));
             _context.SaveChanges();
+            model.Id = Guid.NewGuid();
             _context.Add(model);
             _context.SaveChanges();
             var picture = _context.Pictures.Find(model.Id);
