@@ -9,11 +9,9 @@ namespace Mog.Api.Core.Models
     {  
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [JsonIgnore]
         public Guid Id { get; set; }  
         public string Url { get; set; }
         public int Primary { get; set; }
-        [JsonIgnore]
         public Guid CollectionId { get; set; }
         [ForeignKey("CollectionId")]
         public Character Character { get; set; }
