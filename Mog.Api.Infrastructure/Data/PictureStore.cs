@@ -75,7 +75,12 @@ namespace Mog.Api.Infrastructure.Data
                                     _configuration["AzureStorageConfig:AccountName"], 
                                     _configuration["AzureStorageConfig:AccountKey"]); 
             await container.CreateIfNotExistsAsync();
-            var picture = await _context.Pictures.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            _context.Pictures.RemoveRange(_context.Pictures.Where(x => x.CollectionId == model.CollectionId));
+            _context.SaveChanges();
+            _context.Add(model);
+            _context.SaveChanges();
+            var picture = _context.Pictures.Find(model.Id);
             var files = _httpContextAccessor.HttpContext.Request.Form.Files;
 
             if (files.Count != 0) 
@@ -92,10 +97,13 @@ namespace Mog.Api.Infrastructure.Data
                             filestream.Position = 0;
                             await newBlob.UploadFromStreamAsync(filestream);
                         }
+
+                        picture.Url = "https://mooglestorage.blob.core.windows.net/images/" + picture.Id + ".jpg";
                     }
                 }
             }
 
+            _context.SaveChanges();
             return model;
         }
 
