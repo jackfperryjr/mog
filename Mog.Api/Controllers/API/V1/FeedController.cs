@@ -21,7 +21,6 @@ namespace Mog.Api.Controllers.API.V1
             _feedFactory = feedFactory;
         }
 
-        [Authorize(Roles = "Admin")]
         [Obsolete]
         [HttpGet]
         public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
