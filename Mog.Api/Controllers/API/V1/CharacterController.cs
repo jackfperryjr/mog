@@ -55,7 +55,6 @@ namespace Mog.Api.Controllers.API.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
-
             try
             {
                 var character = await _characterFactory.GetByKeyAsync(id, cancellationToken);
