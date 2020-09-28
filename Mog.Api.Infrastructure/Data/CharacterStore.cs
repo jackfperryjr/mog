@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Mog.Api.Core.Extensions;
 using Mog.Api.Core.Abstractions;
 using Mog.Api.Core.Models;
@@ -33,6 +34,13 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> AddAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
+            //var user = 
+            var feed = new Feed();
+            feed.CharacterName = model.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.Addition = 1;
+            _context.Add(feed);
+
             _context.Add(model);
             _context.SaveChanges();
 
@@ -42,7 +50,15 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> UpdateAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = model.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.Update = 1;
+            _context.Add(feed);
 
             character.Name = model.Name;
             character.JapaneseName = model.JapaneseName;
@@ -61,6 +77,13 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> DeleteAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
+            var feed = new Feed();
+            feed.CharacterName = model.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.Deletion = 1;
+            feed.StateDeletion = 1;
+            _context.Add(feed);
+
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var stats = await _context.Stats.Where(x => x.CollectionId == model.Id).ToListAsync();
             var pictures = await _context.Pictures.Where(x => x.CollectionId == model.Id).ToListAsync();
@@ -78,7 +101,6 @@ namespace Mog.Api.Infrastructure.Data
             _context.Pictures.RemoveRange(pictures);
             _context.Characters.Remove(character);
             _context.SaveChanges();
-
             return model;
         }
     }

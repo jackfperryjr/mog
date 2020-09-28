@@ -16,6 +16,7 @@ namespace Mog.Api.Infrastructure
         public DbSet<Mog.Api.Core.Models.Stat> Stats { get; set; }
         public DbSet<Mog.Api.Core.Models.DatingProfile> DatingProfile { get; set; }
         public DbSet<Mog.Api.Core.Models.DatingResponse> Responses { get; set; }
+        public DbSet<Mog.Api.Core.Models.Feed> Feed { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
