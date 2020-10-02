@@ -33,6 +33,16 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Stat> AddAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = character.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.StatAddition = 1;
+            _context.Add(feed);
+
             _context.Add(model);
             _context.SaveChanges();
             return model;
@@ -41,6 +51,15 @@ namespace Mog.Api.Infrastructure.Data
         public async Task<Stat> UpdateAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
             var stat = await _context.Stats.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = character.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.StatUpdate = 1;
+            _context.Add(feed);
 
             stat.Platform = model.Platform;
             stat.Class = model.Class;
@@ -53,7 +72,6 @@ namespace Mog.Api.Infrastructure.Data
             stat.MagicDefense = model.MagicDefense;
             stat.Agility = model.Agility;
             stat.Spirit = model.Spirit;
-
             _context.SaveChanges();
             return model;
         }
@@ -61,6 +79,15 @@ namespace Mog.Api.Infrastructure.Data
         public async Task<Stat> DeleteAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
             var stat = await _context.Stats.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = character.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.StateDeletion = 1;
+            _context.Add(feed);
 
             _context.Stats.Remove(stat);
             _context.SaveChanges();

@@ -64,6 +64,15 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = character.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.PhotoUpdate = 1;
+            _context.Add(feed);
             _context.SaveChanges();
             return picture;
         }
@@ -104,6 +113,15 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
+            feed.CharacterName = character.Name;
+            feed.TimeStamp = DateTime.Now;
+            feed.PhotoUpdate = 1;
+            _context.Add(feed);
             _context.SaveChanges();
             return model;
         }

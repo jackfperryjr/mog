@@ -34,8 +34,10 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> AddAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
-            //var user = 
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
             var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
             feed.CharacterName = model.Name;
             feed.TimeStamp = DateTime.Now;
             feed.Addition = 1;
@@ -70,14 +72,16 @@ namespace Mog.Api.Infrastructure.Data
             character.Weight = model.Weight;
             character.Origin = model.Origin;
             character.Description = model.Description;
-
             _context.SaveChanges();
             return model;
         }
 
         public async Task<Character> DeleteAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
+            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
             var feed = new Feed();
+            feed.UserName = user.UserName;
+            feed.UserPhoto = user.Photo;
             feed.CharacterName = model.Name;
             feed.TimeStamp = DateTime.Now;
             feed.Deletion = 1;
