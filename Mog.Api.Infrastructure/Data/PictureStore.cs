@@ -64,11 +64,11 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
-            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            //var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
             var feed = new Feed();
-            feed.UserName = user.UserName;
-            feed.UserPhoto = user.Photo;
+            feed.UserName = "jackfperryjr"; //user.UserName;
+            feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
             feed.CharacterName = character.Name;
             feed.TimeStamp = DateTime.Now;
             feed.PhotoUpdate = 1;
@@ -113,11 +113,11 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
-            var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
+            //var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
             var feed = new Feed();
-            feed.UserName = user.UserName;
-            feed.UserPhoto = user.Photo;
+            feed.UserName = "jackfperryjr"; //user.UserName;
+            feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
             feed.CharacterName = character.Name;
             feed.TimeStamp = DateTime.Now;
             feed.PhotoUpdate = 1;

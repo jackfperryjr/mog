@@ -34,7 +34,7 @@ namespace Mog.Api.Core.Extensions
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://chocoboapi.azurewebsites.net/v1");
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                //TODO: Figure out to make the server to server call to get user data.
                 var result = await client.GetAsync(url);
                 result.EnsureSuccessStatusCode();
                 string resultString = await result.Content.ReadAsStringAsync();
