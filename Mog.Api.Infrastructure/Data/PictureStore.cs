@@ -68,8 +68,10 @@ namespace Mog.Api.Infrastructure.Data
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
             var feed = new Feed();
             feed.UserName = "jackfperryjr"; //user.UserName;
+            feed.UserFirstName = "Jack";
             feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
             feed.CharacterName = character.Name;
+            feed.CharacterId = character.Id;
             feed.TimeStamp = DateTime.Now;
             feed.PhotoUpdate = 1;
             _context.Add(feed);
@@ -117,8 +119,10 @@ namespace Mog.Api.Infrastructure.Data
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
             var feed = new Feed();
             feed.UserName = "jackfperryjr"; //user.UserName;
+            feed.UserFirstName = "Jack";
             feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
             feed.CharacterName = character.Name;
+            feed.CharacterId = character.Id;
             feed.TimeStamp = DateTime.Now;
             feed.PhotoUpdate = 1;
             _context.Add(feed);
