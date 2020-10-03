@@ -23,12 +23,7 @@ namespace Mog.Api.Infrastructure.Data
         {
             IQueryable<Feed> feed = _context.Feed;
             feed = feed.OrderByDescending(x => x.TimeStamp);
-            foreach (var x in feed)
-            {
-                DateTime convertedDate = DateTime.SpecifyKind(x.TimeStamp, DateTimeKind.Utc);
-                x.TimeStamp = convertedDate.ToLocalTime();
-            }
-            
+
             return feed;
         }
 
