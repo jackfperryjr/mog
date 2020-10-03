@@ -15,6 +15,8 @@ namespace Mog.Api.Core.Models
         public int StatDeletion { get; set; }
         public int PhotoUpdate { get; set; }
         public int Like { get; set; }
+        public int Dislike { get; set; }
+        public int Love { get; set; }
         public string UserName { get; set; }
         public string UserFirstName { get; set; }
         public string UserPhoto { get; set; }
