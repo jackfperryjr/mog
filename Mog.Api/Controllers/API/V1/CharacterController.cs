@@ -157,7 +157,7 @@ namespace Mog.Api.Controllers.API.V1
         [Authorize(Roles = "Admin")]
         [Obsolete]
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromForm] Character model, CancellationToken cancellationToken = new CancellationToken()) 
+        public async Task<IActionResult> Update(Guid id, [FromBody] Character model, CancellationToken cancellationToken = new CancellationToken()) 
         {    
             var character = await _characterFactory.GetByKeyAsync(id, cancellationToken);
             bool verify = false;

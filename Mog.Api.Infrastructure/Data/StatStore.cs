@@ -33,12 +33,12 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Stat> AddAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
-            //var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
-            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
-            feed.UserName = "jackfperryjr"; //user.UserName;
-            feed.UserFirstName = "Jack";
-            feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
+            feed.UserName = user.UserName;
+            feed.UserFirstName = user.FirstName;
+            feed.UserPhoto = user.Photo;
             feed.CharacterName = character.Name;
             feed.CharacterId = character.Id;
             feed.TimeStamp = DateTime.Now;
@@ -53,12 +53,12 @@ namespace Mog.Api.Infrastructure.Data
         public async Task<Stat> UpdateAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
             var stat = await _context.Stats.FirstOrDefaultAsync(x => x.Id == model.Id);
-            //var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
-            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
-            feed.UserName = "jackfperryjr"; //user.UserName;
-            feed.UserFirstName = "Jack";
-            feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
+            feed.UserName = user.UserName;
+            feed.UserFirstName = user.FirstName;
+            feed.UserPhoto = user.Photo;
             feed.CharacterName = character.Name;
             feed.CharacterId = character.Id;
             feed.TimeStamp = DateTime.Now;
@@ -83,12 +83,12 @@ namespace Mog.Api.Infrastructure.Data
         public async Task<Stat> DeleteAsync(Stat model, CancellationToken cancellationToken = new CancellationToken())
         {
             var stat = await _context.Stats.FirstOrDefaultAsync(x => x.Id == model.Id);
-            //var user = await ApplicationExtensions.Get<User>($"/manage/get/jackfperryjr"); // TODO:
-            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
+            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
-            feed.UserName = "jackfperryjr"; //user.UserName;
-            feed.UserFirstName = "Jack";
-            feed.UserPhoto = "https://rikku.blob.core.windows.net/images/e8aec94e-8c5b-4c8a-8320-f6423866fe86-p.png"; //user.Photo;
+            feed.UserName = user.UserName;
+            feed.UserFirstName = user.FirstName;
+            feed.UserPhoto = user.Photo;
             feed.CharacterName = character.Name;
             feed.CharacterId = character.Id;
             feed.TimeStamp = DateTime.Now;

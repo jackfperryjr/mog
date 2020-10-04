@@ -29,13 +29,11 @@ namespace Mog.Api.Core.Extensions
             return container;
         }
 
-        public static async Task<T> Get<T>(string url)
+        public static async Task<T> Get<T>(string user)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://chocoboapi.azurewebsites.net/v1");
-                //TODO: Figure out to make the server to server call to get user data.
-                var result = await client.GetAsync(url);
+                var result = await client.GetAsync("https://chocoboapi.azurewebsites.net/v1/manage/get/" + user);
                 result.EnsureSuccessStatusCode();
                 string resultString = await result.Content.ReadAsStringAsync();
                 T resultContent = JsonConvert.DeserializeObject<T>(resultString);
