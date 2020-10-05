@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using Mog.Api.Core.Extensions;
 using Mog.Api.Core.Abstractions;
 using Mog.Api.Core.Models;
@@ -34,7 +32,10 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> AddAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
-            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var claimsIdentity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity.FindFirst("sub")?.Value;
+
+            var user = await ApplicationExtensions.Get<User>(userName);
             var feed = new Feed();
             feed.UserName = user.UserName;
             feed.UserFirstName = user.FirstName;
@@ -54,7 +55,10 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> UpdateAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
-            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var claimsIdentity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity.FindFirst("sub")?.Value;
+
+            var user = await ApplicationExtensions.Get<User>(userName);
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
             feed.UserName = user.UserName;
@@ -82,7 +86,10 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Character> DeleteAsync(Character model, CancellationToken cancellationToken = new CancellationToken())
         {
-            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var claimsIdentity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity.FindFirst("sub")?.Value;
+
+            var user = await ApplicationExtensions.Get<User>(userName);
             var feed = new Feed();
             feed.UserName = user.UserName;
             feed.UserFirstName = user.FirstName;

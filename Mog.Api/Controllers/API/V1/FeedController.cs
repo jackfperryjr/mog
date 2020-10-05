@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using Mog.Api.Core.Models;
 using Mog.Api.Core.WebApi;
 using Mog.Api.Core.Abstractions;

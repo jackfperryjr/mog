@@ -3,10 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Mog.Api.Core.Extensions;
@@ -64,7 +62,10 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
-            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var claimsIdentity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity.FindFirst("sub")?.Value;
+
+            var user = await ApplicationExtensions.Get<User>(userName);
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
             feed.UserName = user.UserName;
@@ -115,7 +116,10 @@ namespace Mog.Api.Infrastructure.Data
                 }
             }
 
-            var user = await ApplicationExtensions.Get<User>($"jackfperryjr");
+            var claimsIdentity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            var userName = claimsIdentity.FindFirst("sub")?.Value;
+
+            var user = await ApplicationExtensions.Get<User>(userName);
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
             var feed = new Feed();
             feed.UserName = user.UserName;

@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Mog.Api.Infrastructure;
-using Mog.Api.Core.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Mog.Api.Controllers
 {

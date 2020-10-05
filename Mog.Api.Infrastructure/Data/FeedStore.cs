@@ -1,17 +1,10 @@
 using System;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Mog.Api.Core.Extensions;
 using Mog.Api.Core.Abstractions;
-using Mog.Api.Core.Models;
 
 namespace Mog.Api.Infrastructure.Data
 {
