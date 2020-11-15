@@ -39,34 +39,30 @@
         <script src="~/js/moogleapi-prep.min.js"></script>
         @RenderSection("Styles", false)
         </environment>
-        <title>MoogleApi</title>
+        <title>moogleAPI</title>
     </head>
     <body data-dm-shortcut-enabled="true" data-set-preferred-theme-onload="true">
-        <div class="site-logo-container">
-            <h1 class="site-logo">
+        <div class="site-logo-container bg-white">
+            <span class="site-logo text-primary" style="font-size:40px;">
                 <a asp-controller="Home" asp-action="Index">
-                    <span class="text-primary no-space">m</span>
+                    <span class="no-space">m</span>
                     <span class="mx-sm-10"><img class="logo-img" src="@Url.Content("/images/moogle.png")" alt="Moogle face for one of the Os."></span>
-                    <span class="text-secondary no-space">o</span>
-                    <span class="text-primary no-space">g</span>
-                    <span class="text-success no-space">l</span>
-                    <span class="text-danger custom-margin-left no-space">e</span>
+                    <span class="no-space">o</span>
+                    <span class="no-space">g</span>
+                    <span class="no-space">l</span>
+                    <span class="custom-margin-left no-space">e</span>
                     <span class="text-dark site-span-api">API</span>
-                </a>
-            </h1>
+                </a> 
+            </span>
+            <span class="h4 site-logo text-primary">A RESTful Final Fantasy API</span>
         </div>
         <div id="main">
             @RenderBody()
         </div>
         <footer>
             <span class="copyright">&copy; 2018 - @DateTime.Now.Year</span>
-            <a asp-controller="Home" asp-action="Index">
-                <span class="text-primary">m</span>
-                <span class="text-danger">o</span>
-                <span class="text-secondary">o</span>
-                <span class="text-primary">g</span>
-                <span class="text-success">l</span>
-                <span class="text-danger">e</span>
+            <a class="text-primary" asp-controller="Home" asp-action="Index">
+                <span>moogle</span>
                 <span class="text-dark site-span-api site-span-api-sm">API</span>
             </a> 
             <span id="social-icons">

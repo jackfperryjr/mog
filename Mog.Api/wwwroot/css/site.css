@@ -20,7 +20,7 @@ body {
 }
 /*Site logo*/
 .site-logo-container {
-  height: 70px;
+  height: 50px;
   min-width: 100%;
   width: 100%;
   position: fixed;
@@ -30,7 +30,6 @@ body {
   z-index: 1000;
 }
 .site-logo {
-  font-size: 40px;
   letter-spacing: 10px;
   cursor: pointer;
   font-family: 'Josefin Sans',sans-serif;
@@ -92,7 +91,12 @@ footer i {
   font-size: 20px;
   float: right;
 }
-footer span a i.fa-facebook-square:hover,
+footer span a i.fab:hover,
+footer span a i.fab:focus {
+  color: #4285F4;
+  transform: rotate(7deg);
+}
+/* footer span a i.fa-facebook-square:hover,
 footer span a i.fa-facebook-square:focus {
   color: #4285F4;
   transform: rotate(7deg);
@@ -111,7 +115,7 @@ footer span a i.fa-linkedin:hover,
 footer span a i.fa-linkedin:focus {
   color: #007E33;
   transform: rotate(7deg);
-}
+} */
 /*Search container*/
 .search-card {
   margin: 0 auto;
@@ -144,7 +148,6 @@ input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
 input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
 input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .search-results-container {
-  padding-top: 220px;
   height: 100vh;
   overflow: scroll;
 }
