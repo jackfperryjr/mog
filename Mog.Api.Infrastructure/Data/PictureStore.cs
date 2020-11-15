@@ -120,7 +120,7 @@ namespace Mog.Api.Infrastructure.Data
             var userName = claimsIdentity.FindFirst("sub")?.Value;
 
             var user = await ApplicationExtensions.Get<User>(userName);
-            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CollectionId);
             var feed = new Feed();
             feed.UserName = user.UserName;
             feed.UserFirstName = user.FirstName;
