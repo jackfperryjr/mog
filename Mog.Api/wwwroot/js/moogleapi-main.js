@@ -4,6 +4,7 @@ $(document).ready(function() {
     } 
 
     getCount();
+    setInterval(getCount, 300000);
 });
 
 function getCount() {
@@ -11,7 +12,7 @@ function getCount() {
         .then(function(response) {
             return response.json();
       }).then(function(data) {
-            console.log(data.length);
+            console.log("Character count: " + data.length);
             $("#character-count").text(data.length);
       });
 }
