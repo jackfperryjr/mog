@@ -36,6 +36,11 @@ namespace Mog.Api.Infrastructure.Data
             var userName = claimsIdentity.FindFirst("sub")?.Value;
 
             var user = await ApplicationExtensions.Get<User>(userName);
+
+            _context.Add(model);
+            _context.SaveChanges();
+            var character = _context.Characters.Find(model.Id);
+
             var feed = new Feed();
             feed.UserName = user.UserName;
             feed.UserFirstName = user.FirstName;
@@ -45,11 +50,8 @@ namespace Mog.Api.Infrastructure.Data
             feed.TimeStamp = DateTime.Now;
             feed.Addition = 1;
             _context.Add(feed);
-
-            _context.Add(model);
             _context.SaveChanges();
 
-            var character = _context.Characters.Find(model.Id);
             return character;
         }
 
