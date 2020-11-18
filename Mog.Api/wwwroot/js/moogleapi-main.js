@@ -8,6 +8,7 @@ $(document).ready(function() {
 });
 
 function getCount() {
+    $("#character-count").html('<i class="fas fa-circle-notch fa-spin"></i>');
     fetch("https://www.moogleapi.com/api/v1/characters")
         .then(function(response) {
             return response.json();
