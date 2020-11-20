@@ -48,6 +48,27 @@ namespace Mog.Api.Controllers.API.V1
             }
         }
 
+        [HttpGet("count")]
+        public async Task<IActionResult> GetCount(Guid id, CancellationToken cancellationToken = new CancellationToken())
+        {
+            try
+            {
+                var characters = await _characterFactory.GetAsync(id, cancellationToken);
+                if (characters.Any())
+                {
+                    return Ok(characters.Count());
+                }
+                else 
+                {
+                    return Ok(0);       
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken = new CancellationToken())
         {
