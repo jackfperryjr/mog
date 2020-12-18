@@ -1,6 +1,6 @@
 # M<img src="Mog.Api/wwwroot/images/moogle.png" width="20">ogleApi
 
-MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! The homepage is a single page application/search engine using VueJs! Check it out.
+MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! 
 
 ### Easy to use!
 
