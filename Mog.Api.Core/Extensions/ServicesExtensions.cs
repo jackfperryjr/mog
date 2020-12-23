@@ -77,10 +77,10 @@ namespace Mog.Api.Core.Extensions
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = true,
-                        ValidIssuer = "ChocoboApi",
+                        ValidIssuer = "chocoboAPI",
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        ValidAudiences = new List<string>() { "MoogleApi" }
+                        ValidAudiences = new List<string>() { "moogleAPI" }
                     };
                 });
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

@@ -33,7 +33,7 @@ namespace Mog.Api.Core.Extensions
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync("https://chocoboapi.azurewebsites.net/v1/manage/get/" + user);
+                var result = await client.GetAsync("https://chocobo.moogleapi.com/v1/manage/get/" + user);
                 result.EnsureSuccessStatusCode();
                 string resultString = await result.Content.ReadAsStringAsync();
                 T resultContent = JsonConvert.DeserializeObject<T>(resultString);
