@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Mog.Api.Core.Models;
 using Mog.Api.Core.WebApi;
 using Mog.Api.Core.Abstractions;
+using Mog.Api.Core.Extensions;
 
 namespace Mog.Api.Controllers.API.V1
 {
@@ -130,7 +131,8 @@ namespace Mog.Api.Controllers.API.V1
                     characters = characters.OrderBy(c => c.Name).Where(c => c.Race.Contains(race));
                 }
                 if (origin != null) {
-                    characters = characters.OrderBy(c => c.Name).Where(c => c.Origin.Contains(origin));
+                    origin = ApplicationExtensions.ModifyOriginForSearch(origin);
+                    characters = characters.OrderBy(c => c.Name).Where(c => c.Origin == origin);
                 }
 
                 if (characters.Any())
