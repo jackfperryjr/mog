@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using System.Net.Http;
+using Azure.Storage;
+using Azure.Storage.Blobs;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
