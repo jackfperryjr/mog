@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Mog.Api.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Mog.Api.Infrastructure
 {

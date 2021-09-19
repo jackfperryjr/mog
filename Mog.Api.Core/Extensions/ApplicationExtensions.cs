@@ -1,19 +1,11 @@
-using System;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
+using Azure.Storage;
+using Azure.Storage.Blobs;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using Mog.Api.Core.Abstractions;
-using Mog.Api.Core.Models;
 
 namespace Mog.Api.Core.Extensions
 {
