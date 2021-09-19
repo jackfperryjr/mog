@@ -6,9 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.HttpOverrides;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using Mog.Api.Infrastructure;
@@ -16,7 +14,6 @@ using Mog.Api.Core.Extensions;
 using Mog.Api.Core.Logging;
 using Mog.Api.Core.Security;
 using Mog.Api.Core.Swagger;
-using Mog.Api.Core.Models;
 
 namespace Mog.Api
 {
