@@ -35,7 +35,7 @@ namespace Mog.Api
             services.AddMemoryCache();
             services.Configure<SwaggerSettings>(Configuration.GetSection(nameof(SwaggerSettings)));
             services.Configure<ApplicationMetadata>(Configuration.GetSection(nameof(ApplicationMetadata)));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
+            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
             services.AddHttpContextAccessor();
 
             var jwtSection = Configuration.GetSection(nameof(AppSettings));
@@ -46,14 +46,14 @@ namespace Mog.Api
 
             services.AddJwtAuthentication(jwtSection)
                     .AddControllers()
-                    .AddNewtonsoftJson(opt => {
-                        opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                        opt.SerializerSettings.ContractResolver = 
+                    .AddNewtonsoftJson(x => {
+                        x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                        x.SerializerSettings.ContractResolver = 
                             new DefaultContractResolver
                             {
                                 NamingStrategy = new CamelCaseNamingStrategy()
                             };
-                        opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+                        x.SerializerSettings.Converters.Add(new StringEnumConverter());
                     });
 
             services.AddApiVersionWithExplorer()

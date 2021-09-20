@@ -1,6 +1,10 @@
 # M<img src="Mog.Api/wwwroot/images/moogle.png" width="20">ogleApi
 
-MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com! 
+MoogleApi is a database for all things Final Fantasy. Currently live at www.moogleapi.com!  
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jackfperryjr/mog)
+![GitHub Release Date](https://img.shields.io/github/release-date/jackfperryjr/mog)
+![GitHub Repo stars](https://img.shields.io/github/stars/jackfperryjr/mog?style=social)
+![Website](https://img.shields.io/website?down_color=lightgrey&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fwww.moogleapi.com)
 
 ### Easy to use!
 
