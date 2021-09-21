@@ -5,6 +5,7 @@ MoogleApi is a database for all things Final Fantasy. Currently live at www.moog
 ![GitHub Release Date](https://img.shields.io/github/release-date/jackfperryjr/mog)
 ![GitHub Repo stars](https://img.shields.io/github/stars/jackfperryjr/mog?style=social)
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fwww.moogleapi.com)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id)
 
 ### Easy to use!
 
