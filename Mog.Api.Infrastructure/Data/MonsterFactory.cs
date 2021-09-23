@@ -9,10 +9,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class MonsterFactory : IFactory<IQueryable<Monster>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public MonsterFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }

@@ -10,12 +10,12 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class FeedStore : IStore<object[]>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
         private IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public FeedStore(
-            ApplicationDbContext context,
+            SerahDbContext context,
             IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {

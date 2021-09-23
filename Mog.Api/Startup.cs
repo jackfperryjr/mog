@@ -35,7 +35,8 @@ namespace Mog.Api
             services.AddMemoryCache();
             services.Configure<SwaggerSettings>(Configuration.GetSection(nameof(SwaggerSettings)));
             services.Configure<ApplicationMetadata>(Configuration.GetSection(nameof(ApplicationMetadata)));
-            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AzureDB")));
+            services.AddDbContext<SerahDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Serah")));
+            services.AddDbContext<AsheDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Ashe")));
             services.AddHttpContextAccessor();
 
             var jwtSection = Configuration.GetSection(nameof(AppSettings));

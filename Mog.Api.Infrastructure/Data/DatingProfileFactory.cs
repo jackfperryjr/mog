@@ -10,10 +10,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class DatingProfileFactory : IFactory<IQueryable<DatingProfile>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public DatingProfileFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }

@@ -8,8 +8,8 @@ using Mog.Api.Infrastructure;
 
 namespace Mog.Api.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SerahDbContext))]
+    partial class SerahDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

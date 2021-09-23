@@ -9,10 +9,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class GameFactory : IFactory<IQueryable<Game>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public GameFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }
