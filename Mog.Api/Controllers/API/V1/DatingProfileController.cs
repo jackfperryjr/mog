@@ -35,7 +35,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "There are no profiles yet."
                     });
@@ -59,7 +59,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "There is no profile associated with this id."
                     });

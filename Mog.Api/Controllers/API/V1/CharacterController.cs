@@ -37,7 +37,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "There are no characters in the database."
                     });                
@@ -82,7 +82,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "Couldn't find a character with that id."
                     });                
@@ -141,7 +141,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "Couldn't find that character."
                     });                

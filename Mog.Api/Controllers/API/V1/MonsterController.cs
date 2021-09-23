@@ -47,7 +47,7 @@ namespace Mog.Api.Controllers.API.V1
             }
             catch
             {
-                return NotFound();
+                return BadRequest();
             }
         } 
 

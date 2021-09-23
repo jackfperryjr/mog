@@ -36,7 +36,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "There is no data in the feed."
                     });                

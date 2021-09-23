@@ -41,7 +41,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "There are no blogs in the database."
                     });                
@@ -65,7 +65,7 @@ namespace Mog.Api.Controllers.API.V1
                 }
                 else 
                 {
-                    return NotFound(new
+                    return Ok(new
                     {
                         message = "Couldn't find a blog with that id."
                     });                
