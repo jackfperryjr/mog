@@ -10,10 +10,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class CharacterFactory : IFactory<IQueryable<Character>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public CharacterFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }

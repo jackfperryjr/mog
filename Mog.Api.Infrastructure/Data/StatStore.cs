@@ -13,12 +13,12 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class StatStore : IStore<Stat>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
         private IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public StatStore(
-            ApplicationDbContext context,
+            SerahDbContext context,
             IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {

@@ -9,10 +9,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class FeedFactory : IFactory<IQueryable<Feed>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public FeedFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }

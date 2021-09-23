@@ -9,10 +9,10 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class StatFactory : IFactory<IQueryable<Stat>, Guid>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
 
         public StatFactory(
-            ApplicationDbContext context)
+            SerahDbContext context)
         {
             _context = context;
         }

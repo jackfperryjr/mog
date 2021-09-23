@@ -15,12 +15,12 @@ namespace Mog.Api.Infrastructure.Data
 {
     public class CharacterStore : IStore<Character>
     {
-        private ApplicationDbContext _context;
+        private SerahDbContext _context;
         private IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public CharacterStore(
-            ApplicationDbContext context,
+            SerahDbContext context,
             IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {

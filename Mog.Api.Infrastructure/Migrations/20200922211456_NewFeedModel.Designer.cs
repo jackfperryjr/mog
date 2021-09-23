@@ -9,7 +9,7 @@ using Mog.Api.Infrastructure;
 
 namespace Mog.Api.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SerahDbContext))]
     [Migration("20200922211456_NewFeedModel")]
     partial class NewFeedModel
     {
