@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +9,7 @@ using Mog.Api.Core.Abstractions;
 
 namespace Mog.Api.Infrastructure.Data
 {
-    public class BlogReactionStore : IStore<object[]>
+    public class BlogReactionStore : IStore<KeyValuePair<Guid, string>>
     {
         private AsheDbContext _context;
         private IConfiguration _configuration;
@@ -24,26 +25,26 @@ namespace Mog.Api.Infrastructure.Data
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<object[]> AddAsync(object[] reaction, CancellationToken cancellationToken = new CancellationToken())
+        public async Task<KeyValuePair<Guid, string>> AddAsync(KeyValuePair<Guid, string> reaction, CancellationToken cancellationToken = new CancellationToken())
         {
             return reaction;
         }
 
-        public async Task<object[]> UpdateAsync(object[] reaction, CancellationToken cancellationToken = new CancellationToken())
+        public async Task<KeyValuePair<Guid, string>> UpdateAsync(KeyValuePair<Guid, string> reaction, CancellationToken cancellationToken = new CancellationToken())
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == new Guid(reaction[0].ToString()));
+            var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == reaction.Key);
 
-            if (reaction[1].ToString() == "like")
+            if (reaction.Value == "like")
             {
                 blog.Like++;
             }
 
-            if (reaction[1].ToString() == "dislike")
+            if (reaction.Value == "dislike")
             {
                 blog.Dislike++;
             }
 
-            if (reaction[1].ToString() == "love")
+            if (reaction.Value == "love")
             {
                 blog.Love++;
             }
@@ -52,7 +53,7 @@ namespace Mog.Api.Infrastructure.Data
             return reaction;
         }
 
-        public async Task<object[]> DeleteAsync(object[] reaction, CancellationToken cancellationToken = new CancellationToken())
+        public async Task<KeyValuePair<Guid, string>> DeleteAsync(KeyValuePair<Guid, string> reaction, CancellationToken cancellationToken = new CancellationToken())
         {
             return reaction;
         }

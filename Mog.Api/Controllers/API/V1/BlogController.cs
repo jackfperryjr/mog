@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Mog.Api.Core.Models;
@@ -17,12 +18,12 @@ namespace Mog.Api.Controllers.API.V1
     {
         private readonly IFactory<IQueryable<Blog>, Guid> _blogFactory;
         private readonly IStore<Blog> _blogStore;
-        private readonly IStore<object[]> _blogReactionStore;
+        private readonly IStore<KeyValuePair<Guid, string>> _blogReactionStore;
 
         public BlogController(
             IFactory<IQueryable<Blog>, Guid> blogFactory,
             IStore<Blog> blogStore,
-            IStore<object[]> blogReactionStore)
+            IStore<KeyValuePair<Guid, string>> blogReactionStore)
         {
             _blogFactory = blogFactory;
             _blogStore = blogStore;
@@ -127,7 +128,7 @@ namespace Mog.Api.Controllers.API.V1
         [HttpPut("like/{id}")]
         public async Task<IActionResult> Like(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
         {    
-            object[] reaction = {id, "like"};
+            KeyValuePair<Guid, string> reaction = new KeyValuePair<Guid, string>(id, "like");
             try
             {
                 await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
@@ -142,7 +143,7 @@ namespace Mog.Api.Controllers.API.V1
         [HttpPut("dislike/{id}")]
         public async Task<IActionResult> Dislike(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
         {    
-            object[] reaction = {id, "dislike"};
+            KeyValuePair<Guid, string> reaction = new KeyValuePair<Guid, string>(id, "dislike");
             try
             {
                 await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
@@ -157,7 +158,7 @@ namespace Mog.Api.Controllers.API.V1
         [HttpPut("love/{id}")]
         public async Task<IActionResult> Love(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
         {    
-            object[] reaction = {id, "love"};
+            KeyValuePair<Guid, string> reaction = new KeyValuePair<Guid, string>(id, "love");
             try
             {
                 await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
