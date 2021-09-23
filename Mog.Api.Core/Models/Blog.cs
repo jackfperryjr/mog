@@ -9,6 +9,9 @@ namespace Mog.Api.Core.Models
     {  
         public Guid Id { get; set; }
         [Required]  
+        [MaxLength(50)]
+        public string Title { get; set; }
+        [Required]
         public string Content { get; set; }
         public int Like { get; set; }
         public int Dislike { get; set; }
