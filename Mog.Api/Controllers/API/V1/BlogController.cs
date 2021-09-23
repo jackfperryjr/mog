@@ -17,13 +17,16 @@ namespace Mog.Api.Controllers.API.V1
     {
         private readonly IFactory<IQueryable<Blog>, Guid> _blogFactory;
         private readonly IStore<Blog> _blogStore;
+        private readonly IStore<object[]> _blogReactionStore;
 
         public BlogController(
             IFactory<IQueryable<Blog>, Guid> blogFactory,
-            IStore<Blog> blogStore)
+            IStore<Blog> blogStore,
+            IStore<object[]> blogReactionStore)
         {
             _blogFactory = blogFactory;
             _blogStore = blogStore;
+            _blogReactionStore = blogReactionStore;
         }
 
         [HttpGet]
@@ -116,6 +119,51 @@ namespace Mog.Api.Controllers.API.V1
                 });
             }
             else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("like/{id}")]
+        public async Task<IActionResult> Like(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            object[] reaction = {id, "like"};
+            try
+            {
+                await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("dislike/{id}")]
+        public async Task<IActionResult> Dislike(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            object[] reaction = {id, "dislike"};
+            try
+            {
+                await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("love/{id}")]
+        public async Task<IActionResult> Love(Guid id, CancellationToken cancellationToken = new CancellationToken()) 
+        {    
+            object[] reaction = {id, "love"};
+            try
+            {
+                await _blogReactionStore.UpdateAsync(reaction, cancellationToken);
+                return Ok();
+            }
+            catch
             {
                 return BadRequest();
             }
