@@ -43,7 +43,9 @@ namespace Mog.Api.Infrastructure.Data
         {
             var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == model.Id);
 
+            blog.Title = model.Title;
             blog.Content = model.Content;
+            blog.Updated = DateTimeOffset.Now;
             _context.SaveChanges();
             return model;
         }

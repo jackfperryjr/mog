@@ -17,5 +17,6 @@ namespace Mog.Api.Core.Models
         public int Dislike { get; set; }
         public int Love { get; set; }
         public DateTimeOffset Created { get; set;}
+        public DateTimeOffset Updated { get; set; }
     }  
 }
