@@ -20,7 +20,7 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<IQueryable<Blog>> GetAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))
         {
-            IQueryable<Blog> blogs = _context.Blogs;
+            IQueryable<Blog> blogs = _context.Blogs.OrderByDescending(x => x.Created);
             return blogs;
         }
 

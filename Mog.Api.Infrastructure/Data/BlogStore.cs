@@ -31,6 +31,7 @@ namespace Mog.Api.Infrastructure.Data
 
         public async Task<Blog> AddAsync(Blog model, CancellationToken cancellationToken = new CancellationToken())
         {
+            model.Created = DateTimeOffset.Now;
             _context.Add(model);
             _context.SaveChanges();
             var blog = _context.Blogs.Find(model.Id);
